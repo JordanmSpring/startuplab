@@ -1,0 +1,54 @@
+
+!!!
+%html.html{:lang => "en-US"}
+  %head
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+    %title View idea
+  %body
+    #page.clearfix
+      / column
+      #page_position_content.position_content
+        #pu401.clearfix.colelem
+          / group
+          #u401-bw.browser_width.grpelem
+            #u401
+              / group
+              #u401_align_to_page.clearfix
+                %img#u417-4.grpelem{:alt => "back to Jordan Michaelides", :height => "20", :src => "images/u417-4.png", :width => "170"}/
+                / rasterized frame
+                #u404.clearfix.grpelem
+                  / group
+                  #u408-4.clearfix.grpelem
+                    / content
+                    %p Welcome, Lauren!
+                  #u411.clip_frame.clearfix.grpelem
+                    / image
+                    #u411_clip
+                      %img#u411_img.position_content{:alt => "", :height => "14", :src => "images/down-arrow-more.png", :width => "15"}/
+          #u414-bw.browser_width.grpelem
+            #u414
+              / group
+              #u414_align_to_page.clearfix
+                #u410-4.rounded-corners.clearfix.grpelem
+                  / content
+                  %p Startup Lab
+                #u416-4.rounded-corners.clearfix.grpelem
+                  / content
+                  %p Got a startup idea?
+                #u407-4.rounded-corners.clearfix.grpelem
+                  / content
+                  %p Search Ideas
+          #u402.rounded-corners.clip_frame.grpelem
+            / image
+            %img#u402_img.block{:alt => "", :height => "76", :src => "images/startuplabicongreen.png", :width => "47"}/
+          #u405.clearfix.grpelem
+            / column
+            #u409-4.clearfix.colelem
+              / content
+              %p Dashboard
+            #u413-4.clearfix.colelem
+              / content
+              %p Log out
+        = yield

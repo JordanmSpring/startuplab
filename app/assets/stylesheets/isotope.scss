@@ -1,0 +1,55 @@
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* force scrollbar, prevents initial gap */
+html {
+  overflow-y: scroll; 
+}
+
+/* ---- grid (lean model canvas) ---- */
+
+.grid {
+  width: 1100px;
+  margin: 0 auto;
+
+  /* clear fix */
+  &:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+
+  /* ---- .element-item ---- */
+
+  /* 5 columns, percentage width */
+  .grid-item,
+  .grid-sizer { width: 183px; }
+
+  .grid-item {
+    float: left;
+    height: 50px;
+    background: #0D8;
+    border-color: hsla(0, 0%, 0%, 0.7);
+  }
+
+  .grid-item--width2        { width: 366px; }
+  .grid-item--height-norm   { height: 172px; }
+  .grid-item--height-tiny   { height: 47px; }
+  .grid-item--height-med    { height: 125px; }
+  .grid-item--height-double { height: 344px; }
+
+  .grid-item--problem      { background-color: #867877; }
+  .grid-item--idea         { background-color: #e0ffff; }
+  .grid-item--mvp          { background-color: #dee6e8; }
+  .grid-item--target       { background-color: #b3b3b3; }
+  .grid-item--channels     { background-color: #d9d2bf; }
+  .grid-item--costs        { background-color: #9aa9ac; }
+  .grid-item--revenue      { background-color: #5d5d5d; }
+  .grid-item--founders     { background-color: #dee6e8; }
+  .grid-item--crowdfunding { background-color: #b3b3b3; }
+  .grid-item--social       { background-color: #ffdcb6; }
+}

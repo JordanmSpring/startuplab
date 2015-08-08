@@ -1,0 +1,26 @@
+common: &common
+  host:     <%= ENV['DB_HOST'] || '127.0.0.1' %>
+  username: <%= ENV['DB_USER_NAME'] %>
+  password: <%= ENV['DB_PWD'] || '' %>
+  template: template1
+  adapter:  postgresql
+  encoding: unicode
+  pool:     <%= ENV['DB_CONCURRENCY'] || 10 %>
+  timeout:  5000
+
+development:
+  <<: *common
+  database: <%= ENV['DB_NAME'] || 'startuplab_development' %>
+
+test:
+  <<: *common
+  database: <%= ENV['DB_NAME_TEST'] || 'startuplab' %><%= ENV['TEST_ENV_NUMBER'] %>
+  pool: 5
+
+staging:
+  <<: *common
+  database: <%= ENV['DB_NAME'] || 'startuplab' %>
+
+production:
+  <<: *common
+  database: <%= ENV['DB_NAME'] || 'startuplab' %>
