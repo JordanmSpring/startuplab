@@ -31,9 +31,25 @@ html {
 
   .grid-item {
     float: left;
-    height: 50px;
-    background: #0D8;
-    border-color: hsla(0, 0%, 0%, 0.7);
+    padding: 8px;
+
+    a {
+      color: #fff;
+      text-decoration: none;
+
+      &.inverted {
+        color: #a7aeb6;
+      }
+    }
+
+    &:hover {
+      background: #ed6d71;
+
+      a {
+        text-decoration: underline;
+        color: #fff;
+      }
+    }
   }
 
   .grid-item--width2        { width: 366px; }
