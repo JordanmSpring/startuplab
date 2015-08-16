@@ -18,6 +18,9 @@ ActiveRecord::Schema.define(version: 20150815090618) do
 
   create_table "ideas", force: :cascade do |t|
     t.string   "name"
+    t.text     "problem"
+    t.text     "idea"
+    t.text     "mvp"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

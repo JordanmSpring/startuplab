@@ -1,0 +1,17 @@
+angular.module('StartupLab')
+.controller('IdeaPanelController', ['$scope', 'Idea', function($scope, Idea) {
+
+  $scope.saveIdea = function(idea) {
+    Idea.update(idea).success(function() {
+      $scope.hideModal();
+    });
+  };
+
+  $scope.showModal = function() {
+    $scope.modal.modal('show');
+  };
+
+  $scope.hideModal = function() {
+    $scope.modal.modal('hide');
+  };
+}]);

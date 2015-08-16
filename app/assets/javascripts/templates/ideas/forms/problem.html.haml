@@ -1,0 +1,15 @@
+%a(ng-click="showModal()") {{ linkTitle }}
+.modal.fade
+  .modal-dialog
+    .modal-content
+      %form(name="ideaForm" ng-submit="ideaForm.$valid && saveIdea(idea)" novalidate)
+        .modal-header
+          %button(type="button" class="close" ng-click="hideModal()" aria-label="Close") &times;
+          %h4 What is the problem you are solving?
+        .modal-body
+          .form-group
+            %textarea.form-control(rows="5" ng-model="idea.problem" ng-maxlength="300" required)
+
+        .modal-footer
+          %a.btn.btn-warning(ng-click="hideModal()") Cancel
+          %button.btn.btn-primary(type="Submit") Save

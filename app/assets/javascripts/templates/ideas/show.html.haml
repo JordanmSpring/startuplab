@@ -7,14 +7,13 @@
   .grid
     .grid-sizer
     .grid-item.grid-item--height-norm.grid-item--problem
-      %sl-problems(ng-model="idea" link-title="Problem")
+      %sl-idea-panel(ng-model="idea" link-title="Problem" template-url="#{asset_path('templates/ideas/forms/problem.html')}")
 
-
-    .grid-item.grid-item--height-norm.grid-item--idea
-      = link_to 'Idea', '#', class: 'inverted'
+    .grid-item.grid-item--height-norm.grid-item--idea.inverted
+      %sl-idea-panel(ng-model="idea" link-title="Idea" template-url="#{asset_path('templates/ideas/forms/idea.html')}")
       
-    .grid-item.grid-item--height-norm.grid-item--mvp
-      = link_to 'MVP', '#', class: 'inverted'
+    .grid-item.grid-item--height-norm.grid-item--mvp.inverted
+      %sl-idea-panel(ng-model="idea" link-title="MVP" template-url="#{asset_path('templates/ideas/forms/mvp.html')}")
 
     .grid-item.grid-item--height-tiny.grid-item--target
       = link_to 'Target Market', '#'

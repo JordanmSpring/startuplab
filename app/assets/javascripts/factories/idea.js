@@ -1,11 +1,19 @@
 angular.module('StartupLab').factory('Idea', [ '$http', function($http) {
   return {
+    idea_path: function(id) {
+      return '/ideas/' + id.toString() + '.json';
+    },
+
     all: function() {
-      return $http({method: 'GET', url: '/ideas.json'});
+      return $http.get('/ideas.json');
     },
 
     find: function(id) {
-      return $http({method: 'GET', url: '/ideas/' + id.toString() + '.json'});
+      return $http.get(this.idea_path(id));
+    },
+
+    update: function(idea) {
+      return $http.patch(this.idea_path(idea.id), { idea: idea });
     }
   };
 }]);

@@ -1,0 +1,17 @@
+
+angular.module('StartupLab').directive("slIdeaPanel", [ 'Idea', function(Idea) {
+  return {
+    restrict: 'E',
+    templateUrl: function(elem, attrs) {
+      return attrs.templateUrl;
+    },
+    controller: 'IdeaPanelController',
+    scope: {
+      idea: '=ngModel',
+      linkTitle: '@'
+    },
+    link: function(scope, element) {
+      scope.modal = element.find('.modal');
+    }
+  }
+}]);
