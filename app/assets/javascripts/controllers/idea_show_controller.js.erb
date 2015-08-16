@@ -1,0 +1,14 @@
+angular.module('StartupLab')
+.controller('IdeaShowController', ['$scope', '$routeParams', 'Idea', function($scope, $routeParams, Idea) {
+
+  Idea.find($routeParams.id).success(function(data) {
+    $scope.idea = data;
+  });
+
+  // TODO: Init isotope
+
+  $scope.boo = function() {
+    console.log('clicked boo');
+    $('#md-idea-problems').modal('show');
+  };
+}]);

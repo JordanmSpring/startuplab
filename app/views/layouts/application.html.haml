@@ -1,12 +1,10 @@
 
 !!!
-%html.html{:lang => "en-US"}
+%html.html{:lang => "en-US", "ng-app" => "StartupLab"}
   %head
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
-    = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
-    :javascript
-      document.write('\x3Cscript src="' + (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//webfonts.creativecloud.com/quicksand:n7:all.js" type="text/javascript">\x3C/script>');
+
     %title View idea
   %body
     #page.clearfix
@@ -18,7 +16,7 @@
             #u401
               / group
               #u401_align_to_page.clearfix
-                %img#u417-4.grpelem{:alt => "back to Jordan Michaelides", :height => "20", :src => "images/u417-4.png", :width => "170"}/
+                /%img#u417-4.grpelem{:alt => "back to Jordan Michaelides", :height => "20", :src => "images/u417-4.png", :width => "170"}/
                 / rasterized frame
                 #u404.clearfix.grpelem
                   / group
@@ -28,7 +26,7 @@
                   #u411.clip_frame.clearfix.grpelem
                     / image
                     #u411_clip
-                      %img#u411_img.position_content{:alt => "", :height => "14", :src => "images/down-arrow-more.png", :width => "15"}/
+                    /  %img#u411_img.position_content{:alt => "", :height => "14", :src => "images/down-arrow-more.png", :width => "15"}/
           #u414-bw.browser_width.grpelem
             #u414
               / group
@@ -44,7 +42,7 @@
                   %p Search Ideas
           #u402.rounded-corners.clip_frame.grpelem
             / image
-            %img#u402_img.block{:alt => "", :height => "76", :src => "images/startuplabicongreen.png", :width => "47"}/
+            /%img#u402_img.block{:alt => "", :height => "76", :src => "images/startuplabicongreen.png", :width => "47"}/
           #u405.clearfix.grpelem
             / column
             #u409-4.clearfix.colelem
@@ -53,4 +51,5 @@
             #u413-4.clearfix.colelem
               / content
               %p Log out
-        = yield
+        %div(ng-view)
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true

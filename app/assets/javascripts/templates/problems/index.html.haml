@@ -1,0 +1,13 @@
+%h1 Hey here are the problems for {{ idea }}
+
+%form.form-inline(ng-submit="addProblem()")
+  %ul
+    %li(ng-repeat="problem in problems")
+      {{ problem.description }} {{ $index }}
+      %a{'ng-click' => 'removeProblem($index)'} X
+
+  .form-group
+    %label Description
+    %input.form-control(type="text" ng-model="problem.description")
+
+  %button.btn.btn-default(type="Submit") Add

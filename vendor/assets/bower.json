@@ -1,6 +1,10 @@
 {
   "name": "dsl-generated dependencies",
   "dependencies": {
-    "isotope": "latest"
+    "isotope": "latest",
+    "bootstrap": "latest",
+    "angular": "latest",
+    "angular-resource": "latest",
+    "angular-route": "latest"
   }
 }

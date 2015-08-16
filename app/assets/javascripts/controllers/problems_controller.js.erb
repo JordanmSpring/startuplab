@@ -1,0 +1,17 @@
+angular.module('StartupLab')
+.controller('ProblemsController', ['$scope', '$routeParams', '$http', function($scope, $routeParams, $http) {
+  $scope.problem = {};
+
+  $http({method: 'GET', url: '/ideas/1/problems.json'}).success(function(data) {
+    $scope.problems = data.problems;
+  });
+
+  $scope.addProblem = function() {
+    $scope.problems.push(this.problem);
+    $scope.problem = {};
+  };
+
+  $scope.removeProblem = function(index) {
+    $scope.problems.splice(index, 1);
+  };
+}]);

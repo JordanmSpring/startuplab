@@ -1,0 +1,48 @@
+
+#u645-4.clearfix.colelem
+  %p Idea: {{ idea.name }}
+
+#pu630.clearfix.colelem
+
+  .grid
+    .grid-sizer
+    .grid-item.grid-item--height-norm.grid-item--problem
+      %a(ng-click="boo()") Problem!!
+
+    .grid-item.grid-item--height-norm.grid-item--idea
+      = link_to 'Idea', '#', class: 'inverted'
+      
+    .grid-item.grid-item--height-norm.grid-item--mvp
+      = link_to 'MVP', '#', class: 'inverted'
+
+    .grid-item.grid-item--height-tiny.grid-item--target
+      = link_to 'Target Market', '#'
+
+    .grid-item.grid-item--height-norm.grid-item--costs
+      = link_to 'Costs', '#'
+
+
+    .grid-item.grid-item--height-double.grid-item--revenue
+      = link_to 'Business Mod-Rev', '#'
+
+
+    .grid-item.grid-item--height-med.grid-item--channels
+      = link_to 'Channels', '#'
+
+    .grid-item.grid-item--height-norm.grid-item--founders
+      = link_to 'Founders', '#', class: 'inverted'
+
+    .grid-item.grid-item--height-norm.grid-item--width2.grid-item--crowdfunding
+      = link_to 'Crowdfunding Options', '#'
+
+    .grid-item.grid-item--height-norm.grid-item--width2.grid-item--social
+      = link_to 'Social Media', '#', class: 'inverted'
+ 
+#md-idea-problems.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        Foo
+      .modal-body
+        %sl-problems(idea="{{ idea.id }}")
+

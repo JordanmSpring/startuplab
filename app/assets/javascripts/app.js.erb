@@ -1,0 +1,24 @@
+// TODO: Move these to a routes.js file
+angular.module('StartupLab', ['ngRoute', 'ngResource'])
+ .config(['$routeProvider', function($routeProvider) {
+  $routeProvider
+    .when('/ideas', {
+      templateUrl: '<%= asset_path("templates/ideas/index.html") %>',
+      controller: 'IdeasController'
+    })
+    .when('/ideas/:id', {
+      templateUrl: '<%= asset_path("templates/ideas/show.html") %>',
+      controller: 'IdeaShowController'
+    })
+    .when('/', { redirectTo: '/ideas' })
+    .otherwise({
+      redirectTo: '/ideas'
+    });
+}]);
+
+angular.module('StartupLab').directive("problemForm", function() {
+  return {
+    restrict: 'E',
+    templateUrl: '<%= asset_path('templates/problem-form.html') %>'
+  };
+});

@@ -1,0 +1,13 @@
+#u645-4.clearfix.colelem
+  / content
+  %p All Ideas
+  
+#pu630.clearfix.colelem(ng-repeat='idea in ideas')
+  / group
+  #u437.clip_frame.grpelem
+    = link_to('#ideas/{{ idea.id }}') do
+      = image_tag('idea-diagram.jpg')
+  #u448-4.clearfix.grpelem
+    / content
+    %p {{ idea.name }}
+

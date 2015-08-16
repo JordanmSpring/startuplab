@@ -6,10 +6,11 @@
 #pu630.clearfix.colelem
 
   .grid
+    /(ng-controller="IdeaController as idea")
 
     .grid-sizer
     .grid-item.grid-item--height-norm.grid-item--problem
-      = link_to 'Problem', '#'
+      = link_to 'Problem', '#', 'ng-click' => "idea.boo()"
 
     .grid-item.grid-item--height-norm.grid-item--idea
       = link_to 'Idea', '#', class: 'inverted'
@@ -64,7 +65,22 @@
   %p Comments
 .verticalspacer
 
+.modal.fade#modal-foo
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{type: "button", data: { dismiss: "modal", 'aria-label' => "Close"}}
+        %span{'aria-hidden' => "true"}
+          &times;
+        %h4.modal-title Modal title
+      .modal-body
+        %problem-form
+
+      .modal-footer
+
+
 :javascript
+  // TODO: Move this to its own file
   $(document).ready(function() {
     $('.grid').isotope({
       itemSelector: '.grid-item',
