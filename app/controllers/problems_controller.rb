@@ -7,6 +7,12 @@ class ProblemsController < ApplicationController
     render json: problems
   end
 
+  def create
+    # TODO: Use proper params
+    @idea.problems.create(params.require(:problem).permit!)
+    head :ok
+  end
+
   private
     def find_idea
       @idea = Idea.find(params[:idea_id])

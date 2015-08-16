@@ -1,8 +1,8 @@
-%h1 Hey here are the problems for {{ idea }}
+%h1 Hey here are the problems for {{ idea.name }}
 
-%form.form-inline(ng-submit="addProblem()")
+%form.form-inline(ng-submit="addProblem(idea)")
   %ul
-    %li(ng-repeat="problem in problems")
+    %li(ng-repeat="problem in idea.problems")
       {{ problem.description }} {{ $index }}
       %a{'ng-click' => 'removeProblem($index)'} X
 

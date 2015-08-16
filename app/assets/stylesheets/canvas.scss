@@ -27,7 +27,7 @@ html {
 
   /* 5 columns, percentage width */
   .grid-item,
-  .grid-sizer { width: 183px; }
+  .grid-sizer { width: 182px; }
 
   .grid-item {
     float: left;
@@ -52,7 +52,7 @@ html {
     }
   }
 
-  .grid-item--width2        { width: 366px; }
+  .grid-item--width2        { width: 364px; }
   .grid-item--height-norm   { height: 172px; }
   .grid-item--height-tiny   { height: 47px; }
   .grid-item--height-med    { height: 125px; }

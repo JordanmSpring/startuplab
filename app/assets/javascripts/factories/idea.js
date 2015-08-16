@@ -1,4 +1,3 @@
-console.log('FACT');
 angular.module('StartupLab').factory('Idea', [ '$http', function($http) {
   return {
     all: function() {

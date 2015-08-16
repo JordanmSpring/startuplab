@@ -5,7 +5,15 @@ angular.module('StartupLab')
     $scope.idea = data;
   });
 
-  // TODO: Init isotope
+  /* Init isotope */
+  $('.grid').isotope({
+    itemSelector: '.grid-item',
+    masonry: {
+      // use outer width of grid-sizer for columnWidth
+      columnWidth: 182
+    },
+    sortBy: 'original-order'
+  });
 
   $scope.boo = function() {
     console.log('clicked boo');

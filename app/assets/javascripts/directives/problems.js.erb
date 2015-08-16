@@ -4,8 +4,6 @@ angular.module('StartupLab').directive("slProblems", function() {
     restrict: 'E',
     templateUrl: '<%= asset_path("templates/problems/index.html") %>',
     controller: 'ProblemsController',
-    scope: {
-      idea: '@'
-    }
+    scope: { idea: '=ngModel' }
   }
 });
