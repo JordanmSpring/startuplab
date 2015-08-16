@@ -1,9 +1,16 @@
 
-angular.module('StartupLab').directive("slProblems", function() {
+angular.module('StartupLab').directive("slProblems", [ 'Problem', function(Problem) {
   return {
     restrict: 'E',
     templateUrl: '<%= asset_path("templates/problems/index.html") %>',
     controller: 'ProblemsController',
-    scope: { idea: '=ngModel' }
+    scope: { idea: '=ngModel' },
+    link: function(scope, element) {
+      element.find('.modal').on('show.bs.modal', function() {
+        Problem.all(scope.idea).success(function(data) {
+          scope.idea.problems = data.problems
+        });
+      });
+    }
   }
-});
+}]);

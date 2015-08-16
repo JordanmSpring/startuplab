@@ -2,30 +2,14 @@ angular.module('StartupLab')
 .controller('ProblemsController', ['$scope', '$routeParams', 'Problem', function($scope, $routeParams, Problem) {
   $scope.problem = {};
 
-  /*Problem.all($scope.idea).success(function(data) {
-  //$http({method: 'GET', url: '/ideas/1/problems.json'}).success(function(data) {
-    $scope.problems = data.problems;
-  });*/
-
-  $scope.init = function() {
-    console.log('init called', $scope.idea);
-  };
-
   $scope.addProblem = function(idea) {
-    console.log('Adding for ', idea);
-    // TODO: Can the error go into the service?
-    Problem.create(idea, $scope.problem)
-      .success(function() {
-        idea.problems.push($scope.problem);
-        $scope.problem = {};
-      }).error(function() {
-        alert('Could not save problem');
-      });
+    Problem.create(idea, $scope.problem).success(function() {
+      idea.problems.push($scope.problem);
+      $scope.problem = {};
+    });
   };
 
   $scope.removeProblem = function(index) {
     $scope.problems.splice(index, 1);
   };
-
-  $scope.init();
 }]);

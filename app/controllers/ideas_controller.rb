@@ -6,6 +6,6 @@ class IdeasController < ApplicationController
 
   def show
     @idea = Idea.find(params[:id])
-    render json: { id: @idea.id, name: @idea.name, problems: @idea.problems }
+    render json: @idea
   end
 end
