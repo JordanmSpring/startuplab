@@ -5,9 +5,10 @@
       %form(name="ideaForm" ng-submit="ideaForm.$valid && saveIdea(idea)" novalidate)
         .modal-header
           %button(type="button" class="close" ng-click="hideModal()" aria-label="Close") &times;
-          %h4 What is the Idea?
+          %h4 &nbsp;
         .modal-body
           .form-group
+            %label What is your idea?
             %textarea.form-control(rows="5" ng-model="idea.idea" ng-maxlength="300" required)
 
         .modal-footer

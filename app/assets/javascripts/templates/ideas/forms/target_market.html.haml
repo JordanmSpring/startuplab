@@ -8,11 +8,12 @@
           %h4 &nbsp;
         .modal-body
           .form-group
-            %label What problem have you identified?
-            %input.form-control(type="text" ng-model="idea.problem" required)
+            %label Who is your ideal customer?
+            %input.form-control(type="text" ng-model="idea.target_customer" required)
+            %span.help-block (e.g. Age, Sex, Income)
           .form-group
-            %label Describe the problem
-            %textarea.form-control(rows="5" ng-model="idea.problem_detail" ng-maxlength="300" required)
+            %label Why are they your ideal customer? Why would they value your product?
+            %textarea.form-control(rows="5" ng-model="idea.target_customer_reason" ng-maxlength="300" required)
 
         .modal-footer
           %a.btn.btn-warning(ng-click="hideModal()") Cancel

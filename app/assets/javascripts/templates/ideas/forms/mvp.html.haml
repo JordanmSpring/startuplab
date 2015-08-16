@@ -8,7 +8,18 @@
           %h4 What is the MVP?
         .modal-body
           .form-group
-            %textarea.form-control(rows="5" ng-model="idea.mvp" ng-maxlength="300" required)
+            %label Name of company
+            %input.form-control(type="text" ng-model="idea.company" required)
+          .form-group
+            %label MVP Site URL
+            %input.form-control(type="url" ng-model="idea.mvp_url")
+          .form-group
+            %label MVP Stage
+            %select(ng-model="idea.mvp_stage")
+              %option Wireframe
+              %option Alpha
+              %option Beta
+              %option Live Product
 
         .modal-footer
           %a.btn.btn-warning(ng-click="hideModal()") Cancel
