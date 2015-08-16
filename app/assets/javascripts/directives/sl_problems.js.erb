@@ -2,11 +2,15 @@
 angular.module('StartupLab').directive("slProblems", [ 'Problem', function(Problem) {
   return {
     restrict: 'E',
-    templateUrl: '<%= asset_path("templates/problems/index.html") %>',
+    templateUrl: '<%= asset_path("templates/problems/modal.html") %>',
     controller: 'ProblemsController',
-    scope: { idea: '=ngModel' },
+    scope: {
+      idea: '=ngModel',
+      linkTitle: '@'
+    },
     link: function(scope, element) {
-      element.find('.modal').on('show.bs.modal', function() {
+      scope.modal = element.find('.modal');
+      scope.modal.on('show.bs.modal', function() {
         Problem.all(scope.idea).success(function(data) {
           scope.idea.problems = data.problems
         });

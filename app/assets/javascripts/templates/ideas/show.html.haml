@@ -7,7 +7,8 @@
   .grid
     .grid-sizer
     .grid-item.grid-item--height-norm.grid-item--problem
-      %a(ng-click="boo()") Problem!!
+      %sl-problems(ng-model="idea" link-title="Problem")
+
 
     .grid-item.grid-item--height-norm.grid-item--idea
       = link_to 'Idea', '#', class: 'inverted'
@@ -38,5 +39,3 @@
     .grid-item.grid-item--height-norm.grid-item--width2.grid-item--social
       = link_to 'Social Media', '#', class: 'inverted'
  
-%sl-problems(ng-model="idea")
-

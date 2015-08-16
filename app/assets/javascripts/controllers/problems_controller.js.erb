@@ -12,4 +12,8 @@ angular.module('StartupLab')
   $scope.removeProblem = function(index) {
     $scope.problems.splice(index, 1);
   };
+
+  $scope.showModal = function() {
+    $scope.modal.modal('show');
+  };
 }]);

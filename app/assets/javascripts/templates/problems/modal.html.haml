@@ -1,3 +1,4 @@
+%a(ng-click="showModal()") {{ linkTitle }}
 #md-idea-problems.modal.fade
   .modal-dialog
     .modal-content
@@ -5,7 +6,7 @@
         %h4 Problems for {{ idea.name }}
       .modal-body
 
-        %form.form-inline(ng-submit="addProblem(idea)")
+        %form.form-inline(name="problemForm" ng-submit="problemForm.$valid && addProblem(idea)" novalidate)
           %ul
             %li(ng-repeat="problem in idea.problems")
               {{ problem.description }} {{ $index }}
@@ -13,6 +14,6 @@
 
           .form-group
             %label Description
-            %input.form-control(type="text" ng-model="problem.description")
+            %input.form-control(type="text" ng-model="problem.description" required)
 
           %button.btn.btn-default(type="Submit") Add
