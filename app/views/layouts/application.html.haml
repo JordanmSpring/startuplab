@@ -1,6 +1,6 @@
 
 !!!
-%html.html{:lang => "en-US", "ng-app" => "StartupLab"}
+%html.html{:lang => "en-US", "ng-app" => "StartupLab", "ng-controller" => "AppController"}
   %head
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = csrf_meta_tags
@@ -22,7 +22,8 @@
                   / group
                   #u408-4.clearfix.grpelem
                     / content
-                    %p Welcome, Lauren!
+                    %p(ng-show="session.isAuthenticated()")
+                      {{ session.currentUser.email }}
                   #u411.clip_frame.clearfix.grpelem
                     / image
                     #u411_clip
@@ -50,6 +51,7 @@
               %p Dashboard
             #u413-4.clearfix.colelem
               / content
-              %p Log out
+              %p(ng-show="session.isAuthenticated()")
+                %a(ng-click="session.logout()") Log out
         %div(ng-view)
     = javascript_include_tag 'application', 'data-turbolinks-track' => true

@@ -1,0 +1,9 @@
+
+angular.module('StartupLab')
+.controller('SessionsController', ['$scope', 'Session', function($scope, Session) {
+  $scope.session = {};
+
+  $scope.login = function() {
+    Session.login($scope.session.email, $scope.session.password);
+  }
+}]);

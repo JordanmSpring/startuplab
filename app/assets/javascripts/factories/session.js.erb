@@ -1,0 +1,63 @@
+angular.module('StartupLab').factory('Session', function($location, $http, $q) {
+  // Redirect to the given url (defaults to '/')
+  function redirect(url) {
+    url = url || '/';
+    $location.path(url);
+  }
+
+  var session = {
+    currentUser: null,
+
+    isAuthenticated: function() {
+      return !!this.currentUser;
+    },
+
+    login: function(email, password) {
+       return $http.post('/users/sign_in', {user: {email: email, password: password} })
+      .then(function(response) {
+        session.currentUser = response.data.user;
+        if (session.isAuthenticated()) {
+          //TODO: Send them back to where they came from
+          //$location.path(response.data.redirect);
+          $location.path('/ideas');
+        }
+      }, function(error) {
+        alert('Wrong!');
+        console.log(error);
+      });
+    },
+
+    logout: function(redirectTo) {
+      $http.delete('/users/sign_out').then(function() {
+        session.currentUser = null;
+        redirect(redirectTo);
+      }, function() {
+        alert('Could not log out');
+      });
+    },
+
+    register: function(email, password, confirm_password) {
+      return $http.post('/users.json', {user: {email: email, password: password, password_confirmation: confirm_password} })
+      .then(function(response) {
+        session.currentUser = response.data;
+        if (session.isAuthenticated()) {
+          $location.path('/record');
+        }
+      });
+    },
+
+    requestCurrentUser: function() {
+      return $http.get('/users/current.json').then(function(response) {
+        console.log(response.data);
+        session.currentUser = response.data;
+        return session.currentUser;
+      }, function() {
+        console.log('Unable to get user')
+      });
+    }
+  };
+
+  session.requestCurrentUser();
+
+  return session;
+});

@@ -10,6 +10,10 @@ angular.module('StartupLab', ['ngRoute', 'ngResource'])
       templateUrl: '<%= asset_path("templates/ideas/show.html") %>',
       controller: 'IdeaShowController'
     })
+    .when('/sign-in', {
+      templateUrl: '<%= asset_path("templates/sessions/new.html") %>',
+      controller: 'SessionsController'
+    })
     .when('/', { redirectTo: '/ideas' })
     .otherwise({
       redirectTo: '/ideas'
