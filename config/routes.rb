@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: { sessions: "api/sessions" }
+  devise_for :users, controllers: { sessions: "api/sessions", registrations: "api/registrations" }
   namespace :api do
     resources :users do
      collection do
         get :current
+        get :exists
       end
     end
     resources :ideas do

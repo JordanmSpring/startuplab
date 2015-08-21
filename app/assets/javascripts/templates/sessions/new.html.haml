@@ -2,9 +2,11 @@
   / content
   %p Sign In
 
-  %form(name="sessionForm" ng-submit="login()" novalidate)
+  %form(name="sessionForm" ng-submit="sessionForm.$valid && login()" novalidate)
+    %div(ng-show="session.failed")
+      Invalid Password
     / TODO: Validation
-    %input.form-control(type="email" ng-model="session.email" required)
+    %input#email.form-control(type="email" ng-model="session.email" required)
     %input.form-control(type="password" ng-model="session.password" required)
     %button.btn.btn-primary(type="Submit") Login
   

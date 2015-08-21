@@ -4,11 +4,13 @@ angular.module('StartupLab').config([
       return {
         'responseError': function(rejection) {
           console.log('REJECT', rejection.status);
-          $location.path('/sign-in');
+          if (rejection.status === 401) {
+            $location.path('/sign-in');
+          }
           return $q.reject(rejection);
         },
 
-        'request': function(config) {
+        'response': function(config) {
           console.log(config);
           return config;
         },

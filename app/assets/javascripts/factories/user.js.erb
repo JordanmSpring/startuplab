@@ -1,0 +1,11 @@
+angular.module('StartupLab').factory('User', [ '$http', function($http) {
+  return {
+    existsWithEmail: function(email, callback) {
+      var resp = false;
+      $http.get('/api/users/exists.json?email=' + email)
+      .then(function(response) {
+        callback(true);
+      });
+    }
+  };
+}]);

@@ -12,7 +12,12 @@ angular.module('StartupLab', ['ngRoute', 'ngResource'])
     })
     .when('/sign-in', {
       templateUrl: '<%= asset_path("templates/sessions/new.html") %>',
-      controller: 'SessionsController'
+      controller: 'SessionsController',
+      controllerAs: 'session'
+    })
+    .when('/register', {
+      templateUrl: '<%= asset_path("templates/users/new.html") %>',
+      controller: 'RegistrationsController'
     })
     .when('/', { redirectTo: '/ideas' })
     .otherwise({

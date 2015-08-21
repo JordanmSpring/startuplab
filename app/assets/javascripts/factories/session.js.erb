@@ -12,18 +12,17 @@ angular.module('StartupLab').factory('Session', function($location, $http, $q) {
       return !!this.currentUser;
     },
 
-    login: function(email, password) {
+    login: function(email, password, failure) {
        return $http.post('/users/sign_in', {user: {email: email, password: password} })
       .then(function(response) {
         session.currentUser = response.data.user;
         if (session.isAuthenticated()) {
           //TODO: Send them back to where they came from
           //$location.path(response.data.redirect);
-          $location.path('/ideas');
+          redirect('/');
         }
       }, function(error) {
-        alert('Wrong!');
-        console.log(error);
+        failure();
       });
     },
 
@@ -36,18 +35,29 @@ angular.module('StartupLab').factory('Session', function($location, $http, $q) {
       });
     },
 
-    register: function(email, password, confirm_password) {
-      return $http.post('/users.json', {user: {email: email, password: password, password_confirmation: confirm_password} })
-      .then(function(response) {
+    register: function(user) {
+      return $http.post('/users.json', {
+        user: {
+          name: user.name,
+          email: user.email,
+          password: user.password,
+          password_confirmation: user.passwordConfirmation
+        }
+      }).then(function(response) {
+        console.log('response', response.data);
         session.currentUser = response.data;
         if (session.isAuthenticated()) {
-          $location.path('/record');
+          $location.path('/ideas');
         }
+      }, function(response) {
+        // TODO: Display above form
+        alert(response.data.errors);
       });
     },
 
+    // TODO: Use the User service
     requestCurrentUser: function() {
-      return $http.get('/users/current.json').then(function(response) {
+      return $http.get('/api/users/current.json').then(function(response) {
         console.log(response.data);
         session.currentUser = response.data;
         return session.currentUser;

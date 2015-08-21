@@ -4,6 +4,12 @@ angular.module('StartupLab')
   $scope.session = {};
 
   $scope.login = function() {
-    Session.login($scope.session.email, $scope.session.password);
+    Session.login($scope.session.email, $scope.session.password, function() {
+      /* Failure callback */
+      $scope.session.failed = true;
+      $scope.session.email = '';
+      $scope.session.password = '';
+      console.log($('#email').focus());
+    });
   }
 }]);
