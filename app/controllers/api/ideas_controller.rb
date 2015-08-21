@@ -1,9 +1,7 @@
-class IdeasController < ApplicationController
-  before_action :authenticate_user!
+class Api::IdeasController < Api::BaseController
   before_action :find_idea, except: :index
 
   def index
-    puts "CU: #{current_user.inspect}"
     @ideas = Idea.all
     render json: @ideas
   end

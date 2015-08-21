@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class Api::UsersController < Api::BaseController
   respond_to :json
 
   def current

@@ -1,11 +1,11 @@
 angular.module('StartupLab').factory('Idea', [ '$http', function($http) {
   return {
     idea_path: function(id) {
-      return '/ideas/' + id.toString() + '.json';
+      return '/api/ideas/' + id.toString() + '.json';
     },
 
     all: function() {
-      return $http.get('/ideas.json');
+      return $http.get('/api/ideas.json');
     },
 
     find: function(id) {

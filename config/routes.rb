@@ -1,12 +1,14 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: { sessions: "sessions" } # TODO: namespace to api ?
-  resources :users do
-   collection do
-      get :current
+  devise_for :users, controllers: { sessions: "api/sessions" }
+  namespace :api do
+    resources :users do
+     collection do
+        get :current
+      end
     end
-  end
-  resources :ideas do
-    resources :problems
+    resources :ideas do
+      resources :problems
+    end
   end
 
   root 'home#index'

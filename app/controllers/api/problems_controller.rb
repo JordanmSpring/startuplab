@@ -1,4 +1,4 @@
-class ProblemsController < ApplicationController
+class Api::ProblemsController < Api::BaseController
   before_action :find_idea
 
   def index
