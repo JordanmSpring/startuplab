@@ -1,0 +1,11 @@
+angular.module('StartupLab')
+.controller('NewIdeaController', ['$scope', '$location', 'Idea', function($scope, $location, Idea) {
+
+  $scope.idea = {};
+
+  $scope.submit = function() {
+    Idea.create($scope.idea, function(idea) {
+      $location.path('/ideas/' + idea.id);
+    });
+  }
+}]);

@@ -1,0 +1,10 @@
+#u645-4.clearfix.colelem
+  / content
+  %p New Idea
+
+  %form(name="ideaForm" ng-submit="ideaForm.$valid && submit()" novalidate)
+    .form-group
+      %label Name
+      %input.form-control(type="text" ng-model="idea.name" required)
+    %button.btn.btn-primary(type="Submit") Create
+  

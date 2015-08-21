@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     end
     resources :ideas do
       resources :problems
+      resources :comments
     end
   end
 

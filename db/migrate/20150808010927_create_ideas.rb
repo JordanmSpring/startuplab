@@ -1,6 +1,7 @@
 class CreateIdeas < ActiveRecord::Migration
   def change
     create_table :ideas do |t|
+      t.references :user
       t.string :name
       t.text :problem
       t.text :problem_detail

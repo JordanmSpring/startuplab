@@ -39,3 +39,29 @@
     .grid-item.grid-item--height-norm.grid-item--width2.grid-item--social
       = link_to 'Social Media', '#', class: 'inverted'
  
+#u646-4.clearfix.colelem
+  %p Submitted by
+
+#pu647.clearfix.colelem
+  #u647.grpelem
+
+  #u648-4.clearfix.grpelem
+    %p {{ idea.user.name }}
+
+  #u657.clip_frame.grpelem
+    %img#u657_img.block(src="images/thumbsupvector.png" alt="" width="41" height="40")
+
+  #u663-4.clearfix.grpelem
+    %p 10 up votes
+
+#u649-4.clearfix.colelem
+  %p Comments
+  %form(name="commentForm" ng-controller="CommentsController as comment" ng-submit="commentForm.$valid && addComment(idea)" novalidate)
+    %textarea(ng-model="comment.body" required)
+    %button.btn.btn-default Submit
+
+  %ul
+    %li(ng-repeat="comment in idea.comments") {{ comment.body }}
+
+<div class="verticalspacer"></div>
+

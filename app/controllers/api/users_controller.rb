@@ -7,10 +7,6 @@ class Api::UsersController < Api::BaseController
   end
 
   def exists
-    if User.exists?(email: params[:email])
-      head :ok
-    else
-      head :not_found
-    end
+    render json: { exists: User.exists?(email: params[:email]) }
   end
 end

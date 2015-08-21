@@ -1,6 +1,7 @@
 angular.module('StartupLab')
 .controller('IdeasController', ['$scope', 'Idea', function($scope, Idea) {
-  Idea.all().success(function(data) {
-    $scope.ideas = data.ideas;
+  Idea.all().then(function(response) {
+    console.log(response);
+    $scope.ideas = response.data.ideas;
   });
 }]);

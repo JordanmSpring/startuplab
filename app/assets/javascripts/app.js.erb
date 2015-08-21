@@ -6,9 +6,13 @@ angular.module('StartupLab', ['ngRoute', 'ngResource'])
       templateUrl: '<%= asset_path("templates/ideas/index.html") %>',
       controller: 'IdeasController'
     })
+    .when('/ideas/new', {
+      templateUrl: '<%= asset_path("templates/ideas/new.html") %>',
+      controller: 'NewIdeaController'
+    })
     .when('/ideas/:id', {
       templateUrl: '<%= asset_path("templates/ideas/show.html") %>',
-      controller: 'IdeaShowController'
+      controller: 'ShowIdeaController'
     })
     .when('/sign-in', {
       templateUrl: '<%= asset_path("templates/sessions/new.html") %>',

@@ -7,6 +7,11 @@ angular.module('StartupLab').config([
           if (rejection.status === 401) {
             $location.path('/sign-in');
           }
+
+          if (rejection.status === 404) {
+            alert('Not Found');
+            $location.path('/');
+          }
           return $q.reject(rejection);
         },
 

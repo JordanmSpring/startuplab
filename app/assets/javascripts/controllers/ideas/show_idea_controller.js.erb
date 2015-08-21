@@ -1,8 +1,9 @@
 angular.module('StartupLab')
-.controller('IdeaShowController', ['$scope', '$routeParams', 'Idea', function($scope, $routeParams, Idea) {
+.controller('ShowIdeaController', ['$scope', '$routeParams', 'Idea', function($scope, $routeParams, Idea) {
 
-  Idea.find($routeParams.id).success(function(data) {
-    $scope.idea = data;
+  Idea.find($routeParams.id).then(function(response) {
+    console.log('aaa', response);
+    $scope.idea = response.data;
   });
 
   /* Init isotope */

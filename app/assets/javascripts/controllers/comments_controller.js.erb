@@ -1,0 +1,12 @@
+angular.module('StartupLab')
+.controller('CommentsController', ['$scope', '$routeParams', 'Comment', function($scope, $routeParams, Comment) {
+  $scope.comment = {};
+
+  $scope.addComment = function(idea) {
+    console.log('comment', $scope.comment);
+    Comment.create(idea, $scope.comment, function(comment) {
+      idea.comments.unshift(comment);
+      $scope.comment = {};
+    });
+  };
+}]);
