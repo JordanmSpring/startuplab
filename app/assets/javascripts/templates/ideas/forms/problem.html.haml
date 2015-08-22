@@ -1,18 +1,17 @@
-%a(ng-click="showModal()") {{ linkTitle }}
+%a.inner(ng-click="showModal()")
+  %span {{ linkTitle }}
 .modal.fade
   .modal-dialog
     .modal-content
       %form(name="ideaForm" ng-submit="ideaForm.$valid && saveIdea(idea)" novalidate)
         .modal-header
           %button(type="button" class="close" ng-click="hideModal()" aria-label="Close") &times;
-          %h4 &nbsp;
+          %h2 Problem
         .modal-body
           .form-group
-            %label What problem have you identified?
-            %input.form-control(type="text" ng-model="idea.problem" required)
+            %input.form-control(type="text" ng-model="idea.problem" placeholder="What problem have you identified?" required)
           .form-group
-            %label Describe the problem
-            %textarea.form-control(rows="5" ng-model="idea.problem_detail" ng-maxlength="300" required)
+            %textarea.form-control(rows="5" ng-model="idea.problem_detail" ng-maxlength="300" placeholder="Describe the problem" required)
 
         .modal-footer
           %a.btn.btn-warning(ng-click="hideModal()") Cancel

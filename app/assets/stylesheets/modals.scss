@@ -1,0 +1,50 @@
+
+.modal {
+  .modal-content {
+    border-radius: 0;
+
+    .modal-header {
+      border: none;
+      button.close {
+        color: #fff;
+      }
+
+      h2 {
+        font-size: 1.5em;
+        font-weight: bold;
+      }
+    }
+
+    .modal-body {
+      input, textarea, label {
+        background: transparent;
+        border: none;
+        font-size: 1.3em;
+
+        &:focus { 
+          background: rgba(0, 0, 0, 0.1);
+        }
+      }
+
+      span.help-block {
+        padding-left: 14px;
+      }
+      ::-webkit-input-placeholder {
+        font-style: italic;
+      }
+      :-moz-placeholder {
+        font-style: italic;
+      }
+      ::-moz-placeholder {
+        font-style: italic;
+      }
+      :-ms-input-placeholder {
+        font-style: italic;
+      }
+    }
+
+    .modal-footer {
+      border: none;
+    }
+  }
+}

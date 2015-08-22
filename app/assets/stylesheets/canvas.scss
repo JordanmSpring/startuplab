@@ -25,19 +25,8 @@ html {
 
   /* ---- .element-item ---- */
 
-  /* 5 columns, percentage width */
-  .grid-item,
-  .grid-sizer { width: 182px; }
-
   .grid-item {
     float: left;
-    padding: 8px;
-
-    &.inverted {
-      a {
-        color: #a7aeb6;
-      }
-    }
 
     a {
       color: #fff;
@@ -45,6 +34,76 @@ html {
 
       &.inverted {
         color: #a7aeb6;
+      }
+
+      &.inner {
+        padding: 8px;
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+    }
+
+    .modal {
+      input, textarea, label, h2 {
+        color: #fff;
+      }
+
+      .modal-body {
+        ::-webkit-input-placeholder {
+          color: rgba(255, 255, 255, 0.7);
+        }
+        :-moz-placeholder {
+          color: rgba(255, 255, 255, 0.7);
+        }
+        ::-moz-placeholder {
+          color: rgba(255, 255, 255, 0.7);
+        }
+        :-ms-input-placeholder {
+          color: rgba(255, 255, 255, 0.7);
+        }
+      }
+
+      .modal-footer {
+        button, a {
+          background: #fff;
+          border: none;
+          text-decoration: none;
+          border-radius: 0;
+          color: #333;
+
+          &:hover {
+            background: #333;
+            color: #fff;
+          }
+        }
+      }
+    }
+
+    &.inverted {
+      a {
+        color: #a7aeb6;
+      }
+
+      .modal {
+        .modal-body {
+          ::-webkit-input-placeholder {
+            color: rgba(167, 174, 182, 0.9);
+          }
+          :-moz-placeholder {
+            color: rgba(255, 255, 255, 0.7);
+          }
+          ::-moz-placeholder {
+            color: rgba(255, 255, 255, 0.7);
+          }
+          :-ms-input-placeholder {
+            color: rgba(255, 255, 255, 0.7);
+          }
+        }
+
+        input, textarea, label, h2 {
+          color: #a7aeb6;
+        }
       }
     }
 
@@ -58,20 +117,24 @@ html {
     }
   }
 
+  /* 5 columns, percentage width */
+  .grid-item,
+  .grid-sizer               { width: 182px; }
+
   .grid-item--width2        { width: 364px; }
   .grid-item--height-norm   { height: 172px; }
   .grid-item--height-tiny   { height: 47px; }
   .grid-item--height-med    { height: 125px; }
   .grid-item--height-double { height: 344px; }
 
-  .grid-item--problem      { background-color: #867877; }
-  .grid-item--idea         { background-color: #e0ffff; }
-  .grid-item--mvp          { background-color: #dee6e8; }
-  .grid-item--target       { background-color: #b3b3b3; }
-  .grid-item--channels     { background-color: #d9d2bf; }
-  .grid-item--costs        { background-color: #9aa9ac; }
-  .grid-item--revenue      { background-color: #5d5d5d; }
-  .grid-item--founders     { background-color: #dee6e8; }
-  .grid-item--crowdfunding { background-color: #b3b3b3; }
-  .grid-item--social       { background-color: #ffdcb6; }
+  .grid-item--problem,      .grid-item--problem .modal-content      { background-color: #867877; }
+  .grid-item--idea,         .grid-item--idea .modal-content         { background-color: #e0ffff; }
+  .grid-item--mvp ,         .grid-item--mvp .modal-content          { background-color: #dee6e8; }
+  .grid-item--target,       .grid-item--target .modal-content       { background-color: #b3b3b3; }
+  .grid-item--channels,     .grid-item--channels .modal-content     { background-color: #d9d2bf; }
+  .grid-item--costs,        .grid-item--costs .modal-content        { background-color: #9aa9ac; }
+  .grid-item--revenue,      .grid-item--revenue .modal-content      { background-color: #5d5d5d; }
+  .grid-item--founders,     .grid-item--founders .modal-content     { background-color: #dee6e8; }
+  .grid-item--crowdfunding, .grid-item--crowdfunding .modal-content { background-color: #b3b3b3; }
+  .grid-item--social,       .grid-item--social .modal-content       { background-color: #ffdcb6; }
 }
