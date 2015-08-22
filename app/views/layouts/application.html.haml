@@ -5,6 +5,9 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = csrf_meta_tags
 
+    :javascript
+      document.write('\x3Cscript src="' + (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//webfonts.creativecloud.com/quicksand:n7:all.js" type="text/javascript">\x3C/script>');
+
     %title View idea
   %body
     #page.clearfix
