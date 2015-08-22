@@ -1,0 +1,10 @@
+%a.inner(ng-click="showModal()")
+  %span.title {{ linkTitle }}
+  .founders
+    %img(ng-repeat="founder in idea.founders" ng-src="{{ founder.gravatarUrl }}")
+#md-idea-problems.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %h4 Founders
+      .modal-body

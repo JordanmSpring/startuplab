@@ -1,0 +1,17 @@
+angular.module('StartupLab')
+.controller('FoundersController', ['$scope', '$routeParams', 'Problem', function($scope, $routeParams) {
+  /*$scope.addProblem = function(idea) {
+    Problem.create(idea, $scope.problem).success(function() {
+      idea.problems.push($scope.problem);
+      $scope.problem = {};
+    });
+  };
+
+  $scope.removeProblem = function(index) {
+    $scope.problems.splice(index, 1);
+  };*/
+
+  $scope.showModal = function() {
+    $scope.modal.modal('show');
+  };
+}]);

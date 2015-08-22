@@ -1,20 +1,20 @@
 
-angular.module('StartupLab').directive("slProblems", [ 'Problem', function(Problem) {
+angular.module('StartupLab').directive("slFounders", [ 'Problem', function(Problem) {
   return {
     restrict: 'E',
-    templateUrl: '<%= asset_path("templates/problems/modal.html") %>',
-    controller: 'ProblemsController',
+    templateUrl: '<%= asset_path("templates/founders/modal.html") %>',
+    controller: 'FoundersController',
     scope: {
       idea: '=ngModel',
       linkTitle: '@'
     },
     link: function(scope, element) {
-      scope.modal = element.find('.modal');
+      /*scope.modal = element.find('.modal');
       scope.modal.on('show.bs.modal', function() {
-        Problem.all(scope.idea).success(function(data) {
+        Founder.all(scope.idea).success(function(data) {
           scope.idea.problems = data.problems
         });
-      });
+      });*/
     }
   }
 }]);

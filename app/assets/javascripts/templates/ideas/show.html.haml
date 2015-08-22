@@ -19,17 +19,15 @@
       %sl-idea-panel(ng-model="idea" link-title="Target Market" template-url="#{asset_path('templates/ideas/forms/target_market.html')}")
 
     .grid-item.grid-item--height-norm.grid-item--costs
-      %a(ng-click="alert('hi')") Costs
-      /= link_to 'Costs', '#'
+      %sl-idea-panel(ng-model="idea" link-title="Costs" template-url="#{asset_path('templates/ideas/forms/costs.html')}")
 
 
     .grid-item.grid-item--height-double.grid-item--revenue
-      = link_to 'Business Mod-Rev', '#'
+      %sl-idea-panel(ng-model="idea" link-title="Business Mod-Rev" template-url="#{asset_path('templates/ideas/forms/revenue.html')}")
 
 
     .grid-item.grid-item--height-med.grid-item--channels
       = link_to 'Channels', '#'
-
 
     .grid-item.grid-item--height-norm.grid-item--width2.grid-item--crowdfunding
       = link_to 'Crowdfunding Options', '#'
@@ -37,8 +35,8 @@
     .grid-item.grid-item--height-norm.grid-item--width2.grid-item--social
       = link_to 'Social Media', '#', class: 'inverted'
 
-    .grid-item.grid-item--height-norm.grid-item--founders
-      = link_to 'Founders', '#', class: 'inverted'
+    .grid-item.grid-item--height-norm.grid-item--founders.inverted
+      %sl-founders(ng-model="idea" link-title="Founders")
  
 #u646-4.clearfix.colelem
   %p Submitted by

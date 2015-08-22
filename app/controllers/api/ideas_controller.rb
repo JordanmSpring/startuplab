@@ -17,8 +17,11 @@ class Api::IdeasController < Api::BaseController
   end
 
   def create
-    idea = current_user.ideas.create!(idea_params)
-    respond_with(:api, IdeaExhibit.new(idea))
+    Idea.transaction do
+      @idea = current_user.ideas.create!(idea_create_params)
+      @idea.founders << current_user
+    end
+    render json: IdeaExhibit.new(@idea)
   end
 
   private
@@ -39,7 +42,9 @@ class Api::IdeasController < Api::BaseController
         :mvp_url,
         :mvp_stage,
         :target_customer,
-        :target_customer_reason
+        :target_customer_reason,
+        :costs,
+        :revenue
       )
     end
 end

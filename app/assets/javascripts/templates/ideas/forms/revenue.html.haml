@@ -1,18 +1,16 @@
 %a.inner(ng-click="showModal()")
   %span.title {{ linkTitle }}
-  .content {{ idea.problem | limitTo:80 }}{{ idea.problem.length > 80 ? '...' : ''}}
+  .content {{ idea.revenue | limitTo:80 }}{{ idea.revenue.length > 80 ? '...' : ''}}
 .modal.fade
   .modal-dialog
     .modal-content
       %form(name="ideaForm" ng-submit="ideaForm.$valid && saveIdea(idea)" novalidate)
         .modal-header
           %button(type="button" class="close" ng-click="hideModal()" aria-label="Close") &times;
-          %h2 Problem
+          %h2 Costs
         .modal-body
           .form-group
-            %input.form-control(type="text" ng-model="idea.problem" placeholder="What problem have you identified?" required)
-          .form-group
-            %textarea.form-control(rows="5" ng-model="idea.problem_detail" ng-maxlength="300" placeholder="Describe the problem" required)
+            %textarea.form-control(rows="5" ng-model="idea.revenue" ng-maxlength="300" placeholder="How will you earn income?" required)
 
         .modal-footer
           %a.btn.btn-warning(ng-click="hideModal()") Cancel

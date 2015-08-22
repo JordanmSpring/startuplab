@@ -54,6 +54,15 @@ html {
           width: 80%;
           font-size: 1.1em;
         }
+        
+        .founders {
+          margin-top: 5px;
+
+          img {
+            padding: 1px;
+            margin: 0;
+          }
+        }
       }
     }
 
@@ -135,10 +144,10 @@ html {
   .grid-sizer               { width: 182px; }
 
   .grid-item--width2        { width: 364px; }
-  .grid-item--height-norm   { height: 172px; }
-  .grid-item--height-tiny   { height: 47px; }
+  .grid-item--height-norm   { height: 192px; }
+  .grid-item--height-tiny   { height: 67px; }
   .grid-item--height-med    { height: 125px; }
-  .grid-item--height-double { height: 344px; }
+  .grid-item--height-double { height: 384px; }
 
   .grid-item--problem,      .grid-item--problem .modal-content      { background-color: #867877; }
   .grid-item--idea,         .grid-item--idea .modal-content         { background-color: #e0ffff; }
