@@ -19,5 +19,5 @@
       %input.form-control(type="password" name="passwordConfirmation" ng-model="user.passwordConfirmation" ng-minlength="8" compare-to="user.password" required)
       %span.errorMessage(ng-show="userForm.passwordConfirmation.$dirty && userForm.passwordConfirmation.$error.compareTo")
         Passwords do not match
-    %button.btn.btn-primary(type="Submit") Sign Up
+    %button.btn.btn-primary(ng-disabled="!userForm.$valid" type="Submit") Sign Up
   

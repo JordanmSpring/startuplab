@@ -8,7 +8,7 @@ class IdeaExhibit
   def as_json(options = {})
     object.attributes.merge(
       comments: CommentsExhibit.new(@object.comments),
-      founders: UsersExhibit.new(@object.founders),
+      founders: FoundersExhibit.new(@object.founders),
       user: UserExhibit.new(@object.user)
     ).as_json
   end

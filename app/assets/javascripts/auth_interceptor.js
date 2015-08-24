@@ -12,6 +12,11 @@ angular.module('StartupLab').config([
             alert('Not Found');
             $location.path('/');
           }
+
+          if (rejection.status === 500) {
+            alert('An Error Occurred');
+          }
+
           return $q.reject(rejection);
         },
 

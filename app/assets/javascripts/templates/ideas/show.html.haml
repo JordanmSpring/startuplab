@@ -1,66 +1,71 @@
 
-#u645-4.clearfix.colelem
-  %p Idea: {{ idea.name }}
+.clearfix
+.content
+  .row
+    #u645-4.colelem
+      %h2 Idea: {{ idea.name }}
 
-#pu630.clearfix.colelem
+  .row
+    #pu630.clearfix.colelem
 
-  .grid
-    .grid-sizer
-    .grid-item.grid-item--height-norm.grid-item--problem
-      %sl-idea-panel(ng-model="idea" link-title="Problem" template-url="#{asset_path('templates/ideas/forms/problem.html')}")
+      .grid
+        .grid-sizer
+        .grid-item.grid-item--height-norm.grid-item--problem
+          %sl-idea-panel(ng-model="idea" link-title="Problem" template-url="#{asset_path('templates/ideas/forms/problem.html')}")
 
-    .grid-item.grid-item--height-norm.grid-item--idea.inverted
-      %sl-idea-panel(ng-model="idea" link-title="Idea" template-url="#{asset_path('templates/ideas/forms/idea.html')}")
-      
-    .grid-item.grid-item--height-norm.grid-item--mvp.inverted
-      %sl-idea-panel(ng-model="idea" link-title="MVP" template-url="#{asset_path('templates/ideas/forms/mvp.html')}")
+        .grid-item.grid-item--height-norm.grid-item--idea.inverted
+          %sl-idea-panel(ng-model="idea" link-title="Idea" template-url="#{asset_path('templates/ideas/forms/idea.html')}")
+          
+        .grid-item.grid-item--height-norm.grid-item--mvp.inverted
+          %sl-idea-panel(ng-model="idea" link-title="MVP" template-url="#{asset_path('templates/ideas/forms/mvp.html')}")
 
-    .grid-item.grid-item--height-tiny.grid-item--target
-      %sl-idea-panel(ng-model="idea" link-title="Target Market" template-url="#{asset_path('templates/ideas/forms/target_market.html')}")
+        .grid-item.grid-item--height-tiny.grid-item--target
+          %sl-idea-panel(ng-model="idea" link-title="Target Market" template-url="#{asset_path('templates/ideas/forms/target_market.html')}")
 
-    .grid-item.grid-item--height-norm.grid-item--costs
-      %sl-idea-panel(ng-model="idea" link-title="Costs" template-url="#{asset_path('templates/ideas/forms/costs.html')}")
-
-
-    .grid-item.grid-item--height-double.grid-item--revenue
-      %sl-idea-panel(ng-model="idea" link-title="Business Mod-Rev" template-url="#{asset_path('templates/ideas/forms/revenue.html')}")
+        .grid-item.grid-item--height-norm.grid-item--costs
+          %sl-idea-panel(ng-model="idea" link-title="Costs" template-url="#{asset_path('templates/ideas/forms/costs.html')}")
 
 
-    .grid-item.grid-item--height-med.grid-item--channels
-      = link_to 'Channels', '#'
+        .grid-item.grid-item--height-double.grid-item--revenue
+          %sl-idea-panel(ng-model="idea" link-title="Business Mod-Rev" template-url="#{asset_path('templates/ideas/forms/revenue.html')}")
 
-    .grid-item.grid-item--height-norm.grid-item--width2.grid-item--crowdfunding
-      = link_to 'Crowdfunding Options', '#'
 
-    .grid-item.grid-item--height-norm.grid-item--width2.grid-item--social
-      = link_to 'Social Media', '#', class: 'inverted'
+        .grid-item.grid-item--height-med.grid-item--channels
+          = link_to 'Channels', '#'
 
-    .grid-item.grid-item--height-norm.grid-item--founders.inverted
-      %sl-founders(ng-model="idea" link-title="Founders")
- 
-#u646-4.clearfix.colelem
-  %p Submitted by
+        .grid-item.grid-item--height-norm.grid-item--width2.grid-item--crowdfunding
+          = link_to 'Crowdfunding Options', '#'
 
-#pu647.clearfix.colelem
-  #u647.grpelem
+        .grid-item.grid-item--height-norm.grid-item--width2.grid-item--social
+          = link_to 'Social Media', '#', class: 'inverted'
 
-  #u648-4.clearfix.grpelem
-    %p {{ idea.user.name }}
+        .grid-item.grid-item--height-norm.grid-item--founders.inverted
+          %sl-founders(ng-model="idea" link-title="Founders")
+     
+    #u646-4.clearfix.colelem
+      %p Submitted by
 
-  #u657.clip_frame.grpelem
-    %img#u657_img.block(src="images/thumbsupvector.png" alt="" width="41" height="40")
+    #pu647.clearfix.colelem
+      #u647.grpelem
+        %img(ng-src="{{ idea.user.gravatarUrl }}")
 
-  #u663-4.clearfix.grpelem
-    %p 10 up votes
+      #u648-4.clearfix.grpelem
+        %p {{ idea.user.name }}
 
-#u649-4.clearfix.colelem
-  %p Comments
-  %form(name="commentForm" ng-controller="CommentsController as comment" ng-submit="commentForm.$valid && addComment(idea)" novalidate)
-    %textarea(ng-model="comment.body" required)
-    %button.btn.btn-default Submit
+      #u657.clip_frame.grpelem
+        %img#u657_img.block(src="#{asset_path('thumbsupvector.png')}" alt="" width="41" height="40")
 
-  %ul
-    %li(ng-repeat="comment in idea.comments") {{ comment.body }}
+      #u663-4.clearfix.grpelem
+        %p 10 up votes
 
-<div class="verticalspacer"></div>
+    #u649-4.clearfix.colelem
+      %p Comments
+      %form(name="commentForm" ng-controller="CommentsController as comment" ng-submit="commentForm.$valid && addComment(idea)" novalidate)
+        %textarea(ng-model="comment.body" required)
+        %button.btn.btn-default Submit
+
+      %ul
+        %li(ng-repeat="comment in idea.comments") {{ comment.body }}
+
+    <div class="verticalspacer"></div>
 

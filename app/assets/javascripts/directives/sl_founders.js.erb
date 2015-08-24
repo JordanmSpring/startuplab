@@ -9,8 +9,9 @@ angular.module('StartupLab').directive("slFounders", [ 'Problem', function(Probl
       linkTitle: '@'
     },
     link: function(scope, element) {
-      /*scope.modal = element.find('.modal');
-      scope.modal.on('show.bs.modal', function() {
+      scope.modal = element.find('.modal');
+      // TODO: Load founders every time
+      /*scope.modal.on('show.bs.modal', function() {
         Founder.all(scope.idea).success(function(data) {
           scope.idea.problems = data.problems
         });
