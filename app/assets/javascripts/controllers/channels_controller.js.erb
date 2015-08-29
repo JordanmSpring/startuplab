@@ -1,0 +1,38 @@
+angular.module('StartupLab')
+.controller('ChannelsController', ['$scope', '$routeParams', 'Channel', function($scope, $routeParams, Channel) {
+  $scope.channels = [];
+
+  $scope.showModal = function() {
+    $scope.channels = $scope.idea.channels;
+    $scope.modal.modal('show');
+  };
+
+  $scope.toggleSelection = function(name) {
+    var idx = $scope.channels.indexOf(name);
+
+    // is currently selected
+    if (idx > -1) {
+      $scope.channels.splice(idx, 1);
+    } else {
+      // is newly selected
+      $scope.channels.push(name);
+    }
+  };
+
+  $scope.channelStr = function(channels) {
+    if (channels) {
+      return channels.join(', ');
+    }
+  };
+
+  $scope.checked = function(name) {
+    return $scope.channels.indexOf(name);
+  };
+
+  $scope.syncChannels = function() {
+    console.log('syncing', $scope.idea.channels);
+    Channel.save($scope.idea, $scope.channels).success(function() {
+      $scope.idea.channels = $scope.channels;
+    });
+  };
+}]);

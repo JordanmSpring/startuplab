@@ -1,0 +1,18 @@
+%a.inner(ng-click="showModal(idea)")
+  %span.title {{ linkTitle }}
+  .content
+    %ul
+      %li {{ idea.timing_why | limitTo:100 }}{{ idea.timing_why.length > 100 ? '...' : ''}}
+      %li {{ idea.timing_description | limitTo:100 }}{{ idea.timing_description.length > 100 ? '...' : ''}}
+.modal.fade
+  .modal-dialog
+    .modal-content
+      %form(name="ideaForm" novalidate)
+        .modal-header
+          %button(type="button" class="close" ng-click="hideModal()" aria-label="Close") &times;
+          %h2 Timing
+        .modal-body
+          .form-group
+            %textarea.form-control(type="text" ng-model="idea.timing_why" placeholder="Why is the market ready?")
+          .form-group
+            %textarea.form-control(rows="5" ng-model="idea.timing_description" ng-maxlength="300" placeholder="Description")

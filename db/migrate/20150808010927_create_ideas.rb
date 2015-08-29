@@ -13,6 +13,10 @@ class CreateIdeas < ActiveRecord::Migration
       t.text :target_customer_reason
       t.text :costs
       t.text :revenue
+      t.text :pitch_why
+      t.text :pitch_how
+      t.text :timing_why
+      t.text :timing_description
       t.timestamps null: false
     end
   end

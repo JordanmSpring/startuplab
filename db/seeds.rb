@@ -5,3 +5,11 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+Channel.create!(name: 'Social Media')
+Channel.create!(name: 'Content Media')
+Channel.create!(name: 'Other Media')
+Channel.create!(name: 'Direct Marketing')
+Channel.create!(name: 'Indirect Marketing')
+Channel.create!(name: 'Business Development')
+Channel.create!(name: 'Partnerships')

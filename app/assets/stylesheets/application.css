@@ -11,23 +11,12 @@
  * file per style scope.
  *
  *= require bootstrap/dist/css/bootstrap.min
- *= require_tree .
+ *= require global
+ *= require comments
+ *= require ideas
+ *= require modals
+ *= require angular
+ *= require canvas
  *= require_self
  */
 
-p.page-title a {
-  color: #fff;
-  text-decoration: none;
-}
-
-a[ng-click] {
-  cursor: pointer;
-}
-
-.ng-invalid.ng-dirty {
-  border-color: #FA787E;
-}
-
-.ng-valid.ng-dirty {
-  border-color: #78FA89;
-}

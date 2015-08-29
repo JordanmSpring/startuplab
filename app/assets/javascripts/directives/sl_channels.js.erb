@@ -1,0 +1,18 @@
+
+angular.module('StartupLab').directive("slChannels", [ 'Idea', function(Idea) {
+  return {
+    restrict: 'E',
+    templateUrl: '<%= asset_path("templates/channels/modal.html") %>',
+    controller: 'ChannelsController',
+    scope: {
+      idea: '=ngModel',
+      linkTitle: '@'
+    },
+    link: function(scope, element) {
+      scope.modal = element.find('.modal');
+      scope.modal.on('hide.bs.modal', function (e) {
+        scope.syncChannels();
+      });
+    }
+  }
+}]);

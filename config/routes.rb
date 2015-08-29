@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resources :ideas do
       resources :problems
       resources :comments
+      resources :channels
     end
   end
 

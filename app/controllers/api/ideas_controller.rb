@@ -44,7 +44,12 @@ class Api::IdeasController < Api::BaseController
         :target_customer,
         :target_customer_reason,
         :costs,
-        :revenue
+        :revenue,
+        :name,
+        :pitch_why,
+        :pitch_how,
+        :timing_why,
+        :timing_description
       )
     end
 end

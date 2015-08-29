@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150823065002) do
+ActiveRecord::Schema.define(version: 20150829092343) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "channels", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "channels_ideas", id: false, force: :cascade do |t|
+    t.integer "channel_id"
+    t.integer "idea_id"
+  end
 
   create_table "comments", force: :cascade do |t|
     t.integer  "user_id"
@@ -45,6 +56,10 @@ ActiveRecord::Schema.define(version: 20150823065002) do
     t.text     "target_customer_reason"
     t.text     "costs"
     t.text     "revenue"
+    t.text     "pitch_why"
+    t.text     "pitch_how"
+    t.text     "timing_why"
+    t.text     "timing_description"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end

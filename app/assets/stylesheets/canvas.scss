@@ -53,6 +53,23 @@ html {
           transform: translateX(-50%) translateY(-50%);
           width: 80%;
           font-size: 1.1em;
+
+          em {
+            font-style: italic;
+          }
+
+          ul {
+            list-style: square asset-path('tick.png') !important;
+
+            li {
+              margin-bottom: 15px;
+            list-style: square asset-path('tick.png') !important;
+
+              &:last-child {
+                margin-bottom: 0;
+              }
+            }
+          }
         }
         
         .founders {
@@ -147,9 +164,9 @@ html {
   .grid-item--width3        { width: 546px; }
   .grid-item--width6        { width: 1092px; }
   .grid-item--height-norm   { height: 192px; }
-  .grid-item--height-tiny   { height: 67px; }
+  .grid-item--height-half   { height: 96px; }
   .grid-item--height-med    { height: 125px; }
-  .grid-item--height-double { height: 384px; }
+  .grid-item--height-double { height: 317px; }
 
   .grid-item--problem,      .grid-item--problem .modal-content      { background-color: #867877; }
   .grid-item--idea,         .grid-item--idea .modal-content         { background-color: #e0ffff; }
