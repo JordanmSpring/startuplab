@@ -144,6 +144,8 @@ html {
   .grid-sizer               { width: 182px; }
 
   .grid-item--width2        { width: 364px; }
+  .grid-item--width3        { width: 546px; }
+  .grid-item--width6        { width: 1092px; }
   .grid-item--height-norm   { height: 192px; }
   .grid-item--height-tiny   { height: 67px; }
   .grid-item--height-med    { height: 125px; }
@@ -159,4 +161,6 @@ html {
   .grid-item--founders,     .grid-item--founders .modal-content     { background-color: #dee6e8; }
   .grid-item--crowdfunding, .grid-item--crowdfunding .modal-content { background-color: #b3b3b3; }
   .grid-item--social,       .grid-item--social .modal-content       { background-color: #ffdcb6; }
+  .grid-item--timing,       .grid-item--timing .modal-content       { background-color: #9a9191; }
+  .grid-item--pitch,        .grid-item--pitch .modal-content       { background-color: #f4f3f3; }
 }
