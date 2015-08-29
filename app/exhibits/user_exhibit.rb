@@ -15,6 +15,6 @@ class UserExhibit
   end
 
   def gravatar_url
-    @gravatar_url ||= GravatarUrlGenerator.new(object.email).generate(size: 52)
+    @gravatar_url ||= GravatarUrlGenerator.new(object.email).generate
   end
 end

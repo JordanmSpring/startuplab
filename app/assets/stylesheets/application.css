@@ -15,6 +15,11 @@
  *= require_self
  */
 
+p.page-title a {
+  color: #fff;
+  text-decoration: none;
+}
+
 a[ng-click] {
   cursor: pointer;
 }

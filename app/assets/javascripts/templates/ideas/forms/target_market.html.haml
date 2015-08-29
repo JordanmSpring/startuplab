@@ -1,4 +1,4 @@
-%a.inner(ng-click="showModal()")
+%a.inner(ng-click="showModal(idea)")
   %span.title {{ linkTitle }}
   .content {{ idea.target_customer | limitTo:15 }}{{ idea.target_customer.length > 15 ? '...' : ''}}
 .modal.fade
@@ -10,11 +10,7 @@
           %h2 Target Market
         .modal-body
           .form-group
-            %input.form-control(type="text" ng-model="idea.target_customer" placeholder="Who is your ideal customer?" required)
+            %input.form-control(type="text" ng-model="idea.target_customer" placeholder="Who is your ideal customer?")
             %span.help-block (e.g. Age, Sex, Income)
           .form-group
-            %textarea.form-control(rows="5" ng-model="idea.target_customer_reason" placeholder="Why are they your ideal customer? Why would they value your product?" ng-maxlength="300" required)
-
-        .modal-footer
-          %a.btn.btn-warning(ng-click="hideModal()") Cancel
-          %button.btn.btn-primary(type="Submit") Save
+            %textarea.form-control(rows="5" ng-model="idea.target_customer_reason" placeholder="Why are they your ideal customer? Why would they value your product?" ng-maxlength="300")

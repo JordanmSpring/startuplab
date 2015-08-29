@@ -1,7 +1,7 @@
 %a.inner(ng-click="showModal()")
   %span.title {{ linkTitle }}
   .founders
-    %img(ng-repeat="founder in idea.founders" ng-src="{{ founder.user.gravatarUrl }}")
+    %img(ng-repeat="founder in idea.founders" ng-src="{{ founder.user.gravatarUrl + '?size=52' }}")
 #md-idea-problems.modal.fade
   .modal-dialog
     .modal-content
@@ -10,7 +10,7 @@
       .modal-body
         %ul
           %li(ng-repeat="founder in idea.founders")
-            %img(ng-src="{{ founder.user.gravatarUrl}}")
+            %img(ng-src="{{ founder.user.gravatarUrl }}")
             {{ founder.user.name }}
             {{ founder.role }}
             %input.form-control(type="text" ng-model="founder.role" placeholder="Role" required)

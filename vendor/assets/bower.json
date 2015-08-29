@@ -5,6 +5,7 @@
     "bootstrap": "latest",
     "angular": "latest",
     "angular-resource": "latest",
-    "angular-route": "latest"
+    "angular-route": "latest",
+    "crypto-js": "latest"
   }
 }

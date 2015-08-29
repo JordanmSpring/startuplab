@@ -1,4 +1,4 @@
-%a.inner(ng-click="showModal()")
+%a.inner(ng-click="showModal(idea)")
   %span.title {{ linkTitle }}
   .content
     {{ idea.company }}
@@ -11,7 +11,7 @@
           %h2 What is the MVP?
         .modal-body
           .form-group
-            %input.form-control(type="text" ng-model="idea.company" placeholder="Name of Company" required)
+            %input.form-control(type="text" ng-model="idea.company" placeholder="Name of Company")
           .form-group
             %input.form-control(type="url" ng-model="idea.mvp_url" placeholder="MVP Site URL")
           .form-group
@@ -21,7 +21,3 @@
               %option Alpha
               %option Beta
               %option Live Product
-
-        .modal-footer
-          %a.btn.btn-warning(ng-click="hideModal()") Cancel
-          %button.btn.btn-primary(type="Submit") Save

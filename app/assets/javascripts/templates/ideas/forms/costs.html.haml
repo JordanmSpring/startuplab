@@ -1,4 +1,4 @@
-%a.inner(ng-click="showModal()")
+%a.inner(ng-click="showModal(idea)")
   %span.title {{ linkTitle }}
   .content {{ idea.costs | limitTo:80 }}{{ idea.costs.length > 80 ? '...' : ''}}
 .modal.fade
@@ -10,8 +10,4 @@
           %h2 Costs
         .modal-body
           .form-group
-            %textarea.form-control(rows="5" ng-model="idea.costs" ng-maxlength="300" placeholder="What costs will you incur to run?" required)
-
-        .modal-footer
-          %a.btn.btn-warning(ng-click="hideModal()") Cancel
-          %button.btn.btn-primary(type="Submit") Save
+            %textarea.form-control(rows="5" ng-model="idea.costs" ng-maxlength="300" placeholder="What costs will you incur to run?")

@@ -19,7 +19,7 @@ class Api::IdeasController < Api::BaseController
   def create
     Idea.transaction do
       @idea = current_user.ideas.create!(idea_create_params)
-      @idea.founders.build(role: 'Founder', user: current_user)
+      @idea.founders.create(role: 'Founder', user: current_user)
     end
     render json: IdeaExhibit.new(@idea)
   end

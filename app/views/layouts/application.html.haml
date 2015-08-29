@@ -19,7 +19,8 @@
             #u401
               / group
               #u401_align_to_page.clearfix
-                /%img#u417-4.grpelem{:alt => "back to Jordan Michaelides", :height => "20", :src => "images/u417-4.png", :width => "170"}/
+                %a(href="http://jordan-michaelides.com/")
+                  %img#u417-4.grpelem{:alt => "back to Jordan Michaelides", :height => "20", :src => asset_path("u417-4.png"), :width => "170"}/
                 / rasterized frame
                 #u404.clearfix.grpelem
                   / group
@@ -30,14 +31,15 @@
                   #u411.clip_frame.clearfix.grpelem
                     / image
                     #u411_clip
-                    /  %img#u411_img.position_content{:alt => "", :height => "14", :src => "images/down-arrow-more.png", :width => "15"}/
+                      %img#u411_img.position_content{:alt => "", :height => "14", :src => asset_path("down-arrow-more.png"), :width => "15"}/
           #u414-bw.browser_width.grpelem
             #u414
               / group
               #u414_align_to_page.clearfix
                 #u410-4.rounded-corners.clearfix.grpelem
                   / content
-                  %p Startup Lab
+                  %p.page-title
+                    %a(href="/#/") Startup Lab
                 #u416-4.rounded-corners.clearfix.grpelem
                   / content
                   %p Got a startup idea?
@@ -46,7 +48,8 @@
                   %p Search Ideas
           #u402.rounded-corners.clip_frame.grpelem
             / image
-            %img#u402_img.block{:alt => "", :height => "76", :src => asset_path('startuplabicongreen.png')}
+            %a(href="/#/")
+              %img#u402_img.block{:alt => "", :height => "76", :src => asset_path('startuplabicongreen.png')}
           #u405.clearfix.grpelem
             / column
             #u409-4.clearfix.colelem
@@ -57,4 +60,5 @@
               %p(ng-show="session.isAuthenticated()")
                 %a(ng-click="session.logout()") Log out
         %div(ng-view)
+
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
