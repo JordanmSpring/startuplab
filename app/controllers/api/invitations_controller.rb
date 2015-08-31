@@ -6,7 +6,10 @@ class Api::InvitationsController < Devise::InvitationsController
 
   def edit
     resource.invitation_token = params[:invitation_token]
-    render json: resource
+    respond_to do |which|
+      which.json { render json: resource }
+      which.html { redirect_to '/#' + accept_invitation_path(resource, invitation_token: params[:invitation_token]) }
+    end
   end
 
   def invite_resource(&block)

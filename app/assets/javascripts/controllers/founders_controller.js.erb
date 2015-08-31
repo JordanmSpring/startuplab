@@ -7,8 +7,8 @@ angular.module('StartupLab')
   };
 
   $scope.inviteFounder = function() {
-    console.log('Will send invite to ' + $scope.invite.email);
     Invite.send($scope.idea, $scope.invite).then(function(resp) {
+      $scope.invite = {};
       $scope.idea.founders.push(resp.data);
     });
   };
