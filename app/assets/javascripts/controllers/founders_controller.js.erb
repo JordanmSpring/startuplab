@@ -1,6 +1,15 @@
 angular.module('StartupLab')
-.controller('FoundersController', ['$scope', '$routeParams', 'Problem', function($scope, $routeParams) {
+.controller('FoundersController', ['$scope', '$routeParams', 'Invite', function($scope, $routeParams, Invite) {
+  $scope.invite = {};
+
   $scope.showModal = function() {
     $scope.modal.modal('show');
+  };
+
+  $scope.inviteFounder = function() {
+    console.log('Will send invite to ' + $scope.invite.email);
+    Invite.send($scope.idea, $scope.invite).then(function(resp) {
+      $scope.idea.founders.push(resp.data);
+    });
   };
 }]);

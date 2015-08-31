@@ -1,6 +1,12 @@
 // TODO: Move these to a routes.js file
 angular.module('StartupLab', ['ngRoute', 'ngResource'])
  .config(['$routeProvider', function($routeProvider) {
+
+  var userByInviteToken = ['Invite', '$route', function(Invite, $route) {
+    console.log("looking for ", $route.current.params.invitation_token);
+    return Invite.get($route.current.params.invitation_token).$promise;
+  }];
+
   $routeProvider
     .when('/ideas', {
       templateUrl: '<%= asset_path("templates/ideas/index.html") %>',
@@ -22,6 +28,10 @@ angular.module('StartupLab', ['ngRoute', 'ngResource'])
     .when('/register', {
       templateUrl: '<%= asset_path("templates/users/new.html") %>',
       controller: 'RegistrationsController'
+    })
+    .when('/users/invitation/accept', {
+      templateUrl: '<%= asset_path("templates/users/accept.html") %>',
+      controller: 'InvitationsController'
     })
     .when('/', { redirectTo: '/ideas' })
     .otherwise({

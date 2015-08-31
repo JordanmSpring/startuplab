@@ -1,0 +1,17 @@
+
+angular.module('StartupLab')
+.controller('InvitationsController', ['$scope', '$routeParams', 'Invite', 'Session', '$location',
+    function($scope, $routeParams, Invite, Session, $location) {
+
+  Invite.get($routeParams.invitation_token).then(function(response) {
+    $scope.user = response.data;
+    $scope.invitationToken = $routeParams.invitation_token;
+  });
+
+  $scope.register = function() {
+    Invite.accept($scope.invitationToken, $scope.user).then(function() {
+      Session.requestCurrentUser();
+      $location.path('/');
+    });
+  }
+}]);

@@ -1,6 +1,7 @@
 angular.module('StartupLab')
 .controller('ShowIdeaController', ['$scope', '$routeParams', 'Idea', function($scope, $routeParams, Idea) {
 
+  // TODO: Use a resolver in the routes
   Idea.find($routeParams.id).then(function(response) {
     $scope.idea = response.data;
   });

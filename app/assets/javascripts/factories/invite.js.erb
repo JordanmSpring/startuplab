@@ -1,0 +1,21 @@
+
+angular.module('StartupLab').factory('Invite', [ '$http', function($http) {
+  return {
+    send: function(idea, invite) {
+      return $http.post('/users/invitation.json', {
+        user: { email: invite.email },
+        role: invite.role,
+        idea_id: idea.id
+      });
+    },
+
+    get: function(token) {
+      return $http.get('/users/invitation/accept.json?invitation_token='+token);
+    },
+
+    accept: function(token, user) {
+      user.invitation_token = token;
+      return $http.patch('/users/invitation.json', { user: user });
+    }
+  };
+}]);

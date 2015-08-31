@@ -29,6 +29,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'active_model_serializers', '~> 0.9.3'
 gem 'angular_rails_csrf', '~> 1.0.4'
 gem 'devise'
+gem 'devise_invitable', '~> 1.5.2'
 gem 'responders'
 
 # Use ActiveModel has_secure_password

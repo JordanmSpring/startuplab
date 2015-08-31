@@ -58,7 +58,7 @@ angular.module('StartupLab').factory('Session', function($location, $http, $q) {
     // TODO: Use the User service
     requestCurrentUser: function() {
       return $http.get('/api/users/current.json').then(function(response) {
-        console.log(response.data);
+        console.log('current user', response.data);
         session.currentUser = response.data;
         return session.currentUser;
       }, function() {
