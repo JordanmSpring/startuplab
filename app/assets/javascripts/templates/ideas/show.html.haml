@@ -72,6 +72,9 @@
           %textarea(ng-model="comment.body" required)
         %button.btn.btn-default(ng-disabled="commentForm.$invalid") Submit
 
-      %ul
-        %li(ng-repeat="comment in idea.comments") {{ comment.body }}
+      %section.comments
+        %article.comment(ng-repeat="comment in idea.comments")
+          %img(ng-src="{{ comment.user.gravatarUrl }}")
+          %h2 {{ comment.user.name }}
+          %p {{ comment.body }}
 

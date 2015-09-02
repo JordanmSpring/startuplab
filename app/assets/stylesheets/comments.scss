@@ -3,5 +3,30 @@
     border: solid #eee 1px;
     width: 1010px;
     margin-top: 8px;
+    color: #867878;
+    resize: vertical;
   }
 }
+
+section.comments {
+  margin-top: 15px;
+
+  article.comment {
+    padding: 0 0 0 90px;
+    position: relative;
+    min-height: 80px;
+    margin-bottom: 15px;
+
+    p {
+      color: #867878;
+      font-weight: 300;
+    }
+
+    img {
+      left: 0;
+      position: absolute;
+      top: 0;
+    }
+  }
+}
+    
