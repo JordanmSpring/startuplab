@@ -1,0 +1,16 @@
+
+angular.module('StartupLab').factory('Founder', [ '$http', function($http) {
+  return {
+    idea_founder_path: function(idea, founder) {
+      return '/api/ideas/' + idea.id + '/founders/' + founder.id + '.json';
+    },
+
+    destroy: function(idea, founder) {
+      return $http.delete(this.idea_founder_path(idea, founder));
+    },
+
+    save: function(idea, founder) {
+      return $http.patch(this.idea_founder_path(idea, founder), { founder: founder });
+    }
+  };
+}]);

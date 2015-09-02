@@ -8,7 +8,7 @@ class Api::IdeasController < Api::BaseController
   end
 
   def show
-    render json: IdeaExhibit.new(@idea)
+    render json: IdeaExhibit.new(@idea, current_user)
   end
 
   def update
@@ -21,7 +21,7 @@ class Api::IdeasController < Api::BaseController
       @idea = current_user.ideas.create!(idea_create_params)
       @idea.founders.create(role: 'Founder', user: current_user)
     end
-    render json: IdeaExhibit.new(@idea)
+    render json: IdeaExhibit.new(@idea, current_user)
   end
 
   private

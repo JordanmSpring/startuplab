@@ -1,0 +1,72 @@
+#md-idea-founders {
+  ul {
+    li {
+      width: 274px;
+      float: left;
+      list-style: none;
+      margin-bottom: 10px;
+
+      &:nth-child(odd) {
+        margin-right: 8px;
+      }
+
+      &:nth-child(even) {
+        margin-left: 8px;
+      }
+
+      .invite {
+        input {
+          margin-bottom: 3px;
+        }
+      }
+
+      .founder {
+        h2 {
+          font-size: 1.2em;
+          margin-bottom: 4px;
+        }
+
+        .image {
+          position: relative;
+          width: 100%;
+          float: left;
+          width: 80px;
+          margin-right: 8px;
+
+          span.action {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+          }
+        }
+
+        input {
+          width: 182px;
+          height: 2em;
+          font-size: 0.8em;
+        }
+
+        &.editable {
+          .image {
+            &:hover {
+              img {
+                opacity: 0.4;
+                filter:alpha(opacity=40);
+              }
+
+              span.action {
+                display: inline;
+                img {
+                  opacity: 1;
+                  filter:alpha(opacity=100);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

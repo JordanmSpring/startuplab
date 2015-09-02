@@ -15,6 +15,7 @@ Rails.application.routes.draw do
       resources :problems
       resources :comments
       resources :channels
+      resources :founders
     end
   end
 

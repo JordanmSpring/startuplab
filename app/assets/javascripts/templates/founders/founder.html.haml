@@ -1,0 +1,15 @@
+.founder(ng-class="{ editable: idea.mine }")
+  %div.image(ng-show="founder.user.pending")
+    = image_tag('pending.jpg')
+    %span.action
+      %a(ng-click="remove()")
+        = image_tag('minus.png')
+  %div.image(ng-hide="founder.user.pending")
+    %img(ng-src="{{ founder.user.gravatarUrl }}")
+    %span.action
+      %a(ng-click="remove()")
+        = image_tag('minus.png')
+  %h2 {{ founder.user.name }}
+  %input.form-control.input-sm(ng-show="idea.mine" type="text" ng-model="founder.role" ng-change="setRole()" placeholder="Role" required)
+  %span(ng-show="!idea.mine") {{ founder.role }}
+  .clearfix

@@ -1,0 +1,20 @@
+angular.module('StartupLab')
+.controller('FounderController', ['$scope', 'Founder', function($scope, Founder) {
+  $scope.remove = function() {
+    if (confirm('Are you sure?')) {
+      for (i = 0; i < $scope.idea.founders.length; i++) {
+        if ($scope.idea.founders[i].id == $scope.founder.id) {
+          Founder.destroy($scope.idea, $scope.idea.founders[i]).then(function() {
+            $scope.idea.founders.splice(i, 1);
+          });
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  $scope.setRole = function() {
+    Founder.save($scope.idea, $scope.founder);
+  }
+}]);

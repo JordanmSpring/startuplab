@@ -1,5 +1,5 @@
 
-angular.module('StartupLab').directive("slFounders", [ 'Problem', function(Problem) {
+angular.module('StartupLab').directive("slFounders", function() {
   return {
     restrict: 'E',
     templateUrl: '<%= asset_path("templates/founders/modal.html") %>',
@@ -10,12 +10,6 @@ angular.module('StartupLab').directive("slFounders", [ 'Problem', function(Probl
     },
     link: function(scope, element) {
       scope.modal = element.find('.modal');
-      // TODO: Load founders every time
-      /*scope.modal.on('show.bs.modal', function() {
-        Founder.all(scope.idea).success(function(data) {
-          scope.idea.problems = data.problems
-        });
-      });*/
     }
   }
-}]);
+});
