@@ -49,7 +49,10 @@ class Api::IdeasController < Api::BaseController
         :pitch_why,
         :pitch_how,
         :timing_why,
-        :timing_description
+        :timing_description,
+        :facebook_url,
+        :twitter_url,
+        :linkedin_url
       )
     end
 end

@@ -36,8 +36,8 @@
         .grid-item.grid-item--height-med.grid-item--width2.grid-item--founders.inverted
           %sl-founders(ng-model="idea" link-title="Founders")
 
-        .grid-item.grid-item--height-med.grid-item--width2.grid-item--social
-          = link_to 'Social Media', '#', class: 'inverted'
+        .grid-item.grid-item--height-med.grid-item--width2.grid-item--social.inverted
+          %sl-idea-panel(ng-model="idea" link-title="Social Media" template-url="#{asset_path('templates/ideas/forms/social-media.html')}")
 
         .grid-item.grid-item--width3.grid-item--height-norm.grid-item--crowdfunding
           %sl-funding-options(ng-model="idea" link-title="Funding Options")
