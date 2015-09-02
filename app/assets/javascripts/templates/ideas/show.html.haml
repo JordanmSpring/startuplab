@@ -40,7 +40,7 @@
           = link_to 'Social Media', '#', class: 'inverted'
 
         .grid-item.grid-item--width3.grid-item--height-norm.grid-item--crowdfunding
-          = link_to 'Crowdfunding Options', '#'
+          %sl-funding-options(ng-model="idea" link-title="Funding Options")
 
         .grid-item.grid-item--width3.grid-item--height-norm.grid-item--timing
           %sl-idea-panel(ng-model="idea" link-title="Timing" template-url="#{asset_path('templates/ideas/forms/timing.html')}")

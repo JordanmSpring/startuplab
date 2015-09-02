@@ -5,6 +5,7 @@ class Idea < ActiveRecord::Base
   has_many :founders, -> { order(:created_at) }
   has_many :users, through: :founders
   has_and_belongs_to_many :channels
+  has_and_belongs_to_many :crowdfunding_options
 
   def channel_names=(array)
     self.channels = array.map do |name|
@@ -14,5 +15,15 @@ class Idea < ActiveRecord::Base
 
   def channel_names
     self.channels.map(&:name)
+  end
+
+  def funding_option_names=(array)
+    self.crowdfunding_options = array.map do |name|
+      CrowdfundingOption.find_by(name: name)
+    end
+  end
+
+  def funding_option_names
+    self.crowdfunding_options.map(&:name)
   end
 end

@@ -10,6 +10,7 @@ class IdeaExhibit
     object.attributes.merge(
       comments: CommentsExhibit.new(@object.comments),
       founders: FoundersExhibit.new(@object.founders),
+      fundingOptions: @object.funding_option_names,
       channels: @object.channel_names,
       user: UserExhibit.new(@object.user),
       mine: @object.users.include?(@user)

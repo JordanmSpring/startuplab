@@ -1,0 +1,17 @@
+%a.inner(ng-click="showModal(idea)")
+  %span.title {{ linkTitle }}
+  .content
+    {{ optionStr(idea.fundingOptions) | limitTo:40 }}{{ optionStr(idea.fundingOptions).length > 40 ? '...' : ''}}
+.modal.fade
+  .modal-dialog
+    .modal-content
+      %form(name="ideaForm" novalidate)
+        .modal-header
+          %button(type="button" class="close" ng-click="hideModal()" aria-label="Close") &times;
+          %h2 Funding Options
+        .modal-body
+          .form-group
+            - CrowdfundingOption.all.each do |option|
+              .checkbox
+                %label
+                %input(name="options[]" type="checkbox" value="#{option.name}" ng-checked="checked('#{option.name}') > -1" ng-click="toggleSelection('#{option.name}')")= option.name

@@ -1,0 +1,38 @@
+angular.module('StartupLab')
+.controller('CrowdfundingController', ['$scope', '$routeParams', 'FundingOption', function($scope, $routeParams, FundingOption) {
+  $scope.options = [];
+
+  $scope.showModal = function() {
+    $scope.options = $scope.idea.fundingOptions;
+    $scope.modal.modal('show');
+  };
+
+  $scope.toggleSelection = function(name) {
+    var idx = $scope.options.indexOf(name);
+
+    // is currently selected
+    if (idx > -1) {
+      $scope.options.splice(idx, 1);
+    } else {
+      // is newly selected
+      $scope.options.push(name);
+    }
+  };
+
+  $scope.optionStr = function(options) {
+    console.log('optionsStr', options);
+    if (options) {
+      return options.join(', ');
+    }
+  };
+
+  $scope.checked = function(name) {
+    return $scope.options.indexOf(name);
+  };
+
+  $scope.syncFundingOptions = function() {
+    FundingOption.save($scope.idea, $scope.options).success(function() {
+      $scope.idea.fundingOptions = $scope.options;
+    });
+  };
+}]);
