@@ -4,7 +4,7 @@ html {
   -ms-text-size-adjust: none;
 }
 
-body, div, dl, dt, dd, ul, ol, li, nav, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, button, textarea, p, blockquote, th, td, a {
+/*body, div, dl, dt, dd, ul, ol, li, nav, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, button, textarea, p, blockquote, th, td, a {
   margin: 0;
   padding: 0;
   border-width: 0;
@@ -12,7 +12,7 @@ body, div, dl, dt, dd, ul, ol, li, nav, h1, h2, h3, h4, h5, h6, pre, code, form,
   -ms-transform-origin: left top;
   -o-transform-origin: left top;
   transform-origin: left top;
-}
+}*/
 
 table {
   border-collapse: collapse;
@@ -40,10 +40,10 @@ caption, th {
   text-align: left;
 }
 
-h1, h2, h3, h4, h5, h6 {
+/*h1, h2, h3, h4, h5, h6 {
   font-size: 100%;
   font-weight: inherit;
-}
+}*/
 
 input, button, textarea, select, optgroup, option {
   font-family: inherit;
@@ -452,10 +452,6 @@ textarea {
   cursor: pointer;
 }
 
-p, h1, h2, h3, h4, h5, h6, ol, ul, span.actAsPara {
-  max-height: 1000000px;
-}
-
 .superscript {
   vertical-align: super;
   font-size: 66%;
@@ -467,3 +463,10 @@ p, h1, h2, h3, h4, h5, h6, ol, ul, span.actAsPara {
   font-size: 66%;
   line-height: 0;
 }
+
+.content {
+  width: 1100px;
+  margin-top: 40px;
+  border: solid green 1px;
+}
+

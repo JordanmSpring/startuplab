@@ -1,20 +1,11 @@
 
-* {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-/* force scrollbar, prevents initial gap */
-html {
-  overflow-y: scroll; 
-}
+@import 'colors';
 
 /* ---- grid (lean model canvas) ---- */
 
 .grid {
   width: 1100px;
-  margin: 0 auto;
+  //margin: 0 auto;
 
   /* clear fix */
   &:after {
@@ -46,7 +37,7 @@ html {
           font-size: 0.9em;
         }
 
-        .content {
+        .inner-content {
           position: absolute;
           top: 50%;
           left: 50%;
@@ -177,7 +168,7 @@ html {
   .grid-item--revenue,      .grid-item--revenue .modal-content      { background-color: #5d5d5d; }
   .grid-item--founders,     .grid-item--founders .modal-content     { background-color: #dee6e8; }
   .grid-item--crowdfunding, .grid-item--crowdfunding .modal-content { background-color: #b3b3b3; }
-  .grid-item--social,       .grid-item--social .modal-content       { background-color: #ffdcb6; }
+  .grid-item--social,       .grid-item--social .modal-content       { background-color: $canvas-social }
   .grid-item--timing,       .grid-item--timing .modal-content       { background-color: #9a9191; }
   .grid-item--pitch,        .grid-item--pitch .modal-content       { background-color: #f4f3f3; }
 }

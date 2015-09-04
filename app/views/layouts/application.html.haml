@@ -10,55 +10,40 @@
 
     %title View idea
   %body
-    #page.clearfix
-      / column
-      #page_position_content.position_content
-        #pu401.clearfix.colelem
-          / group
-          #u401-bw.browser_width.grpelem
-            #u401
-              / group
-              #u401_align_to_page.clearfix
-                %a(href="http://jordan-michaelides.com/")
-                  %img#u417-4.grpelem{:alt => "back to Jordan Michaelides", :height => "20", :src => asset_path("u417-4.png"), :width => "170"}/
-                / rasterized frame
-                #u404.clearfix.grpelem
-                  / group
-                  #u408-4.clearfix.grpelem
-                    / content
-                    %p(ng-show="session.isAuthenticated()")
-                      Welcome {{ session.currentUser.name }}
-                  #u411.clip_frame.clearfix.grpelem
-                    / image
-                    #u411_clip
-                      %img#u411_img.position_content{:alt => "", :height => "14", :src => asset_path("down-arrow-more.png"), :width => "15"}/
-          #u414-bw.browser_width.grpelem
-            #u414
-              / group
-              #u414_align_to_page.clearfix
-                #u410-4.rounded-corners.clearfix.grpelem
-                  / content
-                  %p.page-title
-                    %a(href="/#/") Startup Lab
-                #u416-4.rounded-corners.clearfix.grpelem
-                  / content
-                  %p Got a startup idea?
-                #u407-4.rounded-corners.clearfix.grpelem
-                  / content
-                  %p Search Ideas
-          #u402.rounded-corners.clip_frame.grpelem
-            / image
-            %a(href="/#/")
-              %img#u402_img.block{:alt => "", :height => "76", :src => asset_path('startuplabicongreen.png')}
-          #u405.clearfix.grpelem
-            / column
-            #u409-4.clearfix.colelem
-              / content
-              %p Dashboard
-            #u413-4.clearfix.colelem
-              / content
-              %p(ng-show="session.isAuthenticated()")
-                %a(ng-click="session.logout()") Log out
+    .header_wrap
+      %nav.navbar.navbar-inverse
+        .container
+          .header
+            %a(href="http://jordan-michaelides.com/")
+              %img{alt: "back to Jordan Michaelides", src: asset_path("u417-4.png")}/
+          %ul.nav.navbar-nav.navbar-right
+            %li
+              %a(href="#")
+                Welcome Lauren
+            %li.dropdown
+              %a.dropdown-toggle(href="#" class="dropdown-toggle" data-toggle="dropdown" role="button")
+                Dashboard
+                %span.caret
+              %ul.dropdown-menu
+                %li
+                  = link_to "Dashboard", "/#/"
+    .banner_wrap
+      .container
+        %ul.nav.navbar-nav
+          %li
+            %h1
+              %a(href="/#/") Startup Lab
+          %li.logo= image_tag('startuplabicongreen.png')
+          %li.step
+          %li
+            %h2
+              %a(href="/#/ideas/new") Got a startup idea?
+          %li
+            %h2
+              %a(href="/#/ideas") Browse Ideas
+
+    .wrap
+      .container
         %div(ng-view)
 
     = javascript_include_tag 'application', 'data-turbolinks-track' => true

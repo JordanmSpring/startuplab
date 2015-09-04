@@ -1,6 +1,6 @@
 %a.inner(ng-click="showModal(idea)")
   %span.title {{ linkTitle }}
-  .content
+  .inner-content
     {{ optionStr(idea.fundingOptions) | limitTo:40 }}{{ optionStr(idea.fundingOptions).length > 40 ? '...' : ''}}
 .modal.fade
   .modal-dialog

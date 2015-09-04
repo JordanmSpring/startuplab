@@ -11,9 +11,12 @@
  * file per style scope.
  *
  *= require bootstrap/dist/css/bootstrap.min
- *= require global
+ *= require global2
+ *= require ideas2
+ *= require buttons
+ * global
  *= require comments
- *= require ideas
+ * ideas
  *= require modals
  *= require angular
  *= require canvas

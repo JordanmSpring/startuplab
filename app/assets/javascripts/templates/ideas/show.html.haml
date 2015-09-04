@@ -1,80 +1,77 @@
 
-.clearfix
-.content
-  .row
-    #u645-4.colelem
-      %h2 Idea: {{ idea.name }}
+.row
+  .col-lg-12
+    %h1 {{ idea.name }}
 
-  .row
-    #pu630.clearfix.colelem
+.row
+  .col-lg-12
+    .grid
+      .grid-sizer
+      .grid-item.grid-item--height-norm.grid-item--problem
+        %sl-idea-panel(ng-model="idea" link-title="Problem" template-url="#{asset_path('templates/ideas/forms/problem.html')}")
 
-      .grid
-        .grid-sizer
-        .grid-item.grid-item--height-norm.grid-item--problem
-          %sl-idea-panel(ng-model="idea" link-title="Problem" template-url="#{asset_path('templates/ideas/forms/problem.html')}")
+      .grid-item.grid-item--height-norm.grid-item--idea.inverted
+        %sl-idea-panel(ng-model="idea" link-title="Idea" template-url="#{asset_path('templates/ideas/forms/idea.html')}")
+        
+      .grid-item.grid-item--height-norm.grid-item--mvp.inverted
+        %sl-idea-panel(ng-model="idea" link-title="MVP" template-url="#{asset_path('templates/ideas/forms/mvp.html')}")
 
-        .grid-item.grid-item--height-norm.grid-item--idea.inverted
-          %sl-idea-panel(ng-model="idea" link-title="Idea" template-url="#{asset_path('templates/ideas/forms/idea.html')}")
-          
-        .grid-item.grid-item--height-norm.grid-item--mvp.inverted
-          %sl-idea-panel(ng-model="idea" link-title="MVP" template-url="#{asset_path('templates/ideas/forms/mvp.html')}")
+      .grid-item.grid-item--height-half.grid-item--target
+        %sl-idea-panel(ng-model="idea" link-title="Target Market" template-url="#{asset_path('templates/ideas/forms/target_market.html')}")
 
-        .grid-item.grid-item--height-half.grid-item--target
-          %sl-idea-panel(ng-model="idea" link-title="Target Market" template-url="#{asset_path('templates/ideas/forms/target_market.html')}")
-
-        .grid-item.grid-item--height-double.grid-item--costs
-          %sl-idea-panel(ng-model="idea" link-title="Costs" template-url="#{asset_path('templates/ideas/forms/costs.html')}")
+      .grid-item.grid-item--height-double.grid-item--costs
+        %sl-idea-panel(ng-model="idea" link-title="Costs" template-url="#{asset_path('templates/ideas/forms/costs.html')}")
 
 
-        .grid-item.grid-item--height-double.grid-item--revenue
-          %sl-idea-panel(ng-model="idea" link-title="Business Mod-Rev" template-url="#{asset_path('templates/ideas/forms/revenue.html')}")
+      .grid-item.grid-item--height-double.grid-item--revenue
+        %sl-idea-panel(ng-model="idea" link-title="Business Mod-Rev" template-url="#{asset_path('templates/ideas/forms/revenue.html')}")
 
 
-        .grid-item.grid-item--height-half.grid-item--channels
-          %sl-channels(ng-model="idea" link-title="Channels")
+      .grid-item.grid-item--height-half.grid-item--channels
+        %sl-channels(ng-model="idea" link-title="Channels")
 
-        .grid-item.grid-item--height-med.grid-item--width2.grid-item--founders.inverted
-          %sl-founders(ng-model="idea" link-title="Founders")
+      .grid-item.grid-item--height-med.grid-item--width2.grid-item--founders.inverted
+        %sl-founders(ng-model="idea" link-title="Founders")
 
-        .grid-item.grid-item--height-med.grid-item--width2.grid-item--social.inverted
-          %sl-idea-panel(ng-model="idea" link-title="Social Media" template-url="#{asset_path('templates/ideas/forms/social-media.html')}")
+      .grid-item.grid-item--height-med.grid-item--width2.grid-item--social.inverted
+        %sl-idea-panel(ng-model="idea" link-title="Social Media" template-url="#{asset_path('templates/ideas/forms/social-media.html')}")
 
-        .grid-item.grid-item--width3.grid-item--height-norm.grid-item--crowdfunding
-          %sl-funding-options(ng-model="idea" link-title="Funding Options")
+      .grid-item.grid-item--width3.grid-item--height-norm.grid-item--crowdfunding
+        %sl-funding-options(ng-model="idea" link-title="Funding Options")
 
-        .grid-item.grid-item--width3.grid-item--height-norm.grid-item--timing
-          %sl-idea-panel(ng-model="idea" link-title="Timing" template-url="#{asset_path('templates/ideas/forms/timing.html')}")
-     
-        .grid-item.grid-item--width6.grid-item--height-norm.grid-item--pitch.inverted
-          %sl-idea-panel(ng-model="idea" link-title="Elevator Pitch" template-url="#{asset_path('templates/ideas/forms/pitch.html')}")
+      .grid-item.grid-item--width3.grid-item--height-norm.grid-item--timing
+        %sl-idea-panel(ng-model="idea" link-title="Timing" template-url="#{asset_path('templates/ideas/forms/timing.html')}")
+   
+      .grid-item.grid-item--width6.grid-item--height-norm.grid-item--pitch.inverted
+        %sl-idea-panel(ng-model="idea" link-title="Elevator Pitch" template-url="#{asset_path('templates/ideas/forms/pitch.html')}")
 
-    #u646-4.clearfix.colelem
-      %p Submitted by
+  #u646-4.clearfix.colelem
+    %p Submitted by
 
-    #pu647.clearfix.colelem
-      #u647.grpelem
-        %img(ng-src="{{ idea.user.gravatarUrl + '?size=70' }}")
+  #pu647.clearfix.colelem
+    #u647.grpelem
+      %img(ng-src="{{ idea.user.gravatarUrl + '?size=70' }}")
 
-      #u648-4.clearfix.grpelem
-        %p {{ idea.user.name }}
+    #u648-4.clearfix.grpelem
+      %p {{ idea.user.name }}
 
-      /#u657.clip_frame.grpelem
-      /  %img#u657_img.block(src="#{asset_path('thumbsupvector.png')}" alt="" width="41" height="40")
+    /#u657.clip_frame.grpelem
+    /  %img#u657_img.block(src="#{asset_path('thumbsupvector.png')}" alt="" width="41" height="40")
 
-      /#u663-4.clearfix.grpelem
-      /  %p 10 up votes
+    /#u663-4.clearfix.grpelem
+    /  %p 10 up votes
 
-    #u649-4.clearfix.colelem
-      %hr
-      %p Comments
-      %form#comments-form.form-inline(name="commentForm" ng-controller="CommentsController as comment" ng-submit="commentForm.$valid && addComment(idea)" novalidate)
-        .form-group
-          %textarea(ng-model="comment.body" required)
-        %button.btn.btn-default(ng-disabled="commentForm.$invalid") Submit
+  #u649-4.clearfix.colelem
+    %hr
+    %p Comments
+    %form#comments-form.form-inline(name="commentForm" ng-controller="CommentsController as comment" ng-submit="commentForm.$valid && addComment(idea)" novalidate)
+      .form-group
+        %textarea(ng-model="comment.body" required)
+      %button.btn.btn-default(ng-disabled="commentForm.$invalid") Submit
 
-      %section.comments
-        %article.comment(ng-repeat="comment in idea.comments")
-          %img(ng-src="{{ comment.user.gravatarUrl }}")
-          %h2 {{ comment.user.name }}
-          %p {{ comment.body }}
+    %section.comments
+      %article.comment(ng-repeat="comment in idea.comments")
+        %img(ng-src="{{ comment.user.gravatarUrl }}")
+        %h2 {{ comment.user.name }}
+        %p {{ comment.body }}
 

@@ -1,6 +1,6 @@
 %a.inner(ng-click="showModal(idea)")
   %span.title {{ linkTitle }}
-  .content {{ idea.revenue | limitTo:80 }}{{ idea.revenue.length > 80 ? '...' : ''}}
+  .inner-content {{ idea.revenue | limitTo:80 }}{{ idea.revenue.length > 80 ? '...' : ''}}
 .modal.fade
   .modal-dialog
     .modal-content

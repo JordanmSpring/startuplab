@@ -1,6 +1,6 @@
 %a.inner(ng-click="showModal(idea)")
   %span.title {{ linkTitle }}
-  .content
+  .inner-content
     %ul
       %li {{ idea.timing_why | limitTo:100 }}{{ idea.timing_why.length > 100 ? '...' : ''}}
       %li {{ idea.timing_description | limitTo:100 }}{{ idea.timing_description.length > 100 ? '...' : ''}}
