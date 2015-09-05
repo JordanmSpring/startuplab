@@ -4,7 +4,7 @@
 /* ---- grid (lean model canvas) ---- */
 
 .grid {
-  width: 1100px;
+  width: 1170px;
   //margin: 0 auto;
 
   /* clear fix */
@@ -147,13 +147,15 @@
     }
   }
 
+  $item-width: 191px;
+
   /* 5 columns, percentage width */
   .grid-item,
-  .grid-sizer               { width: 182px; }
+  .grid-sizer               { width: $item-width; border: none; } //182
 
-  .grid-item--width2        { width: 364px; }
-  .grid-item--width3        { width: 546px; }
-  .grid-item--width6        { width: 1092px; }
+  .grid-item--width2        { width: $item-width * 2; }
+  .grid-item--width3        { width: $item-width * 3; }
+  .grid-item--width6        { width: $item-width * 6; }
   .grid-item--height-norm   { height: 192px; }
   .grid-item--height-half   { height: 96px; }
   .grid-item--height-med    { height: 125px; }

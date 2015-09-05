@@ -1,4 +1,9 @@
-#comments-form {
+@import 'colors';
+
+
+
+section#comment-form {
+  border-top: solid red 1px;
   textarea {
     border: solid #eee 1px;
     width: 1010px;
@@ -10,6 +15,7 @@
 
 section.comments {
   margin-top: 15px;
+  border-top: $grey-med;
 
   article.comment {
     padding: 0 0 0 90px;

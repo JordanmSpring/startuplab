@@ -3,7 +3,7 @@
   .col-lg-12
     %h1 {{ idea.name }}
 
-.row
+%section.row
   .col-lg-12
     .grid
       .grid-sizer
@@ -45,33 +45,26 @@
       .grid-item.grid-item--width6.grid-item--height-norm.grid-item--pitch.inverted
         %sl-idea-panel(ng-model="idea" link-title="Elevator Pitch" template-url="#{asset_path('templates/ideas/forms/pitch.html')}")
 
-  #u646-4.clearfix.colelem
-    %p Submitted by
+%section#submitted-by.row
+  .col-lg-12
+    %h3 Submitted by
 
-  #pu647.clearfix.colelem
-    #u647.grpelem
-      %img(ng-src="{{ idea.user.gravatarUrl + '?size=70' }}")
+    %img(ng-src="{{ idea.user.gravatarUrl + '?size=70' }}")
 
-    #u648-4.clearfix.grpelem
-      %p {{ idea.user.name }}
+    %p {{ idea.user.name }}
 
-    /#u657.clip_frame.grpelem
-    /  %img#u657_img.block(src="#{asset_path('thumbsupvector.png')}" alt="" width="41" height="40")
+.comments-wrap
+  %section#comment-form.row
+    .col-lg-12
+      %h3 Comments
+      %form#comments-form.form-inline(name="commentForm" ng-controller="CommentsController as comment" ng-submit="commentForm.$valid && addComment(idea)" novalidate)
+        .form-group
+          %textarea(ng-model="comment.body" required)
+        %button.btn.btn-default(ng-disabled="commentForm.$invalid") Submit
 
-    /#u663-4.clearfix.grpelem
-    /  %p 10 up votes
-
-  #u649-4.clearfix.colelem
-    %hr
-    %p Comments
-    %form#comments-form.form-inline(name="commentForm" ng-controller="CommentsController as comment" ng-submit="commentForm.$valid && addComment(idea)" novalidate)
-      .form-group
-        %textarea(ng-model="comment.body" required)
-      %button.btn.btn-default(ng-disabled="commentForm.$invalid") Submit
-
-    %section.comments
-      %article.comment(ng-repeat="comment in idea.comments")
-        %img(ng-src="{{ comment.user.gravatarUrl }}")
-        %h2 {{ comment.user.name }}
-        %p {{ comment.body }}
+%section#comments.row
+  %article.col-lg-12.comment(ng-repeat="comment in idea.comments")
+    %img(ng-src="{{ comment.user.gravatarUrl }}")
+    %h2 {{ comment.user.name }}
+    %p {{ comment.body }}
 
