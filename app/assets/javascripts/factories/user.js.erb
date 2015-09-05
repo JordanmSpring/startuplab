@@ -4,7 +4,7 @@ angular.module('StartupLab').factory('User', [ '$http', function($http) {
       var resp = false;
       $http.get('/api/users/exists.json?email=' + email)
       .then(function(response) {
-        callback(response.exists);
+        callback(response.data.exists);
       });
     }
   };

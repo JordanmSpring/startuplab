@@ -11,16 +11,16 @@
     %title View idea
   %body
     .header_wrap
-      %nav.navbar.navbar-inverse
+      %nav.navbar.navbar-inverse(ng-show="session.isAuthenticated()")
         .container
           .header
             %a(href="http://jordan-michaelides.com/")
               %img{alt: "back to Jordan Michaelides", src: asset_path("u417-4.png")}/
           %ul.nav.navbar-nav.navbar-right
-            %li(ng-show="session.isAuthenticated()")
+            %li
               %a
                 Welcome {{ session.currentUser.name }}
-            %li.dropdown(ng-show="session.isAuthenticated()")
+            %li.dropdown
               %a.dropdown-toggle(class="dropdown-toggle" data-toggle="dropdown" role="button")
                 Dashboard
                 %span.caret

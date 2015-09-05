@@ -1,12 +1,33 @@
-#u645-4.clearfix.colelem
-  / content
-  %p Sign In
+.wrap
+  .container
+    %section#sign-in.row
+      .sign-in.col-lg-6
+        %h1 Log in to the community
 
-  %form(name="sessionForm" ng-submit="sessionForm.$valid && login()" novalidate)
-    %div(ng-show="session.failed")
-      Invalid Password
-    / TODO: Validation
-    %input#email.form-control(type="email" ng-model="session.email" required)
-    %input.form-control(type="password" ng-model="session.password" required)
-    %button.btn.btn-primary(type="Submit") Login
-  
+        %form(name="sessionForm" ng-submit="sessionForm.$valid && login()" novalidate)
+          %div(ng-show="session.failed")
+            Invalid Password
+          / TODO: Validation
+          .form-group
+            %input#email.form-control(type="email" placeholder="Email address" ng-model="session.email" required)
+          .form-group
+            %input.form-control(type="password" placeholder="Password" ng-model="session.password" required)
+          %button.btn.btn-primary(ng-disabled="!sessionForm.$valid" type="Submit") Login
+      
+      .register.col-lg-6
+        %h1 Want to get involved in the startup community?
+
+        %form(name="userForm" ng-submit="userForm.$valid && register()" novalidate)
+          .form-group
+            %input.form-control(type="text" ng-model="user.name" placeholder="Pick your display name" required)
+          .form-group
+            %input.form-control(type="email" name="email" ng-model="user.email" placeholder="Your preferred email address" unique-email required)
+            %p.help-block.errorMessage(ng-show="userForm.email.$dirty && userForm.email.$error.uniqueEmail")
+              Email already in use
+          .form-group
+            %input.form-control(type="password" ng-model="user.password" placeholder="Set a password with 8 characters minimum" ng-minlength="8" required)
+          .form-group
+            %input.form-control(type="password" name="passwordConfirmation" ng-model="user.passwordConfirmation" ng-minlength="8" compare-to="user.password" placeholder="Confirm your password" required)
+            %p.help-block.errorMessage(ng-show="userForm.passwordConfirmation.$dirty && userForm.passwordConfirmation.$error.compareTo")
+              Passwords do not match
+          %button.btn.btn-primary(ng-disabled="!userForm.$valid" type="Submit") Sign Up

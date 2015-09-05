@@ -12,4 +12,10 @@ angular.module('StartupLab')
       console.log($('#email').focus());
     });
   }
+
+  $scope.user = {};
+
+  $scope.register = function() {
+    Session.register($scope.user);
+  }
 }]);

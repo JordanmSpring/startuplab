@@ -25,10 +25,6 @@ angular.module('StartupLab', ['ngRoute', 'ngResource'])
       controller: 'SessionsController',
       controllerAs: 'session'
     })
-    .when('/register', {
-      templateUrl: '<%= asset_path("templates/users/new.html") %>',
-      controller: 'RegistrationsController'
-    })
     .when('/users/invitation/accept', {
       templateUrl: '<%= asset_path("templates/users/accept.html") %>',
       controller: 'InvitationsController'

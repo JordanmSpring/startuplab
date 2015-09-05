@@ -1,9 +1,0 @@
-
-angular.module('StartupLab')
-.controller('RegistrationsController', ['$scope', 'Session', function($scope, Session) {
-  $scope.user = {};
-
-  $scope.register = function() {
-    Session.register($scope.user);
-  }
-}]);
