@@ -10,3 +10,20 @@ article.idea {
     top: 0;
   }
 }
+
+section#submitted-by {
+  .body {
+    padding: 0 0 0 100px;
+    position: relative;
+    min-height: 80px;
+    margin-top: 18px;
+    margin-left: 18px;
+    margin-bottom: 15px;
+
+    img {
+      left: 0;
+      position: absolute;
+      top: 0;
+    }
+  }
+}

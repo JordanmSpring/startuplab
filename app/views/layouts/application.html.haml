@@ -17,16 +17,17 @@
             %a(href="http://jordan-michaelides.com/")
               %img{alt: "back to Jordan Michaelides", src: asset_path("u417-4.png")}/
           %ul.nav.navbar-nav.navbar-right
-            %li
-              %a(href="#")
-                Welcome Lauren
-            %li.dropdown
-              %a.dropdown-toggle(href="#" class="dropdown-toggle" data-toggle="dropdown" role="button")
+            %li(ng-show="session.isAuthenticated()")
+              %a
+                Welcome {{ session.currentUser.name }}
+            %li.dropdown(ng-show="session.isAuthenticated()")
+              %a.dropdown-toggle(class="dropdown-toggle" data-toggle="dropdown" role="button")
                 Dashboard
                 %span.caret
               %ul.dropdown-menu
+                %li= link_to "Dashboard", "/#/"
                 %li
-                  = link_to "Dashboard", "/#/"
+                  %a(ng-click="session.logout()") Sign Out
     .banner_wrap
       .container
         %ul.nav.navbar-nav
@@ -42,8 +43,6 @@
             %h2
               %a(href="/#/ideas") Browse Ideas
 
-    .wrap
-      .container
-        %div(ng-view)
+    %div(ng-view)
 
     = javascript_include_tag 'application', 'data-turbolinks-track' => true

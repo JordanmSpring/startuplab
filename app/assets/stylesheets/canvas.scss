@@ -172,5 +172,5 @@
   .grid-item--crowdfunding, .grid-item--crowdfunding .modal-content { background-color: #b3b3b3; }
   .grid-item--social,       .grid-item--social .modal-content       { background-color: $canvas-social }
   .grid-item--timing,       .grid-item--timing .modal-content       { background-color: #9a9191; }
-  .grid-item--pitch,        .grid-item--pitch .modal-content       { background-color: #f4f3f3; }
+  .grid-item--pitch,        .grid-item--pitch .modal-content        { background-color: $canvas-pitch; }
 }

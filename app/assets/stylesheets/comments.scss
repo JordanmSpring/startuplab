@@ -1,27 +1,41 @@
 @import 'colors';
 
-
+.comments-wrap {
+  background: $comments-wrap;
+}
 
 section#comment-form {
-  border-top: solid red 1px;
-  textarea {
-    border: solid #eee 1px;
-    width: 1010px;
-    margin-top: 8px;
-    color: #867878;
-    resize: vertical;
+  .body {
+    .submit {
+      margin-top: 10px;
+    }
+    textarea {
+      border: none;
+      border-bottom: solid #eee 1px;
+      width: 1140px;
+      padding: 8px;
+      margin-top: 8px;
+      color: #867878;
+      resize: vertical;
+    }
   }
 }
 
-section.comments {
+section#comments {
   margin-top: 15px;
   border-top: $grey-med;
 
   article.comment {
-    padding: 0 0 0 90px;
+    padding: 0 0 15px 100px;
+    margin-left: 18px;
     position: relative;
     min-height: 80px;
     margin-bottom: 15px;
+    border-bottom: dashed $grey-med 1px;
+
+    &:last-child {
+      border-bottom: none;
+    }
 
     p {
       color: #867878;

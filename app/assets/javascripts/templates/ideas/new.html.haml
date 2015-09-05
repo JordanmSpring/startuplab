@@ -1,12 +1,14 @@
-.row
-  .col-lg-12
-    %h1 New Idea
+.wrap
+  .container
+    .row
+      .col-lg-12
+        %h1 New Idea
 
-  .col-lg-6
-    %form(name="ideaForm" ng-submit="ideaForm.$valid && submit()" novalidate)
-      .form-group
-        %label Name
-        %input.form-control(type="text" ng-maxlength="40" size="40" ng-model="idea.name" required)
-        %p.help-block Max 40 Chars
-      %button.btn.btn-primary(type="Submit" ng-disabled="!ideaForm.$valid") Create
-  
+      .col-lg-6
+        %form(name="ideaForm" ng-submit="ideaForm.$valid && submit()" novalidate)
+          .form-group
+            %label Name
+            %input.form-control(type="text" ng-maxlength="40" size="40" ng-model="idea.name" required)
+            %p.help-block Max 40 Chars
+          %button.btn.btn-primary(type="Submit" ng-disabled="!ideaForm.$valid") Create
+      
