@@ -38,6 +38,10 @@ angular.module('StartupLab').factory('Idea', [ '$http', function($http) {
       });
     },
 
+    delete: function(idea) {
+      return $http.delete(this.ideaPath(idea.id));
+    },
+
     update: function(idea) {
       return $http.patch(this.ideaPath(idea.id), { idea: idea });
     }

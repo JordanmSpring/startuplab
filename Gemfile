@@ -33,6 +33,8 @@ gem 'devise_invitable', '~> 1.5.2'
 gem 'responders'
 gem 'pundit'
 
+gem 'rails_12factor', '~> 0.0.3', group: :production
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

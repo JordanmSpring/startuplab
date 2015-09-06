@@ -29,6 +29,12 @@ class Api::IdeasController < Api::BaseController
     head :ok
   end
 
+  def destroy
+    authorize(@idea)
+    @idea.destroy
+    head :ok
+  end
+
   def publish
     authorize(@idea)
     @idea.publish!

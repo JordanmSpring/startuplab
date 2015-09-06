@@ -1,6 +1,6 @@
 angular.module('StartupLab')
-.controller('ShowIdeaController', ['$scope', '$routeParams', 'Idea', 'Session', 'user',
-    function($scope, $routeParams, Idea, Session, user) {
+.controller('ShowIdeaController', ['$scope', '$routeParams', '$location', 'Idea', 'Session', 'user',
+    function($scope, $routeParams, $location, Idea, Session, user) {
 
   $scope.session = Session;
 
@@ -29,4 +29,15 @@ angular.module('StartupLab')
       });
     }
   }
+
+  $scope.delete = function() {
+    if (confirm('Are you sure you want to delete?')) {
+      Idea.delete($scope.idea).then(function() {
+        $location.path('/dashboard');
+      }, function() {
+        alert('Could not delete');
+      });
+    }
+  }
+
 }]);

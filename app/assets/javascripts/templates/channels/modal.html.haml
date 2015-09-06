@@ -1,7 +1,7 @@
 %a.inner(ng-click="showModal(idea)")
   %span.title {{ linkTitle }}
   .inner-content
-    {{ channelStr(idea.channels) | limitTo:40 }}{{ channelStr(idea.channels).length > 40 ? '...' : ''}}
+    {{ channelStr(idea.channels) | limitTo:30 }}{{ channelStr(idea.channels).length > 30 ? '...' : ''}}
 .modal.fade
   .modal-dialog
     .modal-content

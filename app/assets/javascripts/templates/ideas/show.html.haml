@@ -5,6 +5,7 @@
         %h1
           .pull-right
             %a.btn.btn-info(ng-hide="idea.published" ng-click="publish()") Publish
+            %a.btn.btn-default(ng-show="idea.owner" ng-click="delete()") Delete
           {{ idea.name }}
     %section.row
       .col-lg-12

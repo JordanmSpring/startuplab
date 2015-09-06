@@ -1,8 +1,8 @@
 class Idea < ActiveRecord::Base
   belongs_to :user
   has_many :problems
-  has_many :comments, -> { order(created_at: :desc) }
-  has_many :founders, -> { order(:created_at) }
+  has_many :comments, -> { order(created_at: :desc) }, dependent: :destroy
+  has_many :founders, -> { order(:created_at) }, dependent: :destroy
   has_many :users, through: :founders
   has_and_belongs_to_many :channels
   has_and_belongs_to_many :crowdfunding_options
