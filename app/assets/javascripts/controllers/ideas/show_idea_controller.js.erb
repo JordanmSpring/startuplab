@@ -18,4 +18,15 @@ angular.module('StartupLab')
     },
     sortBy: 'original-order'
   });
+
+  $scope.publish = function() {
+    if (confirm('Are you ready to publish?')) {
+      Idea.publish($scope.idea).then(function() {
+        $scope.idea.published = true;
+        alert('Published!');
+      }, function() {
+        alert('Could not publish');
+      });
+    }
+  }
 }]);

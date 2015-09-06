@@ -28,6 +28,10 @@ angular.module('StartupLab').factory('Idea', [ '$http', function($http) {
       return $http.get(this.ideaPath(id));
     },
 
+    publish: function(idea) {
+      return $http.post('/api/ideas/' + idea.id + '/publish.json');
+    },
+
     create: function(idea, callback) {
       return $http.post(this.ideaPath(), { idea: idea }).then(function(response) {
         callback(response.data);

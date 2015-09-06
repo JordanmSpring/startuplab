@@ -16,6 +16,11 @@ Rails.application.routes.draw do
         get :draft
         get :published
       end
+
+      member do
+        post :publish
+      end
+
       resources :problems
       resources :comments
       resources :channels
