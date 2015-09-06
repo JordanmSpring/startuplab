@@ -1,4 +1,5 @@
 class Api::IdeasController < Api::BaseController
+  skip_before_action :authenticate_user!, only: [ :show, :index ]
   before_action :find_idea, except: [:index, :create, :draft, :published]
   respond_to :json
 

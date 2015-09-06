@@ -1,5 +1,8 @@
 angular.module('StartupLab')
-.controller('ShowIdeaController', ['$scope', '$routeParams', 'Idea', function($scope, $routeParams, Idea) {
+.controller('ShowIdeaController', ['$scope', '$routeParams', 'Idea', 'Session', 'user',
+    function($scope, $routeParams, Idea, Session, user) {
+
+  $scope.session = Session;
 
   // TODO: Use a resolver in the routes
   Idea.find($routeParams.id).then(function(response) {

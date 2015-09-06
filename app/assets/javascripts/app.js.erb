@@ -8,10 +8,7 @@ angular.module('StartupLab', ['ngRoute', 'ngResource'])
   }];
 
   var loadCurrentUser = [ 'Session', function(Session) {
-    if (!Session.currentUser) {
-      Session.requestCurrentUser();
-    }
-    console.log('resolving');
+    return Session.requestCurrentUser();
   }];
 
   $routeProvider

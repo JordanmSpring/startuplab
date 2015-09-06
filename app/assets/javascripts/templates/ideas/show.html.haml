@@ -3,7 +3,6 @@
     .row
       .col-lg-12
         %h1 {{ idea.name }}
-
     %section.row
       .col-lg-12
         .grid
@@ -59,9 +58,12 @@
     %section#comment-form
       %header.row
         .col-lg-12
-          %h3 Comments
+          %h3
+            .pull-right(ng-hide="session.isAuthenticated()")
+              %a.btn.btn-info#sign-in(href="/#/sign-in") Sign in to comment
+            Comments
       .row.body
-        %form#comments-form.form-inline(name="commentForm" ng-controller="CommentsController as comment" ng-submit="commentForm.$valid && addComment(idea)" novalidate)
+        %form#comments-form.form-inline(ng-show="session.isAuthenticated()" name="commentForm" ng-controller="CommentsController as comment" ng-submit="commentForm.$valid && addComment(idea)" novalidate)
           .col-lg-12
             .form-group
               %textarea(ng-model="comment.body" placeholder="What do you think?" required)

@@ -19,7 +19,7 @@
           %ul.nav.navbar-nav.navbar-right
             %li
               %a
-                Welcome {{ session.currentUser.name }}
+                Welcome {{ session.currentUser().name }}
             %li.dropdown
               %a.dropdown-toggle(class="dropdown-toggle" data-toggle="dropdown" role="button")
                 Dashboard

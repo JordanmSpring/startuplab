@@ -1,4 +1,6 @@
-angular.module('StartupLab').factory('Session', function($location, $http, $q) {
+angular.module('StartupLab').factory('Session', [ '$location', '$http', '$q', '$window', 
+    function($location, $http, $q, $window) {
+
   // Redirect to the given url (defaults to '/')
   function redirect(url) {
     url = url || '/';
@@ -6,19 +8,34 @@ angular.module('StartupLab').factory('Session', function($location, $http, $q) {
   }
 
   var session = {
-    currentUser: null,
-
     isAuthenticated: function() {
-      return !!this.currentUser;
+      sStore = $window.sessionStorage.currentUser;
+      if (!sStore) return false;
+      obj = JSON.parse(sStore);
+      return !!obj && !!obj.id;
+    },
+
+    unsetCurrentUser: function() {
+      $window.sessionStorage.removeItem('currentUser');
+    },
+
+    setCurrentUser: function(user) {
+      $window.sessionStorage.setItem('currentUser', JSON.stringify(user));
+    },
+
+    currentUser: function() {
+      if (this.isAuthenticated()) {
+        return JSON.parse(window.sessionStorage.currentUser);
+      } else {
+        return null;
+      }
     },
 
     login: function(email, password, failure) {
        return $http.post('/users/sign_in', {user: {email: email, password: password} })
       .then(function(response) {
-        session.currentUser = response.data.user;
+        session.setCurrentUser(response.data.user);
         if (session.isAuthenticated()) {
-          //TODO: Send them back to where they came from
-          //$location.path(response.data.redirect);
           redirect('/');
         }
       }, function(error) {
@@ -28,7 +45,7 @@ angular.module('StartupLab').factory('Session', function($location, $http, $q) {
 
     logout: function(redirectTo) {
       $http.delete('/users/sign_out').then(function() {
-        session.currentUser = null;
+        session.unsetCurrentUser();
         redirect(redirectTo);
       }, function() {
         alert('Could not log out');
@@ -44,28 +61,32 @@ angular.module('StartupLab').factory('Session', function($location, $http, $q) {
           password_confirmation: user.passwordConfirmation
         }
       }).then(function(response) {
-        console.log('response', response.data);
-        session.currentUser = response.data;
+        session.setCurrentUser(response.data);
         if (session.isAuthenticated()) {
-          $location.path('/ideas');
+          $location.path('/');
         }
       }, function(response) {
-        // TODO: Display above form
         alert(response.data.errors);
       });
     },
 
     // TODO: Use the User service
     requestCurrentUser: function() {
-      return $http.get('/api/users/current.json').then(function(response) {
-        console.log('current user', response.data);
-        session.currentUser = response.data;
-        return session.currentUser;
-      }, function() {
-        console.log('Unable to get user')
-      });
+      var deferred = $q.defer();
+      if (session.isAuthenticated()) {
+        deferred.resolve();
+      } else {
+        $http.get('/api/users/current.json').then(function(response) {
+          session.setCurrentUser(response.data);
+          deferred.resolve();
+        }, function() {
+          console.log('Unable to get user')
+          deferred.reject();
+        });
+      }
+      return deferred.promise;
     }
   };
 
   return session;
-});
+}]);

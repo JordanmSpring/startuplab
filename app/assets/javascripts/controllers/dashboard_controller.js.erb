@@ -3,7 +3,7 @@ angular.module('StartupLab')
 .controller('DashboardController', ['$scope', '$routeParams', 'Idea', 'Session', '$location',
     function($scope, $routeParams, Idea, Session, $location) {
 
-  $scope.user = Session.currentUser;
+  $scope.user = Session.currentUser();
   $scope._showDrafts = false;
 
   Idea.draft().then(function(response) {
