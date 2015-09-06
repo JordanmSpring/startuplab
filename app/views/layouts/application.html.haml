@@ -9,18 +9,21 @@
       document.write('\x3Cscript src="' + (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//webfonts.creativecloud.com/quicksand:n7:all.js" type="text/javascript">\x3C/script>');
 
     %title View idea
-  %body
+  %body(ng-cloak)
     .header_wrap
-      %nav.navbar.navbar-inverse(ng-show="session.isAuthenticated()")
+      %nav.navbar.navbar-inverse
         .container
           .header
             %a(href="http://jordan-michaelides.com/")
               %img{alt: "back to Jordan Michaelides", src: asset_path("u417-4.png")}/
           %ul.nav.navbar-nav.navbar-right
-            %li
+            %li(ng-hide="session.isAuthenticated()")
+              %a(href="/#/sign-in")
+                Sign In
+            %li(ng-show="session.isAuthenticated()")
               %a
                 Welcome {{ session.currentUser().name }}
-            %li.dropdown
+            %li.dropdown(ng-show="session.isAuthenticated()")
               %a.dropdown-toggle(class="dropdown-toggle" data-toggle="dropdown" role="button")
                 Dashboard
                 %span.caret
