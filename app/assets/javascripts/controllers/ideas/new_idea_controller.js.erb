@@ -1,5 +1,9 @@
 angular.module('StartupLab')
-.controller('NewIdeaController', ['$scope', '$location', 'Idea', function($scope, $location, Idea) {
+.controller('NewIdeaController', ['$scope', '$location', 'Idea', 'Session', function($scope, $location, Idea, Session) {
+
+  if (!Session.isAuthenticated()) {
+    $location.path('/sign-in');
+  }
 
   $scope.idea = {};
 
