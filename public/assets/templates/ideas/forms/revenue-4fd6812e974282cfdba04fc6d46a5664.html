@@ -1,0 +1,24 @@
+<a class='inner' ng-click='showModal(idea)'>
+  <span class='title'>{{ linkTitle }}</span>
+  <div class='inner-content'>{{ idea.revenue | limitTo:80 }}{{ idea.revenue.length > 80 ? '...' : ''}}</div>
+</a>
+<div class='modal fade'>
+  <div class='modal-dialog'>
+    <div class='modal-content'>
+      <div class='modal-header'>
+        <button aria-label='Close' class='close' ng-click='hideModal()' type='button'>&times;</button>
+        <h2>Business Model-Revenue</h2>
+      </div>
+      <div class='modal-body'>
+        <form name='ideaForm' ng-show='idea.canEdit' ng-submit='ideaForm.$valid &amp;&amp; saveIdea(idea)' novalidate>
+          <div class='form-group'>
+            <textarea class='form-control' ng-maxlength='300' ng-model='idea.revenue' placeholder='How will you earn income?' rows='5'></textarea>
+          </div>
+        </form>
+        <div class='content' ng-hide='idea.canEdit'>
+          <p>{{ idea.revenue }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

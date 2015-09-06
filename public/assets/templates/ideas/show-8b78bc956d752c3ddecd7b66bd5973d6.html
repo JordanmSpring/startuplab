@@ -1,0 +1,103 @@
+<div class='wrap'>
+  <div class='container'>
+    <div class='row'>
+      <div class='col-lg-12'>
+        <h1>
+          <div class='pull-right'>
+            <a class='btn btn-info' ng-click='publish()' ng-hide='idea.published'>Publish</a>
+            <a class='btn btn-default' ng-click='delete()' ng-show='idea.owner'>Delete</a>
+          </div>
+          {{ idea.name }}
+        </h1>
+      </div>
+    </div>
+    <section class='row'>
+      <div class='col-lg-12'>
+        <div class='grid'>
+          <div class='grid-sizer'></div>
+          <div class='grid-item grid-item--height-norm grid-item--problem'>
+            <sl-idea-panel link-title='Problem' ng-model='idea' template-url='/assets/templates/ideas/forms/problem-e15693b9cc2a470c12c084f093b805c6.html'></sl-idea-panel>
+          </div>
+          <div class='grid-item grid-item--height-norm grid-item--idea inverted'>
+            <sl-idea-panel link-title='Idea' ng-model='idea' template-url='/assets/templates/ideas/forms/idea-5f4760ce4ed0b96ba2791a514b72af39.html'></sl-idea-panel>
+          </div>
+          <div class='grid-item grid-item--height-norm grid-item--mvp inverted'>
+            <sl-idea-panel link-title='MVP' ng-model='idea' template-url='/assets/templates/ideas/forms/mvp-653edbd7cdb098526132de8dbf3f7aae.html'></sl-idea-panel>
+          </div>
+          <div class='grid-item grid-item--height-half grid-item--target'>
+            <sl-idea-panel link-title='Target Market' ng-model='idea' template-url='/assets/templates/ideas/forms/target_market-daf774696bd39bdeb9df2f45bc1b7ab5.html'></sl-idea-panel>
+          </div>
+          <div class='grid-item grid-item--height-double grid-item--costs'>
+            <sl-idea-panel link-title='Costs' ng-model='idea' template-url='/assets/templates/ideas/forms/costs-8a194ee6ece786d6a8c07093e7ed041b.html'></sl-idea-panel>
+          </div>
+          <div class='grid-item grid-item--height-double grid-item--revenue'>
+            <sl-idea-panel link-title='Business Mod-Rev' ng-model='idea' template-url='/assets/templates/ideas/forms/revenue-4fd6812e974282cfdba04fc6d46a5664.html'></sl-idea-panel>
+          </div>
+          <div class='grid-item grid-item--height-half grid-item--channels'>
+            <sl-channels link-title='Channels' ng-model='idea'></sl-channels>
+          </div>
+          <div class='grid-item grid-item--height-med grid-item--width2 grid-item--founders inverted'>
+            <sl-founders link-title='Founders' ng-model='idea'></sl-founders>
+          </div>
+          <div class='grid-item grid-item--height-med grid-item--width2 grid-item--social inverted'>
+            <sl-idea-panel link-title='Social Media' ng-model='idea' template-url='/assets/templates/ideas/forms/social-media-d0da10d681e65548f04406bfcb3d4640.html'></sl-idea-panel>
+          </div>
+          <div class='grid-item grid-item--width3 grid-item--height-norm grid-item--crowdfunding'>
+            <sl-funding-options link-title='Funding Options' ng-model='idea'></sl-funding-options>
+          </div>
+          <div class='grid-item grid-item--width3 grid-item--height-norm grid-item--timing'>
+            <sl-idea-panel link-title='Timing' ng-model='idea' template-url='/assets/templates/ideas/forms/timing-28bdb449dfee266b1ee96c3054a01764.html'></sl-idea-panel>
+          </div>
+          <div class='grid-item grid-item--width6 grid-item--height-norm grid-item--pitch inverted'>
+            <sl-idea-panel link-title='Elevator Pitch' ng-model='idea' template-url='/assets/templates/ideas/forms/pitch-1fc8bf979368d88767dc86c31d189716.html'></sl-idea-panel>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class='row' id='submitted-by'>
+      <div class='body col-lg-12'>
+        <h3>Submitted by</h3>
+        <img ng-src='{{ idea.user.gravatarUrl }}'>
+        <p>{{ idea.user.name }}</p>
+      </div>
+    </section>
+  </div>
+</div>
+<div class='comments-wrap'>
+  <div class='container'>
+    <section id='comment-form'>
+      <header class='row'>
+        <div class='col-lg-12'>
+          <h3>
+            <div class='pull-right' ng-hide='session.isAuthenticated()'>
+              <a class='btn btn-info' href='/#/sign-in' id='sign-in'>Sign in to comment</a>
+            </div>
+            Comments
+          </h3>
+        </div>
+      </header>
+      <div class='row body'>
+        <form class='form-inline' id='comments-form' name='commentForm' ng-controller='CommentsController as comment' ng-show='session.isAuthenticated()' ng-submit='commentForm.$valid &amp;&amp; addComment(idea)' novalidate>
+          <div class='col-lg-12'>
+            <div class='form-group'>
+              <textarea ng-model='comment.body' placeholder='What do you think?' required></textarea>
+            </div>
+          </div>
+          <div class='submit col-lg-12'>
+            <div class='pull-right'>
+              <button class='btn btn-default' ng-disabled='commentForm.$invalid' type='submit'>Comment</button>
+            </div>
+            <div class='clearfix'></div>
+          </div>
+        </form>
+      </div>
+    </section>
+    <section class='row' id='comments'>
+      <article class='col-lg-12 comment' ng-repeat='comment in idea.comments'>
+        <img ng-src='{{ comment.user.gravatarUrl }}'>
+        <h2>{{ comment.user.name }}</h2>
+        <p>{{ comment.body }}</p>
+      </article>
+    </section>
+  </div>
+</div>

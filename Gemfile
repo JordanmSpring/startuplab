@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+=begin
 source 'https://rails-assets.org' do
   gem 'rails-assets-isotope'
   gem 'rails-assets-bootstrap'
@@ -8,6 +9,7 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-angular-route'
   gem 'rails-assets-crypto-js'
 end
+=end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.3'
@@ -38,6 +40,7 @@ gem 'devise'
 gem 'devise_invitable', '~> 1.5.2'
 gem 'responders'
 gem 'pundit'
+gem 'bower-rails'
 
 gem 'rails_12factor', '~> 0.0.3', group: :production
 
