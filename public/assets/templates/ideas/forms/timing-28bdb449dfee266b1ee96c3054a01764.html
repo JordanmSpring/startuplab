@@ -1,0 +1,33 @@
+<a class='inner' ng-click='showModal(idea)'>
+  <span class='title'>{{ linkTitle }}</span>
+  <div class='inner-content'>
+    <ul>
+      <li>{{ idea.timing_why | limitTo:100 }}{{ idea.timing_why.length > 100 ? '...' : ''}}</li>
+      <li>{{ idea.timing_description | limitTo:100 }}{{ idea.timing_description.length > 100 ? '...' : ''}}</li>
+    </ul>
+  </div>
+</a>
+<div class='modal fade'>
+  <div class='modal-dialog'>
+    <div class='modal-content'>
+      <div class='modal-header'>
+        <button aria-label='Close' class='close' ng-click='hideModal()' type='button'>&times;</button>
+        <h2>Timing</h2>
+      </div>
+      <div class='modal-body'>
+        <form name='ideaForm' ng-show='idea.canEdit' novalidate>
+          <div class='form-group'>
+            <textarea class='form-control' ng-model='idea.timing_why' placeholder='Why is the market ready?' type='text'></textarea>
+          </div>
+          <div class='form-group'>
+            <textarea class='form-control' ng-maxlength='300' ng-model='idea.timing_description' placeholder='Description' rows='5'></textarea>
+          </div>
+        </form>
+        <div class='content' ng-hide='idea.canEdit'>
+          <p>{{ idea.timing_why }}</p>
+          <p>{{ idea.timing_description }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

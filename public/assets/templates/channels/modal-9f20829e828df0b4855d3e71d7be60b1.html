@@ -1,0 +1,64 @@
+<a class='inner' ng-click='showModal(idea)'>
+  <span class='title'>{{ linkTitle }}</span>
+  <div class='inner-content'>
+    {{ channelStr(idea.channels) | limitTo:30 }}{{ channelStr(idea.channels).length > 30 ? '...' : ''}}
+  </div>
+</a>
+<div class='modal fade'>
+  <div class='modal-dialog'>
+    <div class='modal-content'>
+      <div class='modal-header'>
+        <button aria-label='Close' class='close' ng-click='hideModal()' type='button'>&times;</button>
+        <h2>Channels</h2>
+      </div>
+      <div class='modal-body'>
+        <form name='ideaForm' ng-show='idea.canEdit' novalidate>
+          <div class='form-group'>
+            <div class='checkbox'>
+              <label>
+                <input name='channels[]' ng-checked="channels.indexOf('Social Media') &gt; -1" ng-click="toggleSelection('Social Media')" type='checkbox' value='Social Media'>Social Media</input>
+              </label>
+            </div>
+            <div class='checkbox'>
+              <label>
+                <input name='channels[]' ng-checked="channels.indexOf('Content Media') &gt; -1" ng-click="toggleSelection('Content Media')" type='checkbox' value='Content Media'>Content Media</input>
+              </label>
+            </div>
+            <div class='checkbox'>
+              <label>
+                <input name='channels[]' ng-checked="channels.indexOf('Other Media') &gt; -1" ng-click="toggleSelection('Other Media')" type='checkbox' value='Other Media'>Other Media</input>
+              </label>
+            </div>
+            <div class='checkbox'>
+              <label>
+                <input name='channels[]' ng-checked="channels.indexOf('Direct Marketing') &gt; -1" ng-click="toggleSelection('Direct Marketing')" type='checkbox' value='Direct Marketing'>Direct Marketing</input>
+              </label>
+            </div>
+            <div class='checkbox'>
+              <label>
+                <input name='channels[]' ng-checked="channels.indexOf('Indirect Marketing') &gt; -1" ng-click="toggleSelection('Indirect Marketing')" type='checkbox' value='Indirect Marketing'>Indirect Marketing</input>
+              </label>
+            </div>
+            <div class='checkbox'>
+              <label>
+                <input name='channels[]' ng-checked="channels.indexOf('Business Development') &gt; -1" ng-click="toggleSelection('Business Development')" type='checkbox' value='Business Development'>Business Development</input>
+              </label>
+            </div>
+            <div class='checkbox'>
+              <label>
+                <input name='channels[]' ng-checked="channels.indexOf('Partnerships') &gt; -1" ng-click="toggleSelection('Partnerships')" type='checkbox' value='Partnerships'>Partnerships</input>
+              </label>
+            </div>
+          </div>
+        </form>
+        <div class='content' ng-hide='idea.canEdit'>
+          <p>
+            <ul>
+              <li ng-repeat='channel in channels'>{{ channel }}</li>
+            </ul>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

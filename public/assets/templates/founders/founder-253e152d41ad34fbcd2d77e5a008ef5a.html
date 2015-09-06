@@ -1,0 +1,22 @@
+<div class='founder' ng-class='{ editable: idea.canEdit }'>
+  <div class='image' ng-show='founder.user.pending'>
+    <img src="/assets/pending-d5cdd83dc147137741d2c73315bb41f5.jpg" alt="Pending" />
+    <span class='action'>
+      <a ng-click='remove()'>
+        <img src="/assets/minus-7b4be776c11a524b7ff537602ae1a638.png" alt="Minus" />
+      </a>
+    </span>
+  </div>
+  <div class='image' ng-hide='founder.user.pending'>
+    <img ng-src='{{ founder.user.gravatarUrl }}'>
+    <span class='action'>
+      <a ng-click='remove()'>
+        <img src="/assets/minus-7b4be776c11a524b7ff537602ae1a638.png" alt="Minus" />
+      </a>
+    </span>
+  </div>
+  <h2>{{ founder.user.name }}</h2>
+  <input class='form-control input-sm' ng-change='setRole()' ng-model='founder.role' ng-show='idea.canEdit' placeholder='Role' required type='text'>
+  <span ng-show='!idea.canEdit'>{{ founder.role }}</span>
+  <div class='clearfix'></div>
+</div>
