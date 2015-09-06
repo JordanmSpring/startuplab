@@ -1,6 +1,6 @@
 class IdeaPolicy < ApplicationPolicy
   def show?
-    @record.published? || super
+    @record.published? || (user.present? && super)
   end
 
   def update?
