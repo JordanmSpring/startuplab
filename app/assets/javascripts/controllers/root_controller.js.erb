@@ -1,0 +1,11 @@
+
+angular.module('StartupLab')
+.controller('RootController', ['$scope', '$location', 'Session', function($scope, $location, Session) {
+
+  if (Session.isAuthenticated()) {
+    $location.path('/dashboard');
+  } else {
+    $location.path('/ideas');
+  }
+
+}]);

@@ -41,9 +41,13 @@ angular.module('StartupLab', ['ngRoute', 'ngResource'])
       templateUrl: '<%= asset_path("templates/users/accept.html") %>',
       controller: 'InvitationsController'
     })
-    .when('/', { redirectTo: '/ideas' })
+    .when('/', {
+      templateUrl: '<%= asset_path("templates/sessions/new.html") %>',
+      controller: 'RootController',
+      resolve: { user: loadCurrentUser }
+    })
     .otherwise({
-      redirectTo: '/ideas'
+      redirectTo: '/'
     });
  }])
  .config([
