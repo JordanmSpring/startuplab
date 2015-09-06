@@ -11,7 +11,9 @@ angular.module('StartupLab').directive("slFundingOptions", [ 'Idea', function(Id
     link: function(scope, element) {
       scope.modal = element.find('.modal');
       scope.modal.on('hide.bs.modal', function (e) {
-        scope.syncFundingOptions();
+        if (scope.idea.canEdit) {
+          scope.syncFundingOptions();
+        }
       });
     }
   }

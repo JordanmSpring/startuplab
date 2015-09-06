@@ -112,7 +112,7 @@
 
     &.inverted {
       a {
-        color: #a7aeb6;
+        color: $modal-inverted;
       }
 
       .modal {
@@ -131,8 +131,8 @@
           }
         }
 
-        input, textarea, label, h2 {
-          color: #a7aeb6;
+        p, input, textarea, label, h2 {
+          color: $modal-inverted;
         }
       }
     }

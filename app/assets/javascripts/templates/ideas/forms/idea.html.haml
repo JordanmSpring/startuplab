@@ -4,10 +4,12 @@
 .modal.fade
   .modal-dialog
     .modal-content
-      %form(name="ideaForm" ng-submit="ideaForm.$valid && saveIdea(idea)" novalidate)
-        .modal-header
-          %button(type="button" class="close" ng-click="hideModal()" aria-label="Close") &times;
-          %h2 Idea
-        .modal-body
+      .modal-header
+        %button(type="button" class="close" ng-click="hideModal()" aria-label="Close") &times;
+        %h2 Idea
+      .modal-body
+        %form(ng-show="idea.canEdit" name="ideaForm" ng-submit="ideaForm.$valid && saveIdea(idea)" novalidate)
           .form-group
             %textarea.form-control(rows="5" ng-model="idea.idea" ng-maxlength="300" placeholder="What is your idea?")
+        .content(ng-show="!idea.canEdit")
+          %p {{ idea.idea }}

@@ -4,6 +4,7 @@ angular.module('StartupLab')
 
   $scope.showModal = function() {
     $scope.channels = $scope.idea.channels;
+    console.log('channels = ', $scope.channels);
     $scope.modal.modal('show');
   };
 

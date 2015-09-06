@@ -7,24 +7,23 @@
 .modal.fade
   .modal-dialog
     .modal-content
-      %form(name="ideaForm" ng-submit="ideaForm.$valid && saveIdea(idea)" novalidate)
-        .modal-header
-          %button(type="button" class="close" ng-click="hideModal()" aria-label="Close") &times;
-          %h2 Social Media
-        .modal-body
-          %div(ng-show="idea.mine")
-            .form-group
-              %input.form-control(type="url" ng-model="idea.facebook_url" placeholder="Facebook Page")
-            .form-group
-              %input.form-control(type="url" ng-model="idea.twitter_url" placeholder="Twitter Page")
-            .form-group
-              %input.form-control(type="url" ng-model="idea.linkedin_url" placeholder="Linkedin Page")
+      .modal-header
+        %button(type="button" class="close" ng-click="hideModal()" aria-label="Close") &times;
+        %h2 Social Media
+      .modal-body
+        %form(ng-show="idea.canEdit" name="ideaForm" ng-submit="ideaForm.$valid && saveIdea(idea)" novalidate)
+          .form-group
+            %input.form-control(type="url" ng-model="idea.facebook_url" placeholder="Facebook Page")
+          .form-group
+            %input.form-control(type="url" ng-model="idea.twitter_url" placeholder="Twitter Page")
+          .form-group
+            %input.form-control(type="url" ng-model="idea.linkedin_url" placeholder="Linkedin Page")
 
-          %div(ng-show="!idea.mine")
-            %a(ng-show="idea.facebook_url" ng-href="{{ idea.facebook_url }}" target="_blank")
-              %img(src="#{asset_path('facebook-logo.png')}")
-            %a(ng-show="idea.twitter_url" ng-href="{{ idea.twitter_url }}" target="_blank")
-              %img(src="#{asset_path('twitter-logo.png')}")
-            %a(ng-show="idea.linkedin_url" ng-href="{{ idea.linkedin_url }}" target="_blank")
-              %img(src="#{asset_path('linkedin-logo.png')}")
+        .content(ng-hide="idea.canEdit")
+          %a(ng-show="idea.facebook_url" ng-href="{{ idea.facebook_url }}" target="_blank")
+            %img(src="#{asset_path('facebook-logo.png')}")
+          %a(ng-show="idea.twitter_url" ng-href="{{ idea.twitter_url }}" target="_blank")
+            %img(src="#{asset_path('twitter-logo.png')}")
+          %a(ng-show="idea.linkedin_url" ng-href="{{ idea.linkedin_url }}" target="_blank")
+            %img(src="#{asset_path('linkedin-logo.png')}")
 

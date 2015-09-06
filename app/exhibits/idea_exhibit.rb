@@ -13,7 +13,17 @@ class IdeaExhibit
       fundingOptions: @object.funding_option_names,
       channels: @object.channel_names,
       user: UserExhibit.new(@object.user),
-      mine: @object.users.include?(@user)
+      canEdit: can_edit?,
+      owner: owner?
     ).as_json
   end
+
+  private
+    def can_edit?
+      @object.founder?(@user) || owner?
+    end
+
+    def owner?
+      @object.owner?(@user)
+    end
 end

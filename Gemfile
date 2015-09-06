@@ -31,6 +31,7 @@ gem 'angular_rails_csrf', '~> 1.0.4'
 gem 'devise'
 gem 'devise_invitable', '~> 1.5.2'
 gem 'responders'
+gem 'pundit'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

@@ -4,12 +4,16 @@
 .modal.fade
   .modal-dialog
     .modal-content
-      %form(name="ideaForm" novalidate)
-        .modal-header
-          %button(type="button" class="close" ng-click="hideModal()" aria-label="Close") &times;
-          %h2 Problem
-        .modal-body
+      .modal-header
+        %button(type="button" class="close" ng-click="hideModal()" aria-label="Close") &times;
+        %h2 Problem
+      .modal-body
+        %form(ng-show="idea.canEdit" name="ideaForm" novalidate)
           .form-group
             %input.form-control(type="text" ng-model="idea.problem" placeholder="What problem have you identified?")
           .form-group
             %textarea.form-control(rows="5" ng-model="idea.problem_detail" ng-maxlength="300" placeholder="Describe the problem")
+        .content(ng-show="!idea.canEdit")
+          %p {{ idea.problem }}
+          %p {{ idea.problem_detail }}
+

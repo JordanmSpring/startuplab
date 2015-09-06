@@ -7,22 +7,33 @@ angular.module('StartupLab', ['ngRoute', 'ngResource'])
     return Invite.get($route.current.params.invitation_token).$promise;
   }];
 
+  var loadCurrentUser = [ 'Session', function(Session) {
+    if (!Session.currentUser) {
+      Session.requestCurrentUser();
+    }
+    console.log('resolving');
+  }];
+
   $routeProvider
     .when('/dashboard', {
       templateUrl: '<%= asset_path("templates/dashboard/show.html") %>',
-      controller: 'DashboardController'
+      controller: 'DashboardController',
+      resolve: { user: loadCurrentUser }
     })
     .when('/ideas', {
       templateUrl: '<%= asset_path("templates/ideas/index.html") %>',
-      controller: 'IdeasController'
+      controller: 'IdeasController',
+      resolve: { user: loadCurrentUser }
     })
     .when('/ideas/new', {
       templateUrl: '<%= asset_path("templates/ideas/new.html") %>',
-      controller: 'NewIdeaController'
+      controller: 'NewIdeaController',
+      resolve: { user: loadCurrentUser }
     })
     .when('/ideas/:id', {
       templateUrl: '<%= asset_path("templates/ideas/show.html") %>',
-      controller: 'ShowIdeaController'
+      controller: 'ShowIdeaController',
+      resolve: { user: loadCurrentUser }
     })
     .when('/sign-in', {
       templateUrl: '<%= asset_path("templates/sessions/new.html") %>',

@@ -11,7 +11,7 @@
         %ul
           %li(ng-repeat="founder in idea.founders")
             %sl-founder(ng-model="founder" idea="idea")
-          %li(ng-show="idea.mine")
+          %li(ng-show="idea.canEdit")
             .founder.invite
               %input.form-control(type="email" ng-model="invite.email" placeholder="Email")
               %input.form-control(type="text" ng-model="invite.role" placeholder="Role")

@@ -11,12 +11,17 @@
 .modal.fade
   .modal-dialog
     .modal-content
-      %form(name="ideaForm" novalidate)
-        .modal-header
-          %button(type="button" class="close" ng-click="hideModal()" aria-label="Close") &times;
-          %h2 Elevator Pitch
-        .modal-body
+      .modal-header
+        %button(type="button" class="close" ng-click="hideModal()" aria-label="Close") &times;
+        %h2 Elevator Pitch
+      .modal-body
+        %form(ng-show="idea.canEdit" name="ideaForm" novalidate)
           .form-group
             %textarea.form-control(type="text" ng-model="idea.pitch_why" placeholder="Why are you creating this solution?")
           .form-group
             %textarea.form-control(rows="5" ng-model="idea.pitch_how" ng-maxlength="600" placeholder="How will it solve the problem?")
+        .content(ng-hide="idea.canEdit")
+          %h3 Why
+          %p {{ idea.pitch_why }}
+          %h3 How
+          %p {{ idea.pitch_how }}

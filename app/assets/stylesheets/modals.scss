@@ -1,3 +1,4 @@
+@import 'colors';
 
 .modal {
   .modal-content {
@@ -16,6 +17,15 @@
     }
 
     .modal-body {
+      .content {
+        p, ul li {
+          font-size: 1.2em;
+          color: $white;
+          opacity: 0.7;
+          filter: alpha(opacity=70);
+        }
+      }
+
       input, textarea, label {
         background: transparent;
         /*border: none;*/

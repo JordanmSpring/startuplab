@@ -8,20 +8,22 @@ class Api::IdeasController < Api::BaseController
   end
 
   def draft
-    @ideas = current_user.ideas.draft
+    @ideas = Idea.with_founder(current_user).draft
     render json: @ideas
   end
 
   def published
-    @ideas = current_user.ideas.published
+    @ideas = Idea.with_founder(current_user).published
     render json: @ideas
   end
 
   def show
+    authorize(@idea)
     render json: IdeaExhibit.new(@idea, current_user)
   end
 
   def update
+    authorize(@idea)
     @idea.update(idea_update_params)
     head :ok
   end

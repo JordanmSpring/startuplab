@@ -1,4 +1,4 @@
-.founder(ng-class="{ editable: idea.mine }")
+.founder(ng-class="{ editable: idea.canEdit }")
   .image(ng-show="founder.user.pending")
     = image_tag('pending.jpg')
     %span.action
@@ -10,6 +10,6 @@
       %a(ng-click="remove()")
         = image_tag('minus.png')
   %h2 {{ founder.user.name }}
-  %input.form-control.input-sm(ng-show="idea.mine" type="text" ng-model="founder.role" ng-change="setRole()" placeholder="Role" required)
-  %span(ng-show="!idea.mine") {{ founder.role }}
+  %input.form-control.input-sm(ng-show="idea.canEdit" type="text" ng-model="founder.role" ng-change="setRole()" placeholder="Role" required)
+  %span(ng-show="!idea.canEdit") {{ founder.role }}
   .clearfix

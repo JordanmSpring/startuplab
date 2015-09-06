@@ -10,8 +10,20 @@ class Idea < ActiveRecord::Base
   scope :published, -> { where(published: true) }
   scope :draft,     -> { where.not(published: true) }
 
+  def self.with_founder(user)
+    joins(:users).where(users: { id: user.id })
+  end
+
   def publish!
     update!(published: true)
+  end
+
+  def owner?(user)
+    self.user == user
+  end
+
+  def founder?(user)
+    self.users.include?(user)
   end
 
   def channel_names=(array)

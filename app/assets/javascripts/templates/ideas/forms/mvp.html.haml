@@ -5,11 +5,11 @@
 .modal.fade
   .modal-dialog
     .modal-content
-      %form(name="ideaForm" ng-submit="ideaForm.$valid && saveIdea(idea)" novalidate)
-        .modal-header
-          %button(type="button" class="close" ng-click="hideModal()" aria-label="Close") &times;
-          %h2 What is the MVP?
-        .modal-body
+      .modal-header
+        %button(type="button" class="close" ng-click="hideModal()" aria-label="Close") &times;
+        %h2 What is the MVP?
+      .modal-body
+        %form(ng-show="idea.canEdit" name="ideaForm" ng-submit="ideaForm.$valid && saveIdea(idea)" novalidate)
           .form-group
             %input.form-control(type="text" ng-model="idea.company" placeholder="Name of Company")
           .form-group
@@ -21,3 +21,9 @@
               %option Alpha
               %option Beta
               %option Live Product
+
+        .content(ng-show="!idea.canEdit")
+          %p {{ idea.company }}
+          %p
+            %a(ng-href="{{ idea.mvp_url }}" target="_blank") {{ idea.mvp_url }}
+          %p Stage: {{ idea.mvp_stage }}

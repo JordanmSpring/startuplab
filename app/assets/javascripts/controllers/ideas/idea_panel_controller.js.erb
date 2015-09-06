@@ -8,12 +8,14 @@ angular.module('StartupLab')
   };
 
   $scope.syncIdea = function() {
-    console.log('form', $scope.ideaForm);
-    if ($scope.ideaForm.$valid) {
-      Idea.update($scope.idea).then(function() {}, function() {
-        alert('Could not save');
-      });
-      console.log("changed", $scope.idea);
+    if ($scope.idea.canEdit) {
+      console.log('form', $scope.ideaForm);
+      if ($scope.ideaForm.$valid) {
+        Idea.update($scope.idea).then(function() {}, function() {
+          alert('Could not save');
+        });
+        console.log("changed", $scope.idea);
+      }
     }
   };
 

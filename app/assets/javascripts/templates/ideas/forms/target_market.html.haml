@@ -4,13 +4,16 @@
 .modal.fade
   .modal-dialog
     .modal-content
-      %form(name="ideaForm" ng-submit="ideaForm.$valid && saveIdea(idea)" novalidate)
-        .modal-header
-          %button(type="button" class="close" ng-click="hideModal()" aria-label="Close") &times;
-          %h2 Target Market
-        .modal-body
+      .modal-header
+        %button(type="button" class="close" ng-click="hideModal()" aria-label="Close") &times;
+        %h2 Target Market
+      .modal-body
+        %form(ng-show="idea.canEdit" name="ideaForm" ng-submit="ideaForm.$valid && saveIdea(idea)" novalidate)
           .form-group
             %input.form-control(type="text" ng-model="idea.target_customer" placeholder="Who is your ideal customer?")
             %span.help-block (e.g. Age, Sex, Income)
           .form-group
             %textarea.form-control(rows="5" ng-model="idea.target_customer_reason" placeholder="Why are they your ideal customer? Why would they value your product?" ng-maxlength="300")
+        .content(ng-show="!idea.canEdit")
+          %p {{ idea.target_customer }}
+          %p {{ idea.target_customer_reason }}
