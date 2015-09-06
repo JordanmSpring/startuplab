@@ -1,0 +1,8 @@
+%article.idea
+  %a(ng-href="#ideas/{{ idea.id }}")
+    = image_tag('idea-diagram.jpg')
+  .caption
+    %h3
+      %a(ng-href="#ideas/{{ idea.id }}") {{ idea.name }}
+    %p {{ idea.idea | limitTo:80 }}{{ idea.idea.length > 80 ? '...' : ''}}
+

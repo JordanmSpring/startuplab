@@ -12,6 +12,10 @@ Rails.application.routes.draw do
       end
     end
     resources :ideas do
+      collection do
+        get :draft
+        get :published
+      end
       resources :problems
       resources :comments
       resources :channels

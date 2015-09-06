@@ -7,6 +7,13 @@ class Idea < ActiveRecord::Base
   has_and_belongs_to_many :channels
   has_and_belongs_to_many :crowdfunding_options
 
+  scope :published, -> { where(published: true) }
+  scope :draft,     -> { where.not(published: true) }
+
+  def publish!
+    update!(published: true)
+  end
+
   def channel_names=(array)
     self.channels = array.map do |name|
       Channel.find_by(name: name)

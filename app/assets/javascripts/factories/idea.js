@@ -1,30 +1,41 @@
 angular.module('StartupLab').factory('Idea', [ '$http', function($http) {
   return {
-    idea_path: function(id) {
-      var base = '/api/ideas';
+    basePath: function() {
+      return '/api/ideas';
+    },
+
+    ideaPath: function(id) {
       if (id) {
-        return [ base, id.toString() + '.json' ].join('/');
+        return [ this.basePath(), id.toString() + '.json' ].join('/');
       } else {
-        return base + '.json';
+        return this.basePath() + '.json';
       }
     },
 
     all: function() {
-      return $http.get(this.idea_path());
+      return $http.get(this.ideaPath());
+    },
+
+    draft: function() {
+      return $http.get(this.basePath() + '/draft.json');
+    },
+
+    published: function() {
+      return $http.get(this.basePath() + '/published.json');
     },
 
     find: function(id) {
-      return $http.get(this.idea_path(id));
+      return $http.get(this.ideaPath(id));
     },
 
     create: function(idea, callback) {
-      return $http.post(this.idea_path(), { idea: idea }).then(function(response) {
+      return $http.post(this.ideaPath(), { idea: idea }).then(function(response) {
         callback(response.data);
       });
     },
 
     update: function(idea) {
-      return $http.patch(this.idea_path(idea.id), { idea: idea });
+      return $http.patch(this.ideaPath(idea.id), { idea: idea });
     }
   };
 }]);

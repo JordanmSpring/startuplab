@@ -1,0 +1,25 @@
+@import 'colors';
+
+section#my-ideas {
+  #new-idea {
+    margin-top: 20px;
+  }
+
+  ul {
+    list-style: none;
+    padding-left: 14px;
+
+    li {
+      float: left;
+      margin-right: 50px;
+
+      &:hover h1 a {
+        text-decoration: none;
+      }
+
+      &.active h1 a, &:hover h1 a {
+        border-bottom: solid $red 4px;
+      }
+    }
+  }
+}

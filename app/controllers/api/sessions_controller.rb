@@ -9,7 +9,7 @@ class Api::SessionsController < Devise::SessionsController
     render json: {
       success: true,
       info: "Logged in",
-      user: current_user # TODO: Use a serializer or exhibit
+      user: UserExhibit.new(current_user)
     }
   end
 

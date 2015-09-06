@@ -1,9 +1,19 @@
 class Api::IdeasController < Api::BaseController
-  before_action :find_idea, except: [:index, :create]
+  before_action :find_idea, except: [:index, :create, :draft, :published]
   respond_to :json
 
   def index
-    @ideas = current_user.ideas
+    @ideas = Idea.published
+    render json: @ideas
+  end
+
+  def draft
+    @ideas = current_user.ideas.draft
+    render json: @ideas
+  end
+
+  def published
+    @ideas = current_user.ideas.published
     render json: @ideas
   end
 

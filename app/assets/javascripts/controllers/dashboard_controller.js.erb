@@ -1,0 +1,25 @@
+
+angular.module('StartupLab')
+.controller('DashboardController', ['$scope', '$routeParams', 'Idea', 'Session', '$location',
+    function($scope, $routeParams, Idea, Session, $location) {
+
+  Session.requestCurrentUser();
+  $scope.user = Session.currentUser;
+  $scope._showDrafts = false;
+
+  Idea.draft().then(function(response) {
+    $scope.draftIdeas = response.data.ideas;
+  });
+
+  Idea.published().then(function(response) {
+    $scope.publishedIdeas = response.data.ideas;
+  });
+
+  $scope.showDrafts = function() {
+    $scope._showDrafts = true;
+  };
+
+  $scope.showPublished = function() {
+    $scope._showDrafts = false;
+  };
+}]);

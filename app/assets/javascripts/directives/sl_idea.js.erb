@@ -1,0 +1,12 @@
+
+angular.module('StartupLab').directive("slIdea", function() {
+  return {
+    restrict: 'E',
+    templateUrl: '<%= asset_path("templates/ideas/idea.html") %>',
+    controller: 'IdeaController',
+    scope: {
+      idea: '=ngModel'
+    },
+    link: function(scope, element) {}
+  }
+});

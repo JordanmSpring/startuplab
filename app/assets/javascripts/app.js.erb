@@ -8,6 +8,10 @@ angular.module('StartupLab', ['ngRoute', 'ngResource'])
   }];
 
   $routeProvider
+    .when('/dashboard', {
+      templateUrl: '<%= asset_path("templates/dashboard/show.html") %>',
+      controller: 'DashboardController'
+    })
     .when('/ideas', {
       templateUrl: '<%= asset_path("templates/ideas/index.html") %>',
       controller: 'IdeasController'

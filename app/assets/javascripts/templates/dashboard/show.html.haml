@@ -1,0 +1,29 @@
+.wrap
+  .container
+    .row
+      .col-lg-5
+        %h1 Dashboard
+      %section#my-ideas.col-lg-7
+        .pull-right
+          %a.btn.btn-info#new-idea(href="/#/ideas/new") Submit New Idea
+        %ul
+          %li(ng-class="{active: !_showDrafts}")
+            %h1
+              %a(ng-click="showPublished()") My Ideas
+          %li(ng-class="{active: _showDrafts}")
+            %h1
+              %a(ng-click="showDrafts()") Drafts
+ 
+    .row
+      .col-lg-5
+        %h2 {{ user.name }}
+        %img(ng-src="{{ user.gravatarUrl + '?size=120' }}")
+
+      .col-lg-7
+
+
+        .col-lg-12(ng-show="_showDrafts" ng-repeat='idea in draftIdeas')
+          %sl-idea(ng-model="idea")
+
+        .col-lg-12(ng-show="!_showDrafts" ng-repeat='idea in publishedIdeas')
+          %sl-idea(ng-model="idea")

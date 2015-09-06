@@ -3,7 +3,7 @@ class Api::UsersController < Api::BaseController
   respond_to :json
 
   def current
-    render json: current_user
+    render json: UserExhibit.new(current_user)
   end
 
   def exists
