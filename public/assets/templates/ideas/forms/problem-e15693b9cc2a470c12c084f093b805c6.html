@@ -1,0 +1,28 @@
+<a class='inner' ng-click='showModal(idea)'>
+  <span class='title'>{{ linkTitle }}</span>
+  <div class='inner-content'>{{ idea.problem | limitTo:80 }}{{ idea.problem.length > 80 ? '...' : ''}}</div>
+</a>
+<div class='modal fade'>
+  <div class='modal-dialog'>
+    <div class='modal-content'>
+      <div class='modal-header'>
+        <button aria-label='Close' class='close' ng-click='hideModal()' type='button'>&times;</button>
+        <h2>Problem</h2>
+      </div>
+      <div class='modal-body'>
+        <form name='ideaForm' ng-show='idea.canEdit' novalidate>
+          <div class='form-group'>
+            <input class='form-control' ng-model='idea.problem' placeholder='What problem have you identified?' type='text'>
+          </div>
+          <div class='form-group'>
+            <textarea class='form-control' ng-maxlength='300' ng-model='idea.problem_detail' placeholder='Describe the problem' rows='5'></textarea>
+          </div>
+        </form>
+        <div class='content' ng-show='!idea.canEdit'>
+          <p>{{ idea.problem }}</p>
+          <p>{{ idea.problem_detail }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

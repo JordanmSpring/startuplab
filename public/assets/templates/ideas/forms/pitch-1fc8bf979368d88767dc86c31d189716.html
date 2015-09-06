@@ -1,0 +1,41 @@
+<a class='inner' ng-click='showModal(idea)'>
+  <span class='title'>{{ linkTitle }}</span>
+  <div class='inner-content'>
+    <ul>
+      <li>
+        <em>Why:</em>
+        {{ idea.pitch_why | limitTo:150 }}{{ idea.pitch_why.length > 150 ? '...' : ''}}
+      </li>
+      <li>
+        <em>How:</em>
+        {{ idea.pitch_how | limitTo:150 }}{{ idea.pitch_how.length > 150 ? '...' : ''}}
+      </li>
+    </ul>
+  </div>
+</a>
+<div class='modal fade'>
+  <div class='modal-dialog'>
+    <div class='modal-content'>
+      <div class='modal-header'>
+        <button aria-label='Close' class='close' ng-click='hideModal()' type='button'>&times;</button>
+        <h2>Elevator Pitch</h2>
+      </div>
+      <div class='modal-body'>
+        <form name='ideaForm' ng-show='idea.canEdit' novalidate>
+          <div class='form-group'>
+            <textarea class='form-control' ng-model='idea.pitch_why' placeholder='Why are you creating this solution?' type='text'></textarea>
+          </div>
+          <div class='form-group'>
+            <textarea class='form-control' ng-maxlength='600' ng-model='idea.pitch_how' placeholder='How will it solve the problem?' rows='5'></textarea>
+          </div>
+        </form>
+        <div class='content' ng-hide='idea.canEdit'>
+          <h3>Why</h3>
+          <p>{{ idea.pitch_why }}</p>
+          <h3>How</h3>
+          <p>{{ idea.pitch_how }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

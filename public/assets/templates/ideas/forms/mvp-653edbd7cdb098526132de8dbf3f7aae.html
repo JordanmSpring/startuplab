@@ -1,0 +1,42 @@
+<a class='inner' ng-click='showModal(idea)'>
+  <span class='title'>{{ linkTitle }}</span>
+  <div class='inner-content'>
+    {{ idea.company }}
+  </div>
+</a>
+<div class='modal fade'>
+  <div class='modal-dialog'>
+    <div class='modal-content'>
+      <div class='modal-header'>
+        <button aria-label='Close' class='close' ng-click='hideModal()' type='button'>&times;</button>
+        <h2>What is the MVP?</h2>
+      </div>
+      <div class='modal-body'>
+        <form name='ideaForm' ng-show='idea.canEdit' ng-submit='ideaForm.$valid &amp;&amp; saveIdea(idea)' novalidate>
+          <div class='form-group'>
+            <input class='form-control' ng-model='idea.company' placeholder='Name of Company' type='text'>
+          </div>
+          <div class='form-group'>
+            <input class='form-control' ng-model='idea.mvp_url' placeholder='MVP Site URL' type='url'>
+          </div>
+          <div class='form-group'>
+            <select ng-model='idea.mvp_stage'>
+              <option disabled selected value=''>-- Select MVP Stage --</option>
+              <option>Wireframe</option>
+              <option>Alpha</option>
+              <option>Beta</option>
+              <option>Live Product</option>
+            </select>
+          </div>
+        </form>
+        <div class='content' ng-show='!idea.canEdit'>
+          <p>{{ idea.company }}</p>
+          <p>
+            <a ng-href='{{ idea.mvp_url }}' target='_blank'>{{ idea.mvp_url }}</a>
+          </p>
+          <p>Stage: {{ idea.mvp_stage }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

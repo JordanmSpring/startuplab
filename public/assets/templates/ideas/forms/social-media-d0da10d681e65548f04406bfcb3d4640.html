@@ -1,0 +1,42 @@
+<a class='inner' ng-click='showModal(idea)'>
+  <span class='title'>{{ linkTitle }}</span>
+  <div class='socials'>
+    <img ng-show='idea.facebook_url' src='/assets/facebook-logo-fa817a77474a441a3239f40e4eda681c.png'>
+    <img ng-show='idea.twitter_url' src='/assets/twitter-logo-386fe3198aaacbd3b03f82d6645dc4e3.png'>
+    <img ng-show='idea.linkedin_url' src='/assets/linkedin-logo-7168c609298499c46c3169ef0e96fc64.png'>
+  </div>
+</a>
+<div class='modal fade'>
+  <div class='modal-dialog'>
+    <div class='modal-content'>
+      <div class='modal-header'>
+        <button aria-label='Close' class='close' ng-click='hideModal()' type='button'>&times;</button>
+        <h2>Social Media</h2>
+      </div>
+      <div class='modal-body'>
+        <form name='ideaForm' ng-show='idea.canEdit' ng-submit='ideaForm.$valid &amp;&amp; saveIdea(idea)' novalidate>
+          <div class='form-group'>
+            <input class='form-control' ng-model='idea.facebook_url' placeholder='Facebook Page' type='url'>
+          </div>
+          <div class='form-group'>
+            <input class='form-control' ng-model='idea.twitter_url' placeholder='Twitter Page' type='url'>
+          </div>
+          <div class='form-group'>
+            <input class='form-control' ng-model='idea.linkedin_url' placeholder='Linkedin Page' type='url'>
+          </div>
+        </form>
+        <div class='content' ng-hide='idea.canEdit'>
+          <a ng-href='{{ idea.facebook_url }}' ng-show='idea.facebook_url' target='_blank'>
+            <img src='/assets/facebook-logo-fa817a77474a441a3239f40e4eda681c.png'>
+          </a>
+          <a ng-href='{{ idea.twitter_url }}' ng-show='idea.twitter_url' target='_blank'>
+            <img src='/assets/twitter-logo-386fe3198aaacbd3b03f82d6645dc4e3.png'>
+          </a>
+          <a ng-href='{{ idea.linkedin_url }}' ng-show='idea.linkedin_url' target='_blank'>
+            <img src='/assets/linkedin-logo-7168c609298499c46c3169ef0e96fc64.png'>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
