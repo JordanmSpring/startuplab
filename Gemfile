@@ -1,16 +1,5 @@
 source 'https://rubygems.org'
 
-=begin
-source 'https://rails-assets.org' do
-  gem 'rails-assets-isotope'
-  gem 'rails-assets-bootstrap'
-  gem 'rails-assets-angular'
-  gem 'rails-assets-angular-resource'
-  gem 'rails-assets-angular-route'
-  gem 'rails-assets-crypto-js'
-end
-=end
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.3'
 # Use sqlite3 as the database for Active Record
