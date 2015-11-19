@@ -1,0 +1,6 @@
+# Generated
+vendor/assets/bower_components
+vendor/assets/bower.json
+
+# Cache
+tmp/

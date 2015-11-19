@@ -4,11 +4,8 @@
   %head
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = csrf_meta_tags
-
-    :javascript
-      document.write('\x3Cscript src="' + (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//webfonts.creativecloud.com/quicksand:n7:all.js" type="text/javascript">\x3C/script>');
-
-<script src="//load.sumome.com/" data-sumo-site-id="31081e321994b0b40678372bb6ef10369e72119324aadabf24c2565b0170f29e" async="async"></script>
+    %script(src="//webfonts.creativecloud.com/quicksand:n7:all.js" type="text/javascript")
+    <script src="//load.sumome.com/" data-sumo-site-id="31081e321994b0b40678372bb6ef10369e72119324aadabf24c2565b0170f29e" async="async"></script>
 
     %title View idea
   %body(ng-cloak)
@@ -17,7 +14,7 @@
         .container
           .header
             %a(href="http://singlepartners.io/")
-              %img{alt: "back to Single Partners", src: asset_path("u417-4.png")}/
+              back to Single Partners
           %ul.nav.navbar-nav.navbar-right
             %li(ng-hide="session.isAuthenticated()")
               %a(href="/#/sign-in")
@@ -51,3 +48,12 @@
     %div(ng-view)
 
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
+
+    %footer(class="footer")
+      .container
+        .link.left
+          %a(href="/#/disclaimer") Disclaimer
+        .link.left
+          %a(href="http://singlepartners.io/privacy") Privacy Policy
+        .link.right
+          &copy; Single Partners 2015

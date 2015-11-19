@@ -12,6 +12,10 @@ angular.module('StartupLab', ['ngRoute', 'ngResource'])
   }];
 
   $routeProvider
+    .when('/disclaimer', {
+      templateUrl: '<%= asset_path("templates/static/disclaimer.html") %>',
+      controller: 'StaticController'
+    })
     .when('/dashboard', {
       templateUrl: '<%= asset_path("templates/dashboard/show.html") %>',
       controller: 'DashboardController',
