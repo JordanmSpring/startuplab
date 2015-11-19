@@ -7,7 +7,7 @@
 }
 
 html {
-  overflow-y: scroll; 
+  overflow-y: scroll;
 }
 
 body {
@@ -51,6 +51,12 @@ p {
     .header {
       float: left;
       margin-top: 45px;
+      a {
+        color: $white;
+        &:hover {
+          color: $white;
+        }
+      }
     }
 
     ul.nav {
@@ -117,3 +123,41 @@ p {
   }
 }
 
+// Footer positioning
+
+$footer-height: 92px;
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: $footer-height;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  background: $grey-med;
+  height: $footer-height;
+  width: 100%;
+  .container {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    .link {
+      padding: 2rem;
+      color: $white;
+      &.right {
+        margin-left: auto;
+      }
+      a {
+        color: $white;
+        &:hover {
+          color: $white;
+        }
+      }
+    }
+  }
+}
