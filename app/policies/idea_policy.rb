@@ -11,6 +11,10 @@ class IdeaPolicy < ApplicationPolicy
     update?
   end
 
+  def unpublish?
+    update?
+  end
+
   def destroy?
     @record.owner?(user)
   end

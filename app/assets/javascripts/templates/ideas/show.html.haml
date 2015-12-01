@@ -4,8 +4,16 @@
       .col-lg-12
         %h1
           .pull-right
-            %a.btn.btn-info(ng-hide="idea.published" ng-click="publish()") Publish
+            %input(bs-switch
+              ng-model="idea.published"
+              ng-if="idea.owner"
+              type="checkbox"
+              switch-size="medium"
+              switch-on-text="Public"
+              switch-off-text="Private"
+            )
             %a.btn.btn-default(ng-show="idea.owner" ng-click="delete()") Delete
+
           {{ idea.name }}
     %section.row
       .col-lg-12
@@ -16,7 +24,7 @@
 
           .grid-item.grid-item--height-norm.grid-item--idea.inverted
             %sl-idea-panel(ng-model="idea" link-title="Idea" template-url="#{asset_path('templates/ideas/forms/idea.html')}")
-            
+
           .grid-item.grid-item--height-norm.grid-item--mvp.inverted
             %sl-idea-panel(ng-model="idea" link-title="MVP" template-url="#{asset_path('templates/ideas/forms/mvp.html')}")
 
@@ -45,7 +53,7 @@
 
           .grid-item.grid-item--width3.grid-item--height-norm.grid-item--timing
             %sl-idea-panel(ng-model="idea" link-title="Timing" template-url="#{asset_path('templates/ideas/forms/timing.html')}")
-       
+
           .grid-item.grid-item--width6.grid-item--height-norm.grid-item--pitch.inverted
             %sl-idea-panel(ng-model="idea" link-title="Elevator Pitch" template-url="#{asset_path('templates/ideas/forms/pitch.html')}")
 

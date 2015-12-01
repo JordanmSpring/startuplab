@@ -32,6 +32,10 @@ angular.module('StartupLab').factory('Idea', [ '$http', function($http) {
       return $http.post('/api/ideas/' + idea.id + '/publish.json');
     },
 
+    unpublish: function(idea) {
+      return $http.post('/api/ideas/' + idea.id + '/unpublish.json');
+    },
+
     create: function(idea, callback) {
       return $http.post(this.ideaPath(), { idea: idea }).then(function(response) {
         callback(response.data);

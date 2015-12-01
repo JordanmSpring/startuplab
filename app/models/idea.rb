@@ -18,6 +18,10 @@ class Idea < ActiveRecord::Base
     update!(published: true)
   end
 
+  def unpublish!
+    update!(published: false)
+  end
+
   def owner?(user)
     self.user == user
   end
