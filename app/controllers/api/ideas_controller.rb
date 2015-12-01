@@ -41,6 +41,12 @@ class Api::IdeasController < Api::BaseController
     head :ok
   end
 
+  def unpublish
+    authorize(@idea)
+    @idea.unpublish!
+    head :ok
+  end
+
   def create
     Idea.transaction do
       @idea = current_user.ideas.create!(idea_create_params)
