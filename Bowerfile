@@ -4,6 +4,7 @@
 asset 'isotope'
 asset 'bootstrap'
 asset 'angular'
+asset 'angular-bootstrap-switch'
 asset 'angular-resource'
 asset 'angular-route'
 asset 'crypto-js'
