@@ -1,5 +1,5 @@
 // TODO: Move these to a routes.js file
-angular.module('StartupLab', ['ngRoute', 'ngResource', 'frapontillo.bootstrap-switch'])
+angular.module('StartupLab', ['ngRoute', 'ngResource', 'frapontillo.bootstrap-switch', 'angulartics', 'angulartics.google.analytics'])
  .config(['$routeProvider', function($routeProvider) {
 
   var userByInviteToken = ['Invite', '$route', function(Invite, $route) {
@@ -57,5 +57,10 @@ angular.module('StartupLab', ['ngRoute', 'ngResource', 'frapontillo.bootstrap-sw
  .config([
    "$httpProvider", function($httpProvider) {
      $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
+   }
+ ])
+ .config([
+   "$analyticsProvider", function($analyticsProvider) {
+     $analyticsProvider.virtualPageviews(true);
    }
  ]);
