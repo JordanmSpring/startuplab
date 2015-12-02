@@ -1,0 +1,76 @@
+%html
+  %body
+    %h1= "Idea : #{@idea.name}"
+
+
+
+    %h3 The Problem
+
+    %p
+      %b What problem have you identified?
+    %p= @idea.problem
+
+    %p
+      %b Describe the problem
+    %p= @idea.problem_detail
+
+
+
+    %h3 The idea
+
+    %p
+      %b What is your idea?
+    %p= @idea.idea
+
+
+
+    %h3 Minimum Viable Product
+
+    %table
+      %tr
+        %th Name of Company:
+        %td= @idea.company
+      %tr
+        %th MVP Site URL:
+        %td= link_to @idea.mvp_url, @idea.mvp_url
+      %tr
+        %th MVP Stage:
+        %td= @idea.mvp_stage
+
+
+
+    %h3 Target Market
+
+    %p
+      %b Who is your ideal customer?
+    %p= @idea.target_customer
+
+    %p
+      %b Why are they your ideal customer? Why would they value your product?
+    %p= @idea.target_customer_reason
+
+
+
+    %h3 Channels
+
+    %ul
+      - @idea.channels.each do |channel|
+        %li= channel.name
+
+
+
+    %h3 Costs
+
+    %p
+      %b What costs will you incur to run?
+    %ul
+      - @idea.costs.split("\n").each do |cost|
+        %li= cost
+
+
+
+    %h3 Business Model-Revenue
+
+    %p
+      %b How will you earn income?
+    %p= @idea.revenue
