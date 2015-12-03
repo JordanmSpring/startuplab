@@ -1,7 +1,7 @@
 %html
   %body
     %h1= "Idea : #{@idea.name}"
-
+    %p= "Submitted by #{@idea.user.name || 'Unknown'} (#{link_to(@idea.user.email, "mailto:#{@idea.user.email}")})".html_safe
 
 
     %h3 The Problem
@@ -59,13 +59,14 @@
 
 
 
-    %h3 Costs
+    - if @idea.costs.present?
+      %h3 Costs
 
-    %p
-      %b What costs will you incur to run?
-    %ul
-      - @idea.costs.split("\n").each do |cost|
-        %li= cost
+      %p
+        %b What costs will you incur to run?
+      %ul
+        - @idea.costs.split("\n").each do |cost|
+          %li= cost
 
 
 
@@ -74,3 +75,63 @@
     %p
       %b How will you earn income?
     %p= @idea.revenue
+
+
+
+    %h3 Founders
+
+    %ul
+      - @idea.founders.includes(:user).each do |founder|
+        %li= "#{founder.user.name || 'Unknown'} (#{link_to(founder.user.email, "mailto:#{founder.user.email}")})".html_safe
+
+
+
+    %h3 Social Media
+
+    %table
+      - %w(facebook twitter linkedin).each do |network|
+        - unless (url = @idea.send("#{network}_url")).blank?
+          %tr
+            %th= network.humanize
+            %td= link_to url, url
+
+
+
+    %h3 Funding Options
+
+    %ul
+      - @idea.funding_option_names.each do |option|
+        %li= option
+
+
+
+    %h3 Timing
+
+    %p
+      %b Why is the market ready?
+    %p= @idea.timing_why
+
+    %p
+      %b Description
+    %p= @idea.timing_description
+
+
+
+    %h3 Elevator Pitch
+
+    %p
+      %b Why are you creating this solution?
+    %p= @idea.pitch_why
+
+    %p
+      %b How will it solve the problem?
+    %p= @idea.pitch_how
+
+
+
+    %h3 Comments
+
+    %ul
+      - @idea.comments.includes(:user).each do |comment|
+        %li= "#{comment.body} (#{comment.user.name} #{time_ago_in_words(comment.created_at)} ago)"
+
