@@ -4,3 +4,6 @@ vendor/assets/bower.json
 
 # Cache
 tmp/
+
+# Development
+/vendor/gems/htmltoword/

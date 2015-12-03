@@ -4,27 +4,24 @@
     %p= "Submitted by #{@idea.user.name || 'Unknown'} (#{link_to(@idea.user.email, "mailto:#{@idea.user.email}")})".html_safe
 
 
-    %h3 The Problem
+    %h2 The Problem
 
-    %p
-      %b What problem have you identified?
+    %h3 What problem have you identified?
     %p= @idea.problem
 
-    %p
-      %b Describe the problem
+    %h3 Describe the problem
     %p= @idea.problem_detail
 
 
 
-    %h3 The idea
+    %h2 The idea
 
-    %p
-      %b What is your idea?
+    %h3 What is your idea?
     %p= @idea.idea
 
 
 
-    %h3 Minimum Viable Product
+    %h2 Minimum Viable Product
 
     %table
       %tr
@@ -39,19 +36,17 @@
 
 
 
-    %h3 Target Market
+    %h2 Target Market
 
-    %p
-      %b Who is your ideal customer?
+    %h3 Who is your ideal customer?
     %p= @idea.target_customer
 
-    %p
-      %b Why are they your ideal customer? Why would they value your product?
+    %h3 Why are they your ideal customer? Why would they value your product?
     %p= @idea.target_customer_reason
 
 
 
-    %h3 Channels
+    %h2 Channels
 
     %ul
       - @idea.channels.each do |channel|
@@ -60,7 +55,7 @@
 
 
     - if @idea.costs.present?
-      %h3 Costs
+      %h2 Costs
 
       %p
         %b What costs will you incur to run?
@@ -70,15 +65,14 @@
 
 
 
-    %h3 Business Model-Revenue
+    %h2 Business Model-Revenue
 
-    %p
-      %b How will you earn income?
+    %h3 How will you earn income?
     %p= @idea.revenue
 
 
 
-    %h3 Founders
+    %h2 Founders
 
     %ul
       - @idea.founders.includes(:user).each do |founder|
@@ -86,7 +80,7 @@
 
 
 
-    %h3 Social Media
+    %h2 Social Media
 
     %table
       - %w(facebook twitter linkedin).each do |network|
@@ -97,7 +91,7 @@
 
 
 
-    %h3 Funding Options
+    %h2 Funding Options
 
     %ul
       - @idea.funding_option_names.each do |option|
@@ -105,31 +99,27 @@
 
 
 
-    %h3 Timing
+    %h2 Timing
 
-    %p
-      %b Why is the market ready?
+    %h3 Why is the market ready?
     %p= @idea.timing_why
 
-    %p
-      %b Description
+    %h3 Description
     %p= @idea.timing_description
 
 
 
-    %h3 Elevator Pitch
+    %h2 Elevator Pitch
 
-    %p
-      %b Why are you creating this solution?
+    %h3 Why are you creating this solution?
     %p= @idea.pitch_why
 
-    %p
-      %b How will it solve the problem?
+    %h3 How will it solve the problem?
     %p= @idea.pitch_how
 
 
 
-    %h3 Comments
+    %h2 Comments
 
     %ul
       - @idea.comments.includes(:user).each do |comment|
