@@ -15,4 +15,12 @@ class UserIdea < ActiveRecord::Base
              presence:  true,
              inclusion: { in: ACCESS_LEVELS }
 
+  def as_json
+    {
+      id:   id,
+      user: UserExhibit.new(shared_user),
+      idea: IdeaExhibit.new(shared_idea, User.new),
+    }
+  end
+
 end

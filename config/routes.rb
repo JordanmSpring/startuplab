@@ -27,6 +27,7 @@ Rails.application.routes.draw do
       resources :channels
       resources :funding_options
       resources :founders
+      resources :user_ideas, only: [:index]
     end
   end
 

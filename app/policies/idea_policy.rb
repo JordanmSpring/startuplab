@@ -7,6 +7,10 @@ class IdeaPolicy < ApplicationPolicy
     @record.founder?(user)
   end
 
+  def share?
+    update?
+  end
+
   def publish?
     update?
   end
