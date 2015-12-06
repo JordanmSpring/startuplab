@@ -1,7 +1,18 @@
 %html
   %body
     %h1= "Idea : #{@idea.name}"
-    %p= "Submitted by #{@idea.user.name || 'Unknown'} (#{link_to(@idea.user.email, "mailto:#{@idea.user.email}")})".html_safe
+
+    %table
+      %tr
+        %th Submitted by: &nbsp;
+        %td= "#{@idea.user.name || 'Unknown'} (#{link_to(@idea.user.email, "mailto:#{@idea.user.email}")})".html_safe
+      %tr
+        %th Created at: &nbsp;
+        %td= @idea.created_at
+      %tr
+        %th Last updated at: &nbsp;
+        %td= @idea.updated_at
+
 
 
     %h2 The Problem
@@ -25,13 +36,13 @@
 
     %table
       %tr
-        %th Name of Company:
+        %th Name of Company: &nbsp;
         %td= @idea.company
       %tr
-        %th MVP Site URL:
+        %th MVP Site URL: &nbsp;
         %td= link_to @idea.mvp_url, @idea.mvp_url
       %tr
-        %th MVP Stage:
+        %th MVP Stage: &nbsp;
         %td= @idea.mvp_stage
 
 
@@ -86,7 +97,7 @@
       - %w(facebook twitter linkedin).each do |network|
         - unless (url = @idea.send("#{network}_url")).blank?
           %tr
-            %th= network.humanize
+            %th= "#{network.humanize}: &nbsp;".html_safe
             %td= link_to url, url
 
 
