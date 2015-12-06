@@ -5,7 +5,7 @@
 
   &[disabled] {
     background: $grey-med;
-    border: none;
+    border: 1px solid $grey-med;
 
     &:hover {
       background: $grey-med;
@@ -13,9 +13,9 @@
   }
 
   &:hover {
-    background-color: $btn-hover; 
+    background-color: $btn-hover;
     color: $grey-dark;
-    border: none;
+    border: 1px solid $btn-hover;
   }
 }
 
