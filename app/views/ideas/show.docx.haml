@@ -1,0 +1,127 @@
+%html
+  %body
+    %h1= "Idea : #{@idea.name}"
+    %p= "Submitted by #{@idea.user.name || 'Unknown'} (#{link_to(@idea.user.email, "mailto:#{@idea.user.email}")})".html_safe
+
+
+    %h2 The Problem
+
+    %h3 What problem have you identified?
+    %p= @idea.problem
+
+    %h3 Describe the problem
+    %p= @idea.problem_detail
+
+
+
+    %h2 The idea
+
+    %h3 What is your idea?
+    %p= @idea.idea
+
+
+
+    %h2 Minimum Viable Product
+
+    %table
+      %tr
+        %th Name of Company:
+        %td= @idea.company
+      %tr
+        %th MVP Site URL:
+        %td= link_to @idea.mvp_url, @idea.mvp_url
+      %tr
+        %th MVP Stage:
+        %td= @idea.mvp_stage
+
+
+
+    %h2 Target Market
+
+    %h3 Who is your ideal customer?
+    %p= @idea.target_customer
+
+    %h3 Why are they your ideal customer? Why would they value your product?
+    %p= @idea.target_customer_reason
+
+
+
+    %h2 Channels
+
+    %ul
+      - @idea.channels.each do |channel|
+        %li= channel.name
+
+
+
+    - if @idea.costs.present?
+      %h2 Costs
+
+      %p
+        %b What costs will you incur to run?
+      %ul
+        - @idea.costs.split("\n").each do |cost|
+          %li= cost
+
+
+
+    %h2 Business Model-Revenue
+
+    %h3 How will you earn income?
+    %p= @idea.revenue
+
+
+
+    %h2 Founders
+
+    %ul
+      - @idea.founders.includes(:user).each do |founder|
+        %li= "#{founder.user.name || 'Unknown'} (#{link_to(founder.user.email, "mailto:#{founder.user.email}")})".html_safe
+
+
+
+    %h2 Social Media
+
+    %table
+      - %w(facebook twitter linkedin).each do |network|
+        - unless (url = @idea.send("#{network}_url")).blank?
+          %tr
+            %th= network.humanize
+            %td= link_to url, url
+
+
+
+    %h2 Funding Options
+
+    %ul
+      - @idea.funding_option_names.each do |option|
+        %li= option
+
+
+
+    %h2 Timing
+
+    %h3 Why is the market ready?
+    %p= @idea.timing_why
+
+    %h3 Description
+    %p= @idea.timing_description
+
+
+
+    %h2 Elevator Pitch
+
+    %h3 Why are you creating this solution?
+    %p= @idea.pitch_why
+
+    %h3 How will it solve the problem?
+    %p= @idea.pitch_how
+
+
+
+    %h2 Comments
+
+    %ul
+      - @idea.comments.includes(:user).each do |comment|
+        %li= "#{comment.body} (#{comment.user.name} #{time_ago_in_words(comment.created_at)} ago)"
+

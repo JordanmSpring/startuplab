@@ -12,6 +12,7 @@
               switch-on-text="Public"
               switch-off-text="Private"
             )
+            %a.btn.btn-default(ng-href="{{ '/ideas/' + idea.id + '.docx' }}" ) Export
             %a.btn.btn-default(ng-show="idea.owner" ng-click="delete()") Delete
 
           {{ idea.name }}
