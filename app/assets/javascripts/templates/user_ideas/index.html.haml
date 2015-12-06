@@ -1,0 +1,23 @@
+.wrap
+  .container
+    .row
+      .col-lg-12
+        %h1 Sharing '{{ idea.name }}'
+
+    .row
+      .col-lg-6(ng-if="userIdeas.length == 0")
+        %p
+          This idea has not been shared with anyone yet.
+
+      .col-lg-6(ng-if="userIdeas.length > 0")
+        %p
+          This idea has been shared with the following people:
+        %article.user_idea(ng-repeat='userIdea in userIdeas')
+          %sl-user-idea(ng-model="userIdea")
+
+        %article.user_idea.actions
+          %a.btn.btn-default Invite another user
+          or
+          %a(ng-href="/#/ideas/{{ idea.id }}") go back
+
+

@@ -1,0 +1,11 @@
+angular.module('StartupLab')
+.controller('UserIdeasController', ['$scope', '$routeParams', 'Idea', 'UserIdea', function($scope, $routeParams, Idea, UserIdea) {
+
+  Idea.find($routeParams.ideaId).then(function(response) {
+    $scope.idea = response.data;
+  });
+
+  UserIdea.all($routeParams.ideaId).then(function(response) {
+    $scope.userIdeas = response.data.user_ideas;
+  });
+}]);

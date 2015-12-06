@@ -1,0 +1,19 @@
+angular.module('StartupLab').factory('UserIdea', [ '$http', function($http) {
+  return {
+    basePath: function(ideaId) {
+      return '/api/ideas/' + ideaId + '/user_ideas';
+    },
+
+    userIdeaPath: function(ideaId, id) {
+      if (id) {
+        return [ this.basePath(ideaId), id.toString() + '.json' ].join('/');
+      } else {
+        return this.basePath(ideaId) + '.json';
+      }
+    },
+
+    all: function(ideaId) {
+      return $http.get(this.userIdeaPath(ideaId));
+    }
+  };
+}]);

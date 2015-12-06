@@ -36,6 +36,11 @@ angular.module('StartupLab', ['ngRoute', 'ngResource', 'frapontillo.bootstrap-sw
       controller: 'ShowIdeaController',
       resolve: { user: loadCurrentUser }
     })
+    .when('/ideas/:ideaId/users', {
+      templateUrl: '<%= asset_path("templates/user_ideas/index.html") %>',
+      controller: 'UserIdeasController',
+      resolve: { user: loadCurrentUser }
+    })
     .when('/sign-in', {
       templateUrl: '<%= asset_path("templates/sessions/new.html") %>',
       controller: 'SessionsController',
