@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :ideas # TODO: Should we only have ideas through founders??
+  has_many :user_ideas
+  has_many :shared_ideas, through: :user_ideas
   has_many :founders, dependent: :destroy
 
   def pending?

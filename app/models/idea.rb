@@ -4,6 +4,8 @@ class Idea < ActiveRecord::Base
   has_many :comments, -> { order(created_at: :desc) }, dependent: :destroy
   has_many :founders, -> { order(:created_at) }, dependent: :destroy
   has_many :users, through: :founders
+  has_many :user_ideas
+  has_many :shared_users, through: :user_ideas
   has_and_belongs_to_many :channels
   has_and_belongs_to_many :crowdfunding_options
 
