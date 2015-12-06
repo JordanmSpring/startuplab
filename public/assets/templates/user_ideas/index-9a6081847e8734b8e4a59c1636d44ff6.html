@@ -1,0 +1,29 @@
+<div class='wrap'>
+  <div class='container'>
+    <div class='row'>
+      <div class='col-lg-12'>
+        <h1>Sharing '{{ idea.name }}'</h1>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='col-lg-6' ng-if='userIdeas.length == 0'>
+        <p>
+          This idea has not been shared with anyone yet.
+        </p>
+      </div>
+      <div class='col-lg-6' ng-if='userIdeas.length &gt; 0'>
+        <p>
+          This idea has been shared with the following people:
+        </p>
+        <article class='user_idea' ng-repeat='userIdea in userIdeas'>
+          <sl-user-idea ng-model='userIdea'></sl-user-idea>
+        </article>
+        <article class='user_idea actions'>
+          <a class='btn btn-default'>Invite another user</a>
+          or
+          <a ng-href='/#/ideas/{{ idea.id }}'>go back</a>
+        </article>
+      </div>
+    </div>
+  </div>
+</div>
