@@ -2,6 +2,7 @@
 !!!
 %html.html{:lang => "en-US", "ng-app" => "StartupLab", "ng-controller" => "AppController"}
   %head
+    = favicon_link_tag 'favicon.png'
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = csrf_meta_tags
     %link(href="https://fonts.googleapis.com/css?family=Quicksand:400,300,700" rel="stylesheet" type="text/css")
