@@ -7,3 +7,6 @@ tmp/
 
 # Development
 /vendor/gems/htmltoword/
+
+# Miscellaneous
+.DS_Store
