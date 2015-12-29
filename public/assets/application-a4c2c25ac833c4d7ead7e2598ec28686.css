@@ -494,12 +494,12 @@ a[ng-click] {
 }
 /* line 52, /Users/dave/Documents/Code/startuplab/startuplab/app/assets/stylesheets/canvas.scss */
 .grid .grid-item a.inner .inner-content ul {
-  list-style: square "/assets/tick-ce172ac0deb9a787a0cacd0dc7ab8310.png" !important;
+  list-style: square "/assets/tick-14a27eb3404e96219748a2d602d4efdd.png" !important;
 }
 /* line 55, /Users/dave/Documents/Code/startuplab/startuplab/app/assets/stylesheets/canvas.scss */
 .grid .grid-item a.inner .inner-content ul li {
   margin-bottom: 15px;
-  list-style: square "/assets/tick-ce172ac0deb9a787a0cacd0dc7ab8310.png" !important;
+  list-style: square "/assets/tick-14a27eb3404e96219748a2d602d4efdd.png" !important;
 }
 /* line 59, /Users/dave/Documents/Code/startuplab/startuplab/app/assets/stylesheets/canvas.scss */
 .grid .grid-item a.inner .inner-content ul li:last-child {
@@ -730,7 +730,7 @@ a[ng-click] {
 }
 /* line 1, /Users/dave/Documents/Code/startuplab/startuplab/app/assets/stylesheets/social.scss */
 input.facebook {
-  background-image: url(/assets/facebook-logo-fa817a77474a441a3239f40e4eda681c.png) !important;
+  background-image: url(/assets/facebook-logo-47609bed680e72e971baf89600061431.png) !important;
   background-repeat: no-repeat !important;
   padding-left: 30px !important;
 }

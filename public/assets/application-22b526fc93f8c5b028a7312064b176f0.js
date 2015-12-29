@@ -47541,8 +47541,16 @@ c(d.prototype,b.prototype),d.prototype._getElementOffset=e,d.prototype.layout=f,
 	return CryptoJS;
 
 }));
+// Angular Rails Templates 0.2.0
+//
+// angular_templates.ignore_prefix: ["templates/"]
+// angular_templates.markups: ["erb", "haml", "md", "str"]
+// angular_templates.htmlcompressor: false
+
+angular.module("templates", []);
+
 // TODO: Move these to a routes.js file
-angular.module('StartupLab', ['ngRoute', 'ngResource', 'frapontillo.bootstrap-switch', 'angulartics', 'angulartics.google.analytics'])
+angular.module('StartupLab', ['ngRoute', 'ngResource', 'frapontillo.bootstrap-switch', 'angulartics', 'angulartics.google.analytics', 'templates'])
  .config(['$routeProvider', function($routeProvider) {
 
   var userByInviteToken = ['Invite', '$route', function(Invite, $route) {
@@ -47556,40 +47564,45 @@ angular.module('StartupLab', ['ngRoute', 'ngResource', 'frapontillo.bootstrap-sw
 
   $routeProvider
     .when('/disclaimer', {
-      templateUrl: '/assets/templates/static/disclaimer-71b4e6d9e70ad744c5ec473a34bf213b.html',
+      templateUrl: 'static/disclaimer.html',
       controller: 'StaticController'
     })
     .when('/dashboard', {
-      templateUrl: '/assets/templates/dashboard/show-628554ba3b6376eb29eb1c08c7363a97.html',
+      templateUrl: 'dashboard/show.html',
       controller: 'DashboardController',
       resolve: { user: loadCurrentUser }
     })
     .when('/ideas', {
-      templateUrl: '/assets/templates/ideas/index-441551711fcb0e7f56d5d7657a1ce323.html',
+      templateUrl: 'ideas/index.html',
       controller: 'IdeasController',
       resolve: { user: loadCurrentUser }
     })
     .when('/ideas/new', {
-      templateUrl: '/assets/templates/ideas/new-92cb5dd0bf363859f5880218e104c61e.html',
+      templateUrl: 'ideas/new.html',
       controller: 'NewIdeaController',
       resolve: { user: loadCurrentUser }
     })
     .when('/ideas/:id', {
-      templateUrl: '/assets/templates/ideas/show-455a77c8cfed717ce41e9a962a25242b.html',
+      templateUrl: 'ideas/show.html',
       controller: 'ShowIdeaController',
       resolve: { user: loadCurrentUser }
     })
+    .when('/ideas/:ideaId/users', {
+      templateUrl: 'user_ideas/index.html',
+      controller: 'UserIdeasController',
+      resolve: { user: loadCurrentUser }
+    })
     .when('/sign-in', {
-      templateUrl: '/assets/templates/sessions/new-c7234ac522d5f109b2fc889673718e49.html',
+      templateUrl: 'sessions/new.html',
       controller: 'SessionsController',
       controllerAs: 'session'
     })
     .when('/users/invitation/accept', {
-      templateUrl: '/assets/templates/users/accept-a77840a2b6fabf878d7dc944fb22358b.html',
+      templateUrl: 'users/accept.html',
       controller: 'InvitationsController'
     })
     .when('/', {
-      templateUrl: '/assets/templates/sessions/new-c7234ac522d5f109b2fc889673718e49.html',
+      templateUrl: 'sessions/new.html',
       controller: 'RootController',
       resolve: { user: loadCurrentUser }
     })
@@ -47919,6 +47932,25 @@ angular.module('StartupLab').factory('User', [ '$http', function($http) {
       .then(function(response) {
         callback(response.data.exists);
       });
+    }
+  };
+}]);
+angular.module('StartupLab').factory('UserIdea', [ '$http', function($http) {
+  return {
+    basePath: function(ideaId) {
+      return '/api/ideas/' + ideaId + '/user_ideas';
+    },
+
+    userIdeaPath: function(ideaId, id) {
+      if (id) {
+        return [ this.basePath(ideaId), id.toString() + '.json' ].join('/');
+      } else {
+        return this.basePath(ideaId) + '.json';
+      }
+    },
+
+    all: function(ideaId) {
+      return $http.get(this.userIdeaPath(ideaId));
     }
   };
 }]);
@@ -48263,6 +48295,20 @@ angular.module('StartupLab')
 .controller('StaticController', ['$scope', function($scope) {
 
 }]);
+angular.module('StartupLab')
+.controller('UserIdeaController', ['$scope', 'UserIdea', function($scope, UserIdea) {
+}]);
+angular.module('StartupLab')
+.controller('UserIdeasController', ['$scope', '$routeParams', 'Idea', 'UserIdea', function($scope, $routeParams, Idea, UserIdea) {
+
+  Idea.find($routeParams.ideaId).then(function(response) {
+    $scope.idea = response.data;
+  });
+
+  UserIdea.all($routeParams.ideaId).then(function(response) {
+    $scope.userIdeas = response.data.user_ideas;
+  });
+}]);
 
 
 angular.module('StartupLab').directive("compareTo", function() {
@@ -48286,7 +48332,7 @@ angular.module('StartupLab').directive("compareTo", function() {
 angular.module('StartupLab').directive("slChannels", [ 'Idea', function(Idea) {
   return {
     restrict: 'E',
-    templateUrl: '/assets/templates/channels/modal-9f20829e828df0b4855d3e71d7be60b1.html',
+    templateUrl: 'channels/modal.html',
     controller: 'ChannelsController',
     scope: {
       idea: '=ngModel',
@@ -48306,7 +48352,7 @@ angular.module('StartupLab').directive("slChannels", [ 'Idea', function(Idea) {
 angular.module('StartupLab').directive("slFounder", function() {
   return {
     restrict: 'E',
-    templateUrl: '/assets/templates/founders/founder-253e152d41ad34fbcd2d77e5a008ef5a.html',
+    templateUrl: 'founders/founder.html',
     controller: 'FounderController',
     scope: {
       founder: '=ngModel',
@@ -48319,7 +48365,7 @@ angular.module('StartupLab').directive("slFounder", function() {
 angular.module('StartupLab').directive("slFounders", function() {
   return {
     restrict: 'E',
-    templateUrl: '/assets/templates/founders/modal-95b66f25083e463e7bb71d59fdc1583b.html',
+    templateUrl: 'founders/modal.html',
     controller: 'FoundersController',
     scope: {
       idea: '=ngModel',
@@ -48334,7 +48380,7 @@ angular.module('StartupLab').directive("slFounders", function() {
 angular.module('StartupLab').directive("slFundingOptions", [ 'Idea', function(Idea) {
   return {
     restrict: 'E',
-    templateUrl: '/assets/templates/funding/modal-a48a8dd80785139329bfbb97057dd9ab.html',
+    templateUrl: 'funding/modal.html',
     controller: 'CrowdfundingController',
     scope: {
       idea: '=ngModel',
@@ -48354,7 +48400,7 @@ angular.module('StartupLab').directive("slFundingOptions", [ 'Idea', function(Id
 angular.module('StartupLab').directive("slIdea", function() {
   return {
     restrict: 'E',
-    templateUrl: '/assets/templates/ideas/idea-c9dc56ce82d0e7bd6b8a1057a34ac3f5.html',
+    templateUrl: 'ideas/idea.html',
     controller: 'IdeaController',
     scope: {
       idea: '=ngModel'
@@ -48394,6 +48440,17 @@ angular.module('StartupLab').directive('slSupportLink', function() {
     }
   };
 });
+angular.module('StartupLab').directive("slUserIdea", function() {
+  return {
+    restrict: 'E',
+    templateUrl: 'user_ideas/user_idea.html',
+    controller: 'UserIdeaController',
+    scope: {
+      userIdea: '=ngModel'
+    },
+    link: function(scope, element) {}
+  }
+});
 
 angular.module('StartupLab').directive("uniqueEmail", [ 'User', function(User) {
   return {
@@ -48413,6 +48470,174 @@ angular.module('StartupLab').directive("uniqueEmail", [ 'User', function(User) {
     }
   };
 }]);
+// Angular Rails Template
+// source: app/assets/templates/channels/modal.html.haml
+
+angular.module("templates").run(["$templateCache", function($templateCache) {
+  $templateCache.put("channels/modal.html", "<a class='inner' ng-click='showModal(idea)'>\n  <span class='title'>{{ linkTitle }}</span>\n  <div class='inner-content'>\n    {{ channelStr(idea.channels) | limitTo:30 }}{{ channelStr(idea.channels).length > 30 ? '...' : ''}}\n  </div>\n</a>\n<div class='modal fade'>\n  <div class='modal-dialog'>\n    <div class='modal-content'>\n      <div class='modal-header'>\n        <button aria-label='Close' class='close' ng-click='hideModal()' type='button'>&times;</button>\n        <h2>Channels</h2>\n      </div>\n      <div class='modal-body'>\n        <form name='ideaForm' ng-show='idea.canEdit' novalidate>\n          <div class='form-group'>\n            <div class='checkbox'>\n              <label>\n                <input name='channels[]' ng-checked=\"channels.indexOf('Social Media') &gt; -1\" ng-click=\"toggleSelection('Social Media')\" type='checkbox' value='Social Media'>Social Media</input>\n              </label>\n            </div>\n            <div class='checkbox'>\n              <label>\n                <input name='channels[]' ng-checked=\"channels.indexOf('Content Media') &gt; -1\" ng-click=\"toggleSelection('Content Media')\" type='checkbox' value='Content Media'>Content Media</input>\n              </label>\n            </div>\n            <div class='checkbox'>\n              <label>\n                <input name='channels[]' ng-checked=\"channels.indexOf('Other Media') &gt; -1\" ng-click=\"toggleSelection('Other Media')\" type='checkbox' value='Other Media'>Other Media</input>\n              </label>\n            </div>\n            <div class='checkbox'>\n              <label>\n                <input name='channels[]' ng-checked=\"channels.indexOf('Direct Marketing') &gt; -1\" ng-click=\"toggleSelection('Direct Marketing')\" type='checkbox' value='Direct Marketing'>Direct Marketing</input>\n              </label>\n            </div>\n            <div class='checkbox'>\n              <label>\n                <input name='channels[]' ng-checked=\"channels.indexOf('Indirect Marketing') &gt; -1\" ng-click=\"toggleSelection('Indirect Marketing')\" type='checkbox' value='Indirect Marketing'>Indirect Marketing</input>\n              </label>\n            </div>\n            <div class='checkbox'>\n              <label>\n                <input name='channels[]' ng-checked=\"channels.indexOf('Business Development') &gt; -1\" ng-click=\"toggleSelection('Business Development')\" type='checkbox' value='Business Development'>Business Development</input>\n              </label>\n            </div>\n            <div class='checkbox'>\n              <label>\n                <input name='channels[]' ng-checked=\"channels.indexOf('Partnerships') &gt; -1\" ng-click=\"toggleSelection('Partnerships')\" type='checkbox' value='Partnerships'>Partnerships</input>\n              </label>\n            </div>\n          </div>\n        </form>\n        <div class='content' ng-hide='idea.canEdit'>\n          <p>\n            <ul>\n              <li ng-repeat='channel in channels'>{{ channel }}</li>\n            </ul>\n          </p>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>")
+}]);
+
+// Angular Rails Template
+// source: app/assets/templates/dashboard/show.html.haml
+
+angular.module("templates").run(["$templateCache", function($templateCache) {
+  $templateCache.put("dashboard/show.html", "<div class='wrap'>\n  <div class='container'>\n    <div class='row'>\n      <div class='col-lg-5'>\n        <h1>Dashboard</h1>\n      </div>\n      <section class='col-lg-7' id='my-ideas'>\n        <div class='pull-right'>\n          <a class='btn btn-info' href='/#/ideas/new' id='new-idea'>Submit New Idea</a>\n        </div>\n        <ul>\n          <li ng-class='{active: !_showDrafts}'>\n            <h1>\n              <a ng-click='showPublished()'>My Ideas</a>\n            </h1>\n          </li>\n          <li ng-class='{active: _showDrafts}'>\n            <h1>\n              <a ng-click='showDrafts()'>Drafts</a>\n            </h1>\n          </li>\n        </ul>\n      </section>\n    </div>\n    <div class='row'>\n      <div class='col-lg-5'>\n        <h2>{{ user.name }}</h2>\n        <img ng-src=\"{{ user.gravatarUrl + '?size=120' }}\">\n      </div>\n      <div class='col-lg-7'>\n        <div class='col-lg-12' ng-repeat='idea in draftIdeas' ng-show='_showDrafts'>\n          <sl-idea ng-model='idea'></sl-idea>\n        </div>\n        <div class='col-lg-12' ng-repeat='idea in publishedIdeas' ng-show='!_showDrafts'>\n          <sl-idea ng-model='idea'></sl-idea>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>")
+}]);
+
+// Angular Rails Template
+// source: app/assets/templates/founders/founder.html.haml
+
+angular.module("templates").run(["$templateCache", function($templateCache) {
+  $templateCache.put("founders/founder.html", "<div class='founder' ng-class='{ editable: idea.canEdit }'>\n  <div class='image' ng-show='founder.user.pending'>\n    <img src=\"/assets/pending-8bcc5a4dac36363a6b3f17cdbe14214e.jpg\" alt=\"Pending\" />\n    <span class='action'>\n      <a ng-click='remove()'>\n        <img src=\"/assets/minus-536f90c57142c6b2635c411bb6c01b9b.png\" alt=\"Minus\" />\n      </a>\n    </span>\n  </div>\n  <div class='image' ng-hide='founder.user.pending'>\n    <img ng-src='{{ founder.user.gravatarUrl }}'>\n    <span class='action'>\n      <a ng-click='remove()'>\n        <img src=\"/assets/minus-536f90c57142c6b2635c411bb6c01b9b.png\" alt=\"Minus\" />\n      </a>\n    </span>\n  </div>\n  <h2>{{ founder.user.name }}</h2>\n  <input class='form-control input-sm' ng-change='setRole()' ng-model='founder.role' ng-show='idea.canEdit' placeholder='Role' required type='text'>\n  <span ng-show='!idea.canEdit'>{{ founder.role }}</span>\n  <div class='clearfix'></div>\n</div>")
+}]);
+
+// Angular Rails Template
+// source: app/assets/templates/founders/modal.html.haml
+
+angular.module("templates").run(["$templateCache", function($templateCache) {
+  $templateCache.put("founders/modal.html", "<a class='inner' ng-click='showModal()'>\n  <span class='title'>{{ linkTitle }}</span>\n  <div class='founders'>\n    <img ng-repeat='founder in idea.founders' ng-src=\"{{ founder.user.gravatarUrl + '?size=52' }}\">\n  </div>\n</a>\n<div class='modal fade' id='md-idea-founders'>\n  <div class='modal-dialog'>\n    <div class='modal-content'>\n      <div class='modal-header'>\n        <h2>Founders</h2>\n      </div>\n      <div class='modal-body'>\n        <ul>\n          <li ng-repeat='founder in idea.founders'>\n            <sl-founder idea='idea' ng-model='founder'></sl-founder>\n          </li>\n          <li ng-show='idea.canEdit'>\n            <div class='founder invite'>\n              <input class='form-control' ng-model='invite.email' placeholder='Email' type='email'>\n              <input class='form-control' ng-model='invite.role' placeholder='Role' type='text'>\n              <btn class='btn btn-default btn-sm' ng-click='inviteFounder()'>Invite</btn>\n            </div>\n          </li>\n        </ul>\n        <div class='clearfix'></div>\n      </div>\n    </div>\n  </div>\n</div>")
+}]);
+
+// Angular Rails Template
+// source: app/assets/templates/funding/modal.html.haml
+
+angular.module("templates").run(["$templateCache", function($templateCache) {
+  $templateCache.put("funding/modal.html", "<a class='inner' ng-click='showModal(idea)'>\n  <span class='title'>{{ linkTitle }}</span>\n  <div class='inner-content'>\n    {{ optionStr(idea.fundingOptions) | limitTo:40 }}{{ optionStr(idea.fundingOptions).length > 40 ? '...' : ''}}\n  </div>\n</a>\n<div class='modal fade'>\n  <div class='modal-dialog'>\n    <div class='modal-content'>\n      <div class='modal-header'>\n        <button aria-label='Close' class='close' ng-click='hideModal()' type='button'>&times;</button>\n        <h2>Funding Options</h2>\n      </div>\n      <div class='modal-body'>\n        <form name='ideaForm' ng-show='idea.canEdit' novalidate>\n          <div class='form-group'>\n            <div class='checkbox'>\n              <label>\n                <input name='options[]' ng-checked=\"checked('Kickstarter') &gt; -1\" ng-click=\"toggleSelection('Kickstarter')\" type='checkbox' value='Kickstarter'>Kickstarter</input>\n              </label>\n            </div>\n            <div class='checkbox'>\n              <label>\n                <input name='options[]' ng-checked=\"checked('Venture Capital') &gt; -1\" ng-click=\"toggleSelection('Venture Capital')\" type='checkbox' value='Venture Capital'>Venture Capital</input>\n              </label>\n            </div>\n            <div class='checkbox'>\n              <label>\n                <input name='options[]' ng-checked=\"checked('Bootstrap') &gt; -1\" ng-click=\"toggleSelection('Bootstrap')\" type='checkbox' value='Bootstrap'>Bootstrap</input>\n              </label>\n            </div>\n            <div class='checkbox'>\n              <label>\n                <input name='options[]' ng-checked=\"checked('Debt Financing') &gt; -1\" ng-click=\"toggleSelection('Debt Financing')\" type='checkbox' value='Debt Financing'>Debt Financing</input>\n              </label>\n            </div>\n            <div class='checkbox'>\n              <label>\n                <input name='options[]' ng-checked=\"checked('Angels') &gt; -1\" ng-click=\"toggleSelection('Angels')\" type='checkbox' value='Angels'>Angels</input>\n              </label>\n            </div>\n          </div>\n        </form>\n        <div class='content' ng-hide='idea.canEdit'>\n          <p>\n            <ul>\n              <li ng-repeat='option in options'>{{ option }}</li>\n            </ul>\n          </p>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>")
+}]);
+
+// Angular Rails Template
+// source: app/assets/templates/ideas/forms/costs.html.haml
+
+angular.module("templates").run(["$templateCache", function($templateCache) {
+  $templateCache.put("ideas/forms/costs.html", "<a class='inner' ng-click='showModal(idea)'>\n  <span class='title'>{{ linkTitle }}</span>\n  <div class='inner-content'>{{ idea.costs | limitTo:80 }}{{ idea.costs.length > 80 ? '...' : ''}}</div>\n</a>\n<div class='modal fade'>\n  <div class='modal-dialog'>\n    <div class='modal-content'>\n      <div class='modal-header'>\n        <button aria-label='Close' class='close' ng-click='hideModal()' type='button'>&times;</button>\n        <h2>Costs</h2>\n      </div>\n      <div class='modal-body'>\n        <form name='ideaForm' ng-show='idea.canEdit' ng-submit='ideaForm.$valid &amp;&amp; saveIdea(idea)' novalidate>\n          <div class='form-group'>\n            <textarea class='form-control' ng-maxlength='300' ng-model='idea.costs' placeholder='What costs will you incur to run?' rows='5'></textarea>\n          </div>\n        </form>\n        <div class='content' ng-show='!idea.canEdit'>\n          <p>{{ idea.costs }}</p>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>")
+}]);
+
+// Angular Rails Template
+// source: app/assets/templates/ideas/forms/idea.html.haml
+
+angular.module("templates").run(["$templateCache", function($templateCache) {
+  $templateCache.put("ideas/forms/idea.html", "<a class='inner' ng-click='showModal(idea)'>\n  <span class='title'>{{ linkTitle }}</span>\n  <div class='inner-content'>{{ idea.idea | limitTo:80 }}{{ idea.idea.length > 80 ? '...' : ''}}</div>\n</a>\n<div class='modal fade'>\n  <div class='modal-dialog'>\n    <div class='modal-content'>\n      <div class='modal-header'>\n        <button aria-label='Close' class='close' ng-click='hideModal()' type='button'>&times;</button>\n        <h2>Idea</h2>\n      </div>\n      <div class='modal-body'>\n        <form name='ideaForm' ng-show='idea.canEdit' ng-submit='ideaForm.$valid &amp;&amp; saveIdea(idea)' novalidate>\n          <div class='form-group'>\n            <textarea class='form-control' ng-maxlength='300' ng-model='idea.idea' placeholder='What is your idea?' rows='5'></textarea>\n          </div>\n        </form>\n        <div class='content' ng-show='!idea.canEdit'>\n          <p>{{ idea.idea }}</p>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>")
+}]);
+
+// Angular Rails Template
+// source: app/assets/templates/ideas/forms/mvp.html.haml
+
+angular.module("templates").run(["$templateCache", function($templateCache) {
+  $templateCache.put("ideas/forms/mvp.html", "<a class='inner' ng-click='showModal(idea)'>\n  <span class='title'>{{ linkTitle }}</span>\n  <div class='inner-content'>\n    {{ idea.company }}\n  </div>\n</a>\n<div class='modal fade'>\n  <div class='modal-dialog'>\n    <div class='modal-content'>\n      <div class='modal-header'>\n        <button aria-label='Close' class='close' ng-click='hideModal()' type='button'>&times;</button>\n        <h2>What is the MVP?</h2>\n      </div>\n      <div class='modal-body'>\n        <form name='ideaForm' ng-show='idea.canEdit' ng-submit='ideaForm.$valid &amp;&amp; saveIdea(idea)' novalidate>\n          <div class='form-group'>\n            <input class='form-control' ng-model='idea.company' placeholder='Name of Company' type='text'>\n          </div>\n          <div class='form-group'>\n            <input class='form-control' ng-model='idea.mvp_url' placeholder='MVP Site URL' type='url'>\n          </div>\n          <div class='form-group'>\n            <select ng-model='idea.mvp_stage'>\n              <option disabled selected value=''>-- Select MVP Stage --</option>\n              <option>Wireframe</option>\n              <option>Alpha</option>\n              <option>Beta</option>\n              <option>Live Product</option>\n            </select>\n          </div>\n        </form>\n        <div class='content' ng-show='!idea.canEdit'>\n          <p>{{ idea.company }}</p>\n          <p>\n            <a ng-href='{{ idea.mvp_url }}' target='_blank'>{{ idea.mvp_url }}</a>\n          </p>\n          <p>Stage: {{ idea.mvp_stage }}</p>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>")
+}]);
+
+// Angular Rails Template
+// source: app/assets/templates/ideas/forms/pitch.html.haml
+
+angular.module("templates").run(["$templateCache", function($templateCache) {
+  $templateCache.put("ideas/forms/pitch.html", "<a class='inner' ng-click='showModal(idea)'>\n  <span class='title'>{{ linkTitle }}</span>\n  <div class='inner-content'>\n    <ul>\n      <li>\n        <em>Why:</em>\n        {{ idea.pitch_why | limitTo:150 }}{{ idea.pitch_why.length > 150 ? '...' : ''}}\n      </li>\n      <li>\n        <em>How:</em>\n        {{ idea.pitch_how | limitTo:150 }}{{ idea.pitch_how.length > 150 ? '...' : ''}}\n      </li>\n    </ul>\n  </div>\n</a>\n<div class='modal fade'>\n  <div class='modal-dialog'>\n    <div class='modal-content'>\n      <div class='modal-header'>\n        <button aria-label='Close' class='close' ng-click='hideModal()' type='button'>&times;</button>\n        <h2>Elevator Pitch</h2>\n      </div>\n      <div class='modal-body'>\n        <form name='ideaForm' ng-show='idea.canEdit' novalidate>\n          <div class='form-group'>\n            <textarea class='form-control' ng-model='idea.pitch_why' placeholder='Why are you creating this solution?' type='text'></textarea>\n          </div>\n          <div class='form-group'>\n            <textarea class='form-control' ng-maxlength='600' ng-model='idea.pitch_how' placeholder='How will it solve the problem?' rows='5'></textarea>\n          </div>\n        </form>\n        <div class='content' ng-hide='idea.canEdit'>\n          <h3>Why</h3>\n          <p>{{ idea.pitch_why }}</p>\n          <h3>How</h3>\n          <p>{{ idea.pitch_how }}</p>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>")
+}]);
+
+// Angular Rails Template
+// source: app/assets/templates/ideas/forms/problem.html.haml
+
+angular.module("templates").run(["$templateCache", function($templateCache) {
+  $templateCache.put("ideas/forms/problem.html", "<a class='inner' ng-click='showModal(idea)'>\n  <span class='title'>{{ linkTitle }}</span>\n  <div class='inner-content'>{{ idea.problem | limitTo:80 }}{{ idea.problem.length > 80 ? '...' : ''}}</div>\n</a>\n<div class='modal fade'>\n  <div class='modal-dialog'>\n    <div class='modal-content'>\n      <div class='modal-header'>\n        <button aria-label='Close' class='close' ng-click='hideModal()' type='button'>&times;</button>\n        <h2>Problem</h2>\n      </div>\n      <div class='modal-body'>\n        <form name='ideaForm' ng-show='idea.canEdit' novalidate>\n          <div class='form-group'>\n            <input class='form-control' ng-model='idea.problem' placeholder='What problem have you identified?' type='text'>\n          </div>\n          <div class='form-group'>\n            <textarea class='form-control' ng-maxlength='300' ng-model='idea.problem_detail' placeholder='Describe the problem' rows='5'></textarea>\n          </div>\n        </form>\n        <div class='content' ng-show='!idea.canEdit'>\n          <p>{{ idea.problem }}</p>\n          <p>{{ idea.problem_detail }}</p>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>")
+}]);
+
+// Angular Rails Template
+// source: app/assets/templates/ideas/forms/revenue.html.haml
+
+angular.module("templates").run(["$templateCache", function($templateCache) {
+  $templateCache.put("ideas/forms/revenue.html", "<a class='inner' ng-click='showModal(idea)'>\n  <span class='title'>{{ linkTitle }}</span>\n  <div class='inner-content'>{{ idea.revenue | limitTo:80 }}{{ idea.revenue.length > 80 ? '...' : ''}}</div>\n</a>\n<div class='modal fade'>\n  <div class='modal-dialog'>\n    <div class='modal-content'>\n      <div class='modal-header'>\n        <button aria-label='Close' class='close' ng-click='hideModal()' type='button'>&times;</button>\n        <h2>Business Model-Revenue</h2>\n      </div>\n      <div class='modal-body'>\n        <form name='ideaForm' ng-show='idea.canEdit' ng-submit='ideaForm.$valid &amp;&amp; saveIdea(idea)' novalidate>\n          <div class='form-group'>\n            <textarea class='form-control' ng-maxlength='300' ng-model='idea.revenue' placeholder='How will you earn income?' rows='5'></textarea>\n          </div>\n        </form>\n        <div class='content' ng-hide='idea.canEdit'>\n          <p>{{ idea.revenue }}</p>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>")
+}]);
+
+// Angular Rails Template
+// source: app/assets/templates/ideas/forms/social-media.html.haml
+
+angular.module("templates").run(["$templateCache", function($templateCache) {
+  $templateCache.put("ideas/forms/social-media.html", "<a class='inner' ng-click='showModal(idea)'>\n  <span class='title'>{{ linkTitle }}</span>\n  <div class='socials'>\n    <img ng-show='idea.facebook_url' src='/assets/facebook-logo-47609bed680e72e971baf89600061431.png'>\n    <img ng-show='idea.twitter_url' src='/assets/twitter-logo-2a3c639c09fa4719a03832257226963e.png'>\n    <img ng-show='idea.linkedin_url' src='/assets/linkedin-logo-f48700c9f35256a872a99cd0d9b10a1b.png'>\n  </div>\n</a>\n<div class='modal fade'>\n  <div class='modal-dialog'>\n    <div class='modal-content'>\n      <div class='modal-header'>\n        <button aria-label='Close' class='close' ng-click='hideModal()' type='button'>&times;</button>\n        <h2>Social Media</h2>\n      </div>\n      <div class='modal-body'>\n        <form name='ideaForm' ng-show='idea.canEdit' ng-submit='ideaForm.$valid &amp;&amp; saveIdea(idea)' novalidate>\n          <div class='form-group'>\n            <input class='form-control' ng-model='idea.facebook_url' placeholder='Facebook Page' type='url'>\n          </div>\n          <div class='form-group'>\n            <input class='form-control' ng-model='idea.twitter_url' placeholder='Twitter Page' type='url'>\n          </div>\n          <div class='form-group'>\n            <input class='form-control' ng-model='idea.linkedin_url' placeholder='Linkedin Page' type='url'>\n          </div>\n        </form>\n        <div class='content' ng-hide='idea.canEdit'>\n          <a ng-href='{{ idea.facebook_url }}' ng-show='idea.facebook_url' target='_blank'>\n            <img src='/assets/facebook-logo-47609bed680e72e971baf89600061431.png'>\n          </a>\n          <a ng-href='{{ idea.twitter_url }}' ng-show='idea.twitter_url' target='_blank'>\n            <img src='/assets/twitter-logo-2a3c639c09fa4719a03832257226963e.png'>\n          </a>\n          <a ng-href='{{ idea.linkedin_url }}' ng-show='idea.linkedin_url' target='_blank'>\n            <img src='/assets/linkedin-logo-f48700c9f35256a872a99cd0d9b10a1b.png'>\n          </a>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>")
+}]);
+
+// Angular Rails Template
+// source: app/assets/templates/ideas/forms/target_market.html.haml
+
+angular.module("templates").run(["$templateCache", function($templateCache) {
+  $templateCache.put("ideas/forms/target_market.html", "<a class='inner' ng-click='showModal(idea)'>\n  <span class='title'>{{ linkTitle }}</span>\n  <div class='inner-content'>{{ idea.target_customer | limitTo:15 }}{{ idea.target_customer.length > 15 ? '...' : ''}}</div>\n</a>\n<div class='modal fade'>\n  <div class='modal-dialog'>\n    <div class='modal-content'>\n      <div class='modal-header'>\n        <button aria-label='Close' class='close' ng-click='hideModal()' type='button'>&times;</button>\n        <h2>Target Market</h2>\n      </div>\n      <div class='modal-body'>\n        <form name='ideaForm' ng-show='idea.canEdit' ng-submit='ideaForm.$valid &amp;&amp; saveIdea(idea)' novalidate>\n          <div class='form-group'>\n            <input class='form-control' ng-model='idea.target_customer' placeholder='Who is your ideal customer?' type='text'>\n            <span class='help-block'>(e.g. Age, Sex, Income)</span>\n          </div>\n          <div class='form-group'>\n            <textarea class='form-control' ng-maxlength='300' ng-model='idea.target_customer_reason' placeholder='Why are they your ideal customer? Why would they value your product?' rows='5'></textarea>\n          </div>\n        </form>\n        <div class='content' ng-show='!idea.canEdit'>\n          <p>{{ idea.target_customer }}</p>\n          <p>{{ idea.target_customer_reason }}</p>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>")
+}]);
+
+// Angular Rails Template
+// source: app/assets/templates/ideas/forms/timing.html.haml
+
+angular.module("templates").run(["$templateCache", function($templateCache) {
+  $templateCache.put("ideas/forms/timing.html", "<a class='inner' ng-click='showModal(idea)'>\n  <span class='title'>{{ linkTitle }}</span>\n  <div class='inner-content'>\n    <ul>\n      <li>{{ idea.timing_why | limitTo:100 }}{{ idea.timing_why.length > 100 ? '...' : ''}}</li>\n      <li>{{ idea.timing_description | limitTo:100 }}{{ idea.timing_description.length > 100 ? '...' : ''}}</li>\n    </ul>\n  </div>\n</a>\n<div class='modal fade'>\n  <div class='modal-dialog'>\n    <div class='modal-content'>\n      <div class='modal-header'>\n        <button aria-label='Close' class='close' ng-click='hideModal()' type='button'>&times;</button>\n        <h2>Timing</h2>\n      </div>\n      <div class='modal-body'>\n        <form name='ideaForm' ng-show='idea.canEdit' novalidate>\n          <div class='form-group'>\n            <textarea class='form-control' ng-model='idea.timing_why' placeholder='Why is the market ready?' type='text'></textarea>\n          </div>\n          <div class='form-group'>\n            <textarea class='form-control' ng-maxlength='300' ng-model='idea.timing_description' placeholder='Description' rows='5'></textarea>\n          </div>\n        </form>\n        <div class='content' ng-hide='idea.canEdit'>\n          <p>{{ idea.timing_why }}</p>\n          <p>{{ idea.timing_description }}</p>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>")
+}]);
+
+// Angular Rails Template
+// source: app/assets/templates/ideas/idea.html.haml
+
+angular.module("templates").run(["$templateCache", function($templateCache) {
+  $templateCache.put("ideas/idea.html", "<article class='idea'>\n  <a ng-href='#ideas/{{ idea.id }}'>\n    <img src=\"/assets/idea-diagram-bd1c81b6f75e118c258d3f65d03a2875.jpg\" alt=\"Idea diagram\" />\n  </a>\n  <div class='caption'>\n    <h3>\n      <a ng-href='#ideas/{{ idea.id }}'>{{ idea.name }}</a>\n    </h3>\n    <p>{{ idea.idea | limitTo:80 }}{{ idea.idea.length > 80 ? '...' : ''}}</p>\n  </div>\n</article>")
+}]);
+
+// Angular Rails Template
+// source: app/assets/templates/ideas/index.html.haml
+
+angular.module("templates").run(["$templateCache", function($templateCache) {
+  $templateCache.put("ideas/index.html", "<div class='wrap'>\n  <div class='container'>\n    <div class='row'>\n      <div class='col-lg-12'>\n        <h1>All Ideas</h1>\n      </div>\n    </div>\n    <div class='row'>\n      <div class='col-lg-6' ng-repeat='idea in ideas'>\n        <sl-idea ng-model='idea'></sl-idea>\n      </div>\n    </div>\n  </div>\n</div>")
+}]);
+
+// Angular Rails Template
+// source: app/assets/templates/ideas/new.html.haml
+
+angular.module("templates").run(["$templateCache", function($templateCache) {
+  $templateCache.put("ideas/new.html", "<div class='wrap'>\n  <div class='container'>\n    <div class='row'>\n      <div class='col-lg-12'>\n        <h1>New Idea</h1>\n      </div>\n      <div class='col-lg-6'>\n        <form name='ideaForm' ng-submit='ideaForm.$valid &amp;&amp; submit()' novalidate>\n          <div class='form-group'>\n            <label>Name</label>\n            <input class='form-control' ng-maxlength='40' ng-model='idea.name' required size='40' type='text'>\n            <p class='help-block'>Max 40 Chars</p>\n          </div>\n          <button class='btn btn-primary' ng-disabled='!ideaForm.$valid' type='Submit'>Create</button>\n        </form>\n      </div>\n    </div>\n  </div>\n</div>")
+}]);
+
+// Angular Rails Template
+// source: app/assets/templates/ideas/show.html.haml
+
+angular.module("templates").run(["$templateCache", function($templateCache) {
+  $templateCache.put("ideas/show.html", "<div class='wrap'>\n  <div class='container'>\n    <div class='row'>\n      <div class='col-lg-12'>\n        <h1>\n          <div class='pull-right'>\n            <input bs-switch ng-if='idea.owner' ng-model='idea.published' switch-off-text='Private' switch-on-text='Public' switch-size='medium' type='checkbox'>\n            <a class='btn btn-default' ng-href=\"{{ '/ideas/' + idea.id + '.docx' }}\">Export</a>\n            <!-- /%a.btn.btn-default(ng-show=\"idea.owner\" ng-href=\"{{ '/#/ideas/' + idea.id + '/users' }}\") Share -->\n            <a class='btn btn-default' ng-click='delete()' ng-show='idea.owner'>Delete</a>\n          </div>\n          {{ idea.name }}\n        </h1>\n      </div>\n    </div>\n    <section class='row'>\n      <div class='col-lg-12'>\n        <div class='grid'>\n          <div class='grid-sizer'></div>\n          <div class='grid-item grid-item--height-norm grid-item--problem'>\n            <sl-idea-panel link-title='Problem' ng-model='idea' template-url='ideas/forms/problem.html'></sl-idea-panel>\n          </div>\n          <div class='grid-item grid-item--height-norm grid-item--idea inverted'>\n            <sl-idea-panel link-title='Idea' ng-model='idea' template-url='ideas/forms/idea.html'></sl-idea-panel>\n          </div>\n          <div class='grid-item grid-item--height-norm grid-item--mvp inverted'>\n            <sl-idea-panel link-title='MVP' ng-model='idea' template-url='ideas/forms/mvp.html'></sl-idea-panel>\n          </div>\n          <div class='grid-item grid-item--height-half grid-item--target'>\n            <sl-idea-panel link-title='Target Market' ng-model='idea' template-url='ideas/forms/target_market.html'></sl-idea-panel>\n          </div>\n          <div class='grid-item grid-item--height-double grid-item--costs'>\n            <sl-idea-panel link-title='Costs' ng-model='idea' template-url='ideas/forms/costs.html'></sl-idea-panel>\n          </div>\n          <div class='grid-item grid-item--height-double grid-item--revenue'>\n            <sl-idea-panel link-title='Business Mod-Rev' ng-model='idea' template-url='ideas/forms/revenue.html'></sl-idea-panel>\n          </div>\n          <div class='grid-item grid-item--height-half grid-item--channels'>\n            <sl-channels link-title='Channels' ng-model='idea'></sl-channels>\n          </div>\n          <div class='grid-item grid-item--height-med grid-item--width2 grid-item--founders inverted'>\n            <sl-founders link-title='Founders' ng-model='idea'></sl-founders>\n          </div>\n          <div class='grid-item grid-item--height-med grid-item--width2 grid-item--social inverted'>\n            <sl-idea-panel link-title='Social Media' ng-model='idea' template-url='ideas/forms/social-media.html'></sl-idea-panel>\n          </div>\n          <div class='grid-item grid-item--width3 grid-item--height-norm grid-item--crowdfunding'>\n            <sl-funding-options link-title='Funding Options' ng-model='idea'></sl-funding-options>\n          </div>\n          <div class='grid-item grid-item--width3 grid-item--height-norm grid-item--timing'>\n            <sl-idea-panel link-title='Timing' ng-model='idea' template-url='ideas/forms/timing.html'></sl-idea-panel>\n          </div>\n          <div class='grid-item grid-item--width6 grid-item--height-norm grid-item--pitch inverted'>\n            <sl-idea-panel link-title='Elevator Pitch' ng-model='idea' template-url='ideas/forms/pitch.html'></sl-idea-panel>\n          </div>\n        </div>\n      </div>\n    </section>\n    <section class='row' id='submitted-by'>\n      <div class='body col-lg-12'>\n        <h3>Submitted by</h3>\n        <img ng-src='{{ idea.user.gravatarUrl }}'>\n        <p>{{ idea.user.name }}</p>\n      </div>\n    </section>\n  </div>\n</div>\n<div class='comments-wrap'>\n  <div class='container'>\n    <section id='comment-form'>\n      <header class='row'>\n        <div class='col-lg-12'>\n          <h3>\n            <div class='pull-right' ng-hide='session.isAuthenticated()'>\n              <a class='btn btn-info' href='/#/sign-in' id='sign-in'>Sign in to comment</a>\n            </div>\n            Comments\n          </h3>\n        </div>\n      </header>\n      <div class='row body'>\n        <form class='form-inline' id='comments-form' name='commentForm' ng-controller='CommentsController as comment' ng-show='session.isAuthenticated()' ng-submit='commentForm.$valid &amp;&amp; addComment(idea)' novalidate>\n          <div class='col-lg-12'>\n            <div class='form-group'>\n              <textarea ng-model='comment.body' placeholder='What do you think?' required></textarea>\n            </div>\n          </div>\n          <div class='submit col-lg-12'>\n            <div class='pull-right'>\n              <button class='btn btn-default' ng-disabled='commentForm.$invalid' type='submit'>Comment</button>\n            </div>\n            <div class='clearfix'></div>\n          </div>\n        </form>\n      </div>\n    </section>\n    <section class='row' id='comments'>\n      <article class='col-lg-12 comment' ng-repeat='comment in idea.comments'>\n        <img ng-src='{{ comment.user.gravatarUrl }}'>\n        <h2>{{ comment.user.name }}</h2>\n        <p>{{ comment.body }}</p>\n      </article>\n    </section>\n  </div>\n</div>")
+}]);
+
+// Angular Rails Template
+// source: app/assets/templates/problems/modal.html.haml
+
+angular.module("templates").run(["$templateCache", function($templateCache) {
+  $templateCache.put("problems/modal.html", "<a ng-click='showModal()'>{{ linkTitle }}</a>\n<div class='modal fade' id='md-idea-problems'>\n  <div class='modal-dialog'>\n    <div class='modal-content'>\n      <div class='modal-header'>\n        <h4>Problems for {{ idea.name }}</h4>\n      </div>\n      <div class='modal-body'>\n        <form class='form-inline' name='problemForm' ng-submit='problemForm.$valid &amp;&amp; addProblem(idea)' novalidate>\n          <ul>\n            <li ng-repeat='problem in idea.problems'>\n              {{ problem.description }} {{ $index }}\n              <a ng-click='removeProblem($index)'>X</a>\n            </li>\n          </ul>\n          <div class='form-group'>\n            <label>Description</label>\n            <input class='form-control' ng-model='problem.description' required type='text'>\n          </div>\n          <button class='btn btn-default' type='Submit'>Add</button>\n        </form>\n      </div>\n    </div>\n  </div>\n</div>")
+}]);
+
+// Angular Rails Template
+// source: app/assets/templates/sessions/new.html.haml
+
+angular.module("templates").run(["$templateCache", function($templateCache) {
+  $templateCache.put("sessions/new.html", "<div class='wrap'>\n  <div class='container'>\n    <section class='row' id='sign-in'>\n      <div class='sign-in col-lg-6'>\n        <h1>Log in to the community</h1>\n        <form name='sessionForm' ng-submit='sessionForm.$valid &amp;&amp; login()' novalidate>\n          <div ng-show='session.failed'>\n            Invalid Password\n          </div>\n          <!-- TODO: Validation -->\n          <div class='form-group'>\n            <input class='form-control' id='email' ng-model='session.email' placeholder='Email address' required type='email'>\n          </div>\n          <div class='form-group'>\n            <input class='form-control' ng-model='session.password' placeholder='Password' required type='password'>\n          </div>\n          <button class='btn btn-primary' ng-disabled='!sessionForm.$valid' type='Submit'>Login</button>\n        </form>\n      </div>\n      <div class='register col-lg-6'>\n        <h1>Want to get involved in the startup community?</h1>\n        <form name='userForm' ng-submit='userForm.$valid &amp;&amp; register()' novalidate>\n          <div class='form-group'>\n            <input class='form-control' ng-model='user.name' placeholder='Pick your display name' required type='text'>\n          </div>\n          <div class='form-group'>\n            <input class='form-control' name='email' ng-model='user.email' placeholder='Your preferred email address' required type='email' unique-email>\n            <p class='help-block errorMessage' ng-show='userForm.email.$dirty &amp;&amp; userForm.email.$error.uniqueEmail'>\n              Email already in use\n            </p>\n          </div>\n          <div class='form-group'>\n            <input class='form-control' ng-minlength='8' ng-model='user.password' placeholder='Set a password with 8 characters minimum' required type='password'>\n          </div>\n          <div class='form-group'>\n            <input class='form-control' compare-to='user.password' name='passwordConfirmation' ng-minlength='8' ng-model='user.passwordConfirmation' placeholder='Confirm your password' required type='password'>\n            <p class='help-block errorMessage' ng-show='userForm.passwordConfirmation.$dirty &amp;&amp; userForm.passwordConfirmation.$error.compareTo'>\n              Passwords do not match\n            </p>\n          </div>\n          <button class='btn btn-primary' ng-disabled='!userForm.$valid' type='Submit'>Sign Up</button>\n        </form>\n      </div>\n    </section>\n  </div>\n</div>")
+}]);
+
+// Angular Rails Template
+// source: app/assets/templates/static/disclaimer.html.haml
+
+angular.module("templates").run(["$templateCache", function($templateCache) {
+  $templateCache.put("static/disclaimer.html", "<div class='wrap'>\n  <div class='container'>\n    <section>\n      <h1>Startup Lab – Disclaimers</h1>\n      \n      <ol>\n      <li>Startup Lab is owned and operated by Single Partners Pty Ltd ACN 608 278 593 (Company). Your use of Startup Lab is subject to these disclaimers.</li>\n      <li>You acknowledge that by using Startup Lab, accessing any information, video, images and/or business ideas (Content) or making any Content available on Startup Lab, that you do so at your own risk.</li>\n      <li>By making Content available via Startup Lab you warrant that:\n      \n      <ol>\n      <li>You have authority to provide Startup Lab with the Content;</li>\n      <li>You grant the Company a perpetual, royalty free, worldwide licence to use the Content; and</li>\n      <li>You indemnify the Company for any consequences of providing that Content;</li>\n      </ol></li>\n      <li>The Company will not be responsible for any Content you make available via Startup Lab whatsoever, including in relation (but not limited) to:\n      \n      <ol>\n      <li>Any visitor to Startup Lab infringing your intellectual property; and</li>\n      <li>Any infringement of a third party’s intellectual property that you commit;</li>\n      <li>Any factually incorrect claim.</li>\n      </ol></li>\n      <li>The Company makes no representation or warranty that:\n      \n      <ol>\n      <li>Startup Lab will be accessible on an ongoing basis, or at any particular time;</li>\n      <li>The Content made available via Startup Lab is the intellectual property of the user that provided it.</li>\n      <li>Any information provided by a user via Startup Lab is factually accurate.</li>\n      </ol></li>\n      <li>Your use of Startup Lab is subject to the Company’s discretion. The Company may restrict your access to Startup Lab at its sole discretion.</li>\n      <li>The Company shall only use the personal information that you provide to the Company via Startup Lab, for the purpose that you provided it for (e.g. for creating and maintaining a user account).</li>\n      <li>The Company shall not disclose any personal information to any third party without your consent.</li>\n      </ol>\n    </section>\n  </div>\n</div>")
+}]);
+
+// Angular Rails Template
+// source: app/assets/templates/user_ideas/index.html.haml
+
+angular.module("templates").run(["$templateCache", function($templateCache) {
+  $templateCache.put("user_ideas/index.html", "<div class='wrap'>\n  <div class='container'>\n    <div class='row'>\n      <div class='col-lg-12'>\n        <h1>Sharing '{{ idea.name }}'</h1>\n      </div>\n    </div>\n    <div class='row'>\n      <div class='col-lg-6' ng-if='userIdeas.length == 0'>\n        <p>\n          This idea has not been shared with anyone yet.\n        </p>\n      </div>\n      <div class='col-lg-6' ng-if='userIdeas.length &gt; 0'>\n        <p>\n          This idea has been shared with the following people:\n        </p>\n        <article class='user_idea' ng-repeat='userIdea in userIdeas'>\n          <sl-user-idea ng-model='userIdea'></sl-user-idea>\n        </article>\n        <article class='user_idea actions'>\n          <a class='btn btn-default'>Invite another user</a>\n          or\n          <a ng-href='/#/ideas/{{ idea.id }}'>go back</a>\n        </article>\n      </div>\n    </div>\n  </div>\n</div>")
+}]);
+
+// Angular Rails Template
+// source: app/assets/templates/user_ideas/user_idea.html.haml
+
+angular.module("templates").run(["$templateCache", function($templateCache) {
+  $templateCache.put("user_ideas/user_idea.html", "<img ng-src='{{ userIdea.user.gravatarUrl }}'>\n<h2>{{ userIdea.user.email }}</h2>\n<a class='btn btn-default' ng-href='#'>\n  Remove\n</a>")
+}]);
+
+// Angular Rails Template
+// source: app/assets/templates/users/accept.html.haml
+
+angular.module("templates").run(["$templateCache", function($templateCache) {
+  $templateCache.put("users/accept.html", "<div class='wrap'>\n  <div class='container'>\n    <section class='row' id='sign-in'>\n      <div class='register col-lg-6'>\n        <h1>Accept Invitation</h1>\n        <form name='userForm' ng-submit='userForm.$valid &amp;&amp; register()' novalidate>\n          <div class='form-group'>\n            <label>Name</label>\n            <input class='form-control' ng-model='user.name' required type='text'>\n          </div>\n          <div class='form-group'>\n            <label>Password</label>\n            <input class='form-control' ng-minlength='8' ng-model='user.password' required type='password'>\n          </div>\n          <div class='form-group'>\n            <label>Password Confirmation</label>\n            <input class='form-control' compare-to='user.password' name='passwordConfirmation' ng-minlength='8' ng-model='user.passwordConfirmation' required type='password'>\n            <span class='errorMessage' ng-show='userForm.passwordConfirmation.$dirty &amp;&amp; userForm.passwordConfirmation.$error.compareTo'>\n              Passwords do not match\n            </span>\n          </div>\n          <button class='btn btn-primary' ng-disabled='!userForm.$valid' type='Submit'>Sign Up</button>\n        </form>\n      </div>\n    </section>\n  </div>\n</div>")
+}]);
+
 // This is a manifest file that'll be compiled into application.js, which will include all the files
 // listed below.
 //
@@ -48425,6 +48650,8 @@ angular.module('StartupLab').directive("uniqueEmail", [ 'User', function(User) {
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+
+
 
 
 
