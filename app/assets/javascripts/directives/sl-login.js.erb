@@ -1,0 +1,12 @@
+
+angular.module('StartupLab').directive("slLogin", [ 'Session', function(Session) {
+  return {
+    restrict:    'E',
+    templateUrl: 'sessions/new.html',
+    controller:  'SessionsController',
+    scope: {
+    },
+    link: function(scope, element) {
+    }
+  }
+}]);

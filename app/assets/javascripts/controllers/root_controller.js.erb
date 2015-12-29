@@ -5,7 +5,7 @@ angular.module('StartupLab')
   if (Session.isAuthenticated()) {
     $location.path('/dashboard');
   } else {
-    $location.path('/ideas');
+    $location.path('/home');
   }
 
 }]);

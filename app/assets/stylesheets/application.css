@@ -18,6 +18,7 @@
  *= require forms
  *= require comments
  *= require dashboard
+ *= require home
  *= require modals
  *= require angular
  *= require canvas

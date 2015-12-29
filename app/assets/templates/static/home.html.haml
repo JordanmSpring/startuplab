@@ -1,0 +1,50 @@
+.wrap
+  .container-fluid.sl-home-container
+
+    %section.sl-home-section.sl-building
+      .col-sm-8.col-sm-offset-2
+        %h2
+          We believe in building
+          %br
+          amazing companies,&nbsp;
+          %b> fast
+          \.
+
+    %section.sl-home-section.sl-ecosystem
+      .col-sm-8.col-sm-offset-2
+        %h2
+          We help people do this by
+          %br
+          creating a
+          %b user-friendly
+          %br
+          %b &amp; agile
+          ecosystem...
+        = image_tag 'pages/home/ideas.png', alt: 'Ideas', class: 'img-responsive'
+
+    %section.sl-home-section.sl-start
+      .col-sm-8.col-sm-offset-2
+        %h2
+          It just so happens that you could build too...
+          %br
+          you just have to
+          %b.sl-underline start
+
+        .row
+          .col-lg-4.sl-feature-list
+            %h3
+              Features
+            %ul
+              %li This
+              %li That
+              %li All of this!
+          .col-lg-8.sl-feature-graphic
+            = image_tag 'pages/home/features.png', alt: 'Features', class: 'img-responsive'
+
+
+    %section.sl-home-section.sl-login(ng-if="!session.isAuthenticated()")
+      %sl-login
+
+    %section.sl-home-section.sl-browse-ideas(ng-if="session.isAuthenticated()")
+      .col-sm-8.col-sm-offset-2
+        %a.btn.btn-success.btn-lg(href="/#/ideas") Browse Ideas
