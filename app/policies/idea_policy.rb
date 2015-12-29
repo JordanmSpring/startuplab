@@ -1,10 +1,10 @@
 class IdeaPolicy < ApplicationPolicy
   def show?
-    @record.published? || (user.present? && super)
+    @record.published? || (user.present? && super) || user.is_admin?
   end
 
   def update?
-    @record.founder?(user)
+    @record.founder?(user) || user.is_admin?
   end
 
   def share?
@@ -20,7 +20,7 @@ class IdeaPolicy < ApplicationPolicy
   end
 
   def destroy?
-    @record.owner?(user)
+    @record.owner?(user) || user.is_admin?
   end
 
   class Scope < Scope
