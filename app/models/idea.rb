@@ -11,6 +11,7 @@ class Idea < ActiveRecord::Base
 
   scope :published, -> { where(published: true) }
   scope :draft,     -> { where.not(published: true) }
+  scope :recent,    -> { order('ideas.created_at DESC') }
 
   def self.with_founder(user)
     joins(:users).where(users: { id: user.id })
