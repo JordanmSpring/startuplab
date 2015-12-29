@@ -12,6 +12,11 @@ html {
 
 body {
   font-family: quicksand, sans-serif;
+  /* The site was originally using the 'quicksand' font from Adobe, which only
+     had bold weight, making the whole site bold. I've switched to google fonts
+     which provides more weights, and have set the font to bold globally below
+     so as not to change the design. */
+  font-weight: bold;
 }
 
 h1, h2, h3 {
@@ -38,6 +43,10 @@ h2 {
 
 p {
   color: $grey-dark;
+}
+
+.sl-underline {
+  text-decoration: underline;
 }
 
 .header_wrap {

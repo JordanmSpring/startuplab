@@ -12,6 +12,10 @@ angular.module('StartupLab', ['ngRoute', 'ngResource', 'frapontillo.bootstrap-sw
   }];
 
   $routeProvider
+    .when('/home', {
+      templateUrl: 'static/home.html',
+      controller: 'StaticController'
+    })
     .when('/disclaimer', {
       templateUrl: 'static/disclaimer.html',
       controller: 'StaticController'
