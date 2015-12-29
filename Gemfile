@@ -2,32 +2,33 @@ source 'https://rubygems.org'
 
 ruby '2.2.2'
 
-gem 'rails', '4.2.3'
-gem 'pg'
-gem 'jbuilder', '~> 2.0'
-gem 'sdoc', '~> 0.4.0', group: :doc
-gem 'active_model_serializers', '~> 0.9.3'
-gem 'angular_rails_csrf', '~> 1.0.4'
-gem 'devise'
-gem 'devise_invitable', '~> 1.5.2'
-gem 'responders'
-gem 'pundit'
-gem 'rails_12factor', '~> 0.0.3', group: :production
-gem 'htmltoword', github: 'recurser/htmltoword', branch: 'feature/adjust-styling'
+gem 'activeadmin',                  github: 'activeadmin'
+gem 'active_model_serializers',     '~> 0.9.3'
+gem 'angular_rails_csrf',           '~> 1.0.4'
 gem 'angular-rails-templates'
+gem 'devise'
+gem 'devise_invitable',             '~> 1.5.2'
+gem 'htmltoword',                   github: 'recurser/htmltoword', branch: 'feature/adjust-styling'
+gem 'jbuilder',                     '~> 2.0'
+gem 'pg'
+gem 'pundit'
+gem 'rails',                        '4.2.3'
+gem 'rails_12factor',               '~> 0.0.3', group: :production
+gem 'responders'
+gem 'sdoc',                         '~> 0.4.0', group: :doc
 
 # Assets
-gem 'haml'
-gem 'redcarpet'
-gem 'sass-rails', '~> 5.0'
-gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.1.0'
-gem 'jquery-rails'
-gem 'turbolinks'
 gem 'bower-rails'
+gem 'coffee-rails',                 '~> 4.1.0'
+gem 'haml'
+gem 'jquery-rails'
+gem 'redcarpet'
+gem 'sass-rails',                   '~> 5.0'
+gem 'turbolinks'
+gem 'uglifier',                     '>= 1.3.0'
 
 group :development, :test do
   gem 'byebug'
-  gem 'web-console', '~> 2.0'
   gem 'spring'
+  gem 'web-console',                '~> 2.0'
 end
