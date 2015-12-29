@@ -40,3 +40,11 @@
               %li All of this!
           .col-lg-8.sl-feature-graphic
             = image_tag 'pages/home/features.png', alt: 'Features'
+
+
+    %section.sl-home-section.sl-login(ng-if="!session.isAuthenticated()")
+      %sl-login
+
+    %section.sl-home-section.sl-browse-ideas(ng-if="session.isAuthenticated()")
+      .col-lg-8.col-lg-offset-2
+        %a.btn.btn-success.btn-lg(href="/#/ideas") Browse Ideas

@@ -65,3 +65,35 @@ $alt-color: #88999b;
     }
   }
 }
+
+.sl-home-section.sl-login {
+  margin-bottom: 150px;
+
+  section#sign-in {
+    background-color: #e6555e;
+
+    h1 {
+      color:         #fff;
+      margin-bottom: 10px;
+    }
+
+    .sign-in {
+      background-color: transparent;
+      padding-top:      0;
+    }
+
+    .register {
+      padding-bottom: 40px;
+      padding-top:    0;
+    }
+  }
+}
+
+.sl-home-section.sl-browse-ideas {
+  margin-bottom: 150px;
+  text-align: center;
+
+  .btn {
+    font-size: 32px;
+  }
+}
