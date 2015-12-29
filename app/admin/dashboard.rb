@@ -30,4 +30,8 @@ ActiveAdmin.register_page "Dashboard" do
     #   end
     # end
   end # content
+
+  def authenticate_user!
+    raise Pundit::NotAuthorizedError if current_user.role != User::ROLE_ADMIN
+  end
 end
