@@ -42,8 +42,7 @@ $alt-color: #88999b;
   padding: 150px 0;
 
   .sl-feature-list {
-    color:      $alt-color;
-    margin-top: 150px;
+    color: $alt-color;
 
     h3 {
       color: $alt-color;
@@ -61,7 +60,6 @@ $alt-color: #88999b;
     img {
       display: block;
       margin:  0 auto 0 auto;
-      width:   100%;
     }
   }
 }
@@ -95,5 +93,18 @@ $alt-color: #88999b;
 
   .btn {
     font-size: 32px;
+  }
+}
+
+
+@media only screen and (min-width : 1200px) {
+  .sl-home-section.sl-start .sl-feature-list {
+    margin-top: 150px;
+  }
+}
+
+@media only screen and (max-width : 1199px) {
+  .sl-home-section h2 br {
+    display: none;
   }
 }

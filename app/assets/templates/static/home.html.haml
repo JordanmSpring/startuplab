@@ -2,7 +2,7 @@
   .container-fluid.sl-home-container
 
     %section.sl-home-section.sl-building
-      .col-lg-8.col-lg-offset-2
+      .col-sm-8.col-sm-offset-2
         %h2
           We believe in building
           %br
@@ -11,7 +11,7 @@
           \.
 
     %section.sl-home-section.sl-ecosystem
-      .col-lg-8.col-lg-offset-2
+      .col-sm-8.col-sm-offset-2
         %h2
           We help people do this by
           %br
@@ -20,10 +20,10 @@
           %br
           %b &amp; agile
           ecosystem...
-        = image_tag 'pages/home/ideas.png', alt: 'Ideas'
+        = image_tag 'pages/home/ideas.png', alt: 'Ideas', class: 'img-responsive'
 
     %section.sl-home-section.sl-start
-      .col-lg-8.col-lg-offset-2
+      .col-sm-8.col-sm-offset-2
         %h2
           It just so happens that you could build too...
           %br
@@ -39,12 +39,12 @@
               %li That
               %li All of this!
           .col-lg-8.sl-feature-graphic
-            = image_tag 'pages/home/features.png', alt: 'Features'
+            = image_tag 'pages/home/features.png', alt: 'Features', class: 'img-responsive'
 
 
     %section.sl-home-section.sl-login(ng-if="!session.isAuthenticated()")
       %sl-login
 
     %section.sl-home-section.sl-browse-ideas(ng-if="session.isAuthenticated()")
-      .col-lg-8.col-lg-offset-2
+      .col-sm-8.col-sm-offset-2
         %a.btn.btn-success.btn-lg(href="/#/ideas") Browse Ideas
