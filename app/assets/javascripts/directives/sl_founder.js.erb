@@ -2,7 +2,7 @@
 angular.module('StartupLab').directive("slFounder", function() {
   return {
     restrict: 'E',
-    templateUrl: '<%= asset_path("templates/founders/founder.html") %>',
+    templateUrl: 'founders/founder.html',
     controller: 'FounderController',
     scope: {
       founder: '=ngModel',

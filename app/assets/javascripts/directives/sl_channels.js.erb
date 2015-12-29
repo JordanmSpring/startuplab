@@ -2,7 +2,7 @@
 angular.module('StartupLab').directive("slChannels", [ 'Idea', function(Idea) {
   return {
     restrict: 'E',
-    templateUrl: '<%= asset_path("templates/channels/modal.html") %>',
+    templateUrl: 'channels/modal.html',
     controller: 'ChannelsController',
     scope: {
       idea: '=ngModel',

@@ -2,7 +2,7 @@
 angular.module('StartupLab').directive("slFundingOptions", [ 'Idea', function(Idea) {
   return {
     restrict: 'E',
-    templateUrl: '<%= asset_path("templates/funding/modal.html") %>',
+    templateUrl: 'funding/modal.html',
     controller: 'CrowdfundingController',
     scope: {
       idea: '=ngModel',
