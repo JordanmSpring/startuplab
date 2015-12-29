@@ -14,6 +14,7 @@ gem 'responders'
 gem 'pundit'
 gem 'rails_12factor', '~> 0.0.3', group: :production
 gem 'htmltoword', github: 'recurser/htmltoword', branch: 'feature/adjust-styling'
+gem 'angular-rails-templates'
 
 # Assets
 gem 'haml'

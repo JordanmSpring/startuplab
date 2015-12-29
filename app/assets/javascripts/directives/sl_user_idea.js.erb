@@ -1,8 +1,7 @@
-
 angular.module('StartupLab').directive("slUserIdea", function() {
   return {
     restrict: 'E',
-    templateUrl: '<%= asset_path("templates/user_ideas/user_idea.html") %>',
+    templateUrl: 'user_ideas/user_idea.html',
     controller: 'UserIdeaController',
     scope: {
       userIdea: '=ngModel'

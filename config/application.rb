@@ -24,5 +24,8 @@ module Startuplab
     config.active_record.raise_in_transactional_callbacks = true
 
     #config.angular_html2js.module_name = 'templates'
+
+    # Treat angular.js templates as assets.
+    config.assets.paths << File.join(Rails.root, 'app', 'assets', 'templates')
   end
 end

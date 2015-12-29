@@ -1,5 +1,5 @@
 // TODO: Move these to a routes.js file
-angular.module('StartupLab', ['ngRoute', 'ngResource', 'frapontillo.bootstrap-switch', 'angulartics', 'angulartics.google.analytics'])
+angular.module('StartupLab', ['ngRoute', 'ngResource', 'frapontillo.bootstrap-switch', 'angulartics', 'angulartics.google.analytics', 'templates'])
  .config(['$routeProvider', function($routeProvider) {
 
   var userByInviteToken = ['Invite', '$route', function(Invite, $route) {
@@ -13,45 +13,45 @@ angular.module('StartupLab', ['ngRoute', 'ngResource', 'frapontillo.bootstrap-sw
 
   $routeProvider
     .when('/disclaimer', {
-      templateUrl: '<%= asset_path("templates/static/disclaimer.html") %>',
+      templateUrl: 'static/disclaimer.html',
       controller: 'StaticController'
     })
     .when('/dashboard', {
-      templateUrl: '<%= asset_path("templates/dashboard/show.html") %>',
+      templateUrl: 'dashboard/show.html',
       controller: 'DashboardController',
       resolve: { user: loadCurrentUser }
     })
     .when('/ideas', {
-      templateUrl: '<%= asset_path("templates/ideas/index.html") %>',
+      templateUrl: 'ideas/index.html',
       controller: 'IdeasController',
       resolve: { user: loadCurrentUser }
     })
     .when('/ideas/new', {
-      templateUrl: '<%= asset_path("templates/ideas/new.html") %>',
+      templateUrl: 'ideas/new.html',
       controller: 'NewIdeaController',
       resolve: { user: loadCurrentUser }
     })
     .when('/ideas/:id', {
-      templateUrl: '<%= asset_path("templates/ideas/show.html") %>',
+      templateUrl: 'ideas/show.html',
       controller: 'ShowIdeaController',
       resolve: { user: loadCurrentUser }
     })
     .when('/ideas/:ideaId/users', {
-      templateUrl: '<%= asset_path("templates/user_ideas/index.html") %>',
+      templateUrl: 'user_ideas/index.html',
       controller: 'UserIdeasController',
       resolve: { user: loadCurrentUser }
     })
     .when('/sign-in', {
-      templateUrl: '<%= asset_path("templates/sessions/new.html") %>',
+      templateUrl: 'sessions/new.html',
       controller: 'SessionsController',
       controllerAs: 'session'
     })
     .when('/users/invitation/accept', {
-      templateUrl: '<%= asset_path("templates/users/accept.html") %>',
+      templateUrl: 'users/accept.html',
       controller: 'InvitationsController'
     })
     .when('/', {
-      templateUrl: '<%= asset_path("templates/sessions/new.html") %>',
+      templateUrl: 'sessions/new.html',
       controller: 'RootController',
       resolve: { user: loadCurrentUser }
     })
