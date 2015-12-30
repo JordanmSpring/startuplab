@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  # Mount sidekiq admin.
+  require 'sidekiq/web'
+  Sidekiq::Web.use Rack::Auth::Basic do |username, password|
+    username == ENV['SIDEKIQ_USERNAME'] && password == ENV['SIDEKIQ_PASSWORD']
+  end if Rails.env.production?
+  mount Sidekiq::Web, at: '/queue'
+
   ActiveAdmin.routes(self)
   devise_for :users, controllers: {
     sessions: "api/sessions",

@@ -11,12 +11,13 @@ gem 'devise_invitable',             '~> 1.5.2'
 gem 'htmltoword',                   github: 'recurser/htmltoword', branch: 'feature/adjust-styling'
 gem 'jbuilder',                     '~> 2.0'
 gem 'pg'
+gem 'puma'
 gem 'pundit'
 gem 'rails',                        '4.2.3'
-gem 'rails_12factor',               '~> 0.0.3', group: :production
 gem 'rakismet'
 gem 'responders'
-gem 'sdoc',                         '~> 0.4.0', group: :doc
+gem 'sidekiq'
+gem 'sinatra',                      require: nil # For sidekiq admin.
 
 # Assets
 gem 'bower-rails'
@@ -34,4 +35,12 @@ group :development, :test do
   gem 'quiet_assets'
   gem 'spring'
   gem 'web-console',                '~> 2.0'
+end
+
+group :production do
+  gem 'rails_12factor'
+end
+
+group :doc do
+  gem 'sdoc'
 end
