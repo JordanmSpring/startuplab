@@ -6,17 +6,21 @@ gem 'activeadmin',                  github: 'activeadmin'
 gem 'active_model_serializers',     '~> 0.9.3'
 gem 'angular_rails_csrf',           '~> 1.0.4'
 gem 'angular-rails-templates'
+gem 'app'
 gem 'devise'
 gem 'devise_invitable',             '~> 1.5.2'
 gem 'htmltoword',                   github: 'recurser/htmltoword', branch: 'feature/adjust-styling'
 gem 'jbuilder',                     '~> 2.0'
+gem 'nokogiri'                      # Required by premailer-rails.
 gem 'pg'
+gem 'premailer-rails'
 gem 'puma'
 gem 'pundit'
 gem 'rails',                        '4.2.3'
 gem 'rakismet'
 gem 'responders'
 gem 'sidekiq'
+gem 'sidekiq-scheduler'
 gem 'sinatra',                      require: nil # For sidekiq admin.
 
 # Assets

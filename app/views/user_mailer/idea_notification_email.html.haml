@@ -1,0 +1,18 @@
+
+%h4
+  = @subject
+
+%ul
+  - @comments.each do |comment|
+    %li
+      = comment.body
+      .footnote
+        = "(#{comment.user.name}, #{time_ago_in_words(comment.created_at)} ago)"
+
+%p.centered
+  = link_to 'See all comments', angular_idea_url(@idea), class: 'button-success', target: '_blank'
+
+%p
+  Regards,
+  %br
+  The team at Startup Labs

@@ -1,0 +1,4 @@
+schedule_idea_notifications:
+  description: "Schedules a job to send pending notifications"
+  every:       30s
+  class:       IdeaNotificationWorker

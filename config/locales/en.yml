@@ -20,4 +20,8 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  user_mailer:
+    idea_notification_email:
+      subject:
+        one:                            "Your idea '%{name}' has received a new comment"
+        other:                          "Your idea '%{name}' has received %{count} new comments"

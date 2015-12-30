@@ -1,0 +1,15 @@
+App.configure do
+  config.raise_mail_delivery_errors = true
+
+  # Default host for sending emails.
+  config.mailer_default_url_options = { host: 'localhost:3000' }
+
+  config.smtp_settings = {
+    address:              'smtp.gmail.com',
+    port:                 '587',
+    authentication:       :plain,
+    enable_starttls_auto: true,
+    user_name:            'someone@gmail.com',
+    password:             'password',
+  }
+end
