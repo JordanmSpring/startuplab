@@ -6,6 +6,8 @@ class Comment < ActiveRecord::Base
   scope :pending,            -> { where(status: STATUS_PENDING) }
   scope :rejected,           -> { where(status: STATUS_REJECTED) }
   scope :flagged_by_akismet, -> { where(status: STATUS_FLAGGED_BY_AKISMET) }
+  scope :not_notified,       -> { where(notified: false) }
+  scope :not_recent,         -> { where('comments.created_at < ?', 30.minutes.ago) }
 
   belongs_to :idea
   belongs_to :user
