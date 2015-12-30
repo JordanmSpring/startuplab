@@ -20,6 +20,7 @@ gem 'rails',                        '4.2.3'
 gem 'rakismet'
 gem 'responders'
 gem 'sidekiq'
+gem 'sidekiq-scheduler'
 gem 'sinatra',                      require: nil # For sidekiq admin.
 
 # Assets

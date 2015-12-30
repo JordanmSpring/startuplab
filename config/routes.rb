@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   # Mount sidekiq admin.
   require 'sidekiq/web'
+  require 'sidekiq-scheduler/web'
   Sidekiq::Web.use Rack::Auth::Basic do |username, password|
     username == ENV['SIDEKIQ_USERNAME'] && password == ENV['SIDEKIQ_PASSWORD']
   end if Rails.env.production?
