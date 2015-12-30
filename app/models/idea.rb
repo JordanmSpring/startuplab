@@ -13,6 +13,10 @@ class Idea < ActiveRecord::Base
   scope :draft,     -> { where.not(published: true) }
   scope :recent,    -> { order('ideas.created_at DESC') }
 
+  def comments_pending_notification
+    comments.approved.not_notified
+  end
+
   def self.with_founder(user)
     joins(:users).where(users: { id: user.id })
   end
