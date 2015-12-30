@@ -12,5 +12,9 @@ def idea_list(_idea=nil)
     link_to idea.user.name, admin_user_path(idea.user.id)
   end
 
+  column(:published) do |idea|
+    status_tag((idea.published? ? 'Yes' : 'No'), (idea.published? ? :ok : nil))
+  end
+
   column :created_at
 end

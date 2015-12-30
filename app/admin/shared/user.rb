@@ -25,7 +25,9 @@ def user_table(_user=nil)
 
   row :id
   row :name
-  row :role
+  row(:role) do
+    status_tag((user.role), (user.role == User::ROLE_ADMIN ? :ok : nil))
+  end
   row :email
   row :sign_in_count
   row :current_sign_in_ip
