@@ -13,8 +13,9 @@ class Idea < ActiveRecord::Base
   scope :draft,     -> { where.not(published: true) }
   scope :recent,    -> { order('ideas.created_at DESC') }
 
+  # We don't want to notify users about their own comments.
   def comments_pending_notification
-    comments.approved.not_notified
+    comments.approved.not_notified.where.not(user_id: id)
   end
 
   def self.with_founder(user)
