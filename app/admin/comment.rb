@@ -2,6 +2,11 @@ ActiveAdmin.register Comment, as: 'Idea Comment' do
 
   actions :all, except: [:create, :new, :update, :edit, :destroy]
 
+  scope :all, default: true
+  scope :pending
+  scope :approved
+  scope :rejected
+
   filter :id
   filter :body
   filter :user_name, as: :string

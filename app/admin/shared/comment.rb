@@ -12,6 +12,18 @@ def comment_list(_comment=nil)
     link_to comment.user.name, admin_user_path(comment.user.id)
   end
 
+  column(:status) do |comment|
+    status = case comment.status
+    when Comment::STATUS_PENDING
+      nil
+    when Comment::STATUS_APPROVED
+      :ok
+    else
+      :error
+    end
+    status_tag((comment.status), status)
+  end
+
   column :created_at
 end
 
