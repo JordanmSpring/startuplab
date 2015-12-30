@@ -18,4 +18,20 @@ class Comment < ActiveRecord::Base
   validates :status,
             presence:  true,
             inclusion: STATUSES
+
+  def approved?
+    status == STATUS_APPROVED
+  end
+
+  def approve!
+    update_attribute(:status, STATUS_APPROVED)
+  end
+
+  def rejected?
+    [STATUS_REJECTED_BY_AKISMET, STATUS_REJECTED_BY_ADMIN].include?(status)
+  end
+
+  def reject!
+    update_attribute(:status, STATUS_REJECTED_BY_ADMIN)
+  end
 end

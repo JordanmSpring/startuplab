@@ -1,4 +1,15 @@
 
+def comment_status(comment)
+  case comment.status
+  when Comment::STATUS_PENDING
+    nil
+  when Comment::STATUS_APPROVED
+    :ok
+  else
+    :error
+  end
+end
+
 def comment_list(_comment=nil)
   comment ||= _comment
 
@@ -21,7 +32,7 @@ def comment_list(_comment=nil)
     else
       :error
     end
-    status_tag((comment.status), status)
+    status_tag(comment.status, comment_status(comment))
   end
 
   column :created_at
@@ -34,6 +45,11 @@ def comment_table(_comment=nil)
   row :user
   row :idea
   row :body
+
+  row(:status) do |comment|
+     status_tag(comment.status, comment_status(comment))
+   end
+
   row :created_at
   row :updated_at
 end
