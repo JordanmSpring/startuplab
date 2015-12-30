@@ -12,7 +12,6 @@ class Api::CommentsController < Api::BaseController
     comment.user = current_user
     comment.save!
     render json: CommentExhibit.new(comment)
-    #respond_with(:api, CommentExhibit.new(comment))
   end
 
   private

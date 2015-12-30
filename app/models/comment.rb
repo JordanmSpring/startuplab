@@ -19,6 +19,10 @@ class Comment < ActiveRecord::Base
             presence:  true,
             inclusion: STATUSES
 
+  def owner?(_user)
+    user == _user
+  end
+
   def approved?
     status == STATUS_APPROVED
   end

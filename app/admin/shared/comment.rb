@@ -23,6 +23,10 @@ def comment_list(_comment=nil)
     link_to comment.user.name, admin_user_path(comment.user.id)
   end
 
+  column(:idea) do |comment|
+    link_to comment.idea.name, angular_idea_path(comment.idea), target: '_blank'
+  end
+
   column(:status) do |comment|
     status = case comment.status
     when Comment::STATUS_PENDING
