@@ -8,7 +8,7 @@ class IdeaExhibit
 
   def as_json(options = {})
     object.attributes.merge(
-      comments: CommentsExhibit.new(@object.comments),
+      comments: CommentsExhibit.new(CommentPolicy::Scope.new(@user, @object.comments).resolve),
       founders: FoundersExhibit.new(@object.founders, hide_pending: !can_edit?),
       fundingOptions: @object.funding_option_names,
       channels: @object.channel_names,
