@@ -1,0 +1,12 @@
+<%= @subject %>
+
+<% @comments.each do |comment| -%>
+<%= "* #{comment.body} (#{comment.user.name}, #{time_ago_in_words(comment.created_at)} ago)" %>
+<% end -%>
+
+Click the link below to see all comments:
+
+<%= angular_idea_url(@idea) %>
+
+Regards,
+The team at Startup Labs
