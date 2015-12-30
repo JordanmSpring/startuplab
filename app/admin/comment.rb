@@ -6,6 +6,7 @@ ActiveAdmin.register Comment, as: 'Idea Comment' do
   scope :pending
   scope :approved
   scope :rejected
+  scope :flagged_by_akismet
 
   filter :id
   filter :body
