@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   require 'sidekiq-scheduler/web'
   Sidekiq::Web.use Rack::Auth::Basic do |username, password|
     username == ENV['SIDEKIQ_USERNAME'] && password == ENV['SIDEKIQ_PASSWORD']
-  end if Rails.env.production?
+  end if Rails.env.production? || Rails.env.staging?
   mount Sidekiq::Web, at: '/queue'
 
   ActiveAdmin.routes(self)
