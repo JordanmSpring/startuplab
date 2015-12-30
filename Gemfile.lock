@@ -73,6 +73,7 @@ GEM
       tilt
     angular_rails_csrf (1.0.4)
       rails (>= 3, < 5)
+    app (1.2.0)
     arbre (1.0.3)
       activesupport (>= 3.0.0)
     arel (6.0.3)
@@ -274,6 +275,7 @@ DEPENDENCIES
   activeadmin!
   angular-rails-templates
   angular_rails_csrf (~> 1.0.4)
+  app
   bower-rails
   byebug
   coffee-rails (~> 4.1.0)
@@ -284,6 +286,7 @@ DEPENDENCIES
   htmltoword!
   jbuilder (~> 2.0)
   jquery-rails
+  nokogiri
   pg
   premailer-rails
   puma

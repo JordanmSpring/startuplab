@@ -6,6 +6,7 @@ vendor/assets/bower.json
 tmp/
 
 # Development
+/config/app/development.rb
 /vendor/gems/htmltoword/
 /.env
 
