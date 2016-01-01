@@ -9,7 +9,9 @@ angular.module('StartupLab')
     $scope.idea = response.data;
 
     if ($routeParams['vote'] && $scope.session.isAuthenticated()) {
-      $scope.vote();
+      $scope.vote()
+      // Remove the 'vote' and 'origin' params after login.
+      $location.url('/ideas/' + $scope.idea.id);
     }
   });
 

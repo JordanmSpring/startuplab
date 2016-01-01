@@ -2,7 +2,7 @@
 angular.module('StartupLab').directive("slVoteCount", function() {
   return {
     restrict: 'E',
-    template: "{{ idea.votes.length }} like{{ idea.votes.length == 1 ? '' : 's' }}",
+    template: "{{ idea.votes.length > 0 ? idea.votes.length + ' like' : 'Like' }}{{ idea.votes.length > 1 ? 's' : '' }}",
     scope: {
       idea: '=ngModel'
     }
