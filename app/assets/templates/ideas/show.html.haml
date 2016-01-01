@@ -15,6 +15,8 @@
             %a.btn.btn-default(ng-href="{{ '/ideas/' + idea.id + '.docx' }}") Export
             //%a.btn.btn-default(ng-show="idea.owner" ng-href="{{ '/#/ideas/' + idea.id + '/users' }}") Share
             %a.btn.btn-default(ng-show="idea.owner" ng-click="delete()") Delete
+            %a.btn.btn-default(ng-show="session.isAuthenticated() && !idea.voted" ng-click="vote()") Like
+            %a.btn.btn-default(ng-show="session.isAuthenticated() && idea.voted" ng-click="unvote()") Unlike
 
           {{ idea.name }}
     %section.row

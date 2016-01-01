@@ -14,7 +14,8 @@ class IdeaExhibit
       channels: @object.channel_names,
       user: UserExhibit.new(@object.user),
       canEdit: can_edit?,
-      owner: owner?
+      owner: owner?,
+      voted: (@user.present? && @user.voted_for?(@object))
     ).as_json
   end
 
