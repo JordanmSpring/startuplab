@@ -7,6 +7,10 @@ angular.module('StartupLab')
   // TODO: Use a resolver in the routes
   Idea.find($routeParams.id).then(function(response) {
     $scope.idea = response.data;
+
+    if ($routeParams['vote'] && $scope.session.isAuthenticated()) {
+      $scope.vote();
+    }
   });
 
   /* Init isotope */

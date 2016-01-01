@@ -17,6 +17,7 @@
             %a.btn.btn-default(ng-show="idea.owner" ng-click="delete()") Delete
             %a.btn.btn-default(ng-show="session.isAuthenticated() && !idea.voted" ng-click="vote()") Like
             %a.btn.btn-default(ng-show="session.isAuthenticated() && idea.voted" ng-click="unvote()") Unlike
+            %a.btn.btn-default(ng-show="!session.isAuthenticated()" ng-href="{{ '/#/sign-in?vote=1&origin=/ideas/' + idea.id }}") Like
 
           {{ idea.name }}
     %section.row
