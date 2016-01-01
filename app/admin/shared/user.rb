@@ -16,8 +16,13 @@ def user_list(_user=nil)
     link_to user.email, admin_user_path(user.id)
   end
 
-  column :created_at
+  column(:vote_count) do |user|
+    user.votes.count
+  end
+
   column :sign_in_count
+
+  column :created_at
 end
 
 def user_table(_user=nil)

@@ -16,5 +16,9 @@ def idea_list(_idea=nil)
     status_tag((idea.published? ? 'Yes' : 'No'), (idea.published? ? :ok : nil))
   end
 
+  column(:vote_count) do |idea|
+    idea.votes.count
+  end
+
   column :created_at
 end
