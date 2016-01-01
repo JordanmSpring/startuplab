@@ -1,10 +1,10 @@
 
 angular.module('StartupLab')
-.controller('SessionsController', ['$scope', 'Session', function($scope, Session) {
+.controller('SessionsController', ['$scope', 'Session', '$routeParams', function($scope, Session, $routeParams) {
   $scope.session = {};
 
   $scope.login = function() {
-    Session.login($scope.session.email, $scope.session.password, function() {
+    Session.login($scope.session.email, $scope.session.password, $routeParams['origin'], function() {
       /* Failure callback */
       $scope.session.failed = true;
       $scope.session.email = '';
@@ -16,6 +16,6 @@ angular.module('StartupLab')
   $scope.user = {};
 
   $scope.register = function() {
-    Session.register($scope.user);
+    Session.register($scope.user, $routeParams['origin']);
   }
 }]);

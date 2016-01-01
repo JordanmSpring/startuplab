@@ -2,15 +2,32 @@
 %h4
   = @subject
 
-%ul
-  - @comments.each do |comment|
-    %li
-      = comment.body
-      .footnote
-        = "(#{comment.user.name}, #{time_ago_in_words(comment.created_at)} ago)"
+- if @comments.present?
+  %ul
+    - @comments.each do |comment|
+      %li
+        = comment.body
+        .footnote
+          = "(#{comment.user.name}, #{time_ago_in_words(comment.created_at)} ago)"
+
+  - if @votes.present?
+    %h4
+      - if @votes.count == 1
+        You also received a new like:
+      - else
+        You also received some new likes:
+
+- if @votes.present?
+  %ul
+    - @votes.each do |vote|
+      %li
+        = vote.voter.name
+        %span.footnote
+          = " liked your idea #{time_ago_in_words(vote.created_at)} ago"
 
 %p.centered
-  = link_to 'See all comments', angular_idea_url(@idea), class: 'button-success', target: '_blank'
+  - title = @comments.present? ? 'See all comments' : 'Visit your idea'
+  = link_to title, angular_idea_url(@idea), class: 'button-success', target: '_blank'
 
 %p
   Regards,

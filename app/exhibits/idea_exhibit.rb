@@ -8,13 +8,15 @@ class IdeaExhibit
 
   def as_json(options = {})
     object.attributes.merge(
-      comments: CommentsExhibit.new(CommentPolicy::Scope.new(@user, @object.comments).resolve),
-      founders: FoundersExhibit.new(@object.founders, hide_pending: !can_edit?),
+      comments:       CommentsExhibit.new(CommentPolicy::Scope.new(@user, @object.comments).resolve),
+      votes:          VotesExhibit.new(@object.votes),
+      founders:       FoundersExhibit.new(@object.founders, hide_pending: !can_edit?),
       fundingOptions: @object.funding_option_names,
-      channels: @object.channel_names,
-      user: UserExhibit.new(@object.user),
-      canEdit: can_edit?,
-      owner: owner?
+      channels:       @object.channel_names,
+      user:           UserExhibit.new(@object.user),
+      canEdit:        can_edit?,
+      owner:          owner?,
+      voted:          (@user.present? && @user.voted_for?(@object))
     ).as_json
   end
 

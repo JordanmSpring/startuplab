@@ -64,6 +64,14 @@ ActiveAdmin.register User do
         end
       end
     end
+
+    panel 'Votes' do
+      paginated_collection(user.votes.page(params[:votes_page]).per(10), param_name: :votes_page) do
+        table_for(collection) do
+          vote_list(nil)
+        end
+      end
+    end
   end
 
   sidebar 'User Details', only: :show do

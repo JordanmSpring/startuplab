@@ -9,7 +9,6 @@ class UserExhibit
     {
       id: object.id,
       name: object.name || object.email,
-      email: object.email,
       gravatarUrl: gravatar_url,
       pending: object.pending?
     }.as_json

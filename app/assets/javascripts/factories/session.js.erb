@@ -1,4 +1,4 @@
-angular.module('StartupLab').factory('Session', [ '$location', '$http', '$q', '$window', 
+angular.module('StartupLab').factory('Session', [ '$location', '$http', '$q', '$window',
     function($location, $http, $q, $window) {
 
   // Redirect to the given url (defaults to '/')
@@ -31,12 +31,12 @@ angular.module('StartupLab').factory('Session', [ '$location', '$http', '$q', '$
       }
     },
 
-    login: function(email, password, failure) {
+    login: function(email, password, redirectTo, failure) {
        return $http.post('/users/sign_in', {user: {email: email, password: password} })
       .then(function(response) {
         session.setCurrentUser(response.data.user);
         if (session.isAuthenticated()) {
-          redirect('/');
+          redirect(redirectTo || '/');
         }
       }, function(error) {
         failure();
@@ -52,7 +52,7 @@ angular.module('StartupLab').factory('Session', [ '$location', '$http', '$q', '$
       });
     },
 
-    register: function(user) {
+    register: function(user, redirectTo) {
       return $http.post('/users.json', {
         user: {
           name: user.name,
@@ -63,7 +63,7 @@ angular.module('StartupLab').factory('Session', [ '$location', '$http', '$q', '$
       }).then(function(response) {
         session.setCurrentUser(response.data);
         if (session.isAuthenticated()) {
-          $location.path('/');
+          $location.path(redirectTo || '/');
         }
       }, function(response) {
         alert(response.data.errors);

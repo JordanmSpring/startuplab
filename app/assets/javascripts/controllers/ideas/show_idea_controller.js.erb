@@ -7,6 +7,10 @@ angular.module('StartupLab')
   // TODO: Use a resolver in the routes
   Idea.find($routeParams.id).then(function(response) {
     $scope.idea = response.data;
+
+    if ($routeParams['vote'] && $scope.session.isAuthenticated()) {
+      $scope.vote();
+    }
   });
 
   /* Init isotope */
@@ -37,6 +41,24 @@ angular.module('StartupLab')
         alert('Sorry, this idea could not be made private. If this problem continues, contact support.');
       });
     }
+  };
+
+  $scope.vote = function() {
+      Idea.vote($scope.idea).then(function(response) {
+        $scope.idea.voted = true;
+        $scope.idea.votes = response.data;
+      }, function() {
+        alert('Sorry, you could not vote for this idea. If this problem continues, contact support.');
+      });
+  };
+
+  $scope.unvote = function() {
+      Idea.unvote($scope.idea).then(function(response) {
+        $scope.idea.voted = false;
+        $scope.idea.votes = response.data;
+      }, function() {
+        alert('Sorry, you could remove your vote for this idea. If this problem continues, contact support.');
+      });
   };
 
   $scope.delete = function() {

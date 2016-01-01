@@ -20,3 +20,8 @@
 .panel .download_links {
   display: none;
 }
+
+// Fix overflow issues with show-panel pagination.
+#index_footer {
+  overflow: hidden;
+}
