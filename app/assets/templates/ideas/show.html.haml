@@ -12,9 +12,13 @@
               switch-on-text="Public"
               switch-off-text="Private"
             )
-            %a.btn.btn-default(ng-href="{{ '/ideas/' + idea.id + '.docx' }}") Export
+            %a.btn.btn-default(ng-href="{{ '/ideas/' + idea.id + '.docx' }}")
+              %i.fa.fa-file-text-o
+              Export
             //%a.btn.btn-default(ng-show="idea.owner" ng-href="{{ '/#/ideas/' + idea.id + '/users' }}") Share
-            %a.btn.btn-default(ng-show="idea.owner" ng-click="delete()") Delete
+            %a.btn.btn-default(ng-show="idea.owner" ng-click="delete()")
+              %i.fa.fa-remove
+              Delete
 
             %a.btn.btn-default(ng-show="session.isAuthenticated() && !idea.voted" ng-click="vote()")
               %i.fa.fa-heart-o
