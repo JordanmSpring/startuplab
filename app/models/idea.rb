@@ -1,4 +1,6 @@
 class Idea < ActiveRecord::Base
+  acts_as_voteable
+
   belongs_to :user
   has_many :problems
   has_many :comments, -> { order(created_at: :desc) }, dependent: :destroy
