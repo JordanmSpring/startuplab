@@ -15,9 +15,16 @@
             %a.btn.btn-default(ng-href="{{ '/ideas/' + idea.id + '.docx' }}") Export
             //%a.btn.btn-default(ng-show="idea.owner" ng-href="{{ '/#/ideas/' + idea.id + '/users' }}") Share
             %a.btn.btn-default(ng-show="idea.owner" ng-click="delete()") Delete
-            %a.btn.btn-default(ng-show="session.isAuthenticated() && !idea.voted" ng-click="vote()") Like
-            %a.btn.btn-default(ng-show="session.isAuthenticated() && idea.voted" ng-click="unvote()") Unlike
-            %a.btn.btn-default(ng-show="!session.isAuthenticated()" ng-href="{{ '/#/sign-in?vote=1&origin=/ideas/' + idea.id }}") Like
+
+            %a.btn.btn-default(ng-show="session.isAuthenticated() && !idea.voted" ng-click="vote()")
+              %i.fa.fa-heart-o
+              %sl-vote-count(ng-model="idea")
+            %a.btn.btn-info(ng-show="session.isAuthenticated() && idea.voted" ng-click="unvote()")
+              %i.fa.fa-heart
+              %sl-vote-count(ng-model="idea")
+            %a.btn.btn-default(ng-show="!session.isAuthenticated()" ng-href="{{ '/#/sign-in?vote=1&origin=/ideas/' + idea.id }}")
+              %i.fa.fa-heart-o
+              %sl-vote-count(ng-model="idea")
 
           {{ idea.name }}
     %section.row

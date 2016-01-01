@@ -3,12 +3,12 @@ class Api::VotesController < Api::BaseController
 
   def create
     current_user.vote_for(idea) unless current_user.voted_for?(idea)
-    head :ok
+    render json: VotesExhibit.new(idea.votes.reload)
   end
 
   def destroy
     current_user.unvote_for(idea) if current_user.voted_for?(idea)
-    head :ok
+    render json: VotesExhibit.new(idea.votes.reload)
   end
 
   private

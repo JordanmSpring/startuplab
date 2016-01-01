@@ -9,6 +9,7 @@ gem 'angular-rails-templates'
 gem 'app'
 gem 'devise'
 gem 'devise_invitable',             '~> 1.5.2'
+gem 'font-awesome-rails'
 gem 'htmltoword',                   github: 'recurser/htmltoword', branch: 'feature/adjust-styling'
 gem 'jbuilder',                     '~> 2.0'
 gem 'nokogiri'                      # Required by premailer-rails.

@@ -1,0 +1,10 @@
+
+angular.module('StartupLab').directive("slVoteCount", function() {
+  return {
+    restrict: 'E',
+    template: "{{ idea.votes.length }} like{{ idea.votes.length == 1 ? '' : 's' }}",
+    scope: {
+      idea: '=ngModel'
+    }
+  }
+});
