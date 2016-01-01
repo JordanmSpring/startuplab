@@ -22,6 +22,7 @@ gem 'responders'
 gem 'sidekiq'
 gem 'sidekiq-scheduler'
 gem 'sinatra',                      require: nil # For sidekiq admin.
+gem 'thumbs_up'
 
 # Assets
 gem 'bower-rails'
