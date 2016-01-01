@@ -2,8 +2,8 @@ class Comment < ActiveRecord::Base
   include Rakismet::Model
 
   # The number of minutes to wait before sending a notification about a comment.
-  # This avoids spamming people with comments, since we group them in 30 minute
-  # chunks.
+  # This avoids spamming people with notifications, since we group them in 30
+  # minute chunks.
   NOTIFICATION_DELAY_MINUTES = 30
 
   scope :recent,             -> { order('comments.created_at DESC') }

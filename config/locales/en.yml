@@ -22,6 +22,9 @@
 en:
   user_mailer:
     idea_notification_email:
-      subject:
+      subject_comments:
         one:                            "Your idea '%{name}' has received a new comment"
         other:                          "Your idea '%{name}' has received %{count} new comments"
+      subject_votes:
+        one:                            "Your idea '%{name}' has received a new like"
+        other:                          "Your idea '%{name}' has received %{count} new likes"

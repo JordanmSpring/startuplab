@@ -17,7 +17,12 @@ class Idea < ActiveRecord::Base
 
   # We don't want to notify users about their own comments.
   def comments_pending_notification
-    comments.approved.not_notified.where.not(user_id: id)
+    comments.approved.not_notified.where.not(user_id: user_id)
+  end
+
+  # We don't want to notify users about their own votes.
+  def votes_pending_notification
+    votes.not_notified.where.not(voter_id: user_id)
   end
 
   def self.with_founder(user)
