@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  include Stripe::Callbacks
+
   acts_as_voter
 
   devise :invitable, :database_authenticatable, :registerable,
@@ -31,4 +33,14 @@ class User < ActiveRecord::Base
   def is_admin?
     role == User::ROLE_ADMIN
   end
+
+  private
+
+    after_customer_updated! do |customer, event|
+      Rails.logger.debug "======================"
+      Rails.logger.debug customer.inspect
+      Rails.logger.debug event.inspect
+      user = User.find_by(stripe_customer_id: customer.id)
+    end
+
 end
