@@ -18,11 +18,11 @@
             .sl-plan-duration
               per month
 
-            .login-link{ 'ng-show' => "!session.isAuthenticated()" }
+            .sl-login-link{ 'ng-show' => "!session.isAuthenticated()" }
               %a.btn.btn-default.btn-md(href="/#/sign-in?plan=#{plan.id}&origin=/pricing")
                 Join Now
 
-            %form{ method: :post, data: { action: payments_path }, 'ng-show' => "session.isAuthenticated()", 'ng-submit' => "submitPlan('#{plan.id}', $event)" }
+            %form{ method: :post, data: { after_action: payments_path }, 'ng-show' => "session.isAuthenticated()", 'ng-submit' => "submitPlan('#{plan.id}', $event)" }
               %input{ type: :hidden, name: :plan, value: plan.id }
               - if plan.free?
                 %input{ type: :hidden, name: :stripeToken, value: 'free' }

@@ -3,28 +3,35 @@ angular.module('StartupLab')
 .controller('PricingController', ['$scope', 'Session', '$routeParams', '$location', '$timeout', function($scope, Session, $routeParams, $location, $timeout) {
 
   if ($routeParams['plan'] && $scope.session.isAuthenticated()) {
-    $timeout(function(){
-      $scope.submitPlan($routeParams['plan']);
-      // Remove the 'plan' and 'origin' params after login.
-      $location.url('/pricing/');
+    var plan = $routeParams['plan'];
+    // Remove the 'plan' and 'origin' params after login.
+    $location.url('/pricing/');
+    $timeout(function() {
+      $scope.submitPlan(plan);
     });
   }
 
   $scope.submitPlan = function(plan, $event) {
+    var button = $('.sl-plan-' + plan + ' form .btn');
+    var form   = button.parents('form');
+
+    // If we already have the stripe token, we want to submit to rails.
+    if (form.find('.stripeToken').length > 0) {
+      return;
+    }
+
     if ($event) {
       $event.stopPropagation();
     }
 
     $('.sl-stripe-button').data({ key: gon.stripe_publishable_key });
-    var button = $('.sl-plan-' + plan + ' form .btn');
-    var form   = button.parents('form');
     // Angular stopPropagation() fails if there is an action set on the form,
     // so we set it dynamically.
-    form.attr('action', form.data('action'));
+    form.attr('action', form.data('after-action'));
 
     var opts    = $.extend({}, button.data(), {
       token: function(result) {
-        form.append($('<input>').attr({ type: 'hidden', name: 'stripeToken', value: result.id })).submit();
+        form.append($('<input>').attr({ type: 'hidden', name: 'stripeToken', class: 'stripeToken', value: result.id })).submit();
       }
     });
     StripeCheckout.open(opts);

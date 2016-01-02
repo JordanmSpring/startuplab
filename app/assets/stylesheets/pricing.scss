@@ -2,7 +2,7 @@ $max-plan-width: 250px;
 
 .sl-plan .sl-plan-wrapper {
   color: #fff;
-  padding: 10px;
+  padding: 10px 20px;
   border-radius: 15px;
   max-width: $max-plan-width;
   margin: 50px auto 0 auto;
@@ -14,7 +14,7 @@ $max-plan-width: 250px;
     border-bottom: 2px solid white;
     text-align: center;
     padding-bottom: 5px;
-    font-size: 28px;
+    font-size: 26px;
   }
 
   .sl-plan-price {
@@ -43,6 +43,15 @@ $max-plan-width: 250px;
     &:hover {
       background-color: #fff;
       font-weight: bold;
+    }
+  }
+
+
+  .sl-login-link {
+    text-align: center;
+
+    .btn {
+      display: inline-block;
     }
   }
 }
