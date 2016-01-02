@@ -18,7 +18,11 @@
             .sl-plan-duration
               per month
 
-            %form{ action: payments_path, method: :post }
+            .login-link{ 'ng-show' => "!session.isAuthenticated()" }
+              %a.btn.btn-default.btn-md(href="/#/sign-in?plan=#{plan.id}&origin=/plans")
+                Join Now
+
+            %form{ method: :post, data: { action: payments_path }, 'ng-show' => "session.isAuthenticated()", 'ng-submit' => "submitPlan('#{plan.id}', $event)" }
               %input{ type: :hidden, name: :plan, value: plan.id }
               - if plan.free?
                 %input{ type: :hidden, name: :stripeToken, value: 'free' }
@@ -49,21 +53,3 @@
               - plan.features.each do |feature|
                 %li
                   = feature
-
-
-%script{ src: 'https://checkout.stripe.com/v2/checkout.js' }
-:javascript
-  $(document).ready(function() {
-    $('.sl-stripe-button').data({ key: gon.stripe_publishable_key })
-    $('.sl-stripe-button').on('click', function(event) {
-        event.preventDefault();
-        var $button = $(this);
-        var $form   = $button.parents('form');
-        var opts    = $.extend({}, $button.data(), {
-            token: function(result) {
-              $form.append($('<input>').attr({ type: 'hidden', name: 'stripeToken', value: result.id })).submit();
-            }
-        });
-        StripeCheckout.open(opts);
-    });
-  });

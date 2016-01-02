@@ -1,0 +1,33 @@
+
+angular.module('StartupLab')
+.controller('PlansController', ['$scope', 'Session', '$routeParams', '$location', '$timeout', function($scope, Session, $routeParams, $location, $timeout) {
+
+  if ($routeParams['plan'] && $scope.session.isAuthenticated()) {
+    $timeout(function(){
+      $scope.submitPlan($routeParams['plan']);
+      // Remove the 'plan' and 'origin' params after login.
+      $location.url('/plans/');
+    });
+  }
+
+  $scope.submitPlan = function(plan, $event) {
+    if ($event) {
+      $event.stopPropagation();
+    }
+
+    $('.sl-stripe-button').data({ key: gon.stripe_publishable_key });
+    var button = $('.sl-plan-' + plan + ' form .btn');
+    var form   = button.parents('form');
+    // Angular stopPropagation() fails if there is an action set on the form,
+    // so we set it dynamically.
+    form.attr('action', form.data('action'));
+
+    var opts    = $.extend({}, button.data(), {
+      token: function(result) {
+        form.append($('<input>').attr({ type: 'hidden', name: 'stripeToken', value: result.id })).submit();
+      }
+    });
+    StripeCheckout.open(opts);
+  }
+
+}]);
