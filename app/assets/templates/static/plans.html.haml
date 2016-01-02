@@ -6,7 +6,7 @@
         %h1
           Pricing
 
-    - [Stripe::Plans::STARTER, Stripe::Plans::ENTREPRENEUR, Stripe::Plans::FOUNDER].each do |plan|
+    - [Plan::Free, Plan::Entrepreneur, Plan::Founder].each do |plan|
 
       %section
         .col-sm-4.sl-plan{ class: "sl-plan-#{plan.id}" }

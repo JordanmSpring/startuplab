@@ -27,7 +27,5 @@ module Startuplab
 
     # Treat angular.js templates as assets.
     config.assets.paths << File.join(Rails.root, 'app', 'assets', 'templates')
-
-    config.stripe.publishable_key = ENV['STRIPE_PUBLISHABLE_KEY']
   end
 end
