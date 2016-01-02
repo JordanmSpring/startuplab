@@ -1,6 +1,6 @@
-class Plan::Founder
+class Plan::Founder < Plan
   def self.id
-    :founder
+    'founder'
   end
 
   def self.name

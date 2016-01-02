@@ -1,6 +1,6 @@
-class Plan::Entrepreneur
+class Plan::Entrepreneur < Plan
   def self.id
-    :entrepreneur
+    'entrepreneur'
   end
 
   def self.name

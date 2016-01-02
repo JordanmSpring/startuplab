@@ -1,6 +1,6 @@
-class Plan::Free
+class Plan::Free < Plan
   def self.id
-    :free
+    'free'
   end
 
   def self.name
@@ -9,5 +9,9 @@ class Plan::Free
 
   def self.amount
     0
+  end
+
+  def self.free?
+    true
   end
 end

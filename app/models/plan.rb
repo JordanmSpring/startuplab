@@ -4,4 +4,8 @@ class Plan
     :jpy
   end
 
+  def self.free?
+    false
+  end
+
 end

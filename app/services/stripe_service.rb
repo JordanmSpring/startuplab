@@ -17,10 +17,24 @@ class StripeService
 
     response = if user.stripe_customer_id.present?
       customer = Stripe::Customer.retrieve(user.stripe_customer_id)
-      customer.update_subscription(params).tap do |response|
-        user.update_attribute(:stripe_plan, plan)
+      # This is an existing customer, down-grading to free.
+      if plan == Plan::Free.id
+        customer.cancel_subscription().tap do |response|
+          user.update_attribute(:stripe_plan, plan)
+        end
+      else
+        # This is an existing customer, changing their paid plan.
+        customer.update_subscription(params).tap do |response|
+          user.update_attribute(:stripe_plan, plan)
+        end
       end
+
+    elsif plan == Plan::Free.id
+      # This is a first-time customer signing up for free.
+      user.update_attribute(:stripe_plan, plan)
+
     else
+      # This is a new customer, signing up for a paid plan.
       Stripe::Customer.create(params.merge(email: user.email)).tap do |response|
         user.update_attributes(stripe_customer_id: response.id, stripe_plan: plan)
       end
@@ -29,6 +43,8 @@ class StripeService
     Rails.logger.debug response.inspect
 
     return response
+  #rescue Stripe::InvalidRequestError => e
+  #
   end
 
 end
