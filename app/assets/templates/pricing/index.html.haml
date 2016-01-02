@@ -19,7 +19,7 @@
               per month
 
             .login-link{ 'ng-show' => "!session.isAuthenticated()" }
-              %a.btn.btn-default.btn-md(href="/#/sign-in?plan=#{plan.id}&origin=/plans")
+              %a.btn.btn-default.btn-md(href="/#/sign-in?plan=#{plan.id}&origin=/pricing")
                 Join Now
 
             %form{ method: :post, data: { action: payments_path }, 'ng-show' => "session.isAuthenticated()", 'ng-submit' => "submitPlan('#{plan.id}', $event)" }

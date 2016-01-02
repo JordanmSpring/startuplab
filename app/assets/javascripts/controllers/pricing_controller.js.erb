@@ -1,12 +1,12 @@
 
 angular.module('StartupLab')
-.controller('PlansController', ['$scope', 'Session', '$routeParams', '$location', '$timeout', function($scope, Session, $routeParams, $location, $timeout) {
+.controller('PricingController', ['$scope', 'Session', '$routeParams', '$location', '$timeout', function($scope, Session, $routeParams, $location, $timeout) {
 
   if ($routeParams['plan'] && $scope.session.isAuthenticated()) {
     $timeout(function(){
       $scope.submitPlan($routeParams['plan']);
       // Remove the 'plan' and 'origin' params after login.
-      $location.url('/plans/');
+      $location.url('/pricing/');
     });
   }
 
