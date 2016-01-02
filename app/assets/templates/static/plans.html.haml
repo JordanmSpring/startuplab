@@ -30,16 +30,17 @@
               %input.sl-stripe-button{ type: :submit,
                       class: ['btn', 'btn-default'],
                       value: 'Join Now',
-                      data:  { amount:      "#{plan.amount}",
-                               description: "#{plan.name} plan",
-                               image:       "#{image_url("startuplabicongreen.png")}",
-                               key:         "#{ENV['STRIPE_PUBLISHABLE_KEY']}",
-                               name:        'Startup Lab',
-                      }}
+                      data:  { amount:          0,
+                               description:     "#{plan.name} plan",
+                               image:           "#{image_url("startuplabicongreen.png")}",
+                               name:            'Startup Lab',
+                               'panel-label' => 'Subscribe',
+                              }}
 
 %script{ src: 'https://checkout.stripe.com/v2/checkout.js' }
 :javascript
   $(document).ready(function() {
+    $('.sl-stripe-button').data({ key: gon.stripe_publishable_key })
     $('.sl-stripe-button').on('click', function(event) {
         event.preventDefault();
         var $button = $(this);

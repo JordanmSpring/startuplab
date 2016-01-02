@@ -5,6 +5,7 @@
     = favicon_link_tag 'favicon.png'
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = csrf_meta_tags
+    = Gon::Base.render_data
     %link(href="https://fonts.googleapis.com/css?family=Quicksand:400,300,700" rel="stylesheet" type="text/css")
     <script src="//load.sumome.com/" data-sumo-site-id="31081e321994b0b40678372bb6ef10369e72119324aadabf24c2565b0170f29e" async="async"></script>
 
