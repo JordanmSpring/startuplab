@@ -46,6 +46,9 @@ Rails.application.routes.draw do
   # Word export.
   resources :ideas, only: :show
 
+  # Stripe callback.
+  resources :payments, only: [:create]
+
   root 'home#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
