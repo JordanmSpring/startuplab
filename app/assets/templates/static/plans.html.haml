@@ -1,0 +1,45 @@
+.wrap
+  .container
+
+    %section
+      .col-sm-12
+        %h1
+          Pricing
+
+    - [Stripe::Plans::STARTER, Stripe::Plans::ENTREPRENEUR, Stripe::Plans::FOUNDER].each do |plan|
+
+      %section
+        .col-sm-4.sl-plan{ class: "sl-plan-#{plan.id}" }
+          %h2
+            = plan.name
+          .sl-plan-price
+            %span $
+            = plan.amount / 100
+          .sl-plan-duration
+
+          %form{ action: '/charge', method: 'POST' }
+            %input{ type: :submit,
+                    class: ['btn', 'btn-default'],
+                    value: 'Join Now',
+                    data:  { amount:      "#{plan.amount}",
+                             description: "#{plan.name} plan",
+                             image:       "#{image_url("startuplabicongreen.png")}",
+                             key:         "#{ENV['STRIPE_PUBLISHABLE_KEY']}",
+                             name:        'Startup Lab',
+                    }}
+
+%script{ src: 'https://checkout.stripe.com/v2/checkout.js' }
+:javascript
+  $(document).ready(function() {
+    $(':submit').on('click', function(event) {
+        event.preventDefault();
+        var $button = $(this);
+        var $form   = $button.parents('form');
+        var opts    = $.extend({}, $button.data(), {
+            token: function(result) {
+              $form.append($('<input>').attr({ type: 'hidden', name: 'stripeToken', value: result.id })).submit();
+            }
+        });
+        StripeCheckout.open(opts);
+    });
+  });

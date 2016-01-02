@@ -17,6 +17,11 @@ angular.module('StartupLab', ['ngRoute', 'ngResource', 'frapontillo.bootstrap-sw
       controller: 'StaticController',
       resolve: { user: loadCurrentUser }
     })
+    .when('/plans', {
+      templateUrl: 'static/plans.html',
+      controller: 'StaticController',
+      resolve: { user: loadCurrentUser }
+    })
     .when('/disclaimer', {
       templateUrl: 'static/disclaimer.html',
       controller: 'StaticController'
