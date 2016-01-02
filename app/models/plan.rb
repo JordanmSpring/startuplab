@@ -8,4 +8,8 @@ class Plan
     false
   end
 
+  def self.features
+    []
+  end
+
 end

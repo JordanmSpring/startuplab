@@ -1,41 +1,55 @@
 .wrap
   .container
 
-    %section
+    .row
       .col-sm-12
         %h1
           Pricing
 
-    - [Plan::Free, Plan::Entrepreneur, Plan::Founder].each do |plan|
-
-      %section
+    .row
+      - [Plan::Free, Plan::Entrepreneur, Plan::Founder].each do |plan|
         .col-sm-4.sl-plan{ class: "sl-plan-#{plan.id}" }
-          %h2
-            = plan.name
-          .sl-plan-price
-            %span $
-            = plan.amount / 100
-          .sl-plan-duration
+          .sl-plan-wrapper
+            %h2
+              = plan.name
+            .sl-plan-price
+              %span> $
+              = plan.amount / 100
+            .sl-plan-duration
+              per month
 
-          %form{ action: payments_path, method: :post }
-            %input{ type: :hidden, name: :plan, value: plan.id }
-            - if plan.free?
-              %input{ type: :hidden, name: :stripeToken, value: 'free' }
-              %input{ type: :submit,
-                      class: ['btn', 'btn-default'],
-                      value: 'Join Now',
-                    }
+            %form{ action: payments_path, method: :post }
+              %input{ type: :hidden, name: :plan, value: plan.id }
+              - if plan.free?
+                %input{ type: :hidden, name: :stripeToken, value: 'free' }
+                %input{ type: :submit,
+                        class: ['btn', 'btn-default', 'btn-md'],
+                        value: 'Join Now',
+                      }
 
-            - else
-              %input.sl-stripe-button{ type: :submit,
-                      class: ['btn', 'btn-default'],
-                      value: 'Join Now',
-                      data:  { amount:          0,
-                               description:     "#{plan.name} plan",
-                               image:           "#{image_url("startuplabicongreen.png")}",
-                               name:            'Startup Lab',
-                               'panel-label' => 'Subscribe',
-                              }}
+              - else
+                %input.sl-stripe-button{ type: :submit,
+                        class: ['btn', 'btn-default', 'btn-md'],
+                        value: 'Join Now',
+                        data:  { amount:          0,
+                                 description:     "#{plan.name} plan",
+                                 image:           "#{image_url("startuplabicongreen.png")}",
+                                 name:            'Startup Lab',
+                                 'panel-label' => 'Subscribe',
+                                }}
+
+    .row
+      - [Plan::Free, Plan::Entrepreneur, Plan::Founder].each do |plan|
+        .col-sm-4.sl-plan-features{ class: "sl-plan-features-#{plan.id}" }
+          .sl-feature-wrapper
+            %h4
+              = plan.name
+              includes:
+            %ul
+              - plan.features.each do |feature|
+                %li
+                  = feature
+
 
 %script{ src: 'https://checkout.stripe.com/v2/checkout.js' }
 :javascript

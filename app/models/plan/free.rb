@@ -14,4 +14,11 @@ class Plan::Free < Plan
   def self.free?
     true
   end
+
+  def self.features
+    [
+      '1 private canvas',
+      '1 public canvas',
+    ]
+  end
 end
