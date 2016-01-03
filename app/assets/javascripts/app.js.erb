@@ -11,6 +11,10 @@ angular.module('StartupLab', ['ngRoute', 'ngResource', 'frapontillo.bootstrap-sw
     return Session.requestCurrentUser();
   }];
 
+  var refreshCurrentUser = [ 'Session', function(Session) {
+    return Session.refreshCurrentUser();
+  }];
+
   $routeProvider
     .when('/home', {
       templateUrl: 'static/home.html',
@@ -31,6 +35,16 @@ angular.module('StartupLab', ['ngRoute', 'ngResource', 'frapontillo.bootstrap-sw
       templateUrl: 'static/upgrade-export.html',
       controller: 'StaticController',
       resolve: { user: loadCurrentUser }
+    })
+    .when('/upgrade/thanks', {
+      templateUrl: 'static/upgrade-thanks.html',
+      controller: 'StaticController',
+      resolve: { user: refreshCurrentUser }
+    })
+    .when('/upgrade/failed', {
+      templateUrl: 'static/upgrade-failed.html',
+      controller: 'StaticController',
+      resolve: { user: refreshCurrentUser }
     })
     .when('/disclaimer', {
       templateUrl: 'static/disclaimer.html',

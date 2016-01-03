@@ -1,0 +1,15 @@
+.wrap
+  .container
+
+    %section
+      .col-sm-6.col-sm-offset-3
+        %h3
+          Thank you, your account has been upgraded
+        %p
+          You are on the
+          %i {{ session.currentUser().plan.name }}
+          plan. Thanks for upgrading!
+        %p.sl-centered
+          %a.btn.btn-info.btn-lg(href="/#/dashboard")
+            Continue
+            %i.fa.fa-chevron-right
