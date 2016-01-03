@@ -27,10 +27,11 @@
                 Welcome {{ session.currentUser().name }}
             %li.dropdown(ng-show="session.isAuthenticated()")
               %a.dropdown-toggle(class="dropdown-toggle" data-toggle="dropdown" role="button")
-                Dashboard
+                Account
                 %span.caret
               %ul.dropdown-menu
                 %li= link_to "Dashboard", "/#/dashboard"
+                %li= link_to "Select Plan", "/#/pricing"
                 %li
                   %a(ng-click="session.logout()") Sign Out
     .banner_wrap
