@@ -13,7 +13,7 @@ class Plan::Founder < Plan
 
   def self.features
     [
-      'Unlimited private & public canvases',
+      'Unlimited canvases',
       'Ability to export business plan',
       'Automated and exported financials',
       'Notifications and comments',

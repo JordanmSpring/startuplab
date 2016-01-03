@@ -17,8 +17,11 @@ class Plan::Free < Plan
 
   def self.features
     [
-      '1 private canvas',
-      '1 public canvas',
+      '1 canvas',
     ]
+  end
+
+  def self.max_num_ideas
+    1
   end
 end

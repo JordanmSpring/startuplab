@@ -23,6 +23,11 @@ angular.module('StartupLab').factory('Session', [ '$location', '$http', '$q', '$
       $window.sessionStorage.setItem('currentUser', JSON.stringify(user));
     },
 
+    refreshCurrentUser: function() {
+      this.unsetCurrentUser();
+      this.requestCurrentUser();
+    },
+
     currentUser: function() {
       if (this.isAuthenticated()) {
         return JSON.parse(window.sessionStorage.currentUser);

@@ -49,6 +49,7 @@ class Api::IdeasController < Api::BaseController
 
   def create
     Idea.transaction do
+      authorize(Idea, :create?)
       @idea = current_user.ideas.create!(idea_create_params)
       @idea.founders.create(role: 'Founder', user: current_user)
     end

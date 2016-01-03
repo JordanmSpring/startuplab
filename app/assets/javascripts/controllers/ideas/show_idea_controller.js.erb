@@ -66,6 +66,8 @@ angular.module('StartupLab')
   $scope.delete = function() {
     if (confirm('Are you sure you want to delete this idea?')) {
       Idea.delete($scope.idea).then(function() {
+      // We need to refresh the user to see if they have reached any limits.
+        Session.refreshCurrentUser();
         $location.path('/dashboard');
       }, function() {
         alert('Sorry, this idea could not be deleted. If this problem continues, contact support.');

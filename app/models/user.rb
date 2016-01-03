@@ -32,4 +32,12 @@ class User < ActiveRecord::Base
     role == User::ROLE_ADMIN
   end
 
+  def plan
+    Plan.find_by_id(self[:plan])
+  end
+
+  def reached_idea_limit?
+    ideas.count >= plan.max_num_ideas && !plan.max_num_ideas.nil? && !is_admin?
+  end
+
 end

@@ -3,12 +3,16 @@ angular.module('StartupLab')
 
   if (!Session.isAuthenticated()) {
     $location.path('/sign-in');
+  } else if (Session.currentUser().plan.reachedIdeaLimit) {
+    $location.path('/upgrade/ideas');
   }
 
   $scope.idea = {};
 
   $scope.submit = function() {
     Idea.create($scope.idea, function(idea) {
+      // We need to refresh the user to see if they have reached any limits.
+      Session.refreshCurrentUser();
       $location.path('/ideas/' + idea.id);
     });
   }
