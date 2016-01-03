@@ -30,4 +30,8 @@ class Plan
     true
   end
 
+  def self.can_notify?
+    true
+  end
+
 end

@@ -28,4 +28,8 @@ class Plan::Free < Plan
   def self.can_export?
     false
   end
+
+  def self.can_notify?
+    false
+  end
 end

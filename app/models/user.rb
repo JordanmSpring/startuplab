@@ -44,4 +44,8 @@ class User < ActiveRecord::Base
     plan.can_export? || is_admin?
   end
 
+  def can_notify?
+    plan.can_notify? || is_admin?
+  end
+
 end
