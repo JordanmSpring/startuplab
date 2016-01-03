@@ -15,6 +15,6 @@ App.configure do
   # Don't log redis in the application log.
   config.log_redis = false
 
-  config.facebook_app_id     = '158229161209989'
-  config.facebook_app_secret = ENV['FACEBOOK_APP_SECRET']
+  # Omniauth accounts.
+  config.facebook_app_id = '158229161209989'
 end

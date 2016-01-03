@@ -9,9 +9,10 @@ Rails.application.routes.draw do
 
   ActiveAdmin.routes(self)
   devise_for :users, controllers: {
-    sessions: "api/sessions",
-    registrations: "api/registrations",
-    invitations: "api/invitations"
+    sessions:           'api/sessions',
+    registrations:      'api/registrations',
+    invitations:        'api/invitations',
+    omniauth_callbacks: 'omniauth_callbacks'
   }
   namespace :api do
     resources :users do
