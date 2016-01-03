@@ -119,7 +119,7 @@ ActiveRecord::Schema.define(version: 20160102025503) do
     t.string   "invited_by_type"
     t.integer  "invitations_count",      default: 0
     t.string   "role",                   default: "user", null: false
-    t.string   "stripe_plan"
+    t.string   "plan",                   default: "free", null: false
     t.string   "stripe_customer_id"
   end
 
