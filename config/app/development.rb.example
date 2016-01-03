@@ -12,4 +12,7 @@ App.configure do
     user_name:            'someone@gmail.com',
     password:             'password',
   }
+
+  config.facebook_app_id     = '111111111111111'
+  config.facebook_app_secret = '11111111111111111111111111111111'
 end

@@ -11,4 +11,7 @@ App.configure do
 
   # Don't log redis in the application log.
   config.log_redis = false
+
+  config.facebook_app_id     = '158227484543490'
+  config.facebook_app_secret = ENV['FACEBOOK_APP_SECRET']
 end
