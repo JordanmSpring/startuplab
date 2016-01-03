@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
 
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :omniauthable, :omniauth_providers => [:facebook]
+         :omniauthable, :omniauth_providers => [:facebook, :linkedin]
 
   scope :admins, -> { where(role: ROLE_ADMIN) }
   scope :users,  -> { where(role: ROLE_USER) }
