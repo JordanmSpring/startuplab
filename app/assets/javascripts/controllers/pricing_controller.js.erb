@@ -11,6 +11,38 @@ angular.module('StartupLab')
     });
   }
 
+  // This is to stop people from downgrading their account if they have too
+  // many ideas for the plan they want to move into. They will be prompted to
+  // delete some ideas before they can downgrade.
+  $scope.validatePlan = function(plan, $event) {
+    var button = $('.sl-plan-' + plan + ' form .btn');
+    var form   = button.parents('form');
+
+    // We want to be sure to only do this check on the first submit.
+    if ($scope.validatedPlan) {
+      return true;
+    }
+    $scope.validatedPlan = true;
+
+    var ideaLimit = form.data('idea-limit');
+    var ideaCount = $scope.session.currentUser().plan.ideaCount
+    if (ideaLimit && ideaCount > ideaLimit) {
+      $event.stopPropagation();
+      $scope.validatedPlan = false;
+      var message = 'You have ' + ideaCount + ' canvases, but the ' + plan + ' plan allows a maximum of ' + ideaLimit + ' canvas(es). Please delete ' + (ideaCount - ideaLimit) + ' canvas(es) and then select this plan again.'
+      alert(message)
+      return false;
+    } else {
+      // Angular stopPropagation() fails if there is an action set on the form,
+      // so we set it dynamically.
+      form.attr('action', form.data('after-action'));
+      $timeout(function() {
+        form.submit();
+      });
+      return true;
+    }
+  }
+
   $scope.submitPlan = function(plan, $event) {
     var button = $('.sl-plan-' + plan + ' form .btn');
     var form   = button.parents('form');
@@ -22,6 +54,10 @@ angular.module('StartupLab')
 
     if ($event) {
       $event.stopPropagation();
+    }
+
+    if ($scope.validatePlan(plan, $event) != true) {
+      return false;
     }
 
     button.data({ key: gon.stripe_publishable_key });
