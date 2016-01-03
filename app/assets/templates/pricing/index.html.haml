@@ -27,7 +27,7 @@
                 Your Plan
 
             - if plan.free?
-              %form{ method: :post, 'ng-show' => "session.isAuthenticated() && session.currentUser().plan.id != '#{plan.id}'", 'ng-submit' => "validatePlan('#{plan.id}', $event)", data: { after_action: payments_path, idea_limit: plan.max_num_ideas } }
+              %form{ method: :post, 'ng-show' => "session.isAuthenticated() && session.currentUser().plan.id != '#{plan.id}'", 'ng-submit' => "submitFreePlan('#{plan.id}', $event)", data: { after_action: payments_path, idea_limit: plan.max_num_ideas, is_free: '1' } }
                 %input{ type: :hidden, name: :plan, value: plan.id }
                 %input{ type: :hidden, name: :stripeToken, value: 'free' }
                 %input.sl-free-plan{ type: :submit,
@@ -36,7 +36,7 @@
                       }
 
             - else
-              %form{ method: :post, 'ng-show' => "session.isAuthenticated() && session.currentUser().plan.id != '#{plan.id}'", 'ng-submit' => "submitPlan('#{plan.id}', $event)", data: { after_action: payments_path, idea_limit: plan.max_num_ideas } }
+              %form{ method: :post, 'ng-show' => "session.isAuthenticated() && session.currentUser().plan.id != '#{plan.id}'", 'ng-submit' => "submitPaidPlan('#{plan.id}', $event)", data: { after_action: payments_path, idea_limit: plan.max_num_ideas } }
                 %input{ type: :hidden, name: :plan, value: plan.id }
                 %input{ type: :submit,
                         class: ['btn', 'btn-default', 'btn-md'],

@@ -6,8 +6,13 @@ angular.module('StartupLab')
     var plan = $routeParams['plan'];
     // Remove the 'plan' and 'origin' params after login.
     $location.url('/pricing/');
+
     $timeout(function() {
-      $scope.submitPlan(plan);
+      if ($('.sl-plan-' + plan + ' form').data('is-free')) {
+        $scope.submitFreePlan(plan);
+      } else {
+        $scope.submitPaidPlan(plan);
+      }
     });
   }
 
@@ -15,41 +20,51 @@ angular.module('StartupLab')
   // many ideas for the plan they want to move into. They will be prompted to
   // delete some ideas before they can downgrade.
   $scope.validatePlan = function(plan, $event) {
-    var button = $('.sl-plan-' + plan + ' form .btn');
-    var form   = button.parents('form');
-
-    // We want to be sure to only do this check on the first submit.
-    if ($scope.validatedPlan) {
-      return true;
-    }
-    $scope.validatedPlan = true;
-
+    var form      = $('.sl-plan-' + plan + ' form');
     var ideaLimit = form.data('idea-limit');
-    var ideaCount = $scope.session.currentUser().plan.ideaCount
+    var ideaCount = $scope.session.currentUser().plan.ideaCount;
+
     if (ideaLimit && ideaCount > ideaLimit) {
       $event.stopPropagation();
-      $scope.validatedPlan = false;
       var message = 'You have ' + ideaCount + ' canvases, but the ' + plan + ' plan allows a maximum of ' + ideaLimit + ' canvas(es). Please delete ' + (ideaCount - ideaLimit) + ' canvas(es) and then select this plan again.'
       alert(message)
       return false;
     } else {
-      // Angular stopPropagation() fails if there is an action set on the form,
-      // so we set it dynamically.
-      form.attr('action', form.data('after-action'));
-      $timeout(function() {
-        form.submit();
-      });
       return true;
     }
   }
 
-  $scope.submitPlan = function(plan, $event) {
+  $scope.submitFreePlan = function(plan, $event) {
+    var button = $('.sl-plan-' + plan + ' form .btn');
+    var form   = button.parents('form');
+
+    // We want to be sure to only do this check on the first submit.
+    if ($scope.submittedFreePlan) {
+      return true;
+    }
+
+    if ($event) {
+      $event.stopPropagation();
+    }
+
+    if ($scope.validatePlan(plan, $event) != true) {
+      return false;
+    }
+
+    form.attr('action', form.data('after-action'));
+    $timeout(function() {
+      $scope.submittedFreePlan = true;
+      form.submit();
+    });
+  }
+
+  $scope.submitPaidPlan = function(plan, $event) {
     var button = $('.sl-plan-' + plan + ' form .btn');
     var form   = button.parents('form');
 
     // If we already have the stripe token, we want to submit to rails.
     if (form.find('.stripeToken').length > 0) {
-      return;
+      return true;
     }
 
     if ($event) {
