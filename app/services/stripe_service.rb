@@ -10,6 +10,8 @@ class StripeService
 
   # Creates or updates the user's subscription, depending on their plan.
   def process!
+    return if plan == user.plan.id
+
     params = {
       source: token,
       plan:   plan,
@@ -39,12 +41,6 @@ class StripeService
         user.update_attributes(stripe_customer_id: response.id, plan: plan)
       end
     end
-
-    Rails.logger.debug response.inspect
-
-    return response
-  #rescue Stripe::InvalidRequestError => e
-  #
   end
 
 end

@@ -24,7 +24,7 @@ angular.module('StartupLab')
       $event.stopPropagation();
     }
 
-    $('.sl-stripe-button').data({ key: gon.stripe_publishable_key });
+    button.data({ key: gon.stripe_publishable_key });
     // Angular stopPropagation() fails if there is an action set on the form,
     // so we set it dynamically.
     form.attr('action', form.data('after-action'));

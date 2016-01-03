@@ -22,21 +22,26 @@
               %a.btn.btn-default.btn-md(href="/#/sign-in?plan=#{plan.id}&origin=/pricing")
                 Join Now
 
-            %form{ method: :post, data: { after_action: payments_path }, 'ng-show' => "session.isAuthenticated()", 'ng-submit' => "submitPlan('#{plan.id}', $event)" }
-              %input{ type: :hidden, name: :plan, value: plan.id }
-              - if plan.free?
+            .sl-login-link{ 'ng-show' => "session.isAuthenticated() && session.currentUser().plan.id == '#{plan.id}'" }
+              %a.btn.btn-default.disabled.btn-md
+                Your Plan
+
+            - if plan.free?
+              %form{ method: :post, action: payments_path, 'ng-show' => "session.isAuthenticated() && session.currentUser().plan.id != '#{plan.id}'" }
+                %input{ type: :hidden, name: :plan, value: plan.id }
                 %input{ type: :hidden, name: :stripeToken, value: 'free' }
-                %input{ type: :submit,
+                %input.sl-free-plan{ type: :submit,
                         class: ['btn', 'btn-default', 'btn-md'],
-                        value: 'Join Now',
+                        value: 'Select Plan',
                       }
 
-              - else
-                %input.sl-stripe-button{ type: :submit,
+            - else
+              %form{ method: :post, data: { after_action: payments_path }, 'ng-show' => "session.isAuthenticated() && session.currentUser().plan.id != '#{plan.id}'", 'ng-submit' => "submitPlan('#{plan.id}', $event)" }
+                %input{ type: :hidden, name: :plan, value: plan.id }
+                %input{ type: :submit,
                         class: ['btn', 'btn-default', 'btn-md'],
-                        value: 'Join Now',
-                        data:  { amount:          0,
-                                 description:     "#{plan.name} plan",
+                        value: 'Select Plan',
+                        data:  { description:     "#{plan.name} plan",
                                  image:           "#{image_url("startuplabicongreen.png")}",
                                  name:            'Startup Lab',
                                  'panel-label' => 'Subscribe',
