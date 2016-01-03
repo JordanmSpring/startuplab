@@ -40,4 +40,8 @@ class User < ActiveRecord::Base
     ideas.count >= plan.max_num_ideas && !plan.max_num_ideas.nil? && !is_admin?
   end
 
+  def can_export?
+    plan.can_export? || is_admin?
+  end
+
 end

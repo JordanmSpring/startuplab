@@ -24,4 +24,8 @@ class Plan::Free < Plan
   def self.max_num_ideas
     1
   end
+
+  def self.can_export?
+    false
+  end
 end

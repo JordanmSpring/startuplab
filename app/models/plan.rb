@@ -26,4 +26,8 @@ class Plan
     nil
   end
 
+  def self.can_export?
+    true
+  end
+
 end

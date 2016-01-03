@@ -25,6 +25,7 @@ class UserExhibit
       name:             object.plan.name,
       ideaLimit:        object.plan.max_num_ideas,
       reachedIdeaLimit: object.reached_idea_limit?,
+      canExport:        object.can_export?,
     }
   end
 end

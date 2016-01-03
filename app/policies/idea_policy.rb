@@ -23,6 +23,10 @@ class IdeaPolicy < ApplicationPolicy
     update?
   end
 
+  def export?
+    show? && user.can_export?
+  end
+
   def destroy?
     @record.owner?(user) || user.is_admin?
   end

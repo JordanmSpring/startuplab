@@ -27,6 +27,11 @@ angular.module('StartupLab', ['ngRoute', 'ngResource', 'frapontillo.bootstrap-sw
       controller: 'StaticController',
       resolve: { user: loadCurrentUser }
     })
+    .when('/upgrade/export', {
+      templateUrl: 'static/upgrade-export.html',
+      controller: 'StaticController',
+      resolve: { user: loadCurrentUser }
+    })
     .when('/disclaimer', {
       templateUrl: 'static/disclaimer.html',
       controller: 'StaticController'
