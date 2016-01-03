@@ -15,5 +15,6 @@ class ApplicationController < ActionController::Base
 
   def push_clientside_vars
     gon.push(stripe_publishable_key: ENV['STRIPE_PUBLISHABLE_KEY'])
+    gon.push(flashError: flash[:error]) if flash[:error]
   end
 end
