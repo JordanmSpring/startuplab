@@ -1,0 +1,26 @@
+@import 'colors';
+
+.sl-grid-financials.grid {
+  $modal-inverted: #867877;
+  $item-width:     292px;
+
+  .grid-item.inverted {
+    p, input, textarea, label, h2, a {
+      color: $modal-inverted;
+    }
+  }
+
+  .grid-item,
+  .grid-sizer { width: $item-width; }
+
+  .grid-item--height-norm   { height: 292px; }
+  .grid-item--height-double { height: 584px; }
+
+  .grid-item--assets,       .grid-item--assets      .modal-content  { background-color: #c1c1c1; }
+  .grid-item--liabilities,  .grid-item--liabilities .modal-content  { background-color: #867877; }
+  .grid-item--capital,      .grid-item--capital     .modal-content  { background-color: #ace2c4; }
+  .grid-item--inflows,      .grid-item--inflows     .modal-content  { background-color: #9aa9ac; }
+  .grid-item--metrics,      .grid-item--metrics     .modal-content  { background-color: #dee6e8; }
+  .grid-item--outflows,     .grid-item--outflows    .modal-content  { background-color: #e6db97; }
+
+}
