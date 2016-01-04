@@ -1,7 +1,9 @@
+@import 'colors';
+
 $max-plan-width: 250px;
 
 .sl-plan .sl-plan-wrapper {
-  color: #fff;
+  color: $full-white;
   padding: 10px 20px;
   border-radius: 15px;
   max-width: $max-plan-width;
@@ -9,7 +11,7 @@ $max-plan-width: 250px;
 
   h2 {
     font-weight: normal;
-    color: #fff;
+    color: $full-white;
     margin: 5px auto 15px auto;
     border-bottom: 2px solid white;
     text-align: center;
@@ -41,7 +43,7 @@ $max-plan-width: 250px;
     margin: 20px auto 5px auto;
 
     &:hover {
-      background-color: #fff;
+      background-color: $full-white;
       font-weight: bold;
     }
   }
@@ -102,4 +104,10 @@ $max-plan-width: 250px;
 
 .sl-plan-features-founder h4 {
   color: #86989a;
+}
+
+.sl-coming-soon {
+  background-color: transparent;
+  color:            $full-white;
+  opacity:          1 !important;
 }

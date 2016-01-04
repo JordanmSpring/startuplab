@@ -34,4 +34,9 @@ class Plan
     true
   end
 
+  # Used to indicate whether this plan is 'coming soon'.
+  def self.is_live?
+    true
+  end
+
 end

@@ -20,4 +20,9 @@ class Plan::Founder < Plan
       'And much more',
     ]
   end
+
+  # Used to indicate whether this plan is 'coming soon'.
+  def self.is_live?
+    false
+  end
 end
