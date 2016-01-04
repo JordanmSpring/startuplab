@@ -1,0 +1,18 @@
+.wrap
+  .container
+
+    %section
+      .col-sm-6.col-sm-offset-3
+        %h3
+          Sorry, you have reached the maximum number of ideas for your subscription
+        %p
+          You are on the
+          %i {{ session.currentUser().plan.name }}
+          plan, which allows you to create
+          {{ session.currentUser().plan.ideaLimit }}
+          canvas{{ session.currentUser().plan.ideaLimit != 1 ? 'es' : ''}}.
+          To create more canvases, you will need to upgrade your account.
+          Click the button below to select a higher plan.
+        %p.sl-centered
+          %a.btn.btn-info.btn-lg(href="/#/pricing")
+            Upgrade your account

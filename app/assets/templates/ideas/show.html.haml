@@ -12,7 +12,7 @@
               switch-on-text="Public"
               switch-off-text="Private"
             )
-            %a.btn.btn-default(ng-href="{{ '/ideas/' + idea.id + '.docx' }}")
+            %a.btn.btn-default(ng-href="{{ session.currentUser().plan.canExport ? '/ideas/' + idea.id + '.docx' : '/#/upgrade/export' }}" ng-show="idea.owner")
               %i.fa.fa-file-text-o
               Export
             //%a.btn.btn-default(ng-show="idea.owner" ng-href="{{ '/#/ideas/' + idea.id + '/users' }}") Share

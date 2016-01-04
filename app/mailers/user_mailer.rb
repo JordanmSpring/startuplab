@@ -15,4 +15,14 @@ class UserMailer < ApplicationMailer
     mail(to: @to, subject: @subject)
   end
 
+  # Sends an invitation when a paid plan expires.
+  def plan_expired_email(user, plan_name, ideas)
+    @user      = user
+    @plan_name = plan_name
+    @ideas     = ideas
+    @subject   = I18n.t('user_mailer.plan_expired_email.subject')
+
+    mail(to: user.email, subject: @subject)
+  end
+
 end

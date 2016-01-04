@@ -1,0 +1,16 @@
+.wrap
+  .container
+
+    %section
+      .col-sm-6.col-sm-offset-3
+        %h3
+          Sorry, your plan only allows private canvases
+        %p
+          You are on the
+          %i {{ session.currentUser().plan.name }}
+          plan, which is limited to private canvases.
+          To publish this canvas, you will need to upgrade your account.
+          Click the button below to select a higher plan.
+        %p.sl-centered
+          %a.btn.btn-info.btn-lg(href="/#/pricing")
+            Upgrade your account

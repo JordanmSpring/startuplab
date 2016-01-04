@@ -1,0 +1,98 @@
+
+angular.module('StartupLab')
+.controller('PricingController', ['$scope', 'Session', '$routeParams', '$location', '$timeout', function($scope, Session, $routeParams, $location, $timeout) {
+
+  if ($routeParams['plan'] && $scope.session.isAuthenticated()) {
+    var plan = $routeParams['plan'];
+    // Remove the 'plan' and 'origin' params after login.
+    $location.url('/pricing/');
+
+    $timeout(function() {
+      if ($('.sl-plan-' + plan + ' form').data('is-free')) {
+        $scope.submitFreePlan(plan);
+      } else {
+        $scope.submitPaidPlan(plan);
+      }
+    });
+  }
+
+  // This is to stop people from downgrading their account if they have too
+  // many ideas for the plan they want to move into. They will be prompted to
+  // delete some ideas before they can downgrade.
+  $scope.validatePlan = function(plan, $event) {
+    var form            = $('.sl-plan-' + plan + ' form');
+    var ideaLimit       = form.data('idea-limit');
+    var canPublishIdeas = form.data('can-publish-ideas');
+    var planData        = $scope.session.currentUser().plan;
+
+    if (ideaLimit && planData.ideaCount > ideaLimit) {
+      var message = 'You have ' + planData.ideaCount + ' canvases, but the ' + plan + ' plan allows a maximum of ' + ideaLimit + ' canvas(es). Please delete ' + (planData.ideaCount - ideaLimit) + ' canvas(es) and then select this plan again.'
+      alert(message)
+    } else if (!canPublishIdeas && planData.publishedIdeaCount > 0) {
+      var message = 'You have ' + planData.publishedIdeaCount + ' published canvas(es), but the ' + plan + ' plan is limited to private canvases. Please make all canvases private and then select this plan again.'
+      alert(message)
+    } else {
+      return true;
+    }
+
+    if ($event) {
+      $event.stopPropagation();
+    }
+    return false;
+  }
+
+  $scope.submitFreePlan = function(plan, $event) {
+    var button = $('.sl-plan-' + plan + ' form .btn');
+    var form   = button.parents('form');
+
+    // We want to be sure to only do this check on the first submit.
+    if ($scope.submittedFreePlan) {
+      return true;
+    }
+
+    if ($event) {
+      $event.stopPropagation();
+    }
+
+    if ($scope.validatePlan(plan, $event) != true) {
+      return false;
+    }
+
+    form.attr('action', form.data('after-action'));
+    $timeout(function() {
+      $scope.submittedFreePlan = true;
+      form.submit();
+    });
+  }
+
+  $scope.submitPaidPlan = function(plan, $event) {
+    var button = $('.sl-plan-' + plan + ' form .btn');
+    var form   = button.parents('form');
+
+    // If we already have the stripe token, we want to submit to rails.
+    if (form.find('.stripeToken').length > 0) {
+      return true;
+    }
+
+    if ($event) {
+      $event.stopPropagation();
+    }
+
+    if ($scope.validatePlan(plan, $event) != true) {
+      return false;
+    }
+
+    button.data({ key: gon.stripe_publishable_key });
+    // Angular stopPropagation() fails if there is an action set on the form,
+    // so we set it dynamically.
+    form.attr('action', form.data('after-action'));
+
+    var opts    = $.extend({}, button.data(), {
+      token: function(result) {
+        form.append($('<input>').attr({ type: 'hidden', name: 'stripeToken', class: 'stripeToken', value: result.id })).submit();
+      }
+    });
+    StripeCheckout.open(opts);
+  }
+
+}]);

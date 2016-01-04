@@ -1,0 +1,113 @@
+@import 'colors';
+
+$max-plan-width: 250px;
+
+.sl-plan .sl-plan-wrapper {
+  color: $full-white;
+  padding: 10px 20px;
+  border-radius: 15px;
+  max-width: $max-plan-width;
+  margin: 50px auto 0 auto;
+
+  h2 {
+    font-weight: normal;
+    color: $full-white;
+    margin: 5px auto 15px auto;
+    border-bottom: 2px solid white;
+    text-align: center;
+    padding-bottom: 5px;
+    font-size: 26px;
+  }
+
+  .sl-plan-price {
+    font-size: 120px;
+    line-height: 120px;
+    text-align: center;
+    font-weight: normal;
+
+    span {
+      font-size: 20px;
+    }
+  }
+
+  .sl-plan-duration {
+    font-size: 16px;
+    margin-top: -40px;
+    text-align: center;
+  }
+
+  .btn {
+    border: none;
+    border-radius: 3px !important;
+    display: block;
+    margin: 20px auto 5px auto;
+
+    &:hover {
+      background-color: $full-white;
+      font-weight: bold;
+    }
+  }
+
+
+  .sl-login-link {
+    text-align: center;
+
+    .btn {
+      display: inline-block;
+    }
+  }
+}
+
+
+.sl-plan-features .sl-feature-wrapper {
+  max-width: $max-plan-width;
+  margin: 15px auto 0 auto;
+
+  h4 {
+    font-weight: bold;
+  }
+
+  ul {
+    padding-left: 20px;
+  }
+
+  li {
+    font-weight: normal;
+  }
+}
+
+
+
+
+
+
+
+.sl-plan-free .sl-plan-wrapper {
+  background-color: #e6555e;
+}
+
+.sl-plan-entrepreneur .sl-plan-wrapper {
+  background-color: #f0c49d;
+}
+
+.sl-plan-founder .sl-plan-wrapper {
+  background-color: #86989a;
+}
+
+.sl-plan-features-free h4 {
+  color: #e6555e;
+}
+
+.sl-plan-features-entrepreneur h4 {
+  color: #f0c49d;
+}
+
+.sl-plan-features-founder h4 {
+  color: #86989a;
+}
+
+.sl-coming-soon {
+  background-color: transparent;
+  color:            $full-white;
+  opacity:          1 !important;
+}

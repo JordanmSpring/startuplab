@@ -11,4 +11,8 @@ App.configure do
 
   # Don't log redis in the application log.
   config.log_redis = false
+
+  # Omniauth accounts.
+  config.facebook_app_id = '158227484543490'
+  config.twitter_api_key = 'sEWTExaMp1Z1D5EjVvKbRrVAh'
 end

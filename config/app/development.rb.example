@@ -12,4 +12,8 @@ App.configure do
     user_name:            'someone@gmail.com',
     password:             'password',
   }
+
+  # Omniauth accounts.
+  config.facebook_app_id = '158229491209956'
+  config.twitter_api_key = 'oxLcOlWHFEebOleAJEVAsqANl'
 end

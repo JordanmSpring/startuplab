@@ -1,5 +1,5 @@
 
 angular.module('StartupLab')
-.controller('StaticController', ['$scope', 'Session', function($scope, Session) {
-
+.controller('StaticController', ['$scope', '$window', 'Session', function($scope, $window, Session) {
+  $scope.flashError = $window.gon.flashError;
 }]);

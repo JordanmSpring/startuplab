@@ -10,6 +10,7 @@ gem 'app'
 gem 'devise'
 gem 'devise_invitable',             '~> 1.5.2'
 gem 'font-awesome-rails'
+gem 'gon'
 gem 'htmltoword',                   github: 'recurser/htmltoword', branch: 'feature/adjust-styling'
 gem 'jbuilder',                     '~> 2.0'
 gem 'nokogiri'                      # Required by premailer-rails.
@@ -23,6 +24,11 @@ gem 'responders'
 gem 'sidekiq'
 gem 'sidekiq-scheduler'
 gem 'sinatra',                      require: nil # For sidekiq admin.
+gem 'stripe'
+gem 'stripe_event'
+gem 'omniauth-facebook'
+gem 'omniauth-linkedin'
+gem 'omniauth-twitter'
 gem 'thumbs_up'
 
 # Assets

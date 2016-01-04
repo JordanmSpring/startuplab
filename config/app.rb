@@ -8,4 +8,7 @@ class App < Configurable # :nodoc:
 
   # Log redis in the application log.
   config.log_redis = true
+
+  # Omniauth accounts.
+  config.linkedin_client_id = '752tw79uv0wlf1'
 end
