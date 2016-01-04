@@ -1,0 +1,49 @@
+@import 'colors';
+
+.sl-btn-facebook {
+  background: #5b74a8;
+  color:      $full-white;
+}
+
+.sl-btn-twitter {
+  background: #5bb75b;
+  color:      $full-white;
+}
+
+.sl-btn-linkedin {
+  background: #0077b5;
+  color:      $full-white;
+}
+
+.sl-social-login {
+  .btn {
+    display:     block;
+    font-weight: bold;
+    margin:      0 auto 10px auto;
+    max-width:   250px;
+    text-align:  left;
+
+    .fa {
+      margin-right: 10px;
+    }
+  }
+}
+
+.sl-email-login {
+  margin:    10px auto 0 auto;
+  max-width: 285px;
+}
+
+@media (min-width:992px) {
+  .sl-social-login  {
+    border-right: 1px solid $full-white;
+  }
+}
+
+@media (max-width:991px) {
+  .sl-social-login  {
+    border-bottom:  1px solid $full-white;
+    margin-bottom:  20px;
+    padding-bottom: 20px;
+  }
+}

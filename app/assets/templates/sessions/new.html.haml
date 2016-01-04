@@ -1,7 +1,6 @@
 .wrap
   .container
     %section#sign-in.row
-
       .register.col-lg-6
         %h1 Want to get involved in the startup community?
 
@@ -23,12 +22,25 @@
       .sign-in.col-lg-6
         %h1 Log in to the community
 
-        %form(name="sessionForm" ng-submit="sessionForm.$valid && login()" novalidate)
-          %div(ng-show="session.failed")
-            Invalid Password
-          / TODO: Validation
-          .form-group
-            %input#email.form-control(type="email" placeholder="Email address" ng-model="session.email" required)
-          .form-group
-            %input.form-control(type="password" placeholder="Password" ng-model="session.password" required)
-          %button.btn.btn-primary(ng-disabled="!sessionForm.$valid" type="Submit") Login
+        .row
+          .col-md-6.sl-social-login
+            = link_to user_omniauth_authorize_path(:facebook), class: [:btn, 'sl-btn-facebook'] do
+              %i.fa.fa-facebook
+              Continue with Facebook
+            = link_to user_omniauth_authorize_path(:twitter), class: [:btn, 'sl-btn-twitter'] do
+              %i.fa.fa-twitter
+              Continue with Twitter
+            = link_to user_omniauth_authorize_path(:linkedin), class: [:btn, 'sl-btn-linkedin'] do
+              %i.fa.fa-linkedin
+              Continue with LinkedIn
+
+          .col-md-6.sl-email-login
+            %form(name="sessionForm" ng-submit="sessionForm.$valid && login()" novalidate)
+              %div(ng-show="session.failed")
+                Invalid Password
+              / TODO: Validation
+              .form-group
+                %input#email.form-control(type="email" placeholder="Email address" ng-model="session.email" required)
+              .form-group
+                %input.form-control(type="password" placeholder="Password" ng-model="session.password" required)
+              %button.btn.btn-primary(ng-disabled="!sessionForm.$valid" type="Submit") Login

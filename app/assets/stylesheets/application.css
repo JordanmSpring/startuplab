@@ -25,6 +25,7 @@
  *= require canvas
  *= require founders
  *= require pricing
+ *= require session
  *= require social
  *= require support
  *= require user_ideas
