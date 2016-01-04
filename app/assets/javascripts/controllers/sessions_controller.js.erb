@@ -3,6 +3,16 @@ angular.module('StartupLab')
 .controller('SessionsController', ['$scope', 'Session', '$routeParams', function($scope, Session, $routeParams) {
   $scope.session = {};
 
+  // We need to dynamically add the origin for social links, in case the user
+  // is coming from the signup page and needs to be redirected back afterwards.
+  $('.sl-social-login .btn').click(function(event) {
+    if ($routeParams['origin']) {
+      var btn        = $(event.currentTarget);
+      var withOrigin = btn.attr('href') + '?origin=' + window.encodeURIComponent($routeParams['origin']);
+      btn.attr('href', withOrigin);
+    }
+  });
+
   $scope.login = function() {
     Session.login($scope.session.email, $scope.session.password, $routeParams['origin'], function() {
       /* Failure callback */

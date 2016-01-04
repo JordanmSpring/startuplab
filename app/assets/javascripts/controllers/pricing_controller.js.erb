@@ -25,7 +25,9 @@ angular.module('StartupLab')
     var ideaCount = $scope.session.currentUser().plan.ideaCount;
 
     if (ideaLimit && ideaCount > ideaLimit) {
-      $event.stopPropagation();
+      if ($event) {
+        $event.stopPropagation();
+      }
       var message = 'You have ' + ideaCount + ' canvases, but the ' + plan + ' plan allows a maximum of ' + ideaLimit + ' canvas(es). Please delete ' + (ideaCount - ideaLimit) + ' canvas(es) and then select this plan again.'
       alert(message)
       return false;

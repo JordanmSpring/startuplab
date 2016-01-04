@@ -4,7 +4,9 @@ angular.module('StartupLab').factory('Session', [ '$location', '$http', '$q', '$
   // Redirect to the given url (defaults to '/')
   function redirect(url) {
     url = url || '/';
-    $location.path(url);
+    // If we get angular-style URLs like '/#/home', we want to remove the hash prefix.
+    url = url.replace(/^\/#\//, '/');
+    $location.url(url);
   }
 
   var session = {

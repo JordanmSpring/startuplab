@@ -19,7 +19,8 @@
               per month
 
             .sl-login-link{ 'ng-show' => "!session.isAuthenticated()" }
-              %a.btn.btn-default.btn-md(href="/#/sign-in?plan=#{plan.id}&origin=/pricing")
+              - origin = URI::escape("/#/pricing?plan=#{plan.id}")
+              %a.btn.btn-default.btn-md(href="/#/sign-in?origin=#{origin}" target="_self")
                 Join Now
 
             .sl-login-link{ 'ng-show' => "session.isAuthenticated() && session.currentUser().plan.id == '#{plan.id}'" }
