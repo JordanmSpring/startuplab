@@ -25,6 +25,7 @@ gem 'sidekiq'
 gem 'sidekiq-scheduler'
 gem 'sinatra',                      require: nil # For sidekiq admin.
 gem 'stripe'
+gem 'stripe_event'
 gem 'omniauth-facebook'
 gem 'omniauth-linkedin'
 gem 'omniauth-twitter'

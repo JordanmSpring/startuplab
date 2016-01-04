@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   end if Rails.env.production? || Rails.env.staging?
   mount Sidekiq::Web, at: '/queue'
 
+  mount StripeEvent::Engine, at: '/stripe-callback'
+
   ActiveAdmin.routes(self)
   devise_for :users, controllers: {
     sessions:           'api/sessions',

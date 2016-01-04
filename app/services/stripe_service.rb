@@ -2,10 +2,9 @@ class StripeService
   attr_accessor :user, :token, :plan
 
   def initialize(user, token, plan)
-    @user          = user
-    @token         = token
-    @plan          = plan
-    Stripe.api_key = ENV['STRIPE_SECRET_KEY']
+    @user  = user
+    @token = token
+    @plan  = plan
   end
 
   # Creates or updates the user's subscription, depending on their plan.
