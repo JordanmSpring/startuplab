@@ -28,3 +28,5 @@ en:
       subject_votes:
         one:                            "Your idea '%{name}' has received a new like"
         other:                          "Your idea '%{name}' has received %{count} new likes"
+    plan_expired_email:
+      subject:                          "Your Startup Lab subscription has expired"

@@ -1,0 +1,41 @@
+
+%h4
+  = @subject
+
+%p
+  Hi
+  = succeed ',' do
+    = @user.name
+
+%p
+  Unfortunately your paid
+  %b
+    %i= @plan_name
+  plan has expired. You have been downgraded automatically to the
+  %b
+    %i= Plan::Free.name
+  plan.
+
+- if @ideas.present?
+  %p
+    None of your data has been removed, but these canvases have been made private:
+
+  %ul
+    - @ideas.each do |idea|
+      %li
+        = link_to idea.name, angular_idea_url(idea)
+
+  %p
+    You can upgrade your account at any time to make them public again.
+
+- else
+  %p
+    None of your data has been removed.
+
+%p
+  Feel free to reply to this mail if you have any questions, or would like assistance upgrading your account.
+
+%p
+  Regards,
+  %br
+  The team at Startup Labs
