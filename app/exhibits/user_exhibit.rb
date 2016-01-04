@@ -21,12 +21,14 @@ class UserExhibit
 
   def plan
     {
-      id:               object.plan.id,
-      name:             object.plan.name,
-      ideaLimit:        object.plan.max_num_ideas,
-      ideaCount:        object.ideas.count,
-      reachedIdeaLimit: object.reached_idea_limit?,
-      canExport:        object.can_export?,
+      id:                 object.plan.id,
+      name:               object.plan.name,
+      ideaLimit:          object.plan.max_num_ideas,
+      ideaCount:          object.ideas.count,
+      publishedIdeaCount: object.ideas.published.count,
+      reachedIdeaLimit:   object.reached_idea_limit?,
+      canExport:          object.can_export?,
+      canPublishIdeas:    object.can_publish_ideas?,
     }
   end
 end

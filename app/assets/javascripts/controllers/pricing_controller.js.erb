@@ -20,20 +20,25 @@ angular.module('StartupLab')
   // many ideas for the plan they want to move into. They will be prompted to
   // delete some ideas before they can downgrade.
   $scope.validatePlan = function(plan, $event) {
-    var form      = $('.sl-plan-' + plan + ' form');
-    var ideaLimit = form.data('idea-limit');
-    var ideaCount = $scope.session.currentUser().plan.ideaCount;
+    var form            = $('.sl-plan-' + plan + ' form');
+    var ideaLimit       = form.data('idea-limit');
+    var canPublishIdeas = form.data('can-publish-ideas');
+    var planData        = $scope.session.currentUser().plan;
 
-    if (ideaLimit && ideaCount > ideaLimit) {
-      if ($event) {
-        $event.stopPropagation();
-      }
-      var message = 'You have ' + ideaCount + ' canvases, but the ' + plan + ' plan allows a maximum of ' + ideaLimit + ' canvas(es). Please delete ' + (ideaCount - ideaLimit) + ' canvas(es) and then select this plan again.'
+    if (ideaLimit && planData.ideaCount > ideaLimit) {
+      var message = 'You have ' + planData.ideaCount + ' canvases, but the ' + plan + ' plan allows a maximum of ' + ideaLimit + ' canvas(es). Please delete ' + (planData.ideaCount - ideaLimit) + ' canvas(es) and then select this plan again.'
       alert(message)
-      return false;
+    } else if (!canPublishIdeas && planData.publishedIdeaCount > 0) {
+      var message = 'You have ' + planData.publishedIdeaCount + ' published canvas(es), but the ' + plan + ' plan is limited to private canvases. Please make all canvases private and then select this plan again.'
+      alert(message)
     } else {
       return true;
     }
+
+    if ($event) {
+      $event.stopPropagation();
+    }
+    return false;
   }
 
   $scope.submitFreePlan = function(plan, $event) {

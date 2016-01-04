@@ -17,7 +17,7 @@ class Plan::Free < Plan
 
   def self.features
     [
-      '1 canvas',
+      '1 private canvas',
     ]
   end
 
@@ -26,6 +26,10 @@ class Plan::Free < Plan
   end
 
   def self.can_export?
+    false
+  end
+
+  def self.can_publish_ideas?
     false
   end
 

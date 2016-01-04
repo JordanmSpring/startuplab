@@ -29,6 +29,9 @@ angular.module('StartupLab')
     if (confirm('Are you sure you want to make this idea public?')) {
       Idea.publish($scope.idea).then(function() {
         $scope.idea.published = true;
+        // We need to refresh the user in case they try to downgrade later to a
+        // plan that doesn't allow published plans.
+        Session.refreshCurrentUser();
       }, function() {
         alert('Sorry, the idea could not be published. If this problem continues, contact support.');
       });
@@ -39,6 +42,9 @@ angular.module('StartupLab')
     if (confirm('Are you sure you want to make this idea private?')) {
       Idea.unpublish($scope.idea).then(function() {
         $scope.idea.published = false;
+        // We need to refresh the user in case they try to downgrade later to a
+        // plan that doesn't allow published plans.
+        Session.refreshCurrentUser();
       }, function() {
         alert('Sorry, this idea could not be made private. If this problem continues, contact support.');
       });

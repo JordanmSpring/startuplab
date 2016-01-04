@@ -16,7 +16,7 @@ class IdeaPolicy < ApplicationPolicy
   end
 
   def publish?
-    update?
+    update? && user.can_publish_ideas?
   end
 
   def unpublish?

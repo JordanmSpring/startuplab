@@ -13,7 +13,7 @@ class Plan::Entrepreneur < Plan
 
   def self.features
     [
-      'Unlimited canvases',
+      'Unlimited private and public canvases',
       'Ability to export business plan',
       'Automated and exported financials',
       'Notifications and comments',
