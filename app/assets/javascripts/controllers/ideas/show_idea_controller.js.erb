@@ -26,6 +26,12 @@ angular.module('StartupLab')
   });
 
   var publish = function() {
+    // Force the user to upgrade if they don't have the ability to publish.
+    if (Session.currentUser().plan.canPublishIdeas == false) {
+      $location.path('/upgrade/publish');
+      return;
+    }
+
     if (confirm('Are you sure you want to make this idea public?')) {
       Idea.publish($scope.idea).then(function() {
         $scope.idea.published = true;
