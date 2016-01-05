@@ -55,14 +55,12 @@
                 %a.btn.btn-default.disabled.btn-md.sl-coming-soon
                   Coming Soon
 
-    .row
-      - [Plan::Free, Plan::Entrepreneur, Plan::Founder].each do |plan|
-        .col-sm-4.sl-plan-features{ class: "sl-plan-features-#{plan.id}" }
-          .sl-feature-wrapper
-            %h4
-              = plan.name
-              includes:
-            %ul
-              - plan.features.each do |feature|
-                %li
-                  = feature
+          .sl-plan-features{ class: "sl-plan-features-#{plan.id}" }
+            .sl-feature-wrapper
+              %h4
+                = plan.name
+                includes:
+              %ul
+                - plan.features.each do |feature|
+                  %li
+                    = feature
