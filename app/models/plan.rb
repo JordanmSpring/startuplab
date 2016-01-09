@@ -43,4 +43,8 @@ class Plan
     true
   end
 
+  def self.can_see_financials?
+    true
+  end
+
 end

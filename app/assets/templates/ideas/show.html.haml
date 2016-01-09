@@ -16,7 +16,7 @@
               %i.fa.fa-file-text-o
               Export
             //%a.btn.btn-default(ng-show="idea.owner" ng-href="{{ '/#/ideas/' + idea.id + '/users' }}") Share
-            %a.btn.btn-default(ng-show="idea.owner" ng-href="{{ '/#/ideas/' + idea.id + '/financials' }}")
+            %a.btn.btn-default(ng-href="{{ session.currentUser().plan.canSeeFinancials ? '/#/ideas/' + idea.id + '/financials' : '/#/upgrade/financials' }}" ng-show="idea.owner")
               %i.fa.fa-dollar
               Financials
             %a.btn.btn-default(ng-show="idea.owner" ng-click="delete()")

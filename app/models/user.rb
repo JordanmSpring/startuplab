@@ -53,6 +53,10 @@ class User < ActiveRecord::Base
     plan.can_publish_ideas? || is_admin?
   end
 
+  def can_see_financials?
+    plan.can_see_financials? || is_admin?
+  end
+
   # Tells devise not to perform email validation.
   def email_required?
     provider != 'twitter'
