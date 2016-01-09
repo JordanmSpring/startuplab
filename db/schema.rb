@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160103083522) do
+ActiveRecord::Schema.define(version: 20160109070648) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,18 @@ ActiveRecord::Schema.define(version: 20160103083522) do
     t.integer "crowdfunding_option_id"
     t.integer "idea_id"
   end
+
+  create_table "financial_entries", force: :cascade do |t|
+    t.integer  "idea_id"
+    t.string   "group",      null: false
+    t.string   "name",       null: false
+    t.integer  "value",      null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "financial_entries", ["idea_id", "group"], name: "index_financial_entries_on_idea_id_and_group", using: :btree
+  add_index "financial_entries", ["idea_id"], name: "index_financial_entries_on_idea_id", using: :btree
 
   create_table "founders", force: :cascade do |t|
     t.integer  "user_id"
