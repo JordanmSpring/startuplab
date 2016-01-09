@@ -1,0 +1,28 @@
+%a.inner(ng-click="showModal()")
+  %span.title {{ linkTitle }}
+  .sl-financial-entries
+    %table(ng-show="idea.financialEntries[financialGroup].length > 0")
+      %tr(ng-repeat="entry in idea.financialEntries[financialGroup]")
+        %td.sl-entry-name
+          {{ entry.name }}
+        %td.sl-entry-value
+          {{ entry.value }}
+
+#md-idea-financials.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %h2 {{ linkTitle }}
+      .modal-body
+        .sl-financial-labels(ng-show="idea.financialEntries[financialGroup].length > 0")
+          %label.sl-entry-name-label
+            Name
+          %label.sl-entry-value-label
+            Cost
+        .clearfix
+        %div(ng-repeat="entry in idea.financialEntries[financialGroup]")
+          .sl-entry-name
+            %input.form-control.input-sm(ng-show="idea.canEdit" type="text" ng-model="entry.name" ng-change="setName()" id="'sl-entry-name-' + entry.id" placeholder="Name" required)
+          .sl-entry-value
+            %input.form-control.input-sm(ng-show="idea.canEdit" type="number" ng-model="entry.value" ng-change="setValue()" id="'sl-entry-value-' + entry.id" placeholder="value" required)
+          .clearfix

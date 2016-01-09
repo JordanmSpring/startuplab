@@ -1,0 +1,9 @@
+angular.module('StartupLab')
+.controller('ShowFinancialPanelController', ['$scope', '$routeParams', function($scope, $routeParams) {
+  $scope.invite = {};
+
+  $scope.showModal = function() {
+    $scope.modal.modal('show');
+    console.log('idea', $scope.idea);
+  };
+}]);

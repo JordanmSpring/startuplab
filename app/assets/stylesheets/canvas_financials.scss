@@ -24,3 +24,32 @@
   .grid-item--outflows,     .grid-item--outflows    .modal-content  { background-color: #e6db97; }
 
 }
+
+.sl-financial-entries {
+  table {
+    width: 100%;
+  }
+  td.sl-entry-name {
+     text-align: left;
+  }
+  td.sl-entry-value {
+     text-align: right;
+  }
+}
+
+.modal {
+  .sl-entry-name-label,
+  .sl-entry-value-label,
+  .sl-entry-name,
+  .sl-entry-value {
+    float: left;
+  }
+  .sl-entry-name-label,
+  .sl-entry-name {
+    width: 75%;
+  }
+  .sl-entry-value-label,
+  .sl-entry-value {
+    width: 25%;
+  }
+}
