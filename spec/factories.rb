@@ -54,4 +54,9 @@ FactoryGirl.define do
     association :shared_user, factory: :user
   end
 
+  factory :vote do
+    association :voteable, factory: :idea
+    association :voter,    factory: :user
+  end
+
 end
