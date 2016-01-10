@@ -1,6 +1,6 @@
 angular.module('StartupLab')
 .controller('ShowFinancialPanelController', ['$scope', '$routeParams', 'FinancialEntry', function($scope, $routeParams, FinancialEntry) {
-  $scope.invite = {};
+  $scope.newEntry = {};
 
   $scope.showModal = function() {
     $scope.modal.modal('show');
@@ -9,4 +9,16 @@ angular.module('StartupLab')
   $scope.updateEntry = function(entry) {
     FinancialEntry.save($scope.idea, entry);
   }
+
+  $scope.createEntry = function(group) {
+    $scope.newEntry.group = group;
+    FinancialEntry.create($scope.idea, $scope.newEntry).then(function(resp) {
+      $scope.newEntry = {};
+      if (!$scope.idea.financialEntries[group]) {
+        $scope.idea.financialEntries[group] = [];
+      }
+      $scope.idea.financialEntries[group].push(resp.data);
+      $scope.newEntryForm.$setPristine();
+    });
+  };
 }]);

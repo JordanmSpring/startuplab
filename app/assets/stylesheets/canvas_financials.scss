@@ -11,7 +11,10 @@
   }
 
   .grid-item,
-  .grid-sizer { width: $item-width; }
+  .grid-sizer {
+    overflow: hidden;
+    width:    $item-width;
+  }
 
   .grid-item--height-norm   { height: 292px; }
   .grid-item--height-double { height: 584px; }
@@ -51,5 +54,10 @@
   .sl-entry-value-label,
   .sl-entry-value {
     width: 25%;
+  }
+
+  .sl-entry-create button[type="submit"] {
+    float:      right;
+    margin-top: 8px;
   }
 }

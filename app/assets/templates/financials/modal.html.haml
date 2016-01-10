@@ -1,12 +1,12 @@
 %a.inner(ng-click="showModal()")
-  %span.title {{ linkTitle }}
+  %h4.title {{ linkTitle }}
   .sl-financial-entries
     %table(ng-show="idea.financialEntries[financialGroup].length > 0")
       %tr(ng-repeat="entry in idea.financialEntries[financialGroup]")
         %td.sl-entry-name
           {{ entry.name }}
         %td.sl-entry-value
-          {{ entry.value }}
+          ${{ entry.value }}
 
 #md-idea-financials.modal.fade
   .modal-dialog
@@ -16,13 +16,24 @@
       .modal-body
         .sl-financial-labels(ng-show="idea.financialEntries[financialGroup].length > 0")
           %label.sl-entry-name-label
-            Name
+            Description
           %label.sl-entry-value-label
-            Cost
+            Cost ($)
         .clearfix
+
         %div(ng-repeat="entry in idea.financialEntries[financialGroup]")
           .sl-entry-name
-            %input.form-control.input-sm(ng-show="idea.canEdit" type="text" ng-model="entry.name" ng-blur="updateEntry(entry)" placeholder="Name" required)
+            %input.form-control.input-sm(type="text" ng-model="entry.name" ng-blur="updateEntry(entry)" placeholder="Description" required)
           .sl-entry-value
-            %input.form-control.input-sm(ng-show="idea.canEdit" type="number" ng-model="entry.value" ng-blur="updateEntry(entry)" placeholder="value" required)
+            %input.form-control.input-sm(type="number" ng-model="entry.value" ng-blur="updateEntry(entry)" placeholder="Cost" required)
+          .clearfix
+
+        %form.sl-entry-create(name='newEntryForm' ng-submit="createEntry(financialGroup)")
+          .sl-entry-name
+            %input.form-control.input-sm(type="text" ng-model="newEntry.name" placeholder="Add a new entry" required)
+          .sl-entry-value
+            %input.form-control.input-sm(type="number" ng-model="newEntry.value" placeholder="Cost" required)
+          %button.btn.btn-default.btn-sm(type="submit")
+            %i.fa.fa-check
+            Add Entry
           .clearfix

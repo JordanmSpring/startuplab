@@ -10,19 +10,19 @@ class Api::FinancialEntriesController < ApplicationController
 
   def create
     authorize(@idea, :update?)
-    @idea.financial_entries.create!(entry_params)
-    head :ok
+    entry = @idea.financial_entries.create!(entry_params)
+    render json: FinancialEntryExhibit.new(entry)
   end
 
   def update
     authorize(@entry, :update?)
     @entry.update!(entry_params)
-    head :ok
+    render json: FinancialEntryExhibit.new(@entry)
   end
 
   private
     def find_idea
-      Pundit.policy_scope!(current_user, Idea).find(params[:idea_id])
+      @idea ||= Pundit.policy_scope!(current_user, Idea).find(params[:idea_id])
     end
 
     def find_entry
