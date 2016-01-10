@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
     self.invitation_accepted_at.blank?
   end
 
-  def is_admin?
+  def admin?
     role == User::ROLE_ADMIN
   end
 
@@ -38,23 +38,23 @@ class User < ActiveRecord::Base
   end
 
   def reached_idea_limit?
-    ideas.count >= plan.max_num_ideas.to_i && !plan.max_num_ideas.nil? && !is_admin?
+    ideas.count >= plan.max_num_ideas.to_i && !plan.max_num_ideas.nil? && !admin?
   end
 
   def can_export?
-    plan.can_export? || is_admin?
+    plan.can_export? || admin?
   end
 
   def can_notify?
-    plan.can_notify? || is_admin?
+    plan.can_notify? || admin?
   end
 
   def can_publish_ideas?
-    plan.can_publish_ideas? || is_admin?
+    plan.can_publish_ideas? || admin?
   end
 
   def can_see_financials?
-    plan.can_see_financials? || is_admin?
+    plan.can_see_financials? || admin?
   end
 
   # Tells devise not to perform email validation.
