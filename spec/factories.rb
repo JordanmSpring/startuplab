@@ -6,6 +6,12 @@ FactoryGirl.define do
     name FFaker::Product.product
   end
 
+  factory :comment do
+    body FFaker::Lorem.paragraph
+    idea
+    user
+  end
+
   factory :idea do
     name FFaker::Product.product
     user
