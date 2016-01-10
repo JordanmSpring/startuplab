@@ -23,6 +23,11 @@ FactoryGirl.define do
     idea
   end
 
+  factory :founder do
+    idea
+    user
+  end
+
   factory :idea do
     name FFaker::Product.product
     user
