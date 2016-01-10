@@ -2,6 +2,10 @@ require 'factory_girl'
 require 'ffaker'
 
 FactoryGirl.define do
+  factory :channel do
+    name FFaker::Product.product
+  end
+
   factory :idea do
     name FFaker::Product.product
     user
