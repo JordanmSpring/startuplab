@@ -16,6 +16,13 @@ FactoryGirl.define do
     name FFaker::Product.product
   end
 
+  factory :financial_entry do
+    name  FFaker::Product.product
+    group FinancialEntry::GROUP_ASSETS
+    sequence(:value)
+    idea
+  end
+
   factory :idea do
     name FFaker::Product.product
     user

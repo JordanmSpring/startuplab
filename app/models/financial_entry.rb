@@ -24,6 +24,6 @@ class FinancialEntry < ActiveRecord::Base
              numericality: { greater_than_or_equal_to: 0 }
 
   def value
-    self[:value].round(2)
+    self[:value].try(:round, 2)
   end
 end
