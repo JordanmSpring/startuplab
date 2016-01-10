@@ -1,5 +1,8 @@
 %a.inner(ng-click="showModal()")
-  %h4.title {{ linkTitle }}
+  %h5.title
+    {{ linkTitle }}
+    .pull-right(ng-show="totals[financialGroup] > 0")
+      ${{ totals[financialGroup] }}
   .sl-financial-entries
     %table(ng-show="idea.financialEntries[financialGroup].length > 0")
       %tr(ng-repeat="entry in idea.financialEntries[financialGroup]")

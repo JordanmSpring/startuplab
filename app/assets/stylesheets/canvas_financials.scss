@@ -4,6 +4,10 @@
   $modal-inverted: #867877;
   $item-width:     292px;
 
+  td {
+    font-weight: normal;
+  }
+
   .grid-item.inverted {
     p, input, textarea, label, h2, a {
       color: $modal-inverted;
