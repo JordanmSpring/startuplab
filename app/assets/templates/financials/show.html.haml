@@ -1,4 +1,4 @@
-.wrap
+.wrap(ng-if="session.currentUser().plan && session.currentUser().plan.canSeeFinancials")
   .container
     .row
       .col-lg-12

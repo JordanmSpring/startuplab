@@ -17,7 +17,11 @@ class FinancialEntryPolicy < ApplicationPolicy
 
   class Scope < Scope
     def resolve
-      scope.joins(:idea).where('ideas.user_id = ?', user.id)
+      if (user.persisted?)
+        scope.joins(:idea).where('ideas.user_id = ?', user.id)
+      else
+        scope.none
+      end
     end
   end
 end
