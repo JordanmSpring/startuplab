@@ -45,8 +45,24 @@ group :development, :test do
   gem 'byebug'
   gem 'dotenv-rails'
   gem 'quiet_assets'
+  gem 'rspec-rails'
   gem 'spring'
   gem 'web-console',                '~> 2.0'
+end
+
+group :test do
+  gem 'test_after_commit'               # Note - will not be needed in rails 5.
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'email_spec'
+  gem 'factory_girl_rails'
+  gem 'ffaker'
+  gem 'phantomjs',                      require: 'phantomjs/poltergeist'
+  gem 'poltergeist'
+  gem 'rspec-collection_matchers'
+  gem 'shoulda-matchers'
+  gem 'timecop'
+  gem 'webmock',                        require: false
 end
 
 group :production do
