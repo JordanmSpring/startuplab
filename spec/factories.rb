@@ -48,4 +48,10 @@ FactoryGirl.define do
     end
   end
 
+  factory :user_idea do
+    access_level UserIdea::ACCESS_READ
+    association :shared_idea, factory: :idea
+    association :shared_user, factory: :user
+  end
+
 end
