@@ -1,8 +1,9 @@
 @import 'colors';
 
 .sl-grid-financials.grid {
+  $canvas-width:   1140px;
   $modal-inverted: #867877;
-  $item-width:     292px;
+  $item-width:     285px;
 
   td {
     font-weight: normal;
