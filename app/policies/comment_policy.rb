@@ -4,7 +4,7 @@ class CommentPolicy < ApplicationPolicy
   end
 
   def update?
-    @record.owner?(user) || user.is_admin?
+    @record.owner?(user) || user.admin?
   end
 
   def create?

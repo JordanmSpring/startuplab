@@ -1,0 +1,58 @@
+angular.module('StartupLab')
+.controller('ShowFinancialPanelController', ['$scope', '$routeParams', 'FinancialEntry', function($scope, $routeParams, FinancialEntry) {
+  $scope.newEntry = {};
+  $scope.totals   = {};
+
+
+  $scope.updateTotals = function() {
+    if (!$scope.idea) {
+      return;
+    }
+
+    angular.forEach($scope.idea.financialEntries, function (entries, group) {
+      $scope.totals[group] = 0;
+      angular.forEach(entries, function(entry) {
+        $scope.totals[group] += entry.value;
+      });
+    });
+  };
+
+  $scope.$watch('idea', function() {
+    $scope.updateTotals();
+  });
+
+  $scope.showModal = function() {
+    $scope.modal.modal('show');
+  };
+
+  $scope.updateEntry = function(entry) {
+    FinancialEntry.save($scope.idea, entry).then(function(response) {
+      $scope.updateTotals();
+    });
+  }
+
+  $scope.destroyEntry = function(entry) {
+    if (confirm('Are you sure?')) {
+      FinancialEntry.destroy($scope.idea, entry).then(function(response) {
+        var index = $scope.idea.financialEntries[entry.group].indexOf(entry);
+        if (index > -1) {
+          $scope.idea.financialEntries[entry.group].splice(index, 1);
+        }
+        $scope.updateTotals();
+      });
+    };
+  }
+
+  $scope.createEntry = function(group) {
+    $scope.newEntry.group = group;
+    FinancialEntry.create($scope.idea, $scope.newEntry).then(function(response) {
+      $scope.newEntry = {};
+      if (!$scope.idea.financialEntries[group]) {
+        $scope.idea.financialEntries[group] = [];
+      }
+      $scope.idea.financialEntries[group].push(response.data);
+      $scope.newEntryForm.$setPristine();
+      $scope.updateTotals();
+    });
+  };
+}]);

@@ -1,0 +1,16 @@
+
+angular.module('StartupLab').directive("slFinancialPanel", function() {
+  return {
+    restrict: 'E',
+    templateUrl: 'financials/modal.html',
+    controller: 'ShowFinancialPanelController',
+    scope: {
+      idea:           '=ngModel',
+      linkTitle:      '@',
+      financialGroup: '@'
+    },
+    link: function(scope, element) {
+      scope.modal = element.find('.modal');
+    }
+  }
+});

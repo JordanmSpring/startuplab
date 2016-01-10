@@ -29,6 +29,7 @@ class UserExhibit
       reachedIdeaLimit:   object.reached_idea_limit?,
       canExport:          object.can_export?,
       canPublishIdeas:    object.can_publish_ideas?,
+      canSeeFinancials:   object.can_see_financials?,
     }
   end
 end

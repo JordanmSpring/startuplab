@@ -14,7 +14,7 @@ development:
 
 test:
   <<: *common
-  database: <%= ENV['DB_NAME_TEST'] || 'startuplab' %><%= ENV['TEST_ENV_NUMBER'] %>
+  database: <%= ENV['DB_NAME_TEST'] || 'startuplab_test' %><%= ENV['TEST_ENV_NUMBER'] %>
   pool: 5
 
 staging:

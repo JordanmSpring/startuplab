@@ -10,5 +10,8 @@ tmp/
 /vendor/gems/htmltoword/
 /.env
 
+# Testing
+/spec/examples.txt
+
 # Miscellaneous
 .DS_Store

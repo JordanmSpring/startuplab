@@ -41,6 +41,11 @@ angular.module('StartupLab', ['ngRoute', 'ngResource', 'frapontillo.bootstrap-sw
       controller: 'StaticController',
       resolve: { user: refreshCurrentUser }
     })
+    .when('/upgrade/financials', {
+      templateUrl: 'static/upgrade-financials.html',
+      controller: 'StaticController',
+      resolve: { user: refreshCurrentUser }
+    })
     .when('/upgrade/thanks', {
       templateUrl: 'static/upgrade-thanks.html',
       controller: 'StaticController',
@@ -73,6 +78,11 @@ angular.module('StartupLab', ['ngRoute', 'ngResource', 'frapontillo.bootstrap-sw
     .when('/ideas/:id', {
       templateUrl: 'ideas/show.html',
       controller: 'ShowIdeaController',
+      resolve: { user: loadCurrentUser }
+    })
+    .when('/ideas/:id/financials', {
+      templateUrl: 'financials/show.html',
+      controller: 'ShowFinancialsController',
       resolve: { user: loadCurrentUser }
     })
     .when('/ideas/:ideaId/users', {

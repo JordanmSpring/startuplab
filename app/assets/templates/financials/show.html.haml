@@ -1,0 +1,33 @@
+.wrap(ng-if="session.currentUser().plan && session.currentUser().plan.canSeeFinancials")
+  .container
+    .row
+      .col-lg-12
+        %h1
+          .pull-right
+            %a.btn.btn-default(ng-show="idea.owner" ng-href="{{ '/#/ideas/' + idea.id }}")
+              %i.fa.fa-chevron-left
+              Back
+
+          {{ idea.name }}
+
+    %section.row
+      .col-lg-12
+        .grid.sl-grid-financials
+          .grid-sizer
+          .grid-item.grid-item--height-double.grid-item--assets.inverted
+            %sl-financial-panel(ng-model="idea" financial-group="assets" link-title="Assets")
+
+          .grid-item.grid-item--height-double.grid-item--liabilities
+            %sl-financial-panel(ng-model="idea" financial-group="liabilities" link-title="Liabilities")
+
+          .grid-item.grid-item--height-norm.grid-item--capital.inverted
+            %sl-financial-panel(ng-model="idea" financial-group="founders capital" link-title="Founders Capital")
+
+          .grid-item.grid-item--height-norm.grid-item--inflows
+            %sl-financial-panel(ng-model="idea" financial-group="cash inflows" link-title="Cash Inflows")
+
+          .grid-item.grid-item--height-norm.grid-item--metrics.inverted
+            %sl-financial-panel(ng-model="idea" financial-group="metrics" link-title="Metrics")
+
+          .grid-item.grid-item--height-norm.grid-item--outflows.inverted
+            %sl-financial-panel(ng-model="idea" financial-group="cash outflows" link-title="Cash Outflows")

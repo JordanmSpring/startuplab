@@ -37,6 +37,7 @@ Rails.application.routes.draw do
       resources :problems
       resources :comments
       resources :channels
+      resources :financial_entries, only: [:create, :update, :destroy]
       resources :funding_options
       resources :founders
       resources :user_ideas, only: [:index]

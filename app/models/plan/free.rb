@@ -36,4 +36,8 @@ class Plan::Free < Plan
   def self.can_notify?
     false
   end
+
+  def self.can_see_financials?
+    false
+  end
 end

@@ -5,6 +5,7 @@ class Idea < ActiveRecord::Base
   has_many :problems
   has_many :comments, -> { order(created_at: :desc) }, dependent: :destroy
   has_many :founders, -> { order(:created_at) }, dependent: :destroy
+  has_many :financial_entries, -> { order(:created_at) }, dependent: :destroy
   has_many :users, through: :founders
   has_many :user_ideas
   has_many :shared_users, through: :user_ideas
@@ -14,6 +15,9 @@ class Idea < ActiveRecord::Base
   scope :published, -> { where(published: true) }
   scope :draft,     -> { where.not(published: true) }
   scope :recent,    -> { order('ideas.created_at DESC') }
+
+  validates :name,
+             presence:  true
 
   # We don't want to notify users about their own comments.
   def comments_pending_notification

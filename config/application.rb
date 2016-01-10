@@ -27,5 +27,8 @@ module Startuplab
 
     # Treat angular.js templates as assets.
     config.assets.paths << File.join(Rails.root, 'app', 'assets', 'templates')
+
+    # Don't quote decimals in JSON responses, because it breaks angular number input fields.
+    ActiveSupport::JSON::Encoding.encode_big_decimal_as_string = false
   end
 end

@@ -24,6 +24,9 @@ class Comment < ActiveRecord::Base
     STATUS_APPROVED            = 'approved',
   ]
 
+  validates :body,
+            presence:  true
+
   validates :status,
             presence:  true,
             inclusion: STATUSES

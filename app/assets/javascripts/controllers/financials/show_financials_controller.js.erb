@@ -1,0 +1,22 @@
+angular.module('StartupLab')
+.controller('ShowFinancialsController', ['$scope', '$routeParams', '$location', 'Idea', 'Session', 'user',
+  function($scope, $routeParams, $location, Idea, Session, user) {
+
+  $scope.session = Session;
+
+  // TODO: Use a resolver in the routes
+  Idea.find($routeParams.id).then(function(response) {
+    $scope.idea = response.data;
+  });
+
+  /* Init isotope */
+  $('.grid').isotope({
+    itemSelector: '.grid-item',
+    masonry: {
+      // use outer width of grid-sizer for columnWidth
+      columnWidth: 285
+    },
+    sortBy: 'original-order'
+  });
+
+}]);
