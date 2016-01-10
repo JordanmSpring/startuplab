@@ -12,6 +12,10 @@ FactoryGirl.define do
     user
   end
 
+  factory :crowdfunding_option do
+    name FFaker::Product.product
+  end
+
   factory :idea do
     name FFaker::Product.product
     user
