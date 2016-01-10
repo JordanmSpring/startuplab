@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 20160109070648) do
     t.integer  "idea_id"
     t.string   "group",      null: false
     t.string   "name",       null: false
-    t.integer  "value",      null: false
+    t.decimal  "value",      null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

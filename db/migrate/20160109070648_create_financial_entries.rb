@@ -4,7 +4,7 @@ class CreateFinancialEntries < ActiveRecord::Migration
       t.references :idea
       t.string     :group, null: false
       t.string     :name,  null: false
-      t.integer    :value, null: false
+      t.decimal    :value, null: false
       t.timestamps null: false
     end
 

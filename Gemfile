@@ -4,6 +4,7 @@ ruby '2.2.2'
 
 gem 'activeadmin',                  github: 'activeadmin'
 gem 'active_model_serializers',     '~> 0.9.3'
+gem 'activesupport-json_encoder'
 gem 'angular_rails_csrf',           '~> 1.0.4'
 gem 'angular-rails-templates'
 gem 'app'

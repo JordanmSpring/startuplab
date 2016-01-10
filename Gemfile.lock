@@ -66,6 +66,8 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    activesupport-json_encoder (1.1.0)
+      activesupport (>= 4.1.0, < 5.0)
     addressable (2.4.0)
     angular-rails-templates (0.2.0)
       railties (>= 3.1)
@@ -401,6 +403,7 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers (~> 0.9.3)
   activeadmin!
+  activesupport-json_encoder
   angular-rails-templates
   angular_rails_csrf (~> 1.0.4)
   app

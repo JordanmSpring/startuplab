@@ -59,7 +59,11 @@
   }
   .sl-entry-value-label,
   .sl-entry-value {
-    width: 25%;
+    text-align: right;
+    width:      25%;
+  }
+  .sl-entry-value input {
+    text-align: right;
   }
   .sl-entry-destroy {
     cursor: pointer;

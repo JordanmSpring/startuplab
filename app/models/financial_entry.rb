@@ -23,4 +23,7 @@ class FinancialEntry < ActiveRecord::Base
              presence:     true,
              numericality: { greater_than_or_equal_to: 0 }
 
+  def value
+    self[:value].round(2)
+  end
 end
