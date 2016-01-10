@@ -1,9 +1,12 @@
 angular.module('StartupLab')
-.controller('ShowFinancialPanelController', ['$scope', '$routeParams', function($scope, $routeParams) {
+.controller('ShowFinancialPanelController', ['$scope', '$routeParams', 'FinancialEntry', function($scope, $routeParams, FinancialEntry) {
   $scope.invite = {};
 
   $scope.showModal = function() {
     $scope.modal.modal('show');
-    console.log('idea', $scope.idea);
   };
+
+  $scope.updateEntry = function(entry) {
+    FinancialEntry.save($scope.idea, entry);
+  }
 }]);

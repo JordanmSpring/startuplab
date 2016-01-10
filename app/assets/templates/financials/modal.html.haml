@@ -22,7 +22,7 @@
         .clearfix
         %div(ng-repeat="entry in idea.financialEntries[financialGroup]")
           .sl-entry-name
-            %input.form-control.input-sm(ng-show="idea.canEdit" type="text" ng-model="entry.name" ng-change="setName()" id="'sl-entry-name-' + entry.id" placeholder="Name" required)
+            %input.form-control.input-sm(ng-show="idea.canEdit" type="text" ng-model="entry.name" ng-blur="updateEntry(entry)" placeholder="Name" required)
           .sl-entry-value
-            %input.form-control.input-sm(ng-show="idea.canEdit" type="number" ng-model="entry.value" ng-change="setValue()" id="'sl-entry-value-' + entry.id" placeholder="value" required)
+            %input.form-control.input-sm(ng-show="idea.canEdit" type="number" ng-model="entry.value" ng-blur="updateEntry(entry)" placeholder="value" required)
           .clearfix
