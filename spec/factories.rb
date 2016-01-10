@@ -33,6 +33,11 @@ FactoryGirl.define do
     user
   end
 
+  factory :problem do
+    description FFaker::Lorem.paragraph
+    idea
+  end
+
   factory :user do
     sequence(:email) { |n| "user-#{n}@example.com" }
     name             FFaker::Name.name
