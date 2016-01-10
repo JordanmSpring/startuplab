@@ -26,6 +26,9 @@
             %input.form-control.input-sm(type="text" ng-model="entry.name" ng-blur="updateEntry(entry)" placeholder="Description" required)
           .sl-entry-value
             %input.form-control.input-sm(type="number" ng-model="entry.value" ng-blur="updateEntry(entry)" placeholder="Cost" required)
+          .sl-entry-destroy
+            %a(ng-click="destroyEntry(entry)")
+              %i.fa.fa-remove
           .clearfix
 
         %form.sl-entry-create(name='newEntryForm' ng-submit="createEntry(financialGroup)")

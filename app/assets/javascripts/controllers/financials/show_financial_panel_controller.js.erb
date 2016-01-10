@@ -10,6 +10,17 @@ angular.module('StartupLab')
     FinancialEntry.save($scope.idea, entry);
   }
 
+  $scope.destroyEntry = function(entry) {
+    if (confirm('Are you sure?')) {
+      FinancialEntry.destroy($scope.idea, entry).then(function(resp) {
+        var index = $scope.idea.financialEntries[entry.group].indexOf(entry);
+        if (index > -1) {
+          $scope.idea.financialEntries[entry.group].splice(index, 1);
+        }
+      });
+    };
+  }
+
   $scope.createEntry = function(group) {
     $scope.newEntry.group = group;
     FinancialEntry.create($scope.idea, $scope.newEntry).then(function(resp) {
