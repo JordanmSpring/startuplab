@@ -88,4 +88,8 @@ Rails.application.configure do
   }
 
   config.action_mailer.default_url_options = App.mailer_default_url_options
+
+  # Show debug stacktraces on failure.
+  # http://stackoverflow.com/a/23868088/72120
+  config.consider_all_requests_local = !ENV['LOCAL_REQUESTS'].nil?
 end
