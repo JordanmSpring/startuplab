@@ -25,7 +25,7 @@ angular.module('StartupLab').directive("slFinancialPanel", function() {
         scope.nameHeading = 'Description';
       }
       if (!scope.valueHeading) {
-        scope.valueHeading = 'Cost ($)';
+        scope.valueHeading = 'Figure ($)';
       }
       // Usually figures are dollar costs. In some cases (like metrics), we want to treat them as regular numbers.
       if (scope.noCurrencies) {
