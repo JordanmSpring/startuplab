@@ -21,6 +21,13 @@
     width:    $item-width;
   }
 
+  .grid-item {
+    h5.title,
+    h5.title div {
+      font-weight: bold;
+    }
+  }
+
   .grid-item:hover {
     h5.title,
     h5.title div {
