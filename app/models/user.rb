@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
   end
 
   def plan
-    Plan.find_by_id(self[:plan])
+    Plan.find_by_id(plan_id)
   end
 
   def reached_idea_limit?

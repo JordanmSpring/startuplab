@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160109070648) do
+ActiveRecord::Schema.define(version: 20160111062356) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -131,7 +131,7 @@ ActiveRecord::Schema.define(version: 20160109070648) do
     t.string   "invited_by_type"
     t.integer  "invitations_count",      default: 0
     t.string   "role",                   default: "user", null: false
-    t.string   "plan",                   default: "free", null: false
+    t.string   "plan_id",                default: "free", null: false
     t.string   "stripe_customer_id"
     t.string   "provider"
     t.string   "uid"

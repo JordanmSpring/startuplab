@@ -7,7 +7,7 @@ class PaymentsController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    service  = StripeService.new(current_user, params[:stripeToken], params[:plan])
+    service  = StripeService.new(current_user, params[:stripeToken], params[:plan_id])
 
     begin
       service.process!

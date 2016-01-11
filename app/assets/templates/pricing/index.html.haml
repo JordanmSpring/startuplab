@@ -20,7 +20,7 @@
 
             - if plan.is_live?
               .sl-login-link{ 'ng-show' => "!session.isAuthenticated()" }
-                - origin = URI::escape("/#/pricing?plan=#{plan.id}")
+                - origin = URI::escape("/#/pricing?plan_id=#{plan.id}")
                 %a.btn.btn-default.btn-md(href="/#/sign-in?origin=#{origin}" target="_self")
                   Join Now
 
@@ -31,7 +31,7 @@
               - form_data = { after_action: payments_path, idea_limit: plan.max_num_ideas, can_publish_ideas: (plan.can_publish_ideas? ? '1' : nil) }
               - if plan.free?
                 %form{ method: :post, 'ng-show' => "session.isAuthenticated() && session.currentUser().plan.id != '#{plan.id}'", 'ng-submit' => "submitFreePlan('#{plan.id}', $event)", data: form_data.merge(is_free: '1') }
-                  %input{ type: :hidden, name: :plan, value: plan.id }
+                  %input{ type: :hidden, name: :plan_id, value: plan.id }
                   %input{ type: :hidden, name: :stripeToken, value: 'free' }
                   %input.sl-free-plan{ type: :submit,
                           class: ['btn', 'btn-default', 'btn-md'],
@@ -40,7 +40,7 @@
 
               - else
                 %form{ method: :post, 'ng-show' => "session.isAuthenticated() && session.currentUser().plan.id != '#{plan.id}'", 'ng-submit' => "submitPaidPlan('#{plan.id}', $event)", data: form_data }
-                  %input{ type: :hidden, name: :plan, value: plan.id }
+                  %input{ type: :hidden, name: :plan_id, value: plan.id }
                   %input{ type: :submit,
                           class: ['btn', 'btn-default', 'btn-md'],
                           value: 'Select Plan',

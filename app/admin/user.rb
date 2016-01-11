@@ -4,7 +4,8 @@ ActiveAdmin.register User do
                 :role,
                 :email,
                 :password,
-                :password_confirmation
+                :password_confirmation,
+                :plan_id
 
   scope :all, default: true
   scope :admins
@@ -30,6 +31,7 @@ ActiveAdmin.register User do
     f.inputs do
       f.input :name
       f.input :role, as: :select, collection: User::ROLES, include_blank: false
+      f.input :plan_id, as: :select, collection: Plan::PLANS.map(&:id), include_blank: false
       f.input :email
       f.input :password
       f.input :password_confirmation
