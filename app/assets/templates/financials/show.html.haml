@@ -15,19 +15,19 @@
         .grid.sl-grid-financials
           .grid-sizer
           .grid-item.grid-item--height-double.grid-item--assets.inverted
-            %sl-financial-panel(ng-model="idea" financial-group="assets" link-title="Assets")
+            %sl-financial-panel(ng-model="idea" financial-group="assets" link-title="Assets" name-placeholder="asset")
 
           .grid-item.grid-item--height-double.grid-item--liabilities
-            %sl-financial-panel(ng-model="idea" financial-group="liabilities" link-title="Liabilities")
+            %sl-financial-panel(ng-model="idea" financial-group="liabilities" link-title="Liabilities" name-placeholder="liability")
 
           .grid-item.grid-item--height-norm.grid-item--capital.inverted
-            %sl-financial-panel(ng-model="idea" financial-group="founders capital" link-title="Founders Capital")
+            %sl-financial-panel(ng-model="idea" financial-group="founders capital" link-title="Founders Capital" name-placeholder="founders capital")
 
           .grid-item.grid-item--height-norm.grid-item--inflows
-            %sl-financial-panel(ng-model="idea" financial-group="cash inflows" link-title="Cash Inflows")
+            %sl-financial-panel(ng-model="idea" financial-group="cash inflows" link-title="Cash Inflows" name-placeholder="cash inflow")
 
           .grid-item.grid-item--height-norm.grid-item--metrics.inverted
-            %sl-financial-panel(ng-model="idea" financial-group="metrics" link-title="Metrics")
+            %sl-financial-panel(ng-model="idea" financial-group="metrics" link-title="Metrics" name-placeholder="metric" value-placeholder="Number" name-heading="Metric" value-heading="Value" no-currencies="true")
 
           .grid-item.grid-item--height-norm.grid-item--outflows.inverted
-            %sl-financial-panel(ng-model="idea" financial-group="cash outflows" link-title="Cash Outflows")
+            %sl-financial-panel(ng-model="idea" financial-group="cash outflows" link-title="Cash Outflows" name-placeholder="cash outflow")

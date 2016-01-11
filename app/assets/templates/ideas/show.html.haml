@@ -51,10 +51,10 @@
             %sl-idea-panel(ng-model="idea" link-title="Target Market" template-url="ideas/forms/target_market.html")
 
           .grid-item.grid-item--height-double.grid-item--costs
-            %sl-financial-panel(ng-model="idea" financial-group="costs" link-title="Costs")
+            %sl-financial-panel(ng-model="idea" financial-group="costs" link-title="Costs" name-placeholder="cost")
 
           .grid-item.grid-item--height-double.grid-item--revenue
-            %sl-financial-panel(ng-model="idea" financial-group="revenues" link-title="Revenues")
+            %sl-financial-panel(ng-model="idea" financial-group="revenues" link-title="Revenues" name-placeholder="revenue")
 
           .grid-item.grid-item--height-half.grid-item--channels
             %sl-channels(ng-model="idea" link-title="Channels")
