@@ -31,7 +31,7 @@ ActiveAdmin.register User do
     f.inputs do
       f.input :name
       f.input :role, as: :select, collection: User::ROLES, include_blank: false
-      f.input :plan_id, as: :select, collection: Plan::PLANS.map(&:id), include_blank: false
+      f.input :plan_id, as: :select, collection: [Plan::Free.id, Plan::Entrepreneur.id, Plan::Founder.id], include_blank: false
       f.input :email
       f.input :password
       f.input :password_confirmation
