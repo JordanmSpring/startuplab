@@ -70,7 +70,7 @@ angular.module('StartupLab').factory('Session', [ '$location', '$http', '$q', '$
       }).then(function(response) {
         session.setCurrentUser(response.data);
         if (session.isAuthenticated()) {
-          $location.path(redirectTo || '/');
+          redirect(redirectTo);
         }
       }, function(response) {
         alert(response.data.errors);
