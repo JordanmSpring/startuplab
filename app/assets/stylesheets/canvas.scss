@@ -19,6 +19,21 @@
   .grid-item {
     float: left;
 
+    td {
+      font-weight: normal;
+    }
+
+    &:hover {
+      .title,
+      .title div {
+        text-decoration: underline;
+      }
+
+      a.inner {
+        text-decoration: none;
+      }
+    }
+
     a {
       color: #fff;
       text-decoration: none;
@@ -62,7 +77,7 @@
             }
           }
         }
-        
+
         .founders {
           margin-top: 5px;
 

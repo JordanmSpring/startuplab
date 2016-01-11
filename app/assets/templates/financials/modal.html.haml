@@ -1,15 +1,17 @@
 %a.inner(ng-click="showModal()")
-  %h5.title
+  %span.title
     {{ linkTitle }}
-    .pull-right(ng-show="totals[financialGroup] > 0")
+    .pull-right(ng-show="totals[financialGroup] > 0 && !noCurrencies")
       ${{ totals[financialGroup] | number:2 }}
   .sl-financial-entries
     %table(ng-show="idea.financialEntries[financialGroup].length > 0")
       %tr(ng-repeat="entry in idea.financialEntries[financialGroup]")
         %td.sl-entry-name
           {{ entry.name }}
-        %td.sl-entry-value
+        %td.sl-entry-value(ng-if="!noCurrencies")
           ${{ entry.value | number:2 }}
+        %td.sl-entry-value(ng-if="noCurrencies")
+          {{ entry.value | number }}
 
 #md-idea-financials.modal.fade
   .modal-dialog
@@ -19,16 +21,16 @@
       .modal-body
         .sl-financial-labels(ng-show="idea.financialEntries[financialGroup].length > 0")
           %label.sl-entry-name-label
-            Description
+            {{ nameHeading }}
           %label.sl-entry-value-label
-            Cost ($)
+            {{ valueHeading }}
         .clearfix
 
         %div(ng-repeat="entry in idea.financialEntries[financialGroup]")
           .sl-entry-name
-            %input.form-control.input-sm(type="text" ng-model="entry.name" ng-blur="updateEntry(entry)" placeholder="Description" required)
+            %input.form-control.input-sm(type="text" ng-model="entry.name" ng-blur="updateEntry(entry)" placeholder="{{ 'Add a new ' + namePlaceholder }}" required)
           .sl-entry-value
-            %input.form-control.input-sm(type="number" step="any" min="0" ng-model="entry.value" ng-blur="updateEntry(entry)" placeholder="Cost" required)
+            %input.form-control.input-sm(type="number" step="any" min="0" ng-model="entry.value" ng-blur="updateEntry(entry)" placeholder="{{ valuePlaceholder }}" required)
           .sl-entry-destroy
             %a(ng-click="destroyEntry(entry)")
               %i.fa.fa-remove
@@ -36,10 +38,10 @@
 
         %form.sl-entry-create(name='newEntryForm' ng-submit="createEntry(financialGroup)")
           .sl-entry-name
-            %input.form-control.input-sm(type="text" ng-model="newEntry.name" placeholder="Add a new entry" required)
+            %input.form-control.input-sm(type="text" ng-model="newEntry.name" placeholder="{{ 'Add a new ' + namePlaceholder }}" required)
           .sl-entry-value
-            %input.form-control.input-sm(type="number" step="any" min="0" ng-model="newEntry.value" placeholder="Cost" required)
+            %input.form-control.input-sm(type="number" step="any" min="0" ng-model="newEntry.value" placeholder="{{ valuePlaceholder }}" required)
           %button.btn.btn-default.btn-sm(type="submit")
             %i.fa.fa-check
-            Add Entry
+            Add {{ namePlaceholder }}
           .clearfix

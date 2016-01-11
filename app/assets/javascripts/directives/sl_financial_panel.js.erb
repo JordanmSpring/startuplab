@@ -5,11 +5,34 @@ angular.module('StartupLab').directive("slFinancialPanel", function() {
     templateUrl: 'financials/modal.html',
     controller: 'ShowFinancialPanelController',
     scope: {
-      idea:           '=ngModel',
-      linkTitle:      '@',
-      financialGroup: '@'
+      idea:             '=ngModel',
+      linkTitle:        '@',
+      financialGroup:   '@',
+      nameHeading:      '@',
+      namePlaceholder:  '@',
+      valueHeading:     '@',
+      valuePlaceholder: '@',
+      noCurrencies:     '@'
     },
     link: function(scope, element) {
+      if (!scope.namePlaceholder) {
+        scope.namePlaceholder = 'Add a new entry';
+      }
+      if (!scope.valuePlaceholder) {
+        scope.valuePlaceholder = 'Figure';
+      }
+      if (!scope.nameHeading) {
+        scope.nameHeading = 'Description';
+      }
+      if (!scope.valueHeading) {
+        scope.valueHeading = 'Figure ($)';
+      }
+      // Usually figures are dollar costs. In some cases (like metrics), we want to treat them as regular numbers.
+      if (scope.noCurrencies) {
+        scope.noCurrencies = true;
+      } else {
+        scope.noCurrencies = false;
+      }
       scope.modal = element.find('.modal');
     }
   }
