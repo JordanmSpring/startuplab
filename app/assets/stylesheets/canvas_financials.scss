@@ -22,15 +22,15 @@
   }
 
   .grid-item {
-    h5.title,
-    h5.title div {
+    .title,
+    .title div {
       font-weight: bold;
     }
   }
 
   .grid-item:hover {
-    h5.title,
-    h5.title div {
+    .title,
+    .title div {
       text-decoration: underline;
     }
 

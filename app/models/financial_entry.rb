@@ -7,6 +7,9 @@ class FinancialEntry < ActiveRecord::Base
     GROUP_METRICS          = 'metrics',
     GROUP_CASH_INFLOWS     = 'cash inflows',
     GROUP_CASH_OUTFLOWS    = 'cash outflows',
+    # These are in the main canvas.
+    GROUP_CASH_COSTS       = 'costs',
+    GROUP_CASH_REVENUES    = 'revenues',
   ]
 
   belongs_to :idea
