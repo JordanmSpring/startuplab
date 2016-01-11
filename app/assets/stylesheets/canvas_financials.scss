@@ -21,6 +21,17 @@
     width:    $item-width;
   }
 
+  .grid-item:hover {
+    h5.title,
+    h5.title div {
+      text-decoration: underline;
+    }
+
+    a.inner {
+      text-decoration: none;
+    }
+  }
+
   .grid-item--height-norm   { height: 292px; }
   .grid-item--height-double { height: 584px; }
 
