@@ -54,6 +54,14 @@
               .sl-login-link
                 %a.btn.btn-default.disabled.btn-md.sl-coming-soon
                   Coming Soon
+            - if plan.free_trial_days > 0
+              .sl-plan-trial-days
+                %i.fa.fa-asterisk
+                = plan.free_trial_days
+                day free trial
+            - else
+              .sl-plan-no-trial
+                &nbsp;
 
           .sl-plan-features{ class: "sl-plan-features-#{plan.id}" }
             .sl-feature-wrapper

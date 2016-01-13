@@ -47,4 +47,8 @@ class Plan
     true
   end
 
+  def self.free_trial_days
+    0
+  end
+
 end

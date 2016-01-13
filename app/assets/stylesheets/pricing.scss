@@ -48,13 +48,21 @@ $max-plan-width: 250px;
     }
   }
 
-
   .sl-login-link {
     text-align: center;
 
     .btn {
       display: inline-block;
     }
+  }
+
+  .sl-plan-trial-days,
+  .sl-plan-no-trial {
+    height: 22px;
+  }
+
+  .sl-plan-trial-days {
+    text-align: center;
   }
 }
 
