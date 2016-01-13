@@ -44,6 +44,9 @@
           %li.step
           %li
             %h2
+              %a(href="/#/dashboard" ng-show="session.isAuthenticated()") Dashboard
+          %li
+            %h2
               %a(href="/#/ideas/new") Create Idea
           %li
             %h2
