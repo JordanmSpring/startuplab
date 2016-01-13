@@ -19,4 +19,8 @@ class Plan::Entrepreneur < Plan
       'Notifications and comments',
     ]
   end
+
+  def self.free_trial_days
+    30
+  end
 end
