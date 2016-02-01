@@ -65,21 +65,31 @@
 
 
 
-    - if @idea.costs.present?
+    - if @idea.financial_entries.costs.present?
       %h2 Costs
 
       %p
         %b What costs will you incur to run?
-      %ul
-        - @idea.costs.split("\n").each do |cost|
-          %li= cost
+
+      %table
+        - @idea.financial_entries.costs.each do |cost|
+          %tr
+            %th= "#{cost.name}:"
+            %td= "$#{cost.value.round(2)}"
 
 
 
-    %h2 Revenue
+    - if @idea.financial_entries.revenues.present?
+      %h2 Revenue
 
-    %h3 How will you earn income?
-    %p= @idea.revenue
+      %p
+        %b How will you earn income?
+
+      %table
+        - @idea.financial_entries.revenues.each do |revenue|
+          %tr
+            %th= "#{revenue.name}:"
+            %td= "$#{revenue.value.round(2)}"
 
 
 
