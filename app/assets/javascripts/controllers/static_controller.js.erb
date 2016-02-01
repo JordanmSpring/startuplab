@@ -1,5 +1,9 @@
 
 angular.module('StartupLab')
-.controller('StaticController', ['$scope', '$window', 'Session', function($scope, $window, Session) {
+.controller('StaticController', ['$scope', '$window', '$anchorScroll', 'Session', function($scope, $window, $anchorScroll, Session) {
   $scope.flashError = $window.gon.flashError;
+
+  $scope.scrollTo = function(id) {
+    $anchorScroll(id);
+  }
 }]);

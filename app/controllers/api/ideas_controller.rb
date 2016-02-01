@@ -79,6 +79,7 @@ class Api::IdeasController < Api::BaseController
         :revenue,
         :name,
         :pitch_why,
+        :pitch_what,
         :pitch_how,
         :timing_why,
         :timing_description,

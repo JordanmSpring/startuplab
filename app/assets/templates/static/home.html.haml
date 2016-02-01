@@ -13,13 +13,11 @@
     %section.sl-home-section.sl-ecosystem
       .col-sm-8.col-sm-offset-2
         %h2
-          We help people do this by
+          Our
+          %b user-friendly &amp; agile
+          platform assists
           %br
-          creating a
-          %b user-friendly
-          %br
-          %b &amp; agile
-          ecosystem...
+          people in building those very companies
         = image_tag 'pages/home/ideas.png', alt: 'Ideas', class: 'img-responsive'
 
     %section.sl-home-section.sl-start
@@ -28,24 +26,25 @@
           It just so happens that you could build too...
           %br
           you just have to
-          %b.sl-underline start
+          %a(ng-click="scrollTo('register')")
+            %b.sl-underline start
 
         .row
           .col-lg-4.sl-feature-list
             %h3
               Features
             %ul
-              %li Quick idea testing
-              %li Community feedback
-              %li Team engagement
-              %li Automated Business Plan
-              %li Financials
-              %li Much more
+              %li Quickly test an idea
+              %li Build out your plan
+              %li Understand your financials
+              %li Gather team or network feedback
+              %li Much more...
           .col-lg-8.sl-feature-graphic
             = image_tag 'pages/home/features.png', alt: 'Features', class: 'img-responsive'
 
 
     %section.sl-home-section.sl-login(ng-if="!session.isAuthenticated()")
+      %a(name="register")
       %sl-login
 
     %section.sl-home-section.sl-browse-ideas(ng-if="session.isAuthenticated()")
