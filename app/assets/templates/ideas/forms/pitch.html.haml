@@ -6,6 +6,9 @@
         %em Why:
         {{ idea.pitch_why | limitTo:150 }}{{ idea.pitch_why.length > 150 ? '...' : ''}}
       %li
+        %em What:
+        {{ idea.pitch_what | limitTo:150 }}{{ idea.pitch_what.length > 150 ? '...' : ''}}
+      %li
         %em How:
         {{ idea.pitch_how | limitTo:150 }}{{ idea.pitch_how.length > 150 ? '...' : ''}}
 .modal.fade
@@ -17,9 +20,11 @@
       .modal-body
         %form(ng-show="idea.canEdit" name="ideaForm" novalidate)
           .form-group
-            %textarea.form-control(type="text" ng-model="idea.pitch_why" placeholder="Why are you creating this solution?")
+            %textarea.form-control(type="text" ng-model="idea.pitch_why" placeholder="Why does this company exist, what is its vision/story?")
           .form-group
-            %textarea.form-control(rows="5" ng-model="idea.pitch_how" ng-maxlength="600" placeholder="How will it solve the problem?")
+            %textarea.form-control(rows="5" ng-model="idea.pitch_what" placeholder="What product or service have you created as the solution to the problem?")
+          .form-group
+            %textarea.form-control(rows="5" ng-model="idea.pitch_how" ng-maxlength="600" placeholder="How will you execute on your why & what?")
         .content(ng-hide="idea.canEdit")
           %h3 Why
           %p {{ idea.pitch_why }}
