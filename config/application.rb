@@ -30,5 +30,14 @@ module Startuplab
 
     # Don't quote decimals in JSON responses, because it breaks angular number input fields.
     ActiveSupport::JSON::Encoding.encode_big_decimal_as_string = false
+
+    # Devise layouts.
+    config.to_prepare do
+      Devise::SessionsController.layout      'devise'
+      Devise::RegistrationsController.layout 'devise'
+      Devise::ConfirmationsController.layout 'devise'
+      Devise::UnlocksController.layout       'devise'
+      Devise::PasswordsController.layout     'devise'
+    end
   end
 end

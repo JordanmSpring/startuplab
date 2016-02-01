@@ -4,7 +4,7 @@
     = render 'layouts/meta'
   %body(ng-cloak)
     = render 'layouts/header'
-    %div(ng-view)
+    = yield
     = render 'layouts/footer'
 
 = render 'layouts/analytics'
