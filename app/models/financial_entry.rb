@@ -12,6 +12,11 @@ class FinancialEntry < ActiveRecord::Base
     GROUP_CASH_REVENUES    = 'revenues',
   ]
 
+  # Make a scope for each group.
+  GROUPS.each do |group|
+    scope group.to_sym, -> { where(group: group) }
+  end
+
   belongs_to :idea
   has_one    :user, through: :idea
 
