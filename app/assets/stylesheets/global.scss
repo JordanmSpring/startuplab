@@ -58,6 +58,14 @@ p {
   text-align: center;
 }
 
+.sl-alert-flash {
+  border-left:   none;
+  border-radius: 0;
+  border-right:  none;
+  border-top:    none;
+  text-align:    center;
+}
+
 .header_wrap {
   height: 92px;
   background: $grey-med;
