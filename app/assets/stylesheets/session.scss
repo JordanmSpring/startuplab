@@ -32,6 +32,19 @@
 .sl-email-login {
   margin:    10px auto 0 auto;
   max-width: 285px;
+
+  .btn {
+    background-color: #fff;
+    color:            #595959;
+  }
+
+  .sl-password-reset {
+    color:       #fff;
+    display:     block;
+    font-size:   12px;
+    font-weight: normal;
+    margin-top:  10px;
+  }
 }
 
 @media (min-width:992px) {

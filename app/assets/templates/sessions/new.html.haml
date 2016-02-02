@@ -44,3 +44,6 @@
               .form-group
                 %input.form-control(type="password" placeholder="Password" ng-model="session.password" required)
               %button.btn.btn-primary(ng-disabled="!sessionForm.$valid" type="Submit") Login
+              %br
+              %a.sl-password-reset(href="/users/password/new")
+                Forgot your password?

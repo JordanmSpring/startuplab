@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   ActiveAdmin.routes(self)
   devise_for :users, controllers: {
+    passwords:          'users/passwords',
     sessions:           'api/sessions',
     registrations:      'api/registrations',
     invitations:        'api/invitations',

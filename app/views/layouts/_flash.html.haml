@@ -1,0 +1,7 @@
+- flash.keys.each do |type|
+  - css_class = :info
+  - css_class = :warning if type.to_sym == :alert
+  - css_class = :danger  if type.to_sym == :error
+  - if flash[type].present?
+    .alert.sl-alert-flash(class="alert-#{css_class}")
+      = flash[type]

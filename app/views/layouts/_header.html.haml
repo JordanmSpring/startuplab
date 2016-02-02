@@ -1,0 +1,42 @@
+.header_wrap
+  %nav.navbar.navbar-inverse
+    .container
+      .header
+        %a(href="http://singlepartners.io/")
+          back to Single Partners
+      %ul.nav.navbar-nav.navbar-right
+        %li(ng-hide="session.isAuthenticated()")
+          %a(href="/#/sign-in")
+            Sign In
+        %li(ng-show="session.isAuthenticated()")
+          %a
+            Welcome {{ session.currentUser().name }}
+        %li.dropdown(ng-show="session.isAuthenticated()")
+          %a.dropdown-toggle(class="dropdown-toggle" data-toggle="dropdown" role="button")
+            Account
+            %span.caret
+          %ul.dropdown-menu
+            %li= link_to "Dashboard", "/#/dashboard"
+            %li= link_to "Select Plan", "/#/pricing"
+            %li
+              %a(ng-click="session.logout()") Sign Out
+.banner_wrap
+  .container
+    %ul.nav.navbar-nav
+      %li
+        %h1
+          %a(href="/#/") Startup Lab
+      %li.logo= image_tag('startuplabicongreen.png')
+      %li.step
+      %li
+        %h2
+          %a(href="/#/dashboard" ng-show="session.isAuthenticated()") Dashboard
+      %li
+        %h2
+          %a(href="/#/ideas/new") Create Idea
+      %li
+        %h2
+          %a(href="/#/ideas") Browse Ideas
+      %li
+        %h2
+          %a(href="/#/pricing") Pricing

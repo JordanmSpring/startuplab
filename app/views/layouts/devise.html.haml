@@ -5,7 +5,7 @@
   %body(ng-cloak)
     = render 'layouts/header'
     = render 'layouts/flash'
-    %div(ng-view)
+    = yield
     = render 'layouts/footer'
 
 = render 'layouts/analytics'
