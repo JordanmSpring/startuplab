@@ -7,13 +7,16 @@ angular.module('StartupLab').config([
             $location.path('/sign-in');
           }
 
+          if (rejection.status === 403) {
+            $location.path('/unauthorized');
+          }
+
           if (rejection.status === 404) {
-            alert('Not Found');
-            $location.path('/');
+            $location.path('/not-found');
           }
 
           if (rejection.status === 500) {
-            alert('An Error Occurred');
+            $location.path('/unexpected-error');
           }
 
           return $q.reject(rejection);

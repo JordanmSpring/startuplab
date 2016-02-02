@@ -60,6 +60,21 @@ angular.module('StartupLab', ['ngRoute', 'ngResource', 'frapontillo.bootstrap-sw
       templateUrl: 'static/disclaimer.html',
       controller: 'StaticController'
     })
+    .when('/not-found', {
+      templateUrl: 'static/error-404.html',
+      controller: 'StaticController',
+      resolve: { user: loadCurrentUser }
+    })
+    .when('/unauthorized', {
+      templateUrl: 'static/error-403.html',
+      controller: 'StaticController',
+      resolve: { user: loadCurrentUser }
+    })
+    .when('/unexpected-error', {
+      templateUrl: 'static/error-500.html',
+      controller: 'StaticController',
+      resolve: { user: loadCurrentUser }
+    })
     .when('/dashboard', {
       templateUrl: 'dashboard/show.html',
       controller: 'DashboardController',
