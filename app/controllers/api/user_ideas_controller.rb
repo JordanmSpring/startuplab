@@ -5,7 +5,7 @@ class Api::UserIdeasController < Api::BaseController
   def index
     authorize(@idea, :share?)
     @user_ideas = @idea.user_ideas
-    render json: @user_ideas
+    render json: UserIdeasExhibit.new(@user_ideas).as_json
   end
 
   def create
@@ -15,8 +15,8 @@ class Api::UserIdeasController < Api::BaseController
     share_with = get_shared_user
     @user_idea = @idea.user_ideas.build(shared_user: share_with)
     if @user_idea.save
-      share_with.update_attribute(:invited_by_id, @user_idea.id)
-      render json: @user_idea.as_json
+      share_with.update_attribute(:invited_by, @user_idea)
+      render json: UserIdeaExhibit.new(@user_idea).as_json
     else
       render json: { errors: @user_idea.errors.full_messages }, status: :unprocessable_entity
     end
@@ -27,7 +27,7 @@ class Api::UserIdeasController < Api::BaseController
 
     @user_idea = UserIdea.find(params[:id])
     @user_idea.destroy
-    render json: @user_idea.as_json
+    render json: { status: :ok }
   end
 
   private
