@@ -25,7 +25,7 @@
           %input.form-control.input-sm(ng-show="true" type="email" ng-model="newUserIdea.email" placeholder="Email address" required)
 
 
-          %button.btn.btn-primary(type="submit") Invite another user
+          %button.btn.btn-primary(type="submit" ng-disabled="processing") Invite another user
           or
           %a(ng-href="/#/ideas/{{ idea.id }}") go back
 

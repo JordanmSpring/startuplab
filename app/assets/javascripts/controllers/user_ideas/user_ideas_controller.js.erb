@@ -12,10 +12,12 @@ angular.module('StartupLab')
   });
 
   $scope.shareIdea = function() {
+    $scope.processing = true;
     UserIdea.create($scope.idea, $scope.newUserIdea).then(function(response) {
       $scope.newUserIdea = {};
       $scope.idea.userIdeas.push(response.data);
       $scope.newUserIdeaForm.$setPristine();
+      $scope.processing = false;
     });
   };
 
