@@ -3,11 +3,16 @@ angular.module('StartupLab')
 .controller('DashboardController', ['$scope', '$routeParams', 'Idea', 'Session', '$location',
     function($scope, $routeParams, Idea, Session, $location) {
 
-  $scope.user = Session.currentUser();
+  $scope.user        = Session.currentUser();
   $scope._showDrafts = false;
+  $scope._showShared = false;
 
   Idea.draft().then(function(response) {
     $scope.draftIdeas = response.data.ideas;
+  });
+
+  Idea.shared().then(function(response) {
+    $scope.sharedIdeas = response.data.ideas;
   });
 
   Idea.published().then(function(response) {
@@ -16,9 +21,16 @@ angular.module('StartupLab')
 
   $scope.showDrafts = function() {
     $scope._showDrafts = true;
+    $scope._showShared = false;
+  };
+
+  $scope.showShared = function() {
+    $scope._showDrafts = false;
+    $scope._showShared = true;
   };
 
   $scope.showPublished = function() {
     $scope._showDrafts = false;
+    $scope._showShared = false;
   };
 }]);

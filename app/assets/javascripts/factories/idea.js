@@ -20,6 +20,10 @@ angular.module('StartupLab').factory('Idea', [ '$http', function($http) {
       return $http.get(this.basePath() + '/draft.json');
     },
 
+    shared: function() {
+      return $http.get(this.basePath() + '/shared.json');
+    },
+
     published: function() {
       return $http.get(this.basePath() + '/published.json');
     },

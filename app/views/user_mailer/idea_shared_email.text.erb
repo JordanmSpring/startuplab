@@ -1,0 +1,10 @@
+<%= @subject %>
+
+<%= @idea.user.name %> has shared the idea <%=  "'#{@idea.name}'" %> with you at <%= root_url %>.
+
+You can view the idea via the link below:
+
+<%= angular_idea_url(@idea) %>
+
+Regards,
+The team at Startup Labs

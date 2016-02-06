@@ -1,22 +1,35 @@
 .wrap
   .container
     .row
-      .col-lg-12
+      .col-lg-6.col-lg-offset-3
         %h1 Sharing '{{ idea.name }}'
 
     .row
-      .col-lg-6(ng-if="userIdeas.length == 0")
+      .col-lg-6.col-lg-offset-3(ng-if="idea.userIdeas.length == 0")
         %p
           This idea has not been shared with anyone yet.
 
-      .col-lg-6(ng-if="userIdeas.length > 0")
+      .col-lg-6.col-lg-offset-3(ng-if="idea.userIdeas.length > 0")
         %p
           This idea has been shared with the following people:
-        %article.user_idea(ng-repeat='userIdea in userIdeas')
-          %sl-user-idea(ng-model="userIdea")
+        %article.user_idea(ng-repeat='userIdea in idea.userIdeas')
+          %sl-user-idea(ng-model="userIdea" idea="idea")
 
-        %article.user_idea.actions
-          %a.btn.btn-default Invite another user
+    .row
+      .col-lg-6.col-lg-offset-3.user_idea.actions
+        %hr
+        %p
+          If you'd like to share this idea with someone, enter their name &amp; email address below.
+
+        .alert.alert-danger(ng-if="errors.length > 0")
+          There was a problem sharing with this user:
+          %ul
+            %li(ng-repeat='error in errors' ng-bind='error')
+
+        %form(ng-submit="shareIdea()" name='newUserIdeaForm')
+          %input.form-control.input-sm(ng-show="true" type="text"  ng-model="newUserIdea.name"  placeholder="Name"          required)
+          %input.form-control.input-sm(ng-show="true" type="email" ng-model="newUserIdea.email" placeholder="Email address" required)
+          %button.btn.btn-primary(type="submit" ng-disabled="processing") Invite another user
           or
           %a(ng-href="/#/ideas/{{ idea.id }}") go back
 

@@ -1,11 +1,31 @@
 angular.module('StartupLab')
 .controller('UserIdeasController', ['$scope', '$routeParams', 'Idea', 'UserIdea', function($scope, $routeParams, Idea, UserIdea) {
+  $scope.newUserIdea = {};
+  $scope.idea        = {};
+  $scope.errors      = [];
 
   Idea.find($routeParams.ideaId).then(function(response) {
     $scope.idea = response.data;
   });
 
-  UserIdea.all($routeParams.ideaId).then(function(response) {
-    $scope.userIdeas = response.data.user_ideas;
+  UserIdea.all({ id: $routeParams.ideaId }).then(function(response) {
+    $scope.idea.userIdeas = response.data.user_ideas;
   });
+
+  $scope.shareIdea = function() {
+    $scope.errors     = []
+    $scope.processing = true;
+    var success = function(response) {
+      $scope.newUserIdea = {};
+      $scope.idea.userIdeas.push(response.data);
+      $scope.newUserIdeaForm.$setPristine();
+      $scope.processing = false;
+    };
+    var failure = function(response) {
+      $scope.errors     = response.data.errors
+      $scope.processing = false;
+    };
+    UserIdea.create($scope.idea, $scope.newUserIdea).then(success, failure);
+  };
+
 }]);

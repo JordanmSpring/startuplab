@@ -12,8 +12,16 @@ angular.module('StartupLab').factory('UserIdea', [ '$http', function($http) {
       }
     },
 
-    all: function(ideaId) {
-      return $http.get(this.userIdeaPath(ideaId));
+    all: function(idea) {
+      return $http.get(this.userIdeaPath(idea.id));
+    },
+
+    create: function(idea, userIdea) {
+      return $http.post(this.userIdeaPath(idea.id), { user_idea: userIdea });
+    },
+
+    destroy: function(idea, userIdea) {
+      return $http.delete(this.userIdeaPath(idea.id, userIdea.id));
     }
   };
 }]);

@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     resources :ideas do
       collection do
         get :draft
+        get :shared
         get :published
       end
 
@@ -41,7 +42,7 @@ Rails.application.routes.draw do
       resources :financial_entries, only: [:create, :update, :destroy]
       resources :funding_options
       resources :founders
-      resources :user_ideas, only: [:index]
+      resources :user_ideas, only: [:index, :create, :destroy]
 
       post   'vote' => 'votes#create'
       delete 'vote' => 'votes#destroy'

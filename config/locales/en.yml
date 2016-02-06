@@ -30,3 +30,5 @@ en:
         other:                          "Your idea '%{name}' has received %{count} new likes"
     plan_expired_email:
       subject:                          "Your Startup Lab subscription has expired"
+    idea_shared_email:
+      subject:                          "A startup idea has been shared with you"

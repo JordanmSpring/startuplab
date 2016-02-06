@@ -9,4 +9,8 @@ class UserMailerPreview < ActionMailer::Preview
     UserMailer.plan_expired_email(User.first, Plan::Entrepreneur.name, User.first.ideas)
   end
 
+  def idea_shared_email
+    UserMailer.idea_shared_email(User.first, User.first.ideas.first)
+  end
+
 end

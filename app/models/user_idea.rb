@@ -15,12 +15,28 @@ class UserIdea < ActiveRecord::Base
              presence:  true,
              inclusion: { in: ACCESS_LEVELS }
 
+  validates :shared_idea,
+             presence: true
+
+  validates :shared_user,
+             presence: true
+
+  validates :user_id,
+             presence:   true,
+             uniqueness: { scope: :idea_id }
+
   def as_json
     {
       id:   id,
-      user: UserExhibit.new(shared_user),
+      user: (shared_user.present? ? UserExhibit.new(shared_user) : nil),
       idea: IdeaExhibit.new(shared_idea, User.new),
     }
+  end
+
+  # Used be devise invitable - when sharing we invite by UserIdea, to
+  # distinguish from 'Founder' invites, which are invited by a user.
+  # A bit of a hack since we have two kinds of invitations.
+  def decrement_invitation_limit!
   end
 
 end

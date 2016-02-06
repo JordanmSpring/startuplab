@@ -1,3 +1,16 @@
 angular.module('StartupLab')
 .controller('UserIdeaController', ['$scope', 'UserIdea', function($scope, UserIdea) {
+  $scope.remove = function() {
+    if (confirm('Are you sure?')) {
+      for (i = 0; i < $scope.idea.userIdeas.length; i++) {
+        if ($scope.idea.userIdeas[i].id == $scope.userIdea.id) {
+          UserIdea.destroy($scope.idea, $scope.userIdea).then(function() {
+            $scope.idea.userIdeas.splice(i, 1);
+          });
+          return true;
+        }
+      }
+    }
+    return false;
+  }
 }]);

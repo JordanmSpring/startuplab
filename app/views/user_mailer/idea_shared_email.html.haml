@@ -1,0 +1,24 @@
+
+%h4
+  = @subject
+
+%p
+  = @idea.user.name
+  has shared the idea
+  %b
+    = "'#{@idea.name}'"
+  with you at
+  = succeed '.' do
+    = link_to 'Startup Lab', root_url
+
+%p
+  You can view the idea via the link below:
+
+%p
+  = link_to "Idea: #{@idea.name}", angular_idea_url(@idea)
+
+%p
+  Regards,
+  %br
+  The team at
+  %b Startup Labs

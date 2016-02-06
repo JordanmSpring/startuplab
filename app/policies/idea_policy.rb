@@ -1,6 +1,6 @@
 class IdeaPolicy < ApplicationPolicy
   def show?
-    @record.published? || (user.present? && super) || user.admin?
+    @record.published? || (user.present? && super) || user.shared_ideas.where(id: @record.id).exists? || user.admin?
   end
 
   def create?

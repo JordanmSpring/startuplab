@@ -1,0 +1,32 @@
+%p
+  Hello
+  = @resource.name
+
+%p
+  = @resource.invited_by.shared_idea.user.name
+  has shared the idea
+  %b
+    = "'#{@resource.invited_by.shared_idea.name}'"
+  with you at
+  = succeed '.' do
+    = link_to 'Startup Lab', root_url
+  You can accept this invitation through the link below:
+
+%p
+  = link_to 'Accept this invitation', accept_invitation_url(@resource, invitation_token: @token)
+
+%p
+  (After you have accepted the invitation and set your password, you can view the idea
+  = succeed ').' do
+    = link_to 'here', angular_idea_url(@resource.invited_by.shared_idea)
+
+%p
+  If you don't want to accept the invitation, please ignore this email.
+  %br
+  Your account won't be created until you access the link above and set your password.
+
+%p
+  Regards,
+  %br
+  The team at
+  %b Startup Labs

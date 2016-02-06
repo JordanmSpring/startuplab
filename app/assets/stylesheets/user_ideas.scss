@@ -24,6 +24,11 @@ article.user_idea {
   }
 }
 
-article.user_idea.actions {
+.user_idea.actions {
   padding-left: 0;
+
+  input {
+    margin-bottom: 10px;
+    max-width:     250px;
+  }
 }
