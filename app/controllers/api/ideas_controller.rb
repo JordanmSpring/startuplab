@@ -1,21 +1,26 @@
 class Api::IdeasController < Api::BaseController
   skip_before_action :authenticate_user!, only: [ :show, :index ]
-  before_action :find_idea, except: [:index, :create, :draft, :published]
+  before_action :find_idea, except: [:index, :create, :draft, :shared, :published]
   respond_to :json
 
   def index
     @ideas = Idea.published
-    render json: @ideas
+    render json: IdeasExhibit.new(@ideas, current_user)
   end
 
   def draft
     @ideas = Idea.with_founder(current_user).draft
-    render json: @ideas
+    render json: IdeasExhibit.new(@ideas, current_user)
+  end
+
+  def shared
+    @ideas = current_user.shared_ideas
+    render json: IdeasExhibit.new(@ideas, current_user)
   end
 
   def published
     @ideas = Idea.with_founder(current_user).published
-    render json: @ideas
+    render json: IdeasExhibit.new(@ideas, current_user)
   end
 
   def show

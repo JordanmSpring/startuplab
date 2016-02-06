@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     resources :ideas do
       collection do
         get :draft
+        get :shared
         get :published
       end
 
