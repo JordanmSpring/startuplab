@@ -15,6 +15,16 @@ class UserIdea < ActiveRecord::Base
              presence:  true,
              inclusion: { in: ACCESS_LEVELS }
 
+  validates :shared_idea,
+             presence: true
+
+  validates :shared_user,
+             presence: true
+
+  validates :user_id,
+             presence:   true,
+             uniqueness: { scope: :idea_id }
+
   def as_json
     {
       id:   id,
