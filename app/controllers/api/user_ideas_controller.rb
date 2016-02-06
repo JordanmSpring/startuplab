@@ -13,9 +13,13 @@ class Api::UserIdeasController < Api::BaseController
 
     # TODO - what if it has already  been shared to this user? Need unique validator.
     share_with = get_shared_user
-    @user_idea = @idea.user_ideas.create!(shared_user: share_with)
-    share_with.update_attribute(:invited_by_id, @user_idea.id)
-    render json: @user_idea.as_json
+    @user_idea = @idea.user_ideas.build(shared_user: share_with)
+    if @user_idea.save
+      share_with.update_attribute(:invited_by_id, @user_idea.id)
+      render json: @user_idea.as_json
+    else
+      render json: { errors: @user_idea.errors.full_messages }, status: :unprocessable_entity
+    end
   end
 
   def destroy
