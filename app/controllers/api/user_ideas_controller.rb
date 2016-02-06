@@ -32,7 +32,7 @@ class Api::UserIdeasController < Api::BaseController
     end
 
     def create_params
-      params.require(:user_idea).permit(:email)
+      params.require(:user_idea).permit(:email, :name)
     end
 
     # Finds the user to share this idea with, and invites them if they aren't
@@ -41,9 +41,7 @@ class Api::UserIdeasController < Api::BaseController
       if User.exists?(email: create_params[:email])
         User.find_by(email: create_params[:email])
       else
-        parts     = create_params[:email].to_s.split('@')
-        temp_name = parts[0].sub(/^(.).*(.)$/, '\1....\2') + "@#{parts[1]}"
-        User.invite!(create_params.merge(name: create_params[:email], name: temp_name), UserIdea.new)
+        User.invite!(create_params, UserIdea.new)
       end
     end
 

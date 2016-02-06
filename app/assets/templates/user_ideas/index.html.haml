@@ -19,12 +19,11 @@
       .col-lg-6.user_idea.actions
         %hr
         %p
-          If you'd like to share this idea with someone, enter their email address below.
+          If you'd like to share this idea with someone, enter their name &amp; email address below.
 
         %form(ng-submit="shareIdea()" name='newUserIdeaForm')
+          %input.form-control.input-sm(ng-show="true" type="text"  ng-model="newUserIdea.name"  placeholder="Name"          required)
           %input.form-control.input-sm(ng-show="true" type="email" ng-model="newUserIdea.email" placeholder="Email address" required)
-
-
           %button.btn.btn-primary(type="submit" ng-disabled="processing") Invite another user
           or
           %a(ng-href="/#/ideas/{{ idea.id }}") go back
