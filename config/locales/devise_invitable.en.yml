@@ -16,6 +16,8 @@ en:
         header: "Set your password"
         submit_button: "Set my password"
     mailer:
+      share_invitation_instructions:
+        subject: "A startup idea has been shared with you"
       invitation_instructions:
         subject: "Invitation instructions"
         hello: "Hello %{email}"

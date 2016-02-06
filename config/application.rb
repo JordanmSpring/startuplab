@@ -31,6 +31,9 @@ module Startuplab
     # Don't quote decimals in JSON responses, because it breaks angular number input fields.
     ActiveSupport::JSON::Encoding.encode_big_decimal_as_string = false
 
+    # Use sidekiq as the ActiveJob queue adapter.
+    config.active_job.queue_adapter = :sidekiq
+
     # Devise layouts.
     config.to_prepare do
       Devise::SessionsController.layout      'devise'

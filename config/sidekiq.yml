@@ -10,3 +10,4 @@ production:
 :timeout: 8
 :queues:
   - default
+  - mailers

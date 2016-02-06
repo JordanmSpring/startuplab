@@ -45,7 +45,7 @@ class Api::UserIdeasController < Api::BaseController
       if User.exists?(email: create_params[:email])
         User.find_by(email: create_params[:email])
       else
-        User.invite!(create_params, UserIdea.new)
+        User.invite_share!(create_params, UserIdea.new)
       end
     end
 

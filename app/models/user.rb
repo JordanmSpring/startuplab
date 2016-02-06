@@ -5,6 +5,9 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:facebook, :linkedin, :twitter]
 
+  # Used to send custom 'share' user invitations.
+  attr_writer :invitation_instructions
+
   scope :admins, -> { where(role: ROLE_ADMIN) }
   scope :users,  -> { where(role: ROLE_USER) }
   scope :recent, -> { order('users.created_at DESC') }
@@ -76,6 +79,24 @@ class User < ActiveRecord::Base
         user.name     = auth.info.name
       end
     end
+  end
+
+  def deliver_invitation
+   if @invitation_instructions.present?
+      # We don't want to deliver the invitation email immediately, because we
+      # haven't linked together all of the relevant objects yet. At this stage
+      # we still haven't saved the UserIdea instance, because we need to invite
+      # the user as part of creation, so it isn't linked to the UserIdea yet.
+     ::Devise.mailer.send(@invitation_instructions, self, token: @raw_invitation_token).deliver_later(wait_until: 1.minute.from_now)
+   else
+     super
+   end
+  end
+
+  def self.invite_share!(attributes={}, invited_by=nil)
+   self.invite!(attributes, invited_by) do |invitable|
+     invitable.invitation_instructions = :share_invitation_instructions
+   end
   end
 
 end
