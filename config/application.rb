@@ -41,6 +41,7 @@ module Startuplab
       Devise::ConfirmationsController.layout 'devise'
       Devise::UnlocksController.layout       'devise'
       Devise::PasswordsController.layout     'devise'
+      Devise::Mailer.layout                  'mailer'
     end
   end
 end
