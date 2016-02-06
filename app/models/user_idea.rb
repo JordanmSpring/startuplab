@@ -18,7 +18,7 @@ class UserIdea < ActiveRecord::Base
   def as_json
     {
       id:   id,
-      user: UserExhibit.new(shared_user),
+      user: (shared_user.present? ? UserExhibit.new(shared_user) : nil),
       idea: IdeaExhibit.new(shared_idea, User.new),
     }
   end

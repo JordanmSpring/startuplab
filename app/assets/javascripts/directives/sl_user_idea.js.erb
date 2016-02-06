@@ -4,7 +4,8 @@ angular.module('StartupLab').directive("slUserIdea", function() {
     templateUrl: 'user_ideas/user_idea.html',
     controller: 'UserIdeaController',
     scope: {
-      userIdea: '=ngModel'
+      userIdea: '=ngModel',
+      idea:     '='
     },
     link: function(scope, element) {}
   }

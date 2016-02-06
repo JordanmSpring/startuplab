@@ -41,7 +41,7 @@ Rails.application.routes.draw do
       resources :financial_entries, only: [:create, :update, :destroy]
       resources :funding_options
       resources :founders
-      resources :user_ideas, only: [:index]
+      resources :user_ideas, only: [:index, :create, :destroy]
 
       post   'vote' => 'votes#create'
       delete 'vote' => 'votes#destroy'
