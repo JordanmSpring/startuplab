@@ -43,9 +43,11 @@ class Api::UserIdeasController < Api::BaseController
     # already in the system.
     def get_shared_user
       if User.exists?(email: create_params[:email])
-        User.find_by(email: create_params[:email])
+        user = User.find_by(email: create_params[:email])
+        UserMailer.idea_shared_email(user, @idea).deliver_later unless user.shared_ideas.where(id: @idea.id).exists?
+        user
       else
-        User.invite_share!(create_params, UserIdea.new)
+        user = User.invite_share!(create_params, UserIdea.new)
       end
     end
 
