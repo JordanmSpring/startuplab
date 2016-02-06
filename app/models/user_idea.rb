@@ -33,4 +33,10 @@ class UserIdea < ActiveRecord::Base
     }
   end
 
+  # Used be devise invitable - when sharing we invite by UserIdea, to
+  # distinguish from 'Founder' invites, which are invited by a user.
+  # A bit of a hack since we have two kinds of invitations.
+  def decrement_invitation_limit!
+  end
+
 end
