@@ -4,7 +4,7 @@ class App < Configurable # :nodoc:
   config.mailer_perform_deliveries = true
 
   # Default host for sending emails.
-  config.mailer_default_url_options = { host: 'startuplab.singlepartners.io' }
+  config.mailer_default_url_options = { host: 'www.startuplab.tech' }
 
   # Log redis in the application log.
   config.log_redis = true
