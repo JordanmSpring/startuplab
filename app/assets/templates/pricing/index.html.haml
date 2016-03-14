@@ -7,8 +7,8 @@
           Pricing
 
     .row
-      - [Plan::Free, Plan::Entrepreneur, Plan::Founder].each do |plan|
-        .col-sm-4.sl-plan{ class: "sl-plan-#{plan.id}" }
+      - [Plan::Free, Plan::Founder].each do |plan|
+        .col-sm-6.sl-plan{ class: "sl-plan-#{plan.id}" }
           .sl-plan-wrapper
             %h2
               = plan.name
@@ -28,7 +28,7 @@
                 %a.btn.btn-default.disabled.btn-md
                   Your Plan
 
-              - form_data = { after_action: payments_path, idea_limit: plan.max_num_ideas, can_publish_ideas: (plan.can_publish_ideas? ? '1' : nil) }
+              - form_data = { after_action: payments_path }
               - if plan.free?
                 %form{ method: :post, 'ng-show' => "session.isAuthenticated() && session.currentUser().plan.id != '#{plan.id}'", 'ng-submit' => "submitFreePlan('#{plan.id}', $event)", data: form_data.merge(is_free: '1') }
                   %input{ type: :hidden, name: :plan_id, value: plan.id }
@@ -63,12 +63,13 @@
               .sl-plan-no-trial
                 &nbsp;
 
-          .sl-plan-features{ class: "sl-plan-features-#{plan.id}" }
-            .sl-feature-wrapper
-              %h4
-                = plan.name
-                includes:
-              %ul
-                - plan.features.each do |feature|
-                  %li
-                    = feature
+          - if plan.features.present?
+            .sl-plan-features{ class: "sl-plan-features-#{plan.id}" }
+              .sl-feature-wrapper
+                %h4
+                  = plan.name
+                  includes:
+                %ul
+                  - plan.features.each do |feature|
+                    %li
+                      = feature

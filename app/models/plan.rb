@@ -1,7 +1,6 @@
 class Plan
   PLANS = [
     Plan::Free,
-    Plan::Entrepreneur,
     Plan::Founder,
   ]
 
