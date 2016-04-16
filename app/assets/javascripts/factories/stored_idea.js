@@ -1,5 +1,25 @@
-angular.module('StartupLab').factory('Idea', [ '$http', function($http) {
+angular.module('StartupLab').factory('StoredIdea', [ '$http', 'FinancialEntry', 'Channel', 'FundingOption', function($http, FinancialEntry, Channel, FundingOption) {
   return {
+    canPublish: true,
+
+    canDraft: true,
+
+    canShare: true,
+
+    canVote: true,
+
+    canComment: true,
+
+    canAddFounders: true,
+
+    isLocal: false,
+
+    financialEntry: FinancialEntry,
+
+    channel: Channel,
+
+    fundingOption: FundingOption,
+
     basePath: function() {
       return '/api/ideas';
     },
@@ -50,6 +70,12 @@ angular.module('StartupLab').factory('Idea', [ '$http', function($http) {
 
     create: function(idea, callback) {
       return $http.post(this.ideaPath(), { idea: idea }).then(function(response) {
+        callback(response.data);
+      });
+    },
+
+    save_from_local: function(idea, callback) {
+      return $http.post(this.basePath() + '/save_from_local.json', { idea: idea }).then(function(response) {
         callback(response.data);
       });
     },
