@@ -1,7 +1,33 @@
 class Api::IdeasController < Api::BaseController
   skip_before_action :authenticate_user!, only: [ :show, :index ]
-  before_action :find_idea, except: [:index, :create, :draft, :shared, :published]
+  before_action :find_idea, except: [:index, :create, :draft, :shared, :published, :save_from_local]
   respond_to :json
+
+  private
+
+  IDEA_PARAMS = [
+    :idea,
+    :problem,
+    :problem_detail,
+    :company,
+    :mvp_url,
+    :mvp_stage,
+    :target_customer,
+    :target_customer_reason,
+    :costs,
+    :revenues,
+    :name,
+    :pitch_why,
+    :pitch_what,
+    :pitch_how,
+    :timing_why,
+    :timing_description,
+    :facebook_url,
+    :twitter_url,
+    :linkedin_url
+  ]
+
+  public
 
   def index
     @ideas = Idea.published
@@ -61,7 +87,14 @@ class Api::IdeasController < Api::BaseController
     render json: IdeaExhibit.new(@idea, current_user)
   end
 
+  def save_from_local
+    authorize(Idea, :create?)
+    UseCases::SaveFromLocal.new(save_from_local_params, current_user)
+    head :ok
+  end
+
   private
+
     def find_idea
       @idea = Idea.find(params[:id])
     end
@@ -70,27 +103,27 @@ class Api::IdeasController < Api::BaseController
       params.require(:idea).permit(:name)
     end
 
-    def idea_update_params
+    def save_from_local_params
       params.require(:idea).permit(
-        :idea,
-        :problem,
-        :problem_detail,
-        :company,
-        :mvp_url,
-        :mvp_stage,
-        :target_customer,
-        :target_customer_reason,
-        :costs,
-        :revenue,
-        :name,
-        :pitch_why,
-        :pitch_what,
-        :pitch_how,
-        :timing_why,
-        :timing_description,
-        :facebook_url,
-        :twitter_url,
-        :linkedin_url
+        *IDEA_PARAMS,
+        :financialEntries => [
+          :costs => [
+            :group,
+            :name,
+            :value
+          ],
+          :revenues => [
+            :group,
+            :name,
+            :value
+          ]
+        ],
+        :channels => [],
+        :fundingOptions => []
       )
+    end
+
+    def idea_update_params
+      params.require(:idea).permit(*IDEA_PARAMS)
     end
 end
