@@ -1,0 +1,54 @@
+angular.module('StartupLab')
+.controller('SaveLocalIdeaController', ['$scope', '$location', 'Session', 'Idea', function($scope, $location, Session, Idea) {
+  $scope.showNotification = function() {
+    var localIdea = Idea.local().findSynchronous();
+    console.log('localIdea', localIdea);
+    return !!(localIdea != {} && localIdea != null);
+  };
+
+  $scope._loggedInNotification = {
+    type: 'info',
+    title: 'You were working on an Idea',
+    content: 'You have an Idea that you haven\'t saved yet. Save it now to retain it.',
+    confirm: {
+      action: saveLocalIdea,
+      message: 'Save'
+    },
+    cancel: {
+      action: discardLocalIdea,
+      message: 'Discard'
+    }
+  };
+
+  $scope._loggedOutNotification = {
+    type: 'info',
+    title: 'Share your idea with the world!',
+    content: 'Your idea hasn\'t been saved. Sign up to get feedback on your idea and save it for later.',
+    confirm: {
+      action: function(event) {
+        $location.url('/sign-in');
+      },
+      message: 'Sign Up'
+    }
+  };
+
+  $scope.notification = function() {
+    if (Session.isAuthenticated()) {
+      return $scope._loggedInNotification;
+    } else {
+      return $scope._loggedOutNotification;
+    }
+  };
+
+  function saveLocalIdea() {
+    Idea.local().find('local').then(function(response){
+      Idea.stored().save_from_local(response.data, function(){
+        discardLocalIdea();
+      });
+    });
+  }
+
+  function discardLocalIdea() {
+    Idea.local().delete();
+  }
+}]);
