@@ -1,0 +1,9 @@
+.sl-notification(ng-class="notification().type")
+  .title
+    %h3 {{ notification().title }}
+  .content
+    %p {{ notification().content }}
+  .actions
+    %button.btn.btn-lg.pull-right(ng-click="notification().confirm.action()" ng-show="notification().confirm != null") {{ notification().confirm.message }}
+    %button.btn.btn-lg.pull-right(ng-click="notification().cancel.action()" ng-show="notification().cancel != null") {{ notification().cancel.message }}
+    .clearfix

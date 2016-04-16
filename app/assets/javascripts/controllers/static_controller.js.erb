@@ -1,9 +1,52 @@
 
 angular.module('StartupLab')
-.controller('StaticController', ['$scope', '$window', '$anchorScroll', 'Session', function($scope, $window, $anchorScroll, Session) {
+.controller('StaticController', ['$scope', '$window', '$anchorScroll', '$interval', 'Session', 'Preloader', function($scope, $window, $anchorScroll, $interval, Session, Preloader) {
   $scope.flashError = $window.gon.flashError;
 
   $scope.scrollTo = function(id) {
     $anchorScroll(id);
-  }
+  };
+
+  $scope.features = [
+    {
+      title: 'Plan your business with ease',
+      imageUri: 'assets/pages/home/feature_canvas.png',
+      altText: 'Plan your business with ease'
+    },
+    {
+      title: 'Get help from the community',
+      imageUri: 'assets/pages/home/feature_community.png',
+      altText: 'Get help from the community'
+    },
+    {
+      title: 'Export financial information',
+      imageUri: 'assets/pages/home/feature_financials.png',
+      altText: 'Export financial information'
+    }
+  ];
+
+  $scope.selectedFeatureIndex = 0;
+  $scope.selectedFeature = function(){
+    return $scope.features[$scope.selectedFeatureIndex];
+  };
+
+  var autoChangeHandle = $interval(function(){
+    $scope.selectedFeatureIndex = ($scope.selectedFeatureIndex + 1) % $scope.features.length;
+  }, 5000);
+
+  $scope.selectFeature = function(featureIndex){
+    $interval.cancel(autoChangeHandle);
+    $scope.selectedFeatureIndex = featureIndex;
+  };
+
+  $scope.featureClass = function(featureIndex){
+    if(featureIndex == $scope.selectedFeatureIndex){
+      return 'sl-selected sl-feature';
+    }
+    return 'sl-feature';
+  };
+
+  Preloader.preloadImages($scope.features.map(function(feature){
+    return feature.imageUri;
+  }));
 }]);

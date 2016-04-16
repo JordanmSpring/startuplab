@@ -1,9 +1,9 @@
 angular.module('StartupLab')
-.controller('CrowdfundingController', ['$scope', '$routeParams', 'FundingOption', function($scope, $routeParams, FundingOption) {
+.controller('CrowdfundingController', ['$scope', '$routeParams', 'Idea', function($scope, $routeParams, Idea) {
   $scope.options = [];
 
   $scope.showModal = function() {
-    $scope.options = $scope.idea.fundingOptions;
+    $scope.options = $scope.idea.fundingOptions || [];
     $scope.modal.modal('show');
   };
 
@@ -30,7 +30,7 @@ angular.module('StartupLab')
   };
 
   $scope.syncFundingOptions = function() {
-    FundingOption.save($scope.idea, $scope.options).success(function() {
+    Idea.provider().fundingOption.save($scope.idea, $scope.options).then(function() {
       $scope.idea.fundingOptions = $scope.options;
     });
   };

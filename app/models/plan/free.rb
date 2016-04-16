@@ -17,27 +17,10 @@ class Plan::Free < Plan
 
   def self.features
     [
-      '1 private canvas',
+      'Unlimited private and public canvases',
+      'Ability to export business plan',
+      'Automated and exported financials',
+      'Notifications and comments',
     ]
-  end
-
-  def self.max_num_ideas
-    1
-  end
-
-  def self.can_export?
-    false
-  end
-
-  def self.can_publish_ideas?
-    false
-  end
-
-  def self.can_notify?
-    false
-  end
-
-  def self.can_see_financials?
-    false
   end
 end

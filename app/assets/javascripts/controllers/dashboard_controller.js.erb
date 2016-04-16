@@ -7,15 +7,15 @@ angular.module('StartupLab')
   $scope._showDrafts = false;
   $scope._showShared = false;
 
-  Idea.draft().then(function(response) {
+  Idea.provider().draft().then(function(response) {
     $scope.draftIdeas = response.data.ideas;
   });
 
-  Idea.shared().then(function(response) {
+  Idea.provider().shared().then(function(response) {
     $scope.sharedIdeas = response.data.ideas;
   });
 
-  Idea.published().then(function(response) {
+  Idea.provider().published().then(function(response) {
     $scope.publishedIdeas = response.data.ideas;
   });
 

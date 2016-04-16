@@ -29,6 +29,8 @@ Rails.application.routes.draw do
         get :draft
         get :shared
         get :published
+
+        post :save_from_local
       end
 
       member do

@@ -5,7 +5,7 @@ angular.module('StartupLab')
   $scope.session = Session;
 
   // TODO: Use a resolver in the routes
-  Idea.find($routeParams.id).then(function(response) {
+  Idea.provider().find($routeParams.id).then(function(response) {
     $scope.idea = response.data;
   });
 

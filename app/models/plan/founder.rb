@@ -8,17 +8,11 @@ class Plan::Founder < Plan
   end
 
   def self.amount
-    2000
+    1000
   end
 
   def self.features
-    [
-      'Unlimited private and public canvases',
-      'Ability to export business plan',
-      'Automated and exported financials',
-      'Notifications and comments',
-      'And much more',
-    ]
+    []
   end
 
   # Used to indicate whether this plan is 'coming soon'.

@@ -1,6 +1,6 @@
 angular.module('StartupLab')
 .controller('IdeasController', ['$scope', 'Idea', function($scope, Idea) {
-  Idea.all().then(function(response) {
+  Idea.stored().all().then(function(response) {
     $scope.ideas = response.data.ideas;
   });
 }]);

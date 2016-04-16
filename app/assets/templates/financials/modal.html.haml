@@ -28,11 +28,11 @@
 
         %div(ng-repeat="entry in idea.financialEntries[financialGroup]")
           .sl-entry-name
-            %input.form-control.input-sm(type="text" ng-model="entry.name" ng-blur="updateEntry(entry)" placeholder="{{ 'Add a new ' + namePlaceholder }}" required)
+            %input.form-control.input-sm(type="text" ng-model="entry.name" ng-blur="updateEntry(entry, $index)" placeholder="{{ 'Add a new ' + namePlaceholder }}" required)
           .sl-entry-value
-            %input.form-control.input-sm(type="number" step="any" min="0" ng-model="entry.value" ng-blur="updateEntry(entry)" placeholder="{{ valuePlaceholder }}" required)
+            %input.form-control.input-sm(type="number" step="any" min="0" ng-model="entry.value" ng-blur="updateEntry(entry, $index)" placeholder="{{ valuePlaceholder }}" required)
           .sl-entry-destroy
-            %a(ng-click="destroyEntry(entry)")
+            %a(ng-click="destroyEntry(entry, $index)")
               %i.fa.fa-remove
           .clearfix
 
