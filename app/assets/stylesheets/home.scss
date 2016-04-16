@@ -1,3 +1,5 @@
+@import 'colors';
+
 $alt-color: #88999b;
 
 .sl-home-container {
@@ -16,7 +18,7 @@ $alt-color: #88999b;
 }
 
 .sl-home-section.sl-building {
-  padding: 250px 0;
+  padding: 150px 0;
 
   h2 {
     color: $alt-color;
@@ -44,13 +46,22 @@ $alt-color: #88999b;
   .sl-feature-list {
     color: $alt-color;
 
-    h3 {
-      color: $alt-color;
-    }
-
     ul {
       font-weight: normal;
       font-size: 20px;
+      list-style: none;
+
+      li.sl-feature {
+        padding: 2rem;
+
+        &:hover {
+          cursor: pointer;
+        }
+
+        &.sl-selected {
+          background: $btn-hover;
+        }
+      }
     }
   }
 
@@ -87,7 +98,7 @@ $alt-color: #88999b;
   }
 }
 
-.sl-home-section.sl-browse-ideas {
+.sl-home-section.sl-browse-ideas, .sl-home-section.sl-create-idea {
   margin-bottom: 150px;
   text-align: center;
 
@@ -98,8 +109,9 @@ $alt-color: #88999b;
 
 
 @media only screen and (min-width : 1200px) {
-  .sl-home-section.sl-start .sl-feature-list {
-    margin-top: 150px;
+  .sl-home-section.sl-start .sl-center-contents {
+    display: flex;
+    align-items: center;
   }
 }
 
@@ -107,4 +119,10 @@ $alt-color: #88999b;
   .sl-home-section h2 br {
     display: none;
   }
+}
+
+.sl-super {
+  vertical-align: super;
+  font-size: 0.75em;
+  display: inline;
 }
