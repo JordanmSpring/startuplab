@@ -1,65 +1,20 @@
-angular.module('StartupLab').factory('Idea', [ '$http', function($http) {
-  return {
-    basePath: function() {
-      return '/api/ideas';
-    },
+angular.module('StartupLab')
+.factory('Idea', [ 'Session', 'StoredIdea', 'LocalIdea', function(Session, StoredIdea, LocalIdea) {
 
-    ideaPath: function(id) {
-      if (id) {
-        return [ this.basePath(), id.toString() + '.json' ].join('/');
+  return {
+    provider: function() {
+      if (Session.isAuthenticated()) {
+        return StoredIdea;
       } else {
-        return this.basePath() + '.json';
+        return LocalIdea;
       }
     },
-
-    all: function() {
-      return $http.get(this.ideaPath());
+    stored: function() {
+      return StoredIdea;
     },
-
-    draft: function() {
-      return $http.get(this.basePath() + '/draft.json');
-    },
-
-    shared: function() {
-      return $http.get(this.basePath() + '/shared.json');
-    },
-
-    published: function() {
-      return $http.get(this.basePath() + '/published.json');
-    },
-
-    find: function(id) {
-      return $http.get(this.ideaPath(id));
-    },
-
-    publish: function(idea) {
-      return $http.post('/api/ideas/' + idea.id + '/publish.json');
-    },
-
-    unpublish: function(idea) {
-      return $http.post('/api/ideas/' + idea.id + '/unpublish.json');
-    },
-
-    vote: function(idea) {
-      return $http.post('/api/ideas/' + idea.id + '/vote.json');
-    },
-
-    unvote: function(idea) {
-      return $http.delete('/api/ideas/' + idea.id + '/vote.json');
-    },
-
-    create: function(idea, callback) {
-      return $http.post(this.ideaPath(), { idea: idea }).then(function(response) {
-        callback(response.data);
-      });
-    },
-
-    delete: function(idea) {
-      return $http.delete(this.ideaPath(idea.id));
-    },
-
-    update: function(idea) {
-      return $http.patch(this.ideaPath(idea.id), { idea: idea });
+    local: function() {
+      return LocalIdea;
     }
   };
+
 }]);
