@@ -1,4 +1,3 @@
-
 angular.module('StartupLab').factory('FinancialEntry', [ '$http', function($http) {
   return {
     entryPath: function(idea, entry) {
