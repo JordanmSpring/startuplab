@@ -1,6 +1,8 @@
 # Generated
 vendor/assets/bower_components
 vendor/assets/bower.json
+node_modules/
+bower_components/
 
 # Cache
 tmp/
