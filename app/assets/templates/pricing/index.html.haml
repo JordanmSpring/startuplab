@@ -24,32 +24,11 @@
                 %a.btn.btn-default.btn-md(href="/#/sign-in?origin=#{origin}" target="_self")
                   Join Now
 
-              .sl-login-link{ 'ng-show' => "session.isAuthenticated() && session.currentUser().plan.id == '#{plan.id}'" }
+              .sl-login-link{ 'ng-show' => "session.isAuthenticated()" }
                 %a.btn.btn-default.disabled.btn-md
                   Your Plan
 
               - form_data = { after_action: payments_path }
-              - if plan.free?
-                %form{ method: :post, 'ng-show' => "session.isAuthenticated() && session.currentUser().plan.id != '#{plan.id}'", 'ng-submit' => "submitFreePlan('#{plan.id}', $event)", data: form_data.merge(is_free: '1') }
-                  %input{ type: :hidden, name: :plan_id, value: plan.id }
-                  %input{ type: :hidden, name: :stripeToken, value: 'free' }
-                  %input.sl-free-plan{ type: :submit,
-                          class: ['btn', 'btn-default', 'btn-md'],
-                          value: 'Select Plan',
-                        }
-
-              - else
-                %form{ method: :post, 'ng-show' => "session.isAuthenticated() && session.currentUser().plan.id != '#{plan.id}'", 'ng-submit' => "submitPaidPlan('#{plan.id}', $event)", data: form_data }
-                  %input{ type: :hidden, name: :plan_id, value: plan.id }
-                  %input{ type: :submit,
-                          class: ['btn', 'btn-default', 'btn-md'],
-                          value: 'Select Plan',
-                          data:  { description:     "#{plan.name} plan",
-                                   image:           "#{image_url("startuplabicongreen.png")}",
-                                   name:            'Startup Lab',
-                                   'panel-label' => 'Subscribe',
-                                  }}
-
             - else
               .sl-login-link
                 %a.btn.btn-default.disabled.btn-md.sl-coming-soon

@@ -4,21 +4,24 @@
     %section.sl-home-section.sl-building
       .col-sm-8.col-sm-offset-2
         %h2
-          We believe that when entrepreneurs are empowered
+          We&nbsp;
+          %b> empower&nbsp;
+          entrepreneurs to help them&nbsp;
           %br
-          they can build amazing companies,&nbsp;
+          build amazing companies,&nbsp;
           %b> fast
           \.
 
     %section.sl-home-section.sl-ecosystem
       .col-sm-8.col-sm-offset-2
         %h2
-          Our
-          %b user-friendly &amp; agile
-          platform enables
+          A platform to help you build your business,
           %br
-          entrepreneurs to build those very companies
-        = image_tag 'pages/home/ideas.png', alt: 'Ideas', class: 'img-responsive'
+          with&nbsp;
+          %b> integration for the 21
+          .sl-super st
+          %b> &nbsp;century
+          \.
 
     %section.sl-home-section.sl-start
       .col-sm-8.col-sm-offset-2
@@ -26,26 +29,21 @@
           It just so happens that you could build too...
           %br
           you just have to
-          %a(ng-click="scrollTo('register')")
-            %b.sl-underline start
+          %a(ng-click="scrollTo('create')")
+            %b.sl-underline start.
 
-        .row
+        .row.sl-center-contents
           .col-lg-4.sl-feature-list
-            %h3
-              Features
             %ul
-              %li Quickly test an idea
-              %li Build out your plan
-              %li Understand your financials
-              %li Gather team or network feedback
-              %li Much more...
+              %li(ng-repeat="feature in features" data-ng-click="selectFeature($index)" ng-class="featureClass($index)") {{ feature.title }}
           .col-lg-8.sl-feature-graphic
-            = image_tag 'pages/home/features.png', alt: 'Features', class: 'img-responsive'
+            %img(ng-src="{{ selectedFeature().imageUri }}" alt="{{  selectedFeature().altText }}"
+            class="img-responsive")
 
 
-    %section.sl-home-section.sl-login(ng-if="!session.isAuthenticated()")
-      %a(name="register")
-      %sl-login
+    %section.sl-home-section.sl-create-idea(ng-if="!session.isAuthenticated()")
+      .col-sm-8.col-sm-offset-2
+        %a.btn.btn-success.btn-lg(name="create" href="/#/ideas/new") Create an Idea
 
     %section.sl-home-section.sl-browse-ideas(ng-if="session.isAuthenticated()")
       .col-sm-8.col-sm-offset-2

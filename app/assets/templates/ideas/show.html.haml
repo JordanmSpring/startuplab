@@ -29,7 +29,7 @@
             %a.btn.btn-info(ng-show="session.isAuthenticated() && idea.voted" ng-click="unvote()")
               %i.fa.fa-heart
               %sl-vote-count(ng-model="idea")
-            %a.btn.btn-default(ng-show="!session.isAuthenticated()" ng-href="{{ '/#/sign-in?vote=1&origin=/ideas/' + idea.id }}")
+            %a.btn.btn-default(ng-show="!session.isAuthenticated() && canVote()" ng-href="{{ '/#/sign-in?vote=1&origin=/ideas/' + idea.id }}")
               %i.fa.fa-heart-o
               %sl-vote-count(ng-model="idea")
 
@@ -37,7 +37,7 @@
     %section.row
       .col-lg-12
         .grid
-          .grid-sizer
+          -#.grid-sizer
           .grid-item.grid-item--height-norm.grid-item--problem
             %sl-idea-panel(ng-model="idea" link-title="Problem" template-url="ideas/forms/problem.html")
 
@@ -74,7 +74,7 @@
           .grid-item.grid-item--width6.grid-item--height-norm.grid-item--pitch.inverted
             %sl-idea-panel(ng-model="idea" link-title="Elevator Pitch" template-url="ideas/forms/pitch.html")
 
-    %section#submitted-by.row
+    %section#submitted-by.row(ng-show="canComment()")
       .body.col-lg-12
         %h3 Submitted by
 
@@ -82,7 +82,7 @@
 
         %p {{ idea.user.name }}
 
-.comments-wrap
+.comments-wrap(ng-show="canComment()")
   .container
     %section#comment-form
       %header.row
@@ -106,4 +106,3 @@
         %img(ng-src="{{ comment.user.gravatarUrl }}")
         %h2 {{ comment.user.name }}
         %p {{ comment.body }}
-

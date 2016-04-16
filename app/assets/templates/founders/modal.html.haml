@@ -8,7 +8,7 @@
       .modal-header
         %h2 Founders
       .modal-body
-        %ul
+        %ul(ng-show="canAddFounders()")
           %li(ng-repeat="founder in idea.founders")
             %sl-founder(ng-model="founder" idea="idea")
           %li(ng-show="idea.canEdit")
@@ -16,5 +16,9 @@
               %input.form-control(type="email" ng-model="invite.email" placeholder="Email")
               %input.form-control(type="text" ng-model="invite.role" placeholder="Role")
               %btn.btn.btn-default.btn-sm(ng-click="inviteFounder()") Invite
-
+        %ul(ng-show="!canAddFounders()")
+          %li
+            Please
+            %a(ng-click="redirectToSignUp()") signup
+            to add Founders
         .clearfix
