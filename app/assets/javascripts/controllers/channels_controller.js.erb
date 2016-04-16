@@ -1,9 +1,9 @@
 angular.module('StartupLab')
-.controller('ChannelsController', ['$scope', '$routeParams', 'Channel', function($scope, $routeParams, Channel) {
+.controller('ChannelsController', ['$scope', '$routeParams', 'Idea', function($scope, $routeParams, Idea) {
   $scope.channels = [];
 
   $scope.showModal = function() {
-    $scope.channels = $scope.idea.channels;
+    $scope.channels = $scope.idea.channels || [];
     console.log('channels = ', $scope.channels);
     $scope.modal.modal('show');
   };
@@ -32,7 +32,7 @@ angular.module('StartupLab')
 
   $scope.syncChannels = function() {
     console.log('syncing', $scope.idea.channels);
-    Channel.save($scope.idea, $scope.channels).success(function() {
+    Idea.provider().channel.save($scope.idea, $scope.channels).then(function() {
       $scope.idea.channels = $scope.channels;
     });
   };

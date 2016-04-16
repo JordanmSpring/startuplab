@@ -1,9 +1,13 @@
 angular.module('StartupLab')
-.controller('FoundersController', ['$scope', '$routeParams', 'Invite', function($scope, $routeParams, Invite) {
+.controller('FoundersController', ['$scope', '$routeParams', '$location', 'Invite', 'Idea', function($scope, $routeParams, $location, Invite, Idea) {
   $scope.invite = {};
 
   $scope.showModal = function() {
     $scope.modal.modal('show');
+  };
+
+  $scope.canAddFounders = function() {
+    return Idea.provider().canAddFounders;
   };
 
   $scope.inviteFounder = function() {
@@ -11,5 +15,13 @@ angular.module('StartupLab')
       $scope.invite = {};
       $scope.idea.founders.push(resp.data);
     });
+  };
+
+  $scope.redirectToSignUp = function() {
+    $scope.modal.on('hidden.bs.modal', function(){
+      $location.path('/sign-in');
+      $scope.$apply();
+    });
+    $scope.modal.modal('hide');
   };
 }]);
