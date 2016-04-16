@@ -1,5 +1,6 @@
 // TODO: Move these to a routes.js file
-angular.module('StartupLab', ['ngRoute', 'ngResource', 'frapontillo.bootstrap-switch', 'angulartics', 'angulartics.google.analytics', 'templates'])
+angular.module('StartupLab', ['ngRoute', 'ngResource', 'frapontillo.bootstrap-switch', 'LocalStorageModule', 'angulartics', 'angulartics' +
+'.google.analytics', 'templates'])
  .config(['$routeProvider', function($routeProvider) {
 
   var userByInviteToken = ['Invite', '$route', function(Invite, $route) {
