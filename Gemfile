@@ -41,6 +41,7 @@ gem 'redcarpet'
 gem 'sass-rails',                   '~> 5.0'
 gem 'turbolinks'
 gem 'uglifier',                     '>= 1.3.0'
+gem 'rack-cors'
 
 group :development do
   gem 'pry'
@@ -72,7 +73,6 @@ end
 
 group :production do
   gem 'rails_12factor'
-  gem 'rack-cors'
 end
 
 group :doc do
