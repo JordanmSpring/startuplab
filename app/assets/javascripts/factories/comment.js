@@ -15,7 +15,6 @@ angular.module('StartupLab').factory('Comment', [ '$http', function($http) {
 
     create: function(idea, comment, callback) {
       return $http.post(this.comments_path(idea.id), { comment: comment }).then(function(response) {
-        console.log(response);
         callback(response.data);
       });
     }

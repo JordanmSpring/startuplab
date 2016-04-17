@@ -2,7 +2,6 @@ angular.module('StartupLab')
 .controller('SaveLocalIdeaController', ['$scope', '$location', 'Session', 'Idea', function($scope, $location, Session, Idea) {
   $scope.showNotification = function() {
     var localIdea = Idea.local().findSynchronous();
-    console.log('localIdea', localIdea);
     return !!(localIdea != {} && localIdea != null);
   };
 

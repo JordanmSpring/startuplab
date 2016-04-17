@@ -4,7 +4,6 @@ angular.module('StartupLab')
 
   $scope.showModal = function() {
     $scope.channels = $scope.idea.channels || [];
-    console.log('channels = ', $scope.channels);
     $scope.modal.modal('show');
   };
 
@@ -31,7 +30,6 @@ angular.module('StartupLab')
   };
 
   $scope.syncChannels = function() {
-    console.log('syncing', $scope.idea.channels);
     Idea.provider().channel.save($scope.idea, $scope.channels).then(function() {
       $scope.idea.channels = $scope.channels;
     });

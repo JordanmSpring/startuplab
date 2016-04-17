@@ -4,7 +4,6 @@ angular.module('StartupLab', ['ngRoute', 'ngResource', 'frapontillo.bootstrap-sw
  .config(['$routeProvider', function($routeProvider) {
 
   var userByInviteToken = ['Invite', '$route', function(Invite, $route) {
-    console.log("looking for ", $route.current.params.invitation_token);
     return Invite.get($route.current.params.invitation_token).$promise;
   }];
 
