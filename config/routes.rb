@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 
   mount StripeEvent::Engine, at: '/stripe-callback'
 
+  match '*path', via: :all, to: 'errors#not_found', constraints: CloudfrontConstraint.new
+
   ActiveAdmin.routes(self)
   devise_for :users, controllers: {
     passwords:          'users/passwords',
