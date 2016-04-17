@@ -1,35 +1,7 @@
-
 angular.module('StartupLab')
-.controller('PricingController', ['$scope', 'Session', '$routeParams', '$location', '$timeout', function($scope, Session, $routeParams, $location, $timeout) {
+.controller('PricingController',
+  ['$scope', 'Session', '$routeParams', '$location', '$timeout',
+  function($scope, Session, $routeParams, $location, $timeout) {
 
-  // if ($routeParams['plan_id'] && $scope.session.isAuthenticated()) {
-  //
-  //   // Remove the 'plan' and 'origin' params after login.
-  //   $location.url('/pricing/');
-  //
-  //   $timeout(function() {
-  //     $scope.submitFreePlan();
-  //   });
-  // }
-
-  // $scope.submitFreePlan = function($event) {
-  //   var button = $('.sl-plan-free form .btn');
-  //   var form   = button.parents('form');
-  //
-  //   // We want to be sure to only do this check on the first submit.
-  //   if ($scope.submittedFreePlan) {
-  //     return true;
-  //   }
-  //
-  //   if ($event) {
-  //     $event.stopPropagation();
-  //   }
-  //
-  //   form.attr('action', form.data('after-action'));
-  //   $timeout(function() {
-  //     $scope.submittedFreePlan = true;
-  //     form.submit();
-  //   });
-  // }
 
 }]);
