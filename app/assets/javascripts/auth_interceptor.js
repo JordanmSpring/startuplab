@@ -1,6 +1,6 @@
 angular.module('StartupLab').config([
   "$httpProvider", function($httpProvider, $location) {
-    $httpProvider.interceptors.push(function($q, $location) {
+    $httpProvider.interceptors.push(['$q', '$location', function($q, $location) {
       return {
         'responseError': function(rejection) {
           if (rejection.status === 401) {
@@ -26,6 +26,6 @@ angular.module('StartupLab').config([
           return config;
         },
       }
-    });
+    }]);
   }
 ]);
