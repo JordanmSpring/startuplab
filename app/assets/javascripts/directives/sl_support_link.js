@@ -1,4 +1,3 @@
-
 angular.module('StartupLab').directive('slSupportLink', function() {
   return {
     restrict: 'A',

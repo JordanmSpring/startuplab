@@ -1,4 +1,3 @@
-
 angular.module('StartupLab').factory('Channel', [ '$http', function($http) {
   return {
     channels_path: function(idea) {
@@ -10,7 +9,7 @@ angular.module('StartupLab').factory('Channel', [ '$http', function($http) {
         method: 'POST',
         url: this.channels_path(idea),
         data: { channels: channels }
-      }).catch(function() {
+      }).error(function() {
         alert('Could not save channels');
       });
     }

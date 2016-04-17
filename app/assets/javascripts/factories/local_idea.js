@@ -1,5 +1,6 @@
-angular.module('StartupLab')
-.factory('LocalIdea', [ 'localStorageService', '$q', 'LocalFinancialEntry', 'LocalChannel', 'LocalFundingOption', 'StoredIdea', function(localStorageService, $q, LocalFinancialEntry, LocalChannel, LocalFundingOption, StoredIdea) {
+angular.module('StartupLab').factory('LocalIdea',
+  [ 'localStorageService', '$q', 'LocalFinancialEntry', 'LocalChannel', 'LocalFundingOption', 'StoredIdea',
+  function(localStorageService, $q, LocalFinancialEntry, LocalChannel, LocalFundingOption, StoredIdea) {
 
   var LOCAL_IDEA_KEY = 'localIdea';
 

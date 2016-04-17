@@ -1,5 +1,4 @@
-angular.module('StartupLab')
-.factory('Preloader', [ function() {
+angular.module('StartupLab').factory('Preloader', function() {
 
   function Preloader(imageLocations) {
     this.imageLocations = imageLocations;
@@ -23,4 +22,4 @@ angular.module('StartupLab')
 
   return Preloader;
 
-}]);
+});

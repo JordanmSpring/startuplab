@@ -1,5 +1,3 @@
-
-
 angular.module('StartupLab').directive("compareTo", function() {
   return {
     require: "ngModel",

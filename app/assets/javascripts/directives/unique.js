@@ -1,4 +1,3 @@
-
 angular.module('StartupLab').directive("uniqueEmail", [ 'User', function(User) {
   return {
     retrict: 'A',
