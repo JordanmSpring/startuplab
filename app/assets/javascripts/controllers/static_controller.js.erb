@@ -10,17 +10,17 @@ angular.module('StartupLab')
   $scope.features = [
     {
       title: 'Plan your business with ease',
-      imageUri: 'assets/pages/home/feature_canvas.png',
+      imageUri: '<%= asset_path('pages/home/feature_canvas.png') %>',
       altText: 'Plan your business with ease'
     },
     {
       title: 'Get help from the community',
-      imageUri: 'assets/pages/home/feature_community.png',
+      imageUri: '<%= asset_path('assets/pages/home/feature_community.png') %>',
       altText: 'Get help from the community'
     },
     {
       title: 'Export financial information',
-      imageUri: 'assets/pages/home/feature_financials.png',
+      imageUri: '<%= asset_path('assets/pages/home/feature_financials.png') %>',
       altText: 'Export financial information'
     }
   ];
